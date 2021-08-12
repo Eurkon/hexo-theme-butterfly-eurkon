@@ -1,0 +1,70 @@
+#article-container
+  a
+    &.link-card
+      margin 0.25rem auto
+      background #f6f6f6
+      display inline-flex
+      align-items center
+      cursor pointer
+      text-align center
+      min-width 200px
+      max-width 361px
+      color #444
+      border-radius 12px
+      text-decoration none
+      &:hover
+        box-shadow 0 4px 8px 0 rgba(0, 0, 0, 0.1)
+      div
+        &.left
+          width 48px
+          height 48px
+          margin 12px
+          overflow hidden
+          flex-shrink 0
+          position relative
+          i
+            font-size 32px
+            line-height 48px
+            margin-left 4px
+          img
+            display block
+            position absolute
+            border-radius 8px / 4
+            top 50%
+            left 50%
+            transform translate(-50%, -50%)
+        &.right
+          overflow hidden
+          margin-right 12px
+      p
+        margin 0
+        &.text
+          font-weight bold
+        &.url
+          flex-shrink 0
+          color rgba(68, 68, 68, 0.65)
+          font-size 13px
+
+@media screen and (max-width: 425px)
+  #article-container
+    a
+      &.link-card
+        max-width 100%
+
+@media screen and (max-width: 375px)
+  #article-container
+    a
+      &.link-card
+        width 100%
+
+#article-container a.link-card div.left,
+#article-container a.link-card div.right
+  pointer-events none
+
+[data-theme="dark"]
+  #article-container
+    a
+      &.link-card
+        filter brightness(0.7)
+        img
+          filter brightness(1)
