@@ -2,20 +2,57 @@
   if top_img === false
     h1.page-title= page.title
 
-  .flink
-    if site.data.link
-      each i in site.data.link
-        if i.class_name
-          h2!= i.class_name
-        if i.class_desc
-          .flink-desc!=i.class_desc
-        .flink-list
-          each item in i.link_list
-            .flink-list-item
-              a(href=url_for(item.link)  title=item.name target="_blank")
-                .flink-item-icon
+  if (theme.flink_style === 'butterfly')
+    .flink
+      if site.data.link
+        each i in site.data.link
+          if i.class_name
+            h2!= i.class_name
+          if i.class_desc
+            .flink-desc!=i.class_desc
+          .flink-list
+            each item in i.link_list
+              .flink-list-item
+                a(href=url_for(item.link) rel='noopener' title=item.name target="_blank")
+                  .flink-item-icon
                   img(src=url_for(item.avatar) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt=item.name )
                 .flink-item-name= item.name 
                 .flink-item-desc(title=item.descr)= item.descr
-    != page.content
-
+      != page.content
+  else if (theme.flink_style === 'volantis')
+    .flink
+      if site.data.link
+        each i in site.data.link
+          if i.class_name
+            h2!= i.class_name
+          if i.class_desc
+            .flink-desc!=i.class_desc
+          .site-card-group
+            each item in i.link_list
+              a.site-card(target='_blank' rel='noopener' href=url_for(item.link))
+                .img
+                  - var siteshot = item.siteshot ? url_for(item.siteshot) : 'https://image.thum.io/get/width/400/crop/800/allowJPG/wait/20/noanimate/' + item.link
+                  img(src=siteshot onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt='' )
+                .info
+                  img(src=url_for(item.avatar) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt='' )
+                  span.title= item.name
+                  span.desc(title=item.descr)= item.descr
+      != page.content
+  else if (theme.flink_style === 'flexcard')
+    .flink
+      if site.data.link
+        each i in site.data.link
+          if i.class_name
+            h2!= i.class_name
+          if i.class_desc
+            .flink-desc!=i.class_desc
+          .flink-list
+            each item in i.link_list
+              a.flink-list-card(href=url_for(item.link) target='_blank' rel='noopener' data-title=item.descr)
+                .wrapper.cover
+                  - var siteshot = item.siteshot ? url_for(item.siteshot) : 'https://image.thum.io/get/width/400/crop/800/allowJPG/wait/20/noanimate/' + item.link
+                  img.cover.fadeIn(src=siteshot onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt='' )
+                .info
+                  img(src=url_for(item.avatar) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt='' )
+                  span.flink-sitename= item.name
+      != page.content
