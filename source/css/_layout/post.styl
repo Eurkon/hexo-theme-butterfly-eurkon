@@ -1,13 +1,14 @@
 beautify()
-  headStyle(fontsize)
+  headStyle(fontsize, text)
     padding-left: unit(fontsize + .4, 'rem')
 
     code
       font-size: unit(fontsize, 'rem')
 
     &:before
-      margin-left: unit((-(fontsize + .2)), 'rem')
+      margin-left: unit((-(fontsize + .4)), 'rem')
       font-size: unit(fontsize, 'rem')
+      content: ' H' + text + ' '
 
     &:hover
       padding-left: unit(fontsize + .6, 'rem')
@@ -22,7 +23,7 @@ beautify()
 
     &:before
       position: absolute
-      top: calc(50% - .35rem)
+      top: calc(50% - .5rem)
       color: $title-prefix-icon-color
       content: $title-prefix-icon
       line-height: 1
@@ -34,22 +35,22 @@ beautify()
         color: $light-blue
 
   h1
-    headStyle(1)
+    headStyle(1.2, '₁')
 
   h2
-    headStyle(.9)
+    headStyle(1.1, '₂')
 
   h3
-    headStyle(.8)
+    headStyle(1, '₃')
 
   h4
-    headStyle(.7)
+    headStyle(.9, '₄')
 
   h5
-    headStyle(.6)
+    headStyle(.8, '₅')
 
   h6
-    headStyle(.6)
+    headStyle(.8, '₆')
 
   ol,
   ul
