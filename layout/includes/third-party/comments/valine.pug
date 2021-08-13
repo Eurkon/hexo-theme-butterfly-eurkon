@@ -20,6 +20,9 @@ script.
         emojiMaps: !{emojiMaps},
         enableQQ: #{theme.valine.enableQQ},
         path: window.location.pathname,
+        master: '#{theme.valine.master}'.split(','),
+        friends: '#{theme.valine.friends}'.split(','),
+        tagMeta: '#{theme.valine.tagMeta || "博主,小伙伴,访客"}'.split(','),
         requiredFields: [!{theme.valine.requiredFields ? JSON.stringify(theme.valine.requiredFields).split(',') : ''}],
         visitor: #{theme.valine.visitor}
       }, !{JSON.stringify(theme.valine.option)}))
