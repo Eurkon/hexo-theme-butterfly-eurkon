@@ -1,6 +1,7 @@
 div
   script(src=url_for(theme.CDN.utils))
   script(src=url_for(theme.CDN.main))
+  script(src=url_for(theme.CDN.vue))
 
   if theme.translate.enable
     script(src=url_for(theme.CDN.translate))
@@ -63,6 +64,9 @@ div
 
   if theme.pjax.enable
     !=partial('includes/third-party/pjax', {}, {cache: true})
+
+  if theme.wowjs.enable
+    !=partial('includes/third-party/wowjs', {}, {cache: true})
     
   if theme.busuanzi.site_uv || theme.busuanzi.site_pv || theme.busuanzi.page_pv
     script(async data-pjax src=url_for(theme.CDN.busuanzi))

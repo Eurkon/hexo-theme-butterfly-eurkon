@@ -66,6 +66,10 @@ if theme.algolia_search.enable
 if theme.blog_title_font &&　theme.blog_title_font.font_link
   link(rel='stylesheet' href=url_for(theme.blog_title_font.font_link) media="print" onload="this.media='all'")
 
+//- animate_css
+if theme.wowjs.enable
+  link(rel='stylesheet' href=url_for(theme.CDN.animate_css) media="print" onload="this.media='all'")
+
 //- global config
 !=partial('includes/head/config', {}, {cache: true})
 
