@@ -6,6 +6,7 @@
 'use strict'
 
 hexo.extend.helper.register('aside_categories', function (categories, options) {
+  const theme = hexo.theme.config
   if (!options && (!categories || !Object.prototype.hasOwnProperty.call(categories, 'length'))
   ) {
     options = categories
@@ -52,7 +53,7 @@ hexo.extend.helper.register('aside_categories', function (categories, options) {
 
           result += `<a class="card-category-list-link" href="${this.url_for(cat.path)}">`
 
-          result += `<span class="card-category-list-name">${cat.name}</span>`
+          result += `<span class="card-category-list-name">${theme.emoji[cat.name] + [cat.name]}</span>`
 
           if (showCount) {
             result += `<span class="card-category-list-count">${cat.length}</span>`

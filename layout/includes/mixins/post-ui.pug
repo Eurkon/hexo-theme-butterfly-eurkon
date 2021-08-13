@@ -41,7 +41,7 @@ mixin postUI(posts)
               span.article-meta__separator |
               i.fas.fa-inbox
               each item, index in article.categories.data
-                a(href=url_for(item.path)).article-meta__categories #[=item.name]
+                a(href=url_for(item.path)).article-meta__categories #[=theme.emoji[item.name] + item.name]
                 if (index < article.categories.data.length - 1)
                   i.fas.fa-angle-right
           if (theme.post_meta.page.tags && article.tags.data.length > 0)
@@ -49,7 +49,7 @@ mixin postUI(posts)
               span.article-meta__separator |
               i.fas.fa-tag
               each item, index in article.tags.data
-                a(href=url_for(item.path)).article-meta__tags #[=item.name]
+                a(href=url_for(item.path)).article-meta__tags #[=theme.emoji[item.name] + item.name]
                 if (index < article.tags.data.length - 1)
                   span.article-meta__link #[='•']
           

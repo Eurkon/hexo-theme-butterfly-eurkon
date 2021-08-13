@@ -32,7 +32,7 @@
 
           each item, index in page.categories.data
             i.fas.fa-inbox.fa-fw.post-meta-icon
-            a(href=url_for(item.path)).post-meta-categories #[=item.name]
+            a(href=url_for(item.path)).post-meta-categories #[=theme.emoji[item.name] + item.name]
             if (index < page.categories.data.length - 1)
               i.fas.fa-angle-right.post-meta-separator
 
