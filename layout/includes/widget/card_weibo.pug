@@ -1,0 +1,8 @@
+if theme.aside.card_weibo.enable
+  .card-widget.card-weibo
+    .card-content
+      .item-headline
+        i.fab.fa-weibo
+        span= _p('微博热搜')
+      #weibo-container(style="width: 100%; height: 150px;font-size: 95%;")
+  script(defer data-pjax src=url_for(theme.CDN.card_weibo))
