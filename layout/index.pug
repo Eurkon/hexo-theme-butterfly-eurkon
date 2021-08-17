@@ -3,5 +3,8 @@ extends includes/layout.pug
 block content
   include ./includes/mixins/post-ui.pug
   #recent-posts.recent-posts
+    if theme.swiperPost.enable
+      .recent-post-item(style='height:auto; width:100%;')
+        .blog-slider.swiper-container-fade.swiper-container-horizontal#swiper_container
     +postUI
     include includes/pagination.pug
