@@ -1,0 +1,12 @@
+if theme.aside.card_history.enable
+  .card-widget.card-history
+    .card-content
+      .item-headline
+        i.fas.fa-clock.fa-spin
+        span= _p('那年今日')
+      #history-baidu(style='height: 100px; overflow: hidden; font-size:95%')
+        #history-container.history_swiper-container(style="width: 100%; height: 100%;")
+            #history_container_wrapper.swiper-wrapper(style="height: 20px;" )
+  link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" media="print" onload="this.media='all'")
+  script(defer data-pjax src=url_for('https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js'))
+  script(defer data-pjax src=url_for(theme.CDN.card_history))
