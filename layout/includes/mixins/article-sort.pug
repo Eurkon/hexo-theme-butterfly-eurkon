@@ -5,9 +5,13 @@ mixin articleSort(posts)
       - let tempYear = date(article.date, 'YYYY')
       - let no_cover = article.cover === false || !theme.cover.archives_enable ? 'no-article-cover' : ''
       - let title = article.title || _p('no_title')
+      - let iconAnimal = '#'+ getAnimalIcon(tempYear)
       if tempYear !== year
         - year = tempYear
-        .article-sort-item.year= year
+        .article-sort-item.year
+          span= year
+          svg.icon(aria-hidden='true' style='width: 2em; height: 1.5em;')
+            use(xlink:href=iconAnimal)
       .article-sort-item(class=no_cover)
         if article.cover && theme.cover.archives_enable
           a.article-sort-item-img(href=url_for(article.path) title=title)
