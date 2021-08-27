@@ -5,6 +5,8 @@ hr
     .comment-headline
       i.fas.fa-comments.fa-fw
       span= ' ' + _p('comment')
+    .comment-protocol
+      a(href='/protocol/comment/' title='用户发言前，请认真阅读本条例。一经发言，即视为同意接受本条例；如不同意，请勿发言。')= '评论协议'
     
     if theme.comments.use.length > 1
       #comment-switch
