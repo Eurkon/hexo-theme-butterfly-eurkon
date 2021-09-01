@@ -3,9 +3,9 @@ extends includes/layout.pug
 block content
   include ./includes/mixins/post-ui.pug
   #recent-posts.recent-posts
-    if theme.swiperPost.enable
-      .recent-post-item(style='height:auto; width:100%;')
-        .blog-slider.swiper-container-fade.swiper-container-horizontal#swiper_container
+    if theme.swiperNotice.enable
+      .recent-post-item(style='width:100%; height:auto; padding: 0.6rem 1rem;')
+        !=partial('includes/swiper-notice', {}, {cache:theme.fragment_cache})
     if theme.catalogMagnet.enable
       .recent-post-item(style='width:100%; height:auto')
     if theme.swiperPost.enable
