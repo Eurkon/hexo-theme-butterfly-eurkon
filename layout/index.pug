@@ -8,6 +8,8 @@ block content
         .blog-slider.swiper-container-fade.swiper-container-horizontal#swiper_container
     if theme.catalogMagnet.enable
       .recent-post-item(style='width:100%; height:auto')
-        #catalog_magnet
+    if theme.swiperPost.enable
+      .recent-post-item(style='width:100%; height:auto;')
+        !=partial('includes/swiper-post', {}, {cache:theme.fragment_cache})
     +postUI
     include includes/pagination.pug

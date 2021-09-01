@@ -1,0 +1,38 @@
+.slider-container#swiper_container
+  .swiper-wrapper
+    if site.data.slider
+      each i in site.data.slider
+        .slider-item.swiper-slide
+          a.slider-item-img(href=url_for(i.link) alt='')|
+            img(src=url_for(i.cover) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.post_page) + `'`, alt='')
+          .slider-item-content
+            span.slider-item-date!= i.time
+            a.slider-item-title(href=url_for(i.link) alt='')!= i.title
+            .slider-item-text!= i.desc
+  .slider-item-pagination.swiper-pagination-clickable.swiper-pagination-bullets
+script.
+  var swiper = new Swiper('.slider-container', {
+    passiveListeners: true,
+    spaceBetween: 30,
+    effect: 'fade',
+    loop: true,
+    autoplay: {
+      disableOnInteraction: true,
+      delay: 3000
+    },
+    observer: true,//修改swiper自己或子元素时，自动初始化swiper
+    observeParents: true,//修改swiper的父元素时，自动初始化swiper
+    mousewheel: false,
+    // autoHeight: true,
+    pagination: {
+      el: '.slider-item-pagination',
+      clickable: true,
+    }
+  });
+  var sliderContainer = document.getElementById('swiper_container');
+  sliderContainer.onmouseenter = function () {
+    swiper.autoplay.stop();
+  };
+  sliderContainer.onmouseleave = function () {
+    swiper.autoplay.start();
+  };
