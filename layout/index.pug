@@ -8,6 +8,7 @@ block content
         !=partial('includes/swiper-notice', {}, {cache:theme.fragment_cache})
     if theme.catalogMagnet.enable
       .recent-post-item(style='width:100%; height:auto')
+        #catalog_magnet
     if theme.swiperPost.enable
       .recent-post-item(style='width:100%; height:auto;')
         !=partial('includes/swiper-post', {}, {cache:theme.fragment_cache})
