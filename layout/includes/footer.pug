@@ -2,28 +2,30 @@
   #footer-container
     .footer-group
       span.footer-group-title= '统计'
-      a.footer-group-item(href='/charts')= '文章统计'
-      a.footer-group-item(href='/census')= '博客统计'
+      a.footer-group-item(href='/charts/')= '文章统计'
+      a.footer-group-item(href='/census/')= '博客统计'
     .footer-group
       span.footer-group-title= '导航'
-      a.footer-group-item(href='/link')= '友情链接'
-      a.footer-group-item(href='/fcircle')= '友链订阅'
-      a.footer-group-item(href='/stars')= '网站收藏'
+      a.footer-group-item(href='/link/')= '友情链接'
+      a.footer-group-item(href='/link/#我的友链-amp-友链格式')= '申请友链'
+      a.footer-group-item(href='/fcircle/')= '友链订阅'
+      a.footer-group-item(href='/stars/')= '网站收藏'
     .footer-group
       span.footer-group-title= '分类'
-      a.footer-group-item(href=url_for(config.category_dir) + '/' + '学习笔记')= '学习笔记'
-      a.footer-group-item(href=url_for(config.category_dir) + '/' + '魔改教程')= '魔改教程'
-      a.footer-group-item(href=url_for(config.category_dir) + '/' + '知识分享')= '知识分享'
-      a.footer-group-item(href=url_for(config.category_dir) + '/' + '作品案例')= '作品案例'
+      a.footer-group-item(href=url_for(config.category_dir) + '/学习笔记/')= '学习笔记'
+      a.footer-group-item(href=url_for(config.category_dir) + '/魔改教程/')= '魔改教程'
+      a.footer-group-item(href=url_for(config.category_dir) + '/知识分享/')= '知识分享'
+      a.footer-group-item(href=url_for(config.category_dir) + '/作品案例/')= '作品案例'
     .footer-group
       span.footer-group-title= '关于'
-      a.footer-group-item(href='/about/#post-comment')= '给我留言'
-      a.footer-group-item(href='/link/#我的友链-amp-友链格式')= '申请友链'
+      a.footer-group-item(href='/notice/')= '网站公告'
+      a.footer-group-item(href='/update/')= '博客更新'
+      a.footer-group-item(href='/message/')= '给我留言'
       a.footer-group-item(href='mailto:eurkon@foxmail.com')= '联系博主'
     .footer-group
       span.footer-group-title= '协议'
-      a.footer-group-item(href='/protocol/comment' title='用户发言前，请认真阅读本条例。一经发言，即视为同意接受本条例；如不同意，请勿发言。')= '评论协议'
-      a.footer-group-item(href='/protocol/copyright' title='本站所有原创文章采用知识共享(Creative Commons)署名—非商业性使用—相同方式共享4.0国际公共许可协议')= '版权协议'
+      a.footer-group-item(href='/protocol/comment/' title='用户发言前，请认真阅读本条例。一经发言，即视为同意接受本条例；如不同意，请勿发言。')= '评论协议'
+      a.footer-group-item(href='/protocol/copyright/' title='本站所有原创文章采用知识共享(Creative Commons)署名—非商业性使用—相同方式共享4.0国际公共许可协议')= '版权协议'
 
   #footer-banner
     if theme.footer.owner.enable
