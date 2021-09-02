@@ -1,0 +1,33 @@
+.nota
+  color: $a-link-color
+  text-decoration: none
+  word-wrap: break-word
+  transition: all .2s
+  overflow-wrap: break-word
+
+  &:hover
+    color: $light-blue
+
+/*标题悬停显示文章描述*/
+span.nota
+  &:hover
+    &:before
+      position: fixed
+      width:fit-content
+      margin:auto
+      left:0;
+      right:0
+      top:10%
+      border-radius: 10px
+      text-align: center
+      z-index: 100
+      content: attr(data-nota)
+      font-size: 20px
+      color: #fff
+      padding: 10px
+      background-color: rgba($theme-color,0.9)
+[data-theme=dark]
+  span.nota
+    &:hover
+      &:before
+        background-color: rgba(#121212,0.8)

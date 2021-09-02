@@ -13,6 +13,9 @@ hexo.extend.tag.register('wavy', function(args) {
 hexo.extend.tag.register('del', function(args) {
   return `<del>${args.join(' ')}</del>`;
 });
+hexo.extend.tag.register('kbd', function(args) {
+  return `<kbd>${args.join(' ')}</kbd>`;
+});
 hexo.extend.tag.register('psw', function(args) {
   return `<psw>${args.join(' ')}</psw>`;
 });
