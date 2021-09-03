@@ -1,6 +1,8 @@
 nav#nav
   span#blog_name
-    a#site-name(href=url_for('/')) #[=config.title]
+    a#site-name(href=url_for('/') title='返回主页')
+      span #[=config.title]
+      i.fas.fa-home
   span#page_name
     a#page-name-text()
     
