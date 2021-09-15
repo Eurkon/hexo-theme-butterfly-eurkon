@@ -9,6 +9,13 @@ block content
   else
     include ./includes/mixins/article-sort.pug
     #tag
+      #catalog-bar
+        .catalog-tips
+          i.catalog-tips.fa-fw.fas.fa-shapes
+        #catalog-list
+          !=catalog_list("tags")
+        .catalog-more
+          a(href="/tags/")!= '更多'
       .article-sort-title= _p('page.tag') + ' - ' + page.tag
       +articleSort(page.posts)
       include includes/pagination.pug

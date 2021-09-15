@@ -9,7 +9,13 @@ block content
   else
     include ./includes/mixins/article-sort.pug
     #category
-      div!= list_categories()
+      #catalog-bar
+        .catalog-tips
+          i.catalog-tips.fa-fw.fas.fa-shapes
+        #catalog-list
+          !=catalog_list("categories")
+        .catalog-more
+          a(href="/categories/")!= '更多'
       .article-sort-title= _p('page.category') + ' - ' + page.category
       +articleSort(page.posts)
       include includes/pagination.pug
