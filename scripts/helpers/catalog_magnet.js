@@ -1,4 +1,4 @@
-hexo.extend.filter.register('after_generate', function () {
+hexo.extend.helper.register('catalog_magnet', function () {
   var magnet = hexo.theme.config.catalogMagnet.enable;
   if (magnet) {
     var data_list = []
@@ -13,13 +13,14 @@ hexo.extend.filter.register('after_generate', function () {
       load_more_href = '/tags'
     }
     var categories_new_list = [];
-    var temple_html_item = '';
     if (hexo.theme.config.catalogMagnet.devide > 3) {
       br_devide = '<br>'
     } else {
       br_devide = ' '
     }
     var devide = 100 / hexo.theme.config.catalogMagnet.devide;
+    var temple_html_item = `<style>#catalog_magnet{flex-wrap: wrap;display: flex;width:100%;justify-content:space-between;padding: 10px 10px 0 10px;align-content: flex-start;}.magnet_item{flex-basis: calc(${devide}% - 5px);background: var(--global-bg);margin-bottom: 10px;border-radius: 8px;transition: all .2s ease-in-out;}.magnet_item:hover{background: var(--main);box-shadow: var(--main-shadow);}.magnet_link_more{color:var(--font-color);}.magnet_link{color:var(--font-color);}.magnet_link:hover{color: var(--second)}@media screen and (max-width: 600px) {.magnet_item {flex-basis: 100%;}}.magnet_link_context{display:flex;padding: 10px;transition: all .3s ease-in-out;}.magnet_link_context:hover{padding: 10px 20px;}</style>`;
+    temple_html_item += '<div id="catalog_magnet">';
     if (hexo.theme.config.catalogMagnet.display) {
       for (j of hexo.theme.config.catalogMagnet.display) {
         for (item of data_list) {
@@ -48,13 +49,7 @@ hexo.extend.filter.register('after_generate', function () {
     }
     var load_more = `<a class="magnet_link_more" href="${load_more_href}" style="flex:1;text-align: center;margin-bottom: 10px;">查看更多...</a>`
     temple_html_item += load_more
-    var script_text = `
-    <script data-pjax>
-    if (document.getElementById('catalog_magnet')) {
-      document.getElementById('catalog_magnet').innerHTML = '${temple_html_item}'
-    }
-    </script>
-    <style>#catalog_magnet{flex-wrap: wrap;display: flex;width:100%;justify-content:space-between;padding: 10px 10px 0 10px;align-content: flex-start;}.magnet_item{flex-basis: calc(${devide}% - 5px);background: var(--global-bg);margin-bottom: 10px;border-radius: 8px;transition: all .2s ease-in-out;}.magnet_item:hover{background: var(--main);box-shadow: var(--main-shadow);}.magnet_link_more{color:var(--font-color);}.magnet_link{color:var(--font-color);}.magnet_link:hover{color: var(--second)}@media screen and (max-width: 600px) {.magnet_item {flex-basis: 100%;}}.magnet_link_context{display:flex;padding: 10px;transition: all .3s ease-in-out;}.magnet_link_context:hover{padding: 10px 20px;}</style>`;
-    hexo.extend.injector.register('body_end', script_text, "default");
+    temple_html_item += '</div>'
+    return temple_html_item
   }
 })
