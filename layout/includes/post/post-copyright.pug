@@ -5,30 +5,11 @@ if theme.post_copyright.enable && page.copyright !== false
   - let license_url = page.license_url ? page.license_url : theme.post_copyright.license_url
   .post-copyright
     .post-copyright__title
+      span.post-copyright-info #[=page.title]
+    .post-copyright__url
       span.post-copyright-info
-        h #[=page.title]
-    .post-copyright__type
-      span.post-copyright-info
-        a#post-url(href=url_for(url) )= theme.post_copyright.decode ? decodeURI(url) : url
-        a#post-url-copy
+        a#post-url(href=url_for(url))= theme.post_copyright.decode ? decodeURI(url) : url
+        a#post-url-copy(title='复制文章链接')
           i.fas.fa-paste.copy-button
-    .post-copyright-m
-      .post-copyright-m-info
-        .post-copyright-a
-          h 作者
-          .post-copyright-cc-info
-            h=author
-        .post-copyright-p
-          h 发布于
-          .post-copyright-cc-info
-            h=date(page.date, config.date_format)
-        .post-copyright-u
-          h 更新于
-          .post-copyright-cc-info
-            h=date(page.updated, config.date_format)
-        .post-copyright-c
-          h 许可协议
-          .post-copyright-cc-info
-            a.icon(title='Creative Commons' href='https://creativecommons.org/')
-              i.fab.fa-creative-commons
-            a(title=license href=url_for(license_url))=license
+    .post-copyright__cc
+      span.post-copyright-info!= '转载前请阅读本站 <a href="/protocol/copyright/" title="本站所有原创文章采用知识共享(Creative Commons)署名—非商业性使用—相同方式共享4.0国际公共许可协议">版权协议</a>，文章著作权归 <a href="/">Eurkon</a> 所有，转载请注明出处。'
