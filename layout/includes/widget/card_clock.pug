@@ -1,7 +1,9 @@
 if theme.aside.card_clock.enable
   .card-widget.card-clock
-        .card-content
+        .card-content()
           #electric_clock
-            img#card-clock-loading(src='https://cdn.jsdelivr.net/gh/Eurkon/CDN@master/hexo/images/user/clock_loading.gif' data-ll-status="loading" style="height:108px; width:100%;")
+            #card-clock-loading
+              center 
+                i.fa.fas.fa-spinner.fa-spin(style="font-size: 50px; padding: 30px")
   script(defer data-pjax src=url_for('https://pv.sohu.com/cityjson?ie=utf-8'))
   script(defer data-pjax src=url_for(theme.CDN.card_clock))
