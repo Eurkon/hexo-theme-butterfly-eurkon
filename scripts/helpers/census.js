@@ -37,11 +37,11 @@ const fetch = require('node-fetch')
 // http://openapi.baidu.com/oauth/2.0/token?grant_type=authorization_code&code={CODE}&client_id={CLIENT_ID}&client_secret={CLIENT_SECRET}&redirect_uri={REDIRECT_URI}
 
 // http://openapi.baidu.com/oauth/2.0/authorize?response_type=code&client_id=oTe3eg0Ggy1AKYBTmNIrO0Cm&redirect_uri=oob&scope=basic&display=popup
-// http://openapi.baidu.com/oauth/2.0/token?grant_type=authorization_code&code=7f55438acfb33983c8c1e99e8fa9db2d&client_id=oTe3eg0Ggy1AKYBTmNIrO0Cm&client_secret=Ygpg5sERFfOuV6LTUorWYy8kpXbMhseH&redirect_uri=oob
+// http://openapi.baidu.com/oauth/2.0/token?grant_type=authorization_code&code=1f216bdb4f1078f4f5ddbeda82df5c6b&client_id=oTe3eg0Ggy1AKYBTmNIrO0Cm&client_secret=Ygpg5sERFfOuV6LTUorWYy8kpXbMhseH&redirect_uri=oob
 
 const startDate = '20210101' // 开始日期
 const endDate = moment().format('YYYYMMDD') // 结束日期
-const accessToken = '121.72cd1da64672d4e57db10d126bf47ead.YgKgaey1x616UzhRW4ZHuD3fiuUCJekiguUj_vx.QTrsaQ' // accessToken
+const accessToken = '121.fb4091be1b94c02e3828a4909fc408d3.YnqTb-2qEkoiXFEK0MlgyPottMXpvOh2dk7irHT.fsvRFw' // accessToken
 const siteId = '16265874' // 网址id
 const dataUrl = 'https://openapi.baidu.com/rest/2.0/tongji/report/getData?access_token=' + accessToken + '&site_id=' + siteId
 const metrics = 'pv_count' // 统计访问次数 PV 填写 'pv_count'，统计访客数 UV 填写 'visitor_count'，二选一
