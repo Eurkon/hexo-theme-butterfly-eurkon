@@ -29,10 +29,12 @@ beautify()
       line-height: 1
       transition: all .2s ease-out
       @extend .fontawesomeIcon
+      opacity: .5
 
     &:hover
       &:before
-        color: $light-blue
+        color: var(--main)
+        opacity: 1
 
   h1
     headStyle(1.2, '₁')
@@ -85,8 +87,8 @@ beautify()
         position: absolute
         top: 0
         left: 0
-        background: $light-blue
-        color: $white
+        background: var(--main)
+        color: var(--second)
         cursor: pointer
         transition: all .3s ease-out
 
@@ -112,14 +114,14 @@ beautify()
 
       &:hover
         &:before
-          border-color: $pseudo-hover
+          border-color: var(--main)
 
       &:before
         $w = .42em
         top: .78em
         width: w = $w
         height: h = w
-        border: .5 * w solid $light-blue
+        border: .5 * w solid var(--main)
         border-radius: w
         background: transparent
         content: ''
@@ -200,14 +202,14 @@ no-beautify()
         margin: .4rem .4rem .4rem 0
         padding: 0 .6rem
         width: fit-content
-        border: 1px solid $light-blue
+        border: 1px solid var(--main)
         border-radius: .6rem
-        color: $light-blue
+        color: var(--main)
         font-size: .85em
         transition: all .2s ease-in-out
 
         &:hover
-          background: $light-blue
+          background: var(--main)
           color: var(--white)
 
     .post_share
