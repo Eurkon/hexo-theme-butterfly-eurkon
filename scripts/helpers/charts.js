@@ -140,7 +140,7 @@ function postsChart () {
       }]
     };
     postsChart.setOption(postsOption);
-    window.addEventListener("resize", () => { 
+    window.addEventListener('resize', () => { 
       postsChart.resize();
     });
     </script>`
@@ -246,8 +246,12 @@ function tagsChart (len) {
       }]
     };
     tagsChart.setOption(tagsOption);
-    window.addEventListener("resize", () => { 
+    window.addEventListener('resize', () => { 
       tagsChart.resize();
+    });
+    tagsChart.on('click', 'series', (event) => {
+      let href = '/tags/' + event.name;
+      window.location.href = href;
     });
     </script>`
 }
@@ -283,7 +287,7 @@ function categoriesChart () {
       },
       tooltip: {
         trigger: 'item',
-        formatter: "{a} <br/>{b} : {c} ({d}%)"
+        formatter: '{a} <br/>{b} : {c} ({d}%)'
       },
       series: [{
         name: '文章篇数',
@@ -292,7 +296,7 @@ function categoriesChart () {
         center: ['50%', '50%'],
         roseType: 'area',
         label: {
-          formatter: "{b} : {c} ({d}%)"
+          formatter: '{b} : {c} ({d}%)'
         },
         data: ${categoryArrJson},
         itemStyle: {
@@ -305,8 +309,12 @@ function categoriesChart () {
       }]
     };
     categoriesChart.setOption(categoriesOption);
-    window.addEventListener("resize", () => { 
+    window.addEventListener('resize', () => { 
       categoriesChart.resize();
+    });
+    categoriesChart.on('click', 'series', (event) => {
+      let href = '/categories/' + event.name;
+      window.location.href = href;
     });
     </script>`
 }
