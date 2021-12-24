@@ -41,7 +41,7 @@ const fetch = require('node-fetch')
 
 const startDate = '20210101' // 开始日期
 const endDate = moment().format('YYYYMMDD') // 结束日期
-const accessToken = '121.52023e70b2e6f63c1f336f7de04eb851.YC3rxhubzhfv7zT0kH73SrywzNFSaPHGRJT56Zx._QNDaQ' // accessToken
+const accessToken = '121.59f3f880128ba49ef7bd9fdeb84a8e63.Y_2Jbogv9zJShbK-_l8ZqUoEDW8I2QcqsHViYdx.g2o9gw' // accessToken
 const siteId = '16265874' // 网址id
 const dataUrl = 'https://openapi.baidu.com/rest/2.0/tongji/report/getData?access_token=' + accessToken + '&site_id=' + siteId
 const metrics = 'pv_count' // 统计访问次数 PV 填写 'pv_count'，统计访客数 UV 填写 'visitor_count'，二选一
