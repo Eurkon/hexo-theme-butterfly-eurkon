@@ -5,7 +5,8 @@ nav#nav
         span #[=config.title]
         i.fas.fa-home
     span#page_name
-      a#page-name-text()
+      a#page-name-text(title=_p("rightside.back_to_top"))
+        span #[=config.title]
       
     #menus
       !=partial('includes/header/menu_item', {}, {cache: true})
