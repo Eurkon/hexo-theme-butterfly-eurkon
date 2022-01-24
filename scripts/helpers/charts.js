@@ -58,9 +58,6 @@ function postsChart () {
     var color = document.documentElement.getAttribute('data-theme') === 'light' ? '#4c4948' : 'rgba(255,255,255,0.7)'
     var postsChart = echarts.init(document.getElementById('posts-chart'), 'light');
     var postsOption = {
-      textStyle: {
-        color: color
-      },
       title: {
         text: '文章发布统计图',
         x: 'center',
@@ -74,8 +71,16 @@ function postsChart () {
       xAxis: {
         name: '日期',
         type: 'category',
+        boundaryGap: false,
+        nameTextStyle: {
+          color: color
+        },
         axisTick: {
           show: false
+        },
+        axisLabel: {
+          show: true,
+          color: color
         },
         axisLine: {
           show: true,
@@ -88,11 +93,18 @@ function postsChart () {
       yAxis: {
         name: '文章篇数',
         type: 'value',
+        nameTextStyle: {
+          color: color
+        },
         splitLine: {
           show: false
         },
         axisTick: {
           show: false
+        },
+        axisLabel: {
+          show: true,
+          color: color
         },
         axisLine: {
           show: true,
@@ -134,7 +146,10 @@ function postsChart () {
         markLine: {
           data: [{
             name: '平均值',
-            type: 'average'
+            type: 'average',
+            label: {
+              color: color
+            }
           }]
         }
       }]
@@ -168,9 +183,6 @@ function tagsChart (len) {
     var color = document.documentElement.getAttribute('data-theme') === 'light' ? '#4c4948' : 'rgba(255,255,255,0.7)'
     var tagsChart = echarts.init(document.getElementById('tags-chart'), 'light');
     var tagsOption = {
-      textStyle: {
-        color: color
-      },
       title: {
         text: 'Top ${dataLength} 标签统计图',
         x: 'center',
@@ -182,8 +194,15 @@ function tagsChart (len) {
       xAxis: {
         name: '标签',
         type: 'category',
+        nameTextStyle: {
+          color: color
+        },
         axisTick: {
           show: false
+        },
+        axisLabel: {
+          show: true,
+          color: color
         },
         axisLine: {
           show: true,
@@ -199,8 +218,15 @@ function tagsChart (len) {
         splitLine: {
           show: false
         },
+        nameTextStyle: {
+          color: color
+        },
         axisTick: {
           show: false
+        },
+        axisLabel: {
+          show: true,
+          color: color
         },
         axisLine: {
           show: true,
@@ -214,7 +240,7 @@ function tagsChart (len) {
         type: 'bar',
         data: ${tagCountArrJson},
         itemStyle: {
-          opacity: 1,
+          borderRadius: [5, 5, 0, 0],
           color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
             offset: 0,
             color: 'rgba(128, 255, 165)'
@@ -226,7 +252,6 @@ function tagsChart (len) {
         },
         emphasis: {
           itemStyle: {
-            opacity: 1,
             color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
               offset: 0,
               color: 'rgba(128, 255, 195)'
@@ -240,7 +265,10 @@ function tagsChart (len) {
         markLine: {
           data: [{
             name: '平均值',
-            type: 'average'
+            type: 'average',
+            label: {
+              color: color
+            }
           }]
         }
       }]
@@ -269,9 +297,6 @@ function categoriesChart () {
     var color = document.documentElement.getAttribute('data-theme') === 'light' ? '#4c4948' : 'rgba(255,255,255,0.7)'
     var categoriesChart = echarts.init(document.getElementById('categories-chart'), 'light');
     var categoriesOption = {
-      textStyle: {
-        color: color
-      },
       title: {
         text: '文章分类统计图',
         x: 'center',
@@ -296,6 +321,7 @@ function categoriesChart () {
         center: ['50%', '50%'],
         roseType: 'area',
         label: {
+          color: color,
           formatter: '{b} : {c} ({d}%)'
         },
         data: ${categoryArrJson},

@@ -110,7 +110,7 @@ function mapChart () {
                   }
                 },
                 data: ${mapArrJson}
-                }]
+              }]
             };
             mapChart.setOption(mapOption);
             window.addEventListener("resize", () => { 
@@ -165,8 +165,16 @@ function trendsChart () {
               xAxis: {
                 name: '日期',
                 type: 'category',
+                boundaryGap: false,
+                nameTextStyle: {
+                  color: color
+                },
                 axisTick: {
                   show: false
+                },
+                axisLabel: {
+                  show: true,
+                  color: color
                 },
                 axisLine: {
                   show: true,
@@ -179,11 +187,18 @@ function trendsChart () {
               yAxis: {
                 name: '${metricsName}',
                 type: 'value',
+                nameTextStyle: {
+                  color: color
+                },
                 splitLine: {
                   show: false
                 },
                 axisTick: {
                   show: false
+                },
+                axisLabel: {
+                  show: true,
+                  color: color
                 },
                 axisLine: {
                   show: true,
@@ -225,7 +240,10 @@ function trendsChart () {
                 markLine: {
                   data: [{
                     name: '平均值',
-                    type: 'average'
+                    type: 'average',
+                    label: {
+                      color: color
+                    }
                   }]
                 }
               }]
@@ -261,9 +279,6 @@ function sourcesChart () {
             var color = document.documentElement.getAttribute('data-theme') === 'light' ? '#4c4948' : 'rgba(255,255,255,0.7)'
             var sourcesChart = echarts.init(document.getElementById('sources-chart'), 'light');
             var sourcesOption = {
-              textStyle: {
-                color: color
-              },
               title: {
                 text: '博客访问来源统计图',
                 x: 'center',
@@ -288,6 +303,7 @@ function sourcesChart () {
                 center: ['50%', '50%'],
                 roseType: 'area',
                 label: {
+                  color: color,
                   formatter: "{b} : {c} ({d}%)"
                 },
                 data: ${sourcesArrJson},
