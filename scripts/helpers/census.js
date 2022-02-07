@@ -84,7 +84,7 @@ function mapChart () {
                 left: 'left',
                 top: 'bottom',
                 text: ['高','低'],
-                color: ['#1E90FF', '#AAFAFA'],
+                color: ['#49b1f5', '#92d0f9'],
                 textStyle: {
                   color: color
                 },
@@ -100,10 +100,20 @@ function mapChart () {
                     show: false
                   }
                 },
+                label: {
+                  normal: {
+                    show: false
+                  },
+                  emphasis: {
+                    show: true,
+                    color: '#617282'
+                  }
+                },
                 itemStyle: {
                   normal: {
-                    areaColor: 'rgba(255, 255, 255, 0.9)',
-                    borderColor: 'rgba(0, 0, 0, 0.5)'
+                    areaColor: 'rgb(230, 232, 234)',
+                    borderColor: 'rgb(255, 255, 255)',
+                    borderWidth: 1
                   },
                   emphasis: {
                     areaColor: 'gold'
@@ -134,13 +144,9 @@ function trendsChart () {
         const monthValueArr = []
         const monthName = data.result.items[0]
         const monthValue = data.result.items[1]
-        for (let i = Math.min(monthName.length, 12) - 1; i >= 0; i--) {
+        for (let i = monthName.length - 1; i >= 0; i--) {
           monthArr.push(monthName[i][0].substring(0, 7).replace('/', '-'))
-          if (monthValue[i][0] !== '--') {
-            monthValueArr.push(monthValue[i][0])
-          } else {
-            monthValueArr.push(null)
-          }
+          monthValueArr.push(monthValue[i][0] !== '--' ? monthValue[i][0] : 0)
         }
         const monthArrJson = JSON.stringify(monthArr)
         const monthValueArrJson = JSON.stringify(monthValueArr)
@@ -149,9 +155,6 @@ function trendsChart () {
             var color = document.documentElement.getAttribute('data-theme') === 'light' ? '#4c4948' : 'rgba(255,255,255,0.7)'
             var trendsChart = echarts.init(document.getElementById('trends-chart'), 'light');
             var trendsOption = {
-              textStyle: {
-                color: color
-              },
               title: {
                 text: '博客访问统计图',
                 x: 'center',
@@ -293,8 +296,7 @@ function sourcesChart () {
                 }
               },
               tooltip: {
-                trigger: 'item',
-                formatter: "{a} <br/>{b} : {c} ({d}%)"
+                trigger: 'item'
               },
               series: [{
                 name: '${metricsName}',
