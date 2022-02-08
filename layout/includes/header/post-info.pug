@@ -113,13 +113,13 @@
                   i.fa.fas.fa-spinner.fa-spin
           when 'Gitalk'
             +countBlock
-              a(href=url_for(page.path) + '#post-comment')
+              a(href=url_for(page.path) + '#post-comment' title=_p("rightside.scroll_to_comment"))
                 span.gitalk-comment-count
                   i.fa.fas.fa-spinner.fa-spin
           when 'Twikoo'
             +countBlock
               a(href=url_for(page.path) + '#post-comment' title=_p("rightside.scroll_to_comment"))
-                span#
+                span#twikoo-count
                   i.fa.fas.fa-spinner.fa-spin
           when 'Facebook Comments'
             +countBlock

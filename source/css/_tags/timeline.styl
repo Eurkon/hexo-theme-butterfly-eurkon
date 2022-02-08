@@ -1,152 +1,87 @@
-div
-  
-  &.timenode
-    position relative
-    &:before
-      top 0
-      height 6px
-    &:after
-      top 26px
-      height calc(100% - 26px)
-    &:last-child
-      &:after
-        height calc(100% - 26px - 16px)
-        border-bottom-left-radius 2px
-        border-bottom-right-radius 2px
-    .meta
-      position relative
-      line-height 32px
-      height 32px
-      &:before
-        background rgba(68, 215, 182, 0.5)
-        width 16px
-        height 16px
-        border-radius 8px
-      &:after
-        background #44d7b6
-        margin-left 2px
-        margin-top 2px
-        width 12px
-        height 12px
-        border-radius 6px
-        transform scale(0.5)
-      p
-        font-weight bold !important
-        margin 0 0 0 24px !important
-    .body
-      margin 4px 0 10px 24px
-      padding 10px
-      border-radius 12px
-      background var(--blockquote-bg)
-      display inline-block
-      p
-        &:first-child
-          margin-top 0 !important
-        &:last-child
-          margin-bottom 0 !important
-      .highlight
-        background #fff7ea
-        filter grayscale(0%)
-        figcaption
-          background #ffeed2
-        .gutter
-          background #ffedd0
-    &:hover
-      .meta
-        &:before
-          background rgba(255, 87, 34, 0.5)
-        &:after
-          background #ff5722
-          transform scale(1)
-    ol,
-    ul
-      margin-top: .4rem
-      padding: 0 0 0 .8rem
-      list-style: none
-      counter-reset: li
+#article-container
+  .timeline
+    margin: 0 0 20px 10px
+    padding: 14px 20px 5px
+    border-left: 2px solid var(--timeline-color, $theme-color)
 
-      +maxWidth768()
-        padding: 0 0 0 .4rem
+    for $type in $color-types
+      &.{$type}
+        --timeline-color: lookup('$tagsP-' + $type + '-color')
+        --timeline-bg: s('rgba(%s,%s,%s, 0.2)', red(lookup('$tagsP-' + $type + '-color')), green(lookup('$tagsP-' + $type + '-color')), blue(lookup('$tagsP-' + $type + '-color')))
 
-      p
-        margin: 0 0 .5rem
+    .timeline-item
+      margin: 0 0 15px
 
-      ol,
-      ul
-        padding-left: .6rem 
+      &:hover
+        .item-circle
+          &:before
+            border-color: var(--timeline-color, $theme-color)
 
-        +maxWidth768()
-          padding-left: .2rem
+      &.headline
+        .timeline-item-title
+          .item-circle
+            > p
+              font-weight: 600
+              font-size: 1.2em
 
-      li
-        &:not(.tab)
-          position: relative
-          margin: .2rem 0
+            &:before
+              left: -28px
+              border: 4px solid var(--timeline-color, $theme-color)
 
         &:hover
-          &:before
-            transform: rotate(360deg)
+          .item-circle
+            &:before
+              border-color: var(--pseudo-hover)
 
+      .timeline-item-title
+        position: relative
+
+      .item-circle
         &:before
           position: absolute
-          top: 0
-          left: 0
-          background: $light-blue
-          color: $white
-          cursor: pointer
-          transition: all .3s ease-out
-
-    ol
-      > li
-        &:not(.tab)
-          padding: .2em .2em .2em 1.8em !important
-
-        &:before
-          margin-top: .65em
-          width: w = 1.45em
-          height: h = w
-          border-radius: .5 * w
-          content: counter(li)
-          counter-increment: li
-          text-align: center
-          font-size: .85em
-          line-height: h
-
-    ul
-      > li:not(.tab)
-        padding: .2em .2em .2em 1.4em !important
-
-        &:hover
-          &:before
-            border-color: $pseudo-hover
-
-        &:before
-          $w = .42em
-          top: .78em
-          width: w = $w
-          height: h = w
-          border: .5 * w solid $light-blue
-          border-radius: w
-          background: transparent
+          top: 50%
+          left: -27px
+          width: 6px
+          height: 6px
+          border: 3px solid var(--pseudo-hover)
+          border-radius: 50%
+          background: var(--card-bg)
           content: ''
-          line-height: h
+          transition: all .3s
+          transform: translate(0, -50%)
 
-div.timenode:before,
-div.timenode:after
-  content ""
-  z-index 1
-  position absolute
-  background rgba(68, 215, 182, 0.5)
-  width 2px
-  left 7px
+        > p
+          margin: 0 0 8px
+          font-weight: 500
 
-div.timenode .meta,
-div.timenode .body
-  max-width calc(100% - 24px)
+      .timeline-item-content
+        position: relative
+        padding: 12px 15px
+        border-radius: 8px
+        background: var(--timeline-bg, lighten($theme-color, 85%))
+        font-size: .93em
+        
+        ol,
+        ul
+          p
+            margin: 0 0 8px
 
-div.timenode .meta:before,
-div.timenode .meta:after
-  content ""
-  position absolute
-  top 8px
-  z-index 2
+        li
+          &::marker
+            color: $light-blue
+            font-weight: 600
+            font-size: 1.05em
+
+          &:hover
+            &::marker
+              color: var(--pseudo-hover)
+
+        ul > li
+          list-style-type: circle
+
+
+        & > :last-child
+          margin-bottom: 0
+
+    & + .timeline
+      margin-top: -20px

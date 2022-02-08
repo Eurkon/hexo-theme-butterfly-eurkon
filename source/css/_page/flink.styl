@@ -62,7 +62,8 @@ if hexo-config('flink_style') == 'butterfly'
               img
                 width: 100%
                 height: 100%
-                transition: all .3s
+                object-fit: cover
+                transition: filter 375ms ease-in 0.2s, transform .3s
 
             .img-alt
               display: none
@@ -262,3 +263,4 @@ else if hexo-config('flink_style') == 'flexcard'
         &:hover
           &:before
             background-color: rgba(#121212,0.8);
+

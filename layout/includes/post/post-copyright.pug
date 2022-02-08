@@ -1,6 +1,8 @@
 if theme.post_copyright.enable && page.copyright !== false
   - let author = page.copyright_author ? page.copyright_author : config.author
+  - let authorHref = page.copyright_author_href ? page.copyright_author_href : `mailto:${config.email}`
   - let url = page.copyright_url ? page.copyright_url : page.permalink
+  - let info = page.copyright_info ? page.copyright_info : _p('post.copyright.copyright_content', theme.post_copyright.license_url, theme.post_copyright.license, config.url, config.title)
   - let license = page.license ? page.license : theme.post_copyright.license
   - let license_url = page.license_url ? page.license_url : theme.post_copyright.license_url
   .post-copyright
@@ -12,4 +14,4 @@ if theme.post_copyright.enable && page.copyright !== false
         a#post-url-copy(title='复制文章链接')
           i.fas.fa-paste.copy-button
     .post-copyright__cc
-      span.post-copyright-info!= '转载前请阅读本站 <a href="/protocol/copyright/" title="本站所有原创文章采用知识共享(Creative Commons)署名—非商业性使用—相同方式共享4.0国际公共许可协议">版权协议</a>，文章著作权归 <a href="/">Eurkon</a> 所有，转载请注明出处。'
+      span.post-copyright-info!= '转载前请阅读本站 <a href="/protocol/copyright/" title="本站所有原创文章采用知识共享(Creative Commons)署名—非商业性使用—相同方式共享4.0国际公共许可协议">版权协议</a>，文章著作权归 <a href="' + authorHref +'">Eurkon</a> 所有，转载请注明出处。'
