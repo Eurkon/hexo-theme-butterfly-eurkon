@@ -23,11 +23,13 @@ if theme.aside.card_webinfo.enable
           //- .item-name= _p('aside.card_webinfo.site_uv_name') + " :"
           .item-name= _p('总访客数') + " :"
           .item-count#busuanzi_value_site_uv
+            i.fa.fas.fa-spinner.fa-spin
       if theme.busuanzi.site_pv
         .webinfo-item
           //- .item-name= _p('aside.card_webinfo.site_pv_name') + " :"
           .item-name= _p('总访问量') + " :"
           .item-count#busuanzi_value_site_pv
+            i.fa.fas.fa-spinner.fa-spin
       if theme.aside.card_webinfo.last_push_date
         .webinfo-item
           //- .item-name= _p('aside.card_webinfo.last_push_date.name') + " :"
