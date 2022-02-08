@@ -74,6 +74,7 @@
       if theme.busuanzi.page_pv
         +pvBlock('','post-meta-pv-cv','')
           span#busuanzi_value_page_pv
+            i.fa.fas.fa-spinner.fa-spin
       else if comments.use && !comments.lazyload
         if (comments.use.includes('Valine') && theme.valine.visitor) || (comments.use.includes('Waline') && theme.waline.visitor)
           +pvBlock(url_for(page.path),'leancloud_visitors',page.title)
@@ -98,24 +99,30 @@
           when 'Disqusjs'
             +countBlock
               span.disqus-comment-count
-                a(href=full_url_for(page.path) + '#disqus_thread')
+                a(href=full_url_for(page.path) + '#disqus_thread' title=_p("rightside.scroll_to_comment"))
+                  i.fa.fas.fa-spinner.fa-spin
           when 'Valine'
             +countBlock
-              a(href=url_for(page.path) + '#post-comment' itemprop="discussionUrl")
+              a(href=url_for(page.path) + '#post-comment' itemprop="discussionUrl" title=_p("rightside.scroll_to_comment"))
                 span.valine-comment-count(data-xid=url_for(page.path) itemprop="commentCount")
+                  i.fa.fas.fa-spinner.fa-spin
           when 'Waline'
             +countBlock
-              a(href=url_for(page.path) + '#post-comment')
+              a(href=url_for(page.path) + '#post-comment' title=_p("rightside.scroll_to_comment"))
                 span.waline-comment-count(id=url_for(page.path))
+                  i.fa.fas.fa-spinner.fa-spin
           when 'Gitalk'
             +countBlock
               a(href=url_for(page.path) + '#post-comment')
                 span.gitalk-comment-count
+                  i.fa.fas.fa-spinner.fa-spin
           when 'Twikoo'
             +countBlock
-              a(href=url_for(page.path) + '#post-comment')
-                span#twikoo-count
+              a(href=url_for(page.path) + '#post-comment' title=_p("rightside.scroll_to_comment"))
+                span#
+                  i.fa.fas.fa-spinner.fa-spin
           when 'Facebook Comments'
             +countBlock
-              a(href=url_for(page.path) + '#post-comment')
+              a(href=url_for(page.path) + '#post-comment' title=_p("rightside.scroll_to_comment"))
                 span.fb-comments-count(data-href=urlNoIndex())
+                  i.fa.fas.fa-spinner.fa-spin
