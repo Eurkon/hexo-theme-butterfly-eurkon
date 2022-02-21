@@ -19,7 +19,7 @@ mixin postUI(posts)
         a.article-title(href=url_for(link) title=title)= title
         .article-meta-wrap
           if (is_home() && (article.top || article.sticky > 0))
-            span.article-meta
+            span.article-meta.sticky
               i.fas.fa-thumbtack.sticky
               span.sticky= _p('sticky')
               span.article-meta-separator |
@@ -42,7 +42,7 @@ mixin postUI(posts)
                 span.article-meta-label=date_title
                 time(datetime=date_xml(article[date_type]) title=date_title + ' ' + full_date(article[date_type]))=date(article[date_type], config.date_format)
           if (theme.post_meta.page.categories && article.categories.data.length > 0)
-            span.article-meta
+            span.article-meta.categories
               span.article-meta-separator |
               i.fas.fa-inbox
               each item, index in article.categories.data
