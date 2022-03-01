@@ -64,6 +64,8 @@ if hexo-config('waline.bg')
 .mermaid-wrap
   margin: 0 0 20px
   text-align: center
+  & > svg
+    height: 100%
 
 .utterances,
 .fb-comments iframe
@@ -106,3 +108,6 @@ mjx-container[display],
 
           &:before
             content: none
+
+.snackbar-css
+  border-radius: 5px !important
