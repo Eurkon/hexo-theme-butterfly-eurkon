@@ -32,9 +32,9 @@
       - var now = new Date()
       - var nowYear = now.getFullYear()
       if theme.footer.owner.since && theme.footer.owner.since != nowYear
-        .copyright!= `Copyright &copy;${theme.footer.owner.since} - ${nowYear}&nbsp;&nbsp;${config.author}.com&nbsp;&nbsp;All Rights Reserved.`
+        .copyright!= `Copyright &copy; ${theme.footer.owner.since} - ${nowYear}  ${config.author}.com  All Rights Reserved.`
       else
-        .copyright!= `Copyright &copy;${nowYear}&nbsp;&nbsp;${config.author}.com&nbsp;&nbsp;All Rights Reserved.`
+        .copyright!= `Copyright &copy; ${nowYear}  ${config.author}.com  All Rights Reserved.`
     if theme.footer.copyright
       .framework-info
         span= _p('footer.framework') + ' '
