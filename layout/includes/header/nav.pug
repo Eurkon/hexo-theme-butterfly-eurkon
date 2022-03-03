@@ -1,7 +1,7 @@
 nav#nav
   #nav-group
     span#blog_name
-      a#site-name(href=url_for('/') title='返回主页')
+      a#site-name(href=url_for('/'))
         span #[=config.title]
         i.fas.fa-home
     span#page_name
@@ -26,7 +26,7 @@ nav#nav
             i.fas.fa-comments.fa-fw
       #top-button
         a.site-page(title=_p("rightside.back_to_top"))
-          i.fas.fa-rocket.fa-fw
+          i.fas.fa-rocket.fa-fw(style="transform: rotate(-45deg) translate(-.1rem,.1rem);")
       #toggle-menu
         a.site-page
           i.fas.fa-bars.fa-fw
