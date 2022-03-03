@@ -1,0 +1,78 @@
+#rightmenu
+  display: none
+  position: fixed
+  top: 10%
+  left: 10%
+  width: 10rem
+  height: fit-content
+  padding: 0 .3rem
+  background-color: var(--card-bg)
+  box-shadow: var(--card-box-shadow)
+  border: var(--card-border)
+  border-radius: 8px
+  z-index: 102
+  transition: all .3s
+
+  &:hover
+    border-color: var(--main)
+    box-shadow: var(--main-shadow)
+  
+  .rightmenu-group
+    padding: .4rem .35rem
+
+    &:not(:nth-last-child(1))
+      border-bottom: 2px dashed var(--font-color)
+
+  .rightmenu-small
+    display: flex
+    justify-content: space-between
+
+    .rightmenu-item
+      border-radius: 8px
+      transition: 0.3s
+      cursor: pointer
+
+      &:hover
+        color: var(--white)
+        background-color: var(--main)
+        box-shadow: var(--main-shadow)
+
+      i
+        display: inline-block
+        text-align: center
+        padding: 0 8px
+
+  .rightmenu-line
+    .rightmenu-item
+      color: var(--font-color)
+      display: flex
+      padding: .3rem 0
+      border-radius: 8px
+      cursor: pointer
+      transition: 0.3s
+    
+      &:hover
+        color: var(--white)
+        background-color: var(--main)
+        box-shadow: var(--main-shadow)
+
+      i
+        display: inline-block
+        text-align: center
+        line-height: 1.5
+        padding: 0 8px
+        margin: 0 8px
+      
+      span
+        line-height: 1.5
+
+#rightmenu-mask
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background: var(--card-bg);
+  opacity: .6
+  top: 0;
+  left: 0;
+  display: none;
+  z-index: 101;
