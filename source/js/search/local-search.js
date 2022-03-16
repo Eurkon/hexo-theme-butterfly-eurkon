@@ -157,4 +157,15 @@ window.addEventListener('load', () => {
       window.pjax && window.pjax.refresh($resultContent)
     })
   }
+
+  document.getElementById('menu-search').addEventListener('click', function () {
+    openSearch()
+    setTimeout(() => {
+      let $input = document.querySelector('#local-search-input input')
+      let event = document.createEvent("HTMLEvents");
+      event.initEvent("input", false, false);
+      $input.value = rightMenuContext.text
+      $input.dispatchEvent(event)
+    }, 100)
+  })
 })
