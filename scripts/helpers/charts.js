@@ -278,7 +278,7 @@ function tagsChart (len) {
       tagsChart.resize();
     });
     tagsChart.on('click', 'series', (event) => {
-      let href = '/tags/' + event.name;
+      let href = '/tags/' + event.name + '/';
       window.location.href = href;
     });
     </script>`
@@ -339,7 +339,7 @@ function categoriesChart () {
       categoriesChart.resize();
     });
     categoriesChart.on('click', 'series', (event) => {
-      let href = '/categories/' + event.name;
+      let href = '/categories/' + event.name + '/';
       window.location.href = href;
     });
     </script>`
