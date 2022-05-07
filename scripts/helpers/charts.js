@@ -11,7 +11,7 @@ hexo.extend.filter.register('after_render:html', function (locals) {
   if (post.length > 0 || tag.length > 0 || category.length > 0) {
     if (post.length > 0 && $('#postsChart').length === 0) {
       if (post.attr('data-encode') === 'true') htmlEncode = true
-      post.after(postsChart())
+      post.after(postsChart(post.attr('data-start')))
     }
     if (tag.length > 0 && $('#tagsChart').length === 0) {
       if (tag.attr('data-encode') === 'true') htmlEncode = true
@@ -32,8 +32,8 @@ hexo.extend.filter.register('after_render:html', function (locals) {
   }
 }, 15)
 
-function postsChart () {
-  const startDate = moment('2021-01')
+function postsChart (startMonth) {
+  const startDate = moment(startMonth || '2020-01')
   const endDate = moment()
 
   const monthMap = new Map()
