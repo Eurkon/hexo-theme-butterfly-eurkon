@@ -2,6 +2,7 @@ const cheerio = require('cheerio')
 const moment = require('moment')
 
 hexo.extend.filter.register('after_render:html', function (locals) {
+  const themeConfig = hexo.theme.config
   const $ = cheerio.load(locals)
   const post = $('#posts-chart')
   const tag = $('#tags-chart')
@@ -202,7 +203,8 @@ function tagsChart (len) {
         },
         axisLabel: {
           show: true,
-          color: color
+          color: color,
+          interval: 0
         },
         axisLine: {
           show: true,
