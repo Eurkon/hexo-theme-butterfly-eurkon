@@ -51,85 +51,83 @@ const metricsName = (metrics === 'pv_count' ? '访问次数' : (metrics === 'vis
 function mapChart () {
   return new Promise(resolve => {
     const paramUrl = '&start_date=' + startDate + '&end_date=' + endDate + '&metrics=' + metrics + '&method=visit/district/a';
-    fetch(dataUrl + paramUrl)
-      .then(data => data.json())
-      .then(data => {
-        monthArr = [];
-        let mapName = data.result.items[0]
-        let mapValue = data.result.items[1]
-        let mapArr = []
-        let max = mapValue[0][0]
-        for (let i = 0; i < mapName.length; i++) {
-          mapArr.push({ name: mapName[i][0].name, value: mapValue[i][0] })
-        }
-        const mapArrJson = JSON.stringify(mapArr)
-        resolve(`
-          <script id="mapChart">
-            var color = document.documentElement.getAttribute('data-theme') === 'light' ? '#4c4948' : 'rgba(255,255,255,0.7)'
-            var mapChart = echarts.init(document.getElementById('map-chart'), 'light');
-            var mapOption = {
-              title: {
-                text: '博客访问来源地图',
-                x: 'center',
-                textStyle: {
-                  color: color
+    fetch(dataUrl + paramUrl).then(data => data.json()).then(data => {
+      monthArr = [];
+      const mapName = data.result.items[0]
+      const mapValue = data.result.items[1]
+      const mapArr = []
+      const max = mapValue[0][0]
+      for (let i = 0; i < mapName.length; i++) {
+        mapArr.push({ name: mapName[i][0].name, value: mapValue[i][0] })
+      }
+      const mapArrJson = JSON.stringify(mapArr)
+      resolve(`
+        <script id="mapChart">
+          var color = document.documentElement.getAttribute('data-theme') === 'light' ? '#4c4948' : 'rgba(255,255,255,0.7)'
+          var mapChart = echarts.init(document.getElementById('map-chart'), 'light');
+          var mapOption = {
+            title: {
+              text: '博客访问来源地图',
+              x: 'center',
+              textStyle: {
+                color: color
+              }
+            },
+            tooltip: {
+              trigger: 'item'
+            },
+            visualMap: {
+              min: 0,
+              max: ${max},
+              left: 'left',
+              top: 'bottom',
+              text: ['高','低'],
+              color: ['#49b1f5', '#92d0f9'],
+              textStyle: {
+                color: color
+              },
+              calculable: true
+            },
+            series: [{
+              name: '${metricsName}',
+              type: 'map',
+              mapType: 'china',
+              showLegendSymbol: false,
+              label: {
+                emphasis: {
+                  show: false
                 }
               },
-              tooltip: {
-                trigger: 'item'
+              label: {
+                normal: {
+                  show: false
+                },
+                emphasis: {
+                  show: true,
+                  color: '#617282'
+                }
               },
-              visualMap: {
-                min: 0,
-                max: ${max},
-                left: 'left',
-                top: 'bottom',
-                text: ['高','低'],
-                color: ['#49b1f5', '#92d0f9'],
-                textStyle: {
-                  color: color
+              itemStyle: {
+                normal: {
+                  areaColor: 'rgb(230, 232, 234)',
+                  borderColor: 'rgb(255, 255, 255)',
+                  borderWidth: 1
                 },
-                calculable: true
+                emphasis: {
+                  areaColor: 'gold'
+                }
               },
-              series: [{
-                name: '${metricsName}',
-                type: 'map',
-                mapType: 'china',
-                showLegendSymbol: false,
-                label: {
-                  emphasis: {
-                    show: false
-                  }
-                },
-                label: {
-                  normal: {
-                    show: false
-                  },
-                  emphasis: {
-                    show: true,
-                    color: '#617282'
-                  }
-                },
-                itemStyle: {
-                  normal: {
-                    areaColor: 'rgb(230, 232, 234)',
-                    borderColor: 'rgb(255, 255, 255)',
-                    borderWidth: 1
-                  },
-                  emphasis: {
-                    areaColor: 'gold'
-                  }
-                },
-                data: ${mapArrJson}
-              }]
-            };
-            mapChart.setOption(mapOption);
-            window.addEventListener("resize", () => { 
-              mapChart.resize();
-            });
-          </script>`);
-      }).catch(function (error) {
-        console.log(error);
-      });
+              data: ${mapArrJson}
+            }]
+          };
+          mapChart.setOption(mapOption);
+          window.addEventListener("resize", () => { 
+            mapChart.resize();
+          });
+        </script>`);
+    }).catch(function (error) {
+      console.log(error);
+    });
   })
 }
 
@@ -137,128 +135,126 @@ function mapChart () {
 function trendsChart () {
   return new Promise(resolve => {
     const paramUrl = '&start_date=' + startDate + '&end_date=' + endDate + '&metrics=' + metrics + '&method=trend/time/a&gran=month'
-    fetch(dataUrl + paramUrl)
-      .then(data => data.json())
-      .then(data => {
-        const monthArr = []
-        const monthValueArr = []
-        const monthName = data.result.items[0]
-        const monthValue = data.result.items[1]
-        for (let i = monthName.length - 1; i >= 0; i--) {
-          monthArr.push(monthName[i][0].substring(0, 7).replace('/', '-'))
-          monthValueArr.push(monthValue[i][0] !== '--' ? monthValue[i][0] : 0)
-        }
-        const monthArrJson = JSON.stringify(monthArr)
-        const monthValueArrJson = JSON.stringify(monthValueArr)
-        resolve(`
-          <script id="trendsChart">
-            var color = document.documentElement.getAttribute('data-theme') === 'light' ? '#4c4948' : 'rgba(255,255,255,0.7)'
-            var trendsChart = echarts.init(document.getElementById('trends-chart'), 'light');
-            var trendsOption = {
-              title: {
-                text: '博客访问统计图',
-                x: 'center',
-                textStyle: {
-                  color: color
-                }
+    fetch(dataUrl + paramUrl).then(data => data.json()).then(data => {
+      const monthArr = []
+      const monthValueArr = []
+      const monthName = data.result.items[0]
+      const monthValue = data.result.items[1]
+      for (let i = monthName.length - 1; i >= 0; i--) {
+        monthArr.push(monthName[i][0].substring(0, 7).replace('/', '-'))
+        monthValueArr.push(monthValue[i][0] !== '--' ? monthValue[i][0] : 0)
+      }
+      const monthArrJson = JSON.stringify(monthArr)
+      const monthValueArrJson = JSON.stringify(monthValueArr)
+      resolve(`
+        <script id="trendsChart">
+          var color = document.documentElement.getAttribute('data-theme') === 'light' ? '#4c4948' : 'rgba(255,255,255,0.7)'
+          var trendsChart = echarts.init(document.getElementById('trends-chart'), 'light');
+          var trendsOption = {
+            title: {
+              text: '博客访问统计图',
+              x: 'center',
+              textStyle: {
+                color: color
+              }
+            },
+            tooltip: {
+              trigger: 'axis'
+            },
+            xAxis: {
+              name: '日期',
+              type: 'category',
+              boundaryGap: false,
+              nameTextStyle: {
+                color: color
               },
-              tooltip: {
-                trigger: 'axis'
+              axisTick: {
+                show: false
               },
-              xAxis: {
-                name: '日期',
-                type: 'category',
-                boundaryGap: false,
-                nameTextStyle: {
-                  color: color
-                },
-                axisTick: {
-                  show: false
-                },
-                axisLabel: {
-                  show: true,
-                  color: color
-                },
-                axisLine: {
-                  show: true,
-                  lineStyle: {
-                    color: color
-                  }
-                },
-                data: ${monthArrJson}
+              axisLabel: {
+                show: true,
+                color: color
               },
-              yAxis: {
-                name: '${metricsName}',
-                type: 'value',
-                nameTextStyle: {
-                  color: color
-                },
-                splitLine: {
-                  show: false
-                },
-                axisTick: {
-                  show: false
-                },
-                axisLabel: {
-                  show: true,
-                  color: color
-                },
-                axisLine: {
-                  show: true,
-                  lineStyle: {
-                    color: color
-                  }
-                }
-              },
-              series: [{
-                name: '${metricsName}',
-                type: 'line',
-                smooth: true,
+              axisLine: {
+                show: true,
                 lineStyle: {
-                    width: 0
-                },
-                showSymbol: false,
-                itemStyle: {
-                  opacity: 1,
-                  color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                    offset: 0,
-                    color: 'rgba(128, 255, 165)'
-                  },
-                  {
-                    offset: 1,
-                    color: 'rgba(1, 191, 236)'
-                  }])
-                },
-                areaStyle: {
-                  opacity: 1,
-                  color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                    offset: 0,
-                    color: 'rgba(128, 255, 165)'
-                  }, {
-                    offset: 1,
-                    color: 'rgba(1, 191, 236)'
-                  }])
-                },
-                data: ${monthValueArrJson},
-                markLine: {
-                  data: [{
-                    name: '平均值',
-                    type: 'average',
-                    label: {
-                      color: color
-                    }
-                  }]
+                  color: color
                 }
-              }]
-            };
-            trendsChart.setOption(trendsOption);
-            window.addEventListener("resize", () => { 
-              trendsChart.resize();
-            });
-          </script>`)
-      }).catch(function (error) {
-        console.log(error);
-      });
+              },
+              data: ${monthArrJson}
+            },
+            yAxis: {
+              name: '${metricsName}',
+              type: 'value',
+              nameTextStyle: {
+                color: color
+              },
+              splitLine: {
+                show: false
+              },
+              axisTick: {
+                show: false
+              },
+              axisLabel: {
+                show: true,
+                color: color
+              },
+              axisLine: {
+                show: true,
+                lineStyle: {
+                  color: color
+                }
+              }
+            },
+            series: [{
+              name: '${metricsName}',
+              type: 'line',
+              smooth: true,
+              lineStyle: {
+                  width: 0
+              },
+              showSymbol: false,
+              itemStyle: {
+                opacity: 1,
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                  offset: 0,
+                  color: 'rgba(128, 255, 165)'
+                },
+                {
+                  offset: 1,
+                  color: 'rgba(1, 191, 236)'
+                }])
+              },
+              areaStyle: {
+                opacity: 1,
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                  offset: 0,
+                  color: 'rgba(128, 255, 165)'
+                }, {
+                  offset: 1,
+                  color: 'rgba(1, 191, 236)'
+                }])
+              },
+              data: ${monthValueArrJson},
+              markLine: {
+                data: [{
+                  name: '平均值',
+                  type: 'average',
+                  label: {
+                    color: color
+                  }
+                }]
+              }
+            }]
+          };
+          trendsChart.setOption(trendsOption);
+          window.addEventListener("resize", () => { 
+            trendsChart.resize();
+          });
+        </script>`)
+    }).catch(function (error) {
+      console.log(error);
+    });
   })
 }
 
@@ -266,65 +262,62 @@ function trendsChart () {
 function sourcesChart () {
   return new Promise(resolve => {
     const paramUrl = '&start_date=' + startDate + '&end_date=' + endDate + '&metrics=' + metrics + '&method=source/all/a';
-    fetch(dataUrl + paramUrl)
-      .then(data => data.json())
-      .then(data => {
-        monthArr = [];
-        let sourcesName = data.result.items[0]
-        let sourcesValue = data.result.items[1]
-        let sourcesArr = []
-        for (let i = 0; i < sourcesName.length; i++) {
-          sourcesArr.push({ name: sourcesName[i][0].name, value: sourcesValue[i][0] })
-        }
-        const sourcesArrJson = JSON.stringify(sourcesArr)
-        resolve(`
-          <script id="sourcesChart">
-            var color = document.documentElement.getAttribute('data-theme') === 'light' ? '#4c4948' : 'rgba(255,255,255,0.7)'
-            var sourcesChart = echarts.init(document.getElementById('sources-chart'), 'light');
-            var sourcesOption = {
-              title: {
-                text: '博客访问来源统计图',
-                x: 'center',
-                textStyle: {
-                  color: color
-                }
+    fetch(dataUrl + paramUrl).then(data => data.json()).then(data => {
+      const sourcesName = data.result.items[0]
+      const sourcesValue = data.result.items[1]
+      const sourcesArr = []
+      for (let i = 0; i < sourcesName.length; i++) {
+        sourcesArr.push({ name: sourcesName[i][0].name, value: sourcesValue[i][0] })
+      }
+      const sourcesArrJson = JSON.stringify(sourcesArr)
+      resolve(`
+        <script id="sourcesChart">
+          var color = document.documentElement.getAttribute('data-theme') === 'light' ? '#4c4948' : 'rgba(255,255,255,0.7)'
+          var sourcesChart = echarts.init(document.getElementById('sources-chart'), 'light');
+          var sourcesOption = {
+            title: {
+              text: '博客访问来源统计图',
+              x: 'center',
+              textStyle: {
+                color: color
+              }
+            },
+            legend: {
+              top: 'bottom',
+              textStyle: {
+                color: color
+              }
+            },
+            tooltip: {
+              trigger: 'item'
+            },
+            series: [{
+              name: '${metricsName}',
+              type: 'pie',
+              radius: [30, 80],
+              center: ['50%', '50%'],
+              roseType: 'area',
+              label: {
+                color: color,
+                formatter: "{b} : {c} ({d}%)"
               },
-              legend: {
-                top: 'bottom',
-                textStyle: {
-                  color: color
+              data: ${sourcesArrJson},
+              itemStyle: {
+                emphasis: {
+                  shadowBlur: 10,
+                  shadowOffsetX: 0,
+                  shadowColor: 'rgba(255, 255, 255, 0.5)'
                 }
-              },
-              tooltip: {
-                trigger: 'item'
-              },
-              series: [{
-                name: '${metricsName}',
-                type: 'pie',
-                radius: [30, 80],
-                center: ['50%', '50%'],
-                roseType: 'area',
-                label: {
-                  color: color,
-                  formatter: "{b} : {c} ({d}%)"
-                },
-                data: ${sourcesArrJson},
-                itemStyle: {
-                  emphasis: {
-                    shadowBlur: 10,
-                    shadowOffsetX: 0,
-                    shadowColor: 'rgba(255, 255, 255, 0.5)'
-                  }
-                }
-              }]
-            };
-            sourcesChart.setOption(sourcesOption);
-            window.addEventListener("resize", () => { 
-              sourcesChart.resize();
-            });
-          </script>`);
-      }).catch(function (error) {
-        console.log(error);
-      });
+              }
+            }]
+          };
+          sourcesChart.setOption(sourcesOption);
+          window.addEventListener("resize", () => { 
+            sourcesChart.resize();
+          });
+        </script>`);
+    }).catch(function (error) {
+      console.log(error);
+    });
   })
 }

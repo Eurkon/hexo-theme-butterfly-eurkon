@@ -2,12 +2,11 @@ const cheerio = require('cheerio')
 const moment = require('moment')
 
 hexo.extend.filter.register('after_render:html', function (locals) {
-  const themeConfig = hexo.theme.config
   const $ = cheerio.load(locals)
   const post = $('#posts-chart')
   const tag = $('#tags-chart')
   const category = $('#categories-chart')
-  let htmlEncode = false
+  const htmlEncode = false
 
   if (post.length > 0 || tag.length > 0 || category.length > 0) {
     if (post.length > 0 && $('#postsChart').length === 0) {
@@ -159,7 +158,7 @@ function postsChart (startMonth) {
     window.addEventListener('resize', () => { 
       postsChart.resize();
     });
-    </script>`
+  </script>`
 }
 
 function tagsChart (len) {
@@ -169,7 +168,7 @@ function tagsChart (len) {
   })
   tagArr.sort((a, b) => { return b.value - a.value })
 
-  let dataLength = Math.min(tagArr.length, len) || tagArr.length
+  const dataLength = Math.min(tagArr.length, len) || tagArr.length
   const tagNameArr = []
   const tagCountArr = []
   for (let i = 0; i < dataLength; i++) {
@@ -283,7 +282,7 @@ function tagsChart (len) {
       let href = '/tags/' + event.name + '/';
       window.location.href = href;
     });
-    </script>`
+  </script>`
 }
 
 function categoriesChart () {
@@ -344,5 +343,5 @@ function categoriesChart () {
       let href = '/categories/' + event.name + '/';
       window.location.href = href;
     });
-    </script>`
+  </script>`
 }
