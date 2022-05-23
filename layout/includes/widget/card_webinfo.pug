@@ -10,29 +10,22 @@ if theme.aside.card_webinfo.enable
           .item-count= site.posts.length
       if theme.runtimeshow.enable
         .webinfo-item
-          //- .item-name= _p('aside.card_webinfo.runtime.name') + " :"
-          .item-name= _p('运行时间') + " :"
+          .item-name= _p('aside.card_webinfo.runtime.name') + " :"
           .item-count#runtimeshow(data-publishDate=date_xml(theme.runtimeshow.publish_date))
       if theme.wordcount.enable && theme.wordcount.total_wordcount
         .webinfo-item
-          //- .item-name=_p('aside.card_webinfo.site_wordcount') + " :"
-          .item-name=_p('本站字数') + " :"
+          .item-name=_p('aside.card_webinfo.site_wordcount') + " :"
           .item-count=totalcount(site)
       if theme.busuanzi.site_uv 
         .webinfo-item
-          //- .item-name= _p('aside.card_webinfo.site_uv_name') + " :"
-          .item-name= _p('总访客数') + " :"
+          .item-name= _p('aside.card_webinfo.site_uv_name') + " :"
           .item-count#busuanzi_value_site_uv
-            i.fa.fas.fa-spinner.fa-spin
       if theme.busuanzi.site_pv
         .webinfo-item
-          //- .item-name= _p('aside.card_webinfo.site_pv_name') + " :"
-          .item-name= _p('总访问量') + " :"
+          .item-name= _p('aside.card_webinfo.site_pv_name') + " :"
           .item-count#busuanzi_value_site_pv
-            i.fa.fas.fa-spinner.fa-spin
       if theme.aside.card_webinfo.last_push_date
         .webinfo-item
-          //- .item-name= _p('aside.card_webinfo.last_push_date.name') + " :"
-          .item-name= _p('更新时间') + " :"
+          .item-name= _p('aside.card_webinfo.last_push_date.name') + " :"
           .item-count#last-push-date(data-lastPushDate=date_xml(Date.now()))
 

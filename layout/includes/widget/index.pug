@@ -25,6 +25,8 @@
     !=partial('includes/widget/card_top_self', {}, {cache: true})      
 
     .sticky_layout
+      if showToc
+        include ./card_post_toc.pug
       !=partial('includes/widget/card_clock', {}, {cache: true})
       !=partial('includes/widget/card_weibo', {}, {cache: true})
       !=partial('includes/widget/card_history', {}, {cache: true})
