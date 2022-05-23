@@ -10,12 +10,10 @@ block content
     include ./includes/mixins/article-sort.pug
     #tag
       #catalog-bar
-        .catalog-tips
-          i.catalog-tips.fa-fw.fas.fa-tags
+        i.fa-fw.fas.fa-tags
         #catalog-list
           !=catalog_list("tags")
-        .catalog-more
-          a(href="/tags/")!= '更多'
+        a.catalog-more(href="/tags/")!= '更多'
       .article-sort-title= _p('page.tag') + ' - ' + page.tag
       +articleSort(page.posts)
       include includes/pagination.pug
