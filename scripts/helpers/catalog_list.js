@@ -1,5 +1,5 @@
 hexo.extend.helper.register('catalog_list', function (type) {
-  html = ``
+  let html = ``
   const theme = hexo.theme.config
   hexo.locals.get(type).map(function (item) {
     html += `
