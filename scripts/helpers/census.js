@@ -50,7 +50,8 @@ const metricsName = (metrics === 'pv_count' ? '访问次数' : (metrics === 'vis
 // 访问地图
 function mapChart () {
   return new Promise(resolve => {
-    const paramUrl = '&start_date=' + startDate + '&end_date=' + endDate + '&metrics=' + metrics + '&method=visit/district/a';
+    // const paramUrl = '&start_date=' + startDate + '&end_date=' + endDate + '&metrics=' + metrics + '&method=visit/district/a'; // 更换请求地址
+    const paramUrl = '&start_date=' + startDate + '&end_date=' + endDate + '&metrics=' + metrics + '&method=overview/getDistrictRpt';
     fetch(dataUrl + paramUrl).then(data => data.json()).then(data => {
       monthArr = [];
       const mapName = data.result.items[0]
@@ -58,7 +59,8 @@ function mapChart () {
       const mapArr = []
       const max = mapValue[0][0]
       for (let i = 0; i < mapName.length; i++) {
-        mapArr.push({ name: mapName[i][0].name, value: mapValue[i][0] })
+        // mapArr.push({ name: mapName[i][0].name, value: mapValue[i][0] })
+        mapArr.push({ name: mapName[i][0], value: mapValue[i][0] })
       }
       const mapArrJson = JSON.stringify(mapArr)
       resolve(`
