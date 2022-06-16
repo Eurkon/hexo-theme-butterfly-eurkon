@@ -5,13 +5,13 @@ trans($time = 0.28s)
   -o-transition: all $time ease
 bgcolor($c, $mix = 10)
   return mix($c, #fff, $mix)
-details
+details.folding-tag
   display: block
   padding: 16px
   margin: 1em 0
   border-radius: 4px
   background: #fff
-  font-size: $font-size
+  font-size: var(--global-font-size)
   trans()
   summary
     cursor: pointer
@@ -69,7 +69,7 @@ details
     >summary
       background: bgcolor(#FE5F58)
 
-details[open]
+details.folding-tag[open]
   border-color: alpha(#444, .2)
   >summary
     border-bottom: 1px solid alpha(#444, .2)

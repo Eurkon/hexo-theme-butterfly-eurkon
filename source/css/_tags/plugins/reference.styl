@@ -1,0 +1,135 @@
+:root
+  --referto-text-color: #e9a218
+  --referto-text-hover-color: #2C7FE7
+  --referto-literature-background-color: #318efd
+  --referto-title-background-color: #183153
+  --referto-content-text-color: #f1f1ef
+  --referfrom-text-shadow: rgba(35,35,35,0.5)
+  --referfrom-text-color: #f1f1ef
+  --referfrom-text-hover-color: #f2b94b
+  --referfrom-link-color: #403e3b
+  --referfrom-link-hover-color: #235dac
+  --referfrom-background-color: #f1f1ef
+  --reference-anchor-color: #183153
+  --reference-anchor-up-color: #318efd
+
+[data-theme="dark"]
+  --referto-text-color: #f2b94b
+  --referto-text-hover-color: #2C7FE7
+  --referto-literature-background-color: #5c6167
+  --referto-title-background-color: #090a0b
+  --referto-content-text-color: #f1f1ef
+  --referfrom-text-shadow: rgba(35,35,35,0.5)
+  --referfrom-text-color: #f1f1ef
+  --referfrom-text-hover-color: #f2b94b
+  --referfrom-link-color: #f1f1ef
+  --referfrom-link-hover-color: #f2b94b
+  --referfrom-background-color: rgba(92, 97, 103, 0.68)
+  --reference-anchor-color: #090a0b
+  --reference-anchor-up-color: #183153
+
+.hidden-anchor
+  position relative
+  top -150px
+  display inline-block
+  height 0
+  overflow hidden
+
+.reference
+  a
+    display inline-block
+    color var(--referto-text-color) !important
+    font-weight bold
+    transition: all 0.2s ease-in-out
+  &:hover
+    a
+      transition: all 0.2s ease-in-out
+      text-decoration none !important
+      color var(--referto-text-hover-color) !important
+    & + .reference-bubble
+      .reference-item
+        transform translate(-40px, 10px) rotateX(0deg)
+        transition: all 0.5s ease-in-out
+        opacity: 1
+
+.reference-bubble
+  display inline-block
+
+
+.reference-item
+  transition: all 0.5s ease-in-out
+  opacity 0
+  z-index 99
+  display flex
+  position absolute
+  transform translate(-40px, 10px) rotateX(90deg)
+  width auto
+  height auto
+  clip-path polygon(5px 10px, 20px 10px, 30px 0, 40px 10px, calc(100% - 5px) 10px, 100% 15px, 100% calc(100% - 5px), calc(100% - 5px) 100%, 5px 100%, 0 calc(100% - 5px), 0 15px, 5px 10px)
+
+.reference-literature
+  max-width 200px
+  padding 20px 10px 10px 10px
+  background var(--referto-literature-background-color)
+  color var(--referto-content-text-color) !important
+  word-wrap break-word
+  word-break break-all
+  display flex
+  align-items center
+
+.reference-title
+  padding 20px 10px 10px 10px
+  background var(--referto-title-background-color)
+  color var(--referto-content-text-color) !important
+  writing-mode vertical-lr
+  display flex
+  justify-content center
+
+.reference-source
+  font-size 16px
+  height auto
+  line-height 26px
+  width fit-content
+  margin 5px 0
+  max-width 90%
+  background var(--referfrom-background-color)
+  box-shadow 1px 1px 1px var(--referfrom-text-shadow)
+  border-radius 8px
+  padding-right 10px
+  pangu
+    display: none
+
+
+
+a
+  &.reference-anchor
+    border-bottom-left-radius 5px
+    border-top-left-radius 5px
+    color var(--referfrom-text-color) !important
+    background var(--reference-anchor-color)
+    height 30px
+    display inline-block
+    width fit-content
+    padding 0px 0px 0px 10px
+    &:hover
+      color var(--referfrom-text-hover-color) !important
+      text-decoration none !important
+      .reference-anchor-up
+        color var(--referfrom-text-hover-color) !important
+  &.reference-link
+    color var(--referfrom-link-color) !important
+    padding 0px 10px
+    &:hover
+      color var(--referfrom-link-hover-color) !important
+      text-decoration none !important
+
+.reference-anchor-up
+  color var(--referfrom-text-color) !important
+  height 30px
+  width 40px
+  padding 0px 0px 0px 10px
+  background var(--reference-anchor-up-color)
+  display inline-flex !important
+  align-items center
+  justify-content center
+  clip-path polygon(0 0,10px 50%,0 100%,100% 100%,100% 0)

@@ -33,10 +33,10 @@ function postSiteCard(args) {
   // 布局
   let result = '';
   result += '<a class="site-card" href="' + url + '">';
-  result += '<div class="img"><img src="' + screenshot + '"/></div>';
+  result += '<div class="img"><img class="no-lightbox" src="' + screenshot + '"/></div>';
   result += '<div class="info">';
   if (avatar.length > 0) {
-    result += '<img src="' + avatar + '"/>';
+    result += '<img class="no-lightbox" src="' + avatar + '"/>';
   } else {
 
   }
