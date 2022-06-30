@@ -3,7 +3,7 @@ nav#nav
     span#blog_name
       a#site-name(href=url_for('/'))
         span #[=config.title]
-        i.ri-home-3-fill
+        i.fas.fa-home
     span#page_name
       a#page-name-text(title=_p("rightside.back_to_top"))
         span #[=config.title]
@@ -23,7 +23,7 @@ nav#nav
       if (page.comments !== false && theme.comments && theme.comments.use)
         #comment-button
           a.site-page(href="#post-comment" title=_p("rightside.scroll_to_comment"))
-            i.ri-question-answer-line
+            i.ri-question-answer-fill
       #top-button
         a.site-page(title=_p("rightside.back_to_top"))
           i.ri-rocket-fill
