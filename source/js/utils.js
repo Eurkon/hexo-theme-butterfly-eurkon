@@ -59,6 +59,7 @@ const btf = {
   },
 
   snackbarShow: (text, showAction = false, duration = 2000) => {
+    document.styleSheets[0].addRule(':root', `--snackbar-time: ${duration / 1000}s;`)
     const { position, bgLight, bgDark } = GLOBAL_CONFIG.Snackbar
     const bg = document.documentElement.getAttribute('data-theme') === 'light' ? bgLight : bgDark
     Snackbar.show({
