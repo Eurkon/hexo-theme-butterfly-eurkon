@@ -84,7 +84,7 @@ function mapChart () {
               left: 'left',
               top: 'bottom',
               text: ['高','低'],
-              color: ['#49b1f5', '#92d0f9'],
+              color: ['#37a2da', '#92d0f9'],
               textStyle: {
                 color: color
               },
