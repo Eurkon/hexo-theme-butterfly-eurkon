@@ -11,3 +11,5 @@ script.
     }
   }
   window.addEventListener('load',preloader.endLoading())
+  setTimeout(function () { preloader.endLoading() }, 3000)
+  document.getElementById('loading-box').addEventListener('click', () => { preloader.endLoading() })
