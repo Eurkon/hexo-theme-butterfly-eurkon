@@ -4,11 +4,13 @@ script(async).
       document.body.style.overflow = 'auto';
       document.getElementById('loading-box').classList.add("loaded")
       setTimeout(function () { document.getElementById('loading-box').classList.add("loaded-end") }, 1000)
+      document.body.classList.remove("hidden-y")
     },
     initLoading: () => {
       document.body.style.overflow = '';
       document.getElementById('loading-box').classList.remove("loaded")
       document.getElementById('loading-box').classList.remove("loaded-end")
+      document.body.classList.add("hidden-y")
     }
   }
   window.addEventListener('load',preloader.endLoading())
