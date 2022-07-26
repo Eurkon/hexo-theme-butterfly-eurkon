@@ -15,14 +15,3 @@ if hexo-config('preloader.enable')
     @import './_load_style/spinner'
   else
     @import './_load_style/default'
-
-  #loading-box.loaded
-    z-index: 1000
-    .loading-left-bg
-      transform: none
-      opacity: 0
-    .loading-right-bg
-      transform: none
-      opacity: 0
-  #loading-box.loaded-end
-    z-index: -1000

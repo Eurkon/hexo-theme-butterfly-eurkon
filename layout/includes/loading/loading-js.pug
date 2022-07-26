@@ -2,14 +2,16 @@ script(async).
   var preloader = {
     endLoading: () => {
       document.body.style.overflow = 'auto';
-      document.getElementById('loading-box').classList.add("loaded")
-      setTimeout(function () { document.getElementById('loading-box').classList.add("loaded-end") }, 1000)
+      document.getElementById('loading-box').style.transition = 'opacity 1s';
+      document.getElementById('loading-box').style.opacity = '0';
+      setTimeout(function () { document.getElementById('loading-box').classList.add("loaded") }, 1000)
       document.body.classList.remove("hidden-y")
     },
     initLoading: () => {
       document.body.style.overflow = '';
+      document.getElementById('loading-box').style.transition = '';
+      document.getElementById('loading-box').style.opacity = '1'; 
       document.getElementById('loading-box').classList.remove("loaded")
-      document.getElementById('loading-box').classList.remove("loaded-end")
       document.body.classList.add("hidden-y")
     }
   }
