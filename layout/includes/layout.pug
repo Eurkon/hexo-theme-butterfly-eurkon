@@ -1,5 +1,7 @@
 - var htmlClassHideAside = theme.aside.enable && theme.aside.hide ? 'hide-aside' : ''
-- page.aside = is_archive() ? theme.aside.archives : page.aside
+- page.aside = is_archive() ? theme.aside.archives : page.aside // - 归档页隐藏侧栏
+- page.aside = is_category() || page.type === 'categories' ? theme.aside.categories : page.aside // - 分类页隐藏侧栏
+- page.aside = is_tag() || page.type === 'tags' ? theme.aside.tags : page.aside // - 标签页隐藏侧栏
 - var hideAside = !theme.aside.enable || page.aside === false ? 'hide-aside' : ''
 - var pageType = is_post() ? 'post' : 'page'
 
