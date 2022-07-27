@@ -279,6 +279,7 @@ function tagsChart (len) {
       tagsChart.resize();
     });
     tagsChart.on('click', 'series', (event) => {
+      if (event.name === '平均值') return
       let href = '/tags/' + event.name + '/';
       window.location.href = href;
     });
