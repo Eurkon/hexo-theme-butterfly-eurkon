@@ -4,5 +4,5 @@ block content
   include ./includes/mixins/article-sort.pug
   #archive
     .article-sort-title= _p('page.articles') + ' - ' + site.posts.length
-    +articleSort(page.posts)
+    +articleSort(page.posts, page.current)
     include includes/pagination.pug
