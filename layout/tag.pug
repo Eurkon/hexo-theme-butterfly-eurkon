@@ -14,11 +14,6 @@ block content
         #catalog-list
           !=catalog_list("tags")
         a.catalog-more(href="/tags/")!= '更多'
-<<<<<<< HEAD
       .article-sort-title= _p('page.tag') + ' - ' + page.tag
-=======
-      //- .article-sort-title= _p('page.tag') + ' - ' + page.tag
-      .article-sort-title= page.tag
->>>>>>> 0fac0a617baba7ee92a6f73df4587385e4ec3cda
       +articleSort(page.posts, page.current)
       include includes/pagination.pug
