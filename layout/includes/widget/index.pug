@@ -33,8 +33,9 @@
       //- !=partial('includes/widget/card_recent_post', {}, {cache: true})
       !=partial('includes/widget/card_ad', {}, {cache: true})
       !=partial('includes/widget/card_newest_comment', {}, {cache: true})
-      !=partial('includes/widget/card_categories', {}, {cache: true})
-      !=partial('includes/widget/card_tags', {}, {cache: true})
-      !=partial('includes/widget/card_archives', {}, {cache: true})
-      !=partial('includes/widget/card_webinfo', {}, {cache: true})
+      .card-categories.card-widget.card-tags.card-archives.card-webinfo
+        !=partial('includes/widget/card_categories', {}, {cache: true})
+        !=partial('includes/widget/card_tags', {}, {cache: true})
+        !=partial('includes/widget/card_archives', {}, {cache: true})
+        !=partial('includes/widget/card_webinfo', {}, {cache: true})
       !=partial('includes/widget/card_bottom_self', {}, {cache: true})
