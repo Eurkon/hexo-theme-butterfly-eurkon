@@ -1,10 +1,11 @@
 - var htmlClassHideAside = theme.aside.enable && theme.aside.hide ? 'hide-aside' : ''
-- page.aside = is_archive() ? theme.aside.archives : page.aside // - 归档页隐藏侧栏
-- page.aside = is_category() || page.type === 'categories' ? theme.aside.categories : page.aside // - 分类页隐藏侧栏
-- page.aside = is_tag() || page.type === 'tags' ? theme.aside.tags : page.aside // - 标签页隐藏侧栏
-- page.aside = page.type === 'link' ? theme.aside.flinks : page.aside // - 友链页隐藏侧栏
-- page.aside = page.type === 'fcircle' ? theme.aside.fcircles : page.aside // - 朋友圈隐藏侧栏
-- page.aside = page.type === 'stars' ? theme.aside.stars : page.aside // - 收藏页隐藏侧栏
+//- - page.aside = is_archive() ? theme.aside.display.archive: is_category() ? theme.aside.display.category : is_tag() ? theme.aside.display.tag : page.aside
+- page.aside = is_archive() ? theme.aside.display.archive : page.aside // - 归档页隐藏侧栏
+- page.aside = is_category() || page.type === 'categories' ? theme.aside.display.category : page.aside // - 分类页隐藏侧栏
+- page.aside = is_tag() || page.type === 'tags' ? theme.aside.display.tag : page.aside // - 标签页隐藏侧栏
+- page.aside = page.type === 'link' ? theme.aside.display.flink : page.aside // - 友链页隐藏侧栏
+- page.aside = page.type === 'fcircle' ? theme.aside.display.fcircle : page.aside // - 朋友圈隐藏侧栏
+- page.aside = page.type === 'stars' ? theme.aside.display.stars : page.aside // - 收藏页隐藏侧栏
 - var hideAside = !theme.aside.enable || page.aside === false ? 'hide-aside' : ''
 - var pageType = is_post() ? 'post' : 'page'
 
