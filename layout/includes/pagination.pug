@@ -19,6 +19,25 @@ if is_post()
           .pagination-info
             .label=_p('pagination.prev')
             .prev_info=prev.title
+            //- Display the article introduction on homepage
+            case theme.index_post_content.method
+              when false
+                - break
+              when 1
+                .content!= prev.description
+              when 2
+                if prev.description
+                  .content!= prev.description
+                else
+                  - const content = strip_html(prev.content)
+                  - let expert = content.substring(0, theme.index_post_content.length) 
+                  - content.length > theme.index_post_content.length ? expert += ' ...' : ''
+                  .content!= expert
+              default
+                - const content = strip_html(prev.content)
+                - let expert = content.substring(0, theme.index_post_content.length) 
+                - content.length > theme.index_post_content.length ? expert += ' ...' : ''
+                .content!= expert
           
     if(next)
       - var hasPagePrev = prev ? 'pull-right' : 'pull-full'
@@ -29,6 +48,25 @@ if is_post()
           .pagination-info
             .label=_p('pagination.next')
             .next_info=next.title
+            //- Display the article introduction on homepage
+            case theme.index_post_content.method
+              when false
+                - break
+              when 1
+                .content!= next.description
+              when 2
+                if next.description
+                  .content!= next.description
+                else
+                  - const content = strip_html(next.content)
+                  - let expert = content.substring(0, theme.index_post_content.length) 
+                  - content.length > theme.index_post_content.length ? expert += ' ...' : ''
+                  .content!= expert
+              default
+                - const content = strip_html(next.content)
+                - let expert = content.substring(0, theme.index_post_content.length) 
+                - content.length > theme.index_post_content.length ? expert += ' ...' : ''
+                .content!= expert
 else
   nav#pagination
     .pagination
