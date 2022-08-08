@@ -18,7 +18,9 @@ hexo.extend.helper.register('related_posts', function (currentPost, allPosts) {
           randomcover: post.randomcover,
           weight: 1,
           updated: post.updated,
-          created: post.date
+          created: post.date,
+          description: post.description,
+          content: post.content
         }
         const index = findItem(relatedPosts, 'path', post.path)
         if (index !== -1) {
@@ -55,6 +57,8 @@ hexo.extend.helper.register('related_posts', function (currentPost, allPosts) {
           ? relatedPosts[i].randomcover
           : relatedPosts[i].cover
       const title = this.escape_html(relatedPosts[i].title)
+      const description = this.strip_html(relatedPosts[i].description)
+      const content = this.strip_html(relatedPosts[i].content)
       result += `<div><a href="${this.url_for(relatedPosts[i].path)}" title="${title}">`
       result += `<img class="cover" src="${this.url_for(cover)}" alt="cover">`
       if (dateType === 'created') {
@@ -63,6 +67,29 @@ hexo.extend.helper.register('related_posts', function (currentPost, allPosts) {
         result += `<div class="content is-center"><div class="date"><i class="fas fa-history fa-fw"></i> ${this.date(relatedPosts[i].updated, hexoConfig.date_format)}</div>`
       }
       result += `<div class="title">${title}</div>`
+      //- Display the article introduction on homepage
+      switch (config.index_post_content.method) {
+        case false:
+          break
+        case 1:
+          result += `<div class="info">${description}</div>`
+          break
+        case 2:
+          if (description) {
+            result += `<div class="info">${description}</div>`
+          }
+          else {
+            let expert = content.substring(0, config.index_post_content.length)
+            content.length > config.index_post_content.length ? expert += ' ...' : ''
+            result += `<div class="info">${expert}</div>`
+          }
+          break
+        default:
+          let expert = content.substring(0, config.index_post_content.length)
+          content.length > config.index_post_content.length ? expert += ' ...' : ''
+          result += `<div class="info">${expert}</div>`
+          break
+      }
       result += '</div></a></div>'
     }
 
