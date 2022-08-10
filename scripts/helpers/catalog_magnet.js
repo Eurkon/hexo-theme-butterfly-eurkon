@@ -21,16 +21,16 @@ hexo.extend.helper.register('catalog_magnet', function () {
     var devide = 100 / hexo.theme.config.catalogMagnet.devide;
     var temple_html_item = `
       <style>
-        #catalog_magnet{flex-wrap: wrap;display: flex;width: 100%;justify-content: space-between;padding: 10px 10px 0 10px;align-content: flex-start;}
-        .magnet_item{flex-basis: calc(${devide}% - 5px);background: var(--global-bg);margin-bottom: 10px;border-radius: 8px;box-shadow: rgb(0 0 0 / 7%) 0 2px 2px 0, rgb(0 0 0 / 10%) 0 1px 5px 0;}
-        .magnet_item:hover{background: var(--main);box-shadow: var(--main-shadow);}
-        .magnet_link_more{color: var(--font-color) !important;width: 40%;border-radius: 8px;background: var(--global-bg);text-align: center;margin: 0 auto 10px;}
-        .magnet_link_more:hover{width: 60%;}
-        .magnet_link{color: var(--font-color); }
-        .magnet_link:hover{color: var(--second)}
-        @media screen and (max-width: 600px) {.magnet_item {flex-basis: 100%;}}
-        .magnet_link_context{display: flex;padding: 10px;transition: all .3s ease-in-out;}
-        .magnet_link_context:hover{padding: 10px 20px;}
+      #catalog_magnet{flex-wrap:wrap;display:flex;padding:.5rem .5rem 0 .5rem;width:100%;justify-content:space-between;align-content:flex-start;}
+      .magnet_item{flex-basis:calc(${devide}% - 5px);background:var(--global-bg);margin-bottom:.5rem; border-radius:var(--border-radius);-webkit-transition:all .3s ease-in-out;-moz-transition:all .3s ease-in-out;-o-transition:all .3s ease-in-out;transition:all .3s ease-in-out;-ms-transition:all .3s ease-in-out}
+      .magnet_item:hover{background:var(--main);box-shadow:var(--main-shadow)}
+      .magnet_link_more{color:var(--font-color)!important;width:40%;border-radius:var(--border-radius);background:var(--global-bg);text-align:center;margin:0 auto .5rem;}
+      .magnet_link_more:hover{width:60%}
+      .magnet_link{color:var(--font-color)}
+      .magnet_item:hover .magnet_link{color:var(--second)}
+      @media screen and (max-width:600px){.magnet_item{flex-basis:100%}}
+      .magnet_link_context{display:flex;padding:.5rem;-webkit-transition:all .3s ease-in-out;-moz-transition:all .3s ease-in-out;-o-transition:all .3s ease-in-out;transition:all .3s ease-in-out;-ms-transition:all .3s ease-in-out;}
+      .magnet_item:hover .magnet_link_context{padding:.5rem 1rem}
       </style>`;
     temple_html_item += '<div id="catalog_magnet">';
     if (hexo.theme.config.catalogMagnet.display) {
