@@ -128,16 +128,19 @@ else if hexo-config('flink_style') == 'flexcard'
   #article-container .flink-list img
     margin 0 auto !important
   .flink-list
+    display flex
+    flex-wrap wrap
+    justify-content space-between
     overflow auto
     & > a
-      width calc(20% - 20px)
+      width calc(20% - 1rem)
       height 130px
       position relative
       display block
-      margin 15px 7px
+      margin .5rem 0
       float left
       overflow hidden
-      border-radius 10px
+      border-radius .5rem
       transition all .3s ease 0s, transform .6s cubic-bezier(.6, .2, .1, 1) 0s
       box-shadow 0 14px 38px rgba(0, 0, 0, .08), 0 3px 8px rgba(0, 0, 0, .06)
       &:hover
@@ -189,7 +192,7 @@ else if hexo-config('flink_style') == 'flexcard'
           top 1.6rem //因为字体大小不同，可能导致头像偏高，可以在此处通过修改top的值来微调头像框的位置至卡片正中。
           width 66px
           height 66px
-          border-radius 50%
+          border-radius 50% !important
           box-shadow 0 0 10px rgba(0, 0, 0, .3)
           z-index 1
           text-align center
@@ -215,12 +218,12 @@ else if hexo-config('flink_style') == 'flexcard'
   @media screen and (max-width:1024px)
     .flink-list
       & > a
-        width calc(33.33333% - 15px)
+        width calc(33.33333% - .5rem)
 
   @media screen and (max-width:600px)
     .flink-list
       & > a
-        width calc(50% - 15px)
+        width calc(50% - .5rem)
 
   [data-theme=dark]
     .flink-list a .info,
