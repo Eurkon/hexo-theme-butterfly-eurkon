@@ -128,16 +128,13 @@ else if hexo-config('flink_style') == 'flexcard'
   #article-container .flink-list img
     margin 0 auto !important
   .flink-list
-    display flex
-    flex-wrap wrap
-    justify-content space-between
     overflow auto
     & > a
-      width calc(20% - 1rem)
+      width calc(20% - .5rem)
       height 130px
       position relative
       display block
-      margin .5rem 0
+      margin .5rem .25rem
       float left
       overflow hidden
       border-radius .5rem
