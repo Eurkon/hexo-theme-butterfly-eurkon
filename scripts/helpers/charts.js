@@ -282,9 +282,11 @@ function tagsChart (len) {
   </script>`
 }
 
-function categoriesChart (categoryParentFlag) {
+function categoriesChart (dataParent) {
   const categoryArr = []
+  let categoryParentFlag = false
   hexo.locals.get('categories').map(function (category) {
+    if (category.parent) categoryParentFlag = true
     categoryArr.push({
       name: category.name,
       value: category.length,
@@ -293,6 +295,7 @@ function categoriesChart (categoryParentFlag) {
       parentId: category.parent || '0'
     })
   })
+  categoryParentFlag = categoryParentFlag && dataParent === 'true'
   categoryArr.sort((a, b) => { return b.value - a.value })
   function translateListToTree (data, parent) {
     let tree = []
@@ -340,26 +343,7 @@ function categoriesChart (categoryParentFlag) {
       series: []
     };
     categoriesOption.series.push(
-      !categoryParentFlag ? 
-      {
-        name: '文章篇数',
-        type: 'pie',
-        radius: [30, 80],
-        roseType: 'area',
-        label: {
-          color: color,
-          formatter: '{b} : {c} ({d}%)'
-        },
-        data: ${categoryArrJson},
-        itemStyle: {
-          emphasis: {
-            shadowBlur: 10,
-            shadowOffsetX: 0,
-            shadowColor: 'rgba(255, 255, 255, 0.5)'
-          }
-        }
-      }
-      :
+      categoryParentFlag ? 
       {
         nodeClick :false,
         name: '文章篇数',
@@ -373,6 +357,25 @@ function categoriesChart (categoryParentFlag) {
           borderWidth: 2,
           emphasis: {
             focus: 'ancestor',
+            shadowBlur: 10,
+            shadowOffsetX: 0,
+            shadowColor: 'rgba(255, 255, 255, 0.5)'
+          }
+        }
+      }
+      :
+      {
+        name: '文章篇数',
+        type: 'pie',
+        radius: [30, 80],
+        roseType: 'area',
+        label: {
+          color: color,
+          formatter: '{b} : {c} ({d}%)'
+        },
+        data: ${categoryArrJson},
+        itemStyle: {
+          emphasis: {
             shadowBlur: 10,
             shadowOffsetX: 0,
             shadowColor: 'rgba(255, 255, 255, 0.5)'
