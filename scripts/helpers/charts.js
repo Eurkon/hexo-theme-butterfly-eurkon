@@ -19,7 +19,7 @@ hexo.extend.filter.register('after_render:html', function (locals) {
     }
     if (category.length > 0 && $('#categoriesChart').length === 0) {
       if (category.attr('data-encode') === 'true') htmlEncode = true
-      category.after(categoriesChart())
+      category.after(categoriesChart(category.attr('data-parent')))
     }
 
     if (htmlEncode) {
@@ -164,19 +164,17 @@ function postsChart (startMonth) {
 function tagsChart (len) {
   const tagArr = []
   hexo.locals.get('tags').map(function (tag) {
-    tagArr.push({ name: tag.name, value: tag.length })
+    tagArr.push({ name: tag.name, value: tag.length, path: tag.path })
   })
   tagArr.sort((a, b) => { return b.value - a.value })
 
   const dataLength = Math.min(tagArr.length, len) || tagArr.length
   const tagNameArr = []
-  const tagCountArr = []
   for (let i = 0; i < dataLength; i++) {
     tagNameArr.push(tagArr[i].name)
-    tagCountArr.push(tagArr[i].value)
   }
   const tagNameArrJson = JSON.stringify(tagNameArr)
-  const tagCountArrJson = JSON.stringify(tagCountArr)
+  const tagArrJson = JSON.stringify(tagArr)
 
   return `
   <script id="tagsChart">
@@ -239,7 +237,7 @@ function tagsChart (len) {
       series: [{
         name: '文章篇数',
         type: 'bar',
-        data: ${tagCountArrJson},
+        data: ${tagArrJson},
         itemStyle: {
           borderRadius: [5, 5, 0, 0],
           color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
@@ -279,25 +277,48 @@ function tagsChart (len) {
       tagsChart.resize();
     });
     tagsChart.on('click', 'series', (event) => {
-      if (event.name === '平均值') return
-      let href = '/tags/' + event.name + '/';
-      window.location.href = href;
+      if(event.data.path) window.location.href = '/' + event.data.path;
     });
   </script>`
 }
 
-function categoriesChart () {
+function categoriesChart (categoryParentFlag) {
   const categoryArr = []
   hexo.locals.get('categories').map(function (category) {
-    categoryArr.push({ name: category.name, value: category.length })
+    categoryArr.push({
+      name: category.name,
+      value: category.length,
+      path: category.path,
+      id: category._id,
+      parentId: category.parent || '0'
+    })
   })
-  categoryArr.sort((a, b) => { return b.value - a.value });
+  categoryArr.sort((a, b) => { return b.value - a.value })
+  function translateListToTree (data, parent) {
+    let tree = []
+    let temp
+    data.forEach((item, index) => {
+      if (data[index].parentId == parent) {
+        let obj = data[index];
+        temp = translateListToTree(data, data[index].id);
+        if (temp.length > 0) {
+          obj.children = temp
+        }
+        if (tree.indexOf())
+          tree.push(obj)
+      }
+    })
+    return tree
+  }
+  const categoryNameJson = JSON.stringify(categoryArr.map(function (category) { return category.name }))
   const categoryArrJson = JSON.stringify(categoryArr)
+  const categoryArrParentJson = JSON.stringify(translateListToTree(categoryArr, '0'))
 
   return `
   <script id="categoriesChart">
     var color = document.documentElement.getAttribute('data-theme') === 'light' ? '#4c4948' : 'rgba(255,255,255,0.7)'
     var categoriesChart = echarts.init(document.getElementById('categories-chart'), 'light');
+    var categoryParentFlag = ${categoryParentFlag}
     var categoriesOption = {
       title: {
         text: '文章分类统计图',
@@ -308,19 +329,22 @@ function categoriesChart () {
       },
       legend: {
         top: 'bottom',
+        data: ${categoryNameJson},
         textStyle: {
           color: color
         }
       },
       tooltip: {
-        trigger: 'item',
-        formatter: '{a} <br/>{b} : {c} ({d}%)'
+        trigger: 'item'
       },
-      series: [{
+      series: []
+    };
+    categoriesOption.series.push(
+      !categoryParentFlag ? 
+      {
         name: '文章篇数',
         type: 'pie',
         radius: [30, 80],
-        center: ['50%', '50%'],
         roseType: 'area',
         label: {
           color: color,
@@ -334,15 +358,34 @@ function categoriesChart () {
             shadowColor: 'rgba(255, 255, 255, 0.5)'
           }
         }
-      }]
-    };
+      }
+      :
+      {
+        nodeClick :false,
+        name: '文章篇数',
+        type: 'sunburst',
+        radius: ['15%', '90%'],
+        center: ['50%', '55%'],
+        sort: 'desc',
+        data: ${categoryArrParentJson},
+        itemStyle: {
+          borderColor: '#fff',
+          borderWidth: 2,
+          emphasis: {
+            focus: 'ancestor',
+            shadowBlur: 10,
+            shadowOffsetX: 0,
+            shadowColor: 'rgba(255, 255, 255, 0.5)'
+          }
+        }
+      }
+    )
     categoriesChart.setOption(categoriesOption);
     window.addEventListener('resize', () => { 
       categoriesChart.resize();
     });
     categoriesChart.on('click', 'series', (event) => {
-      let href = '/categories/' + event.name + '/';
-      window.location.href = href;
+      if(event.data.path) window.location.href = '/' + event.data.path;
     });
   </script>`
 }
