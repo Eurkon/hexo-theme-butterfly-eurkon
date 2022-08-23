@@ -103,20 +103,20 @@
           img
             transform scale(1.2)
         &::before
-          position: fixed
-          width:inherit
-          margin:auto
-          left:0
-          right:0
-          top:10%
-          border-radius: 10px
-          text-align: center
-          z-index: 100
-          content: attr(data-title)
-          font-size: 20px
-          color: #fff
-          padding: 10px
-          background-color: rgba($theme-color,0.8)
+          position fixed
+          width inherit
+          margin auto
+          left 0
+          right 0
+          top 15%
+          border-radius 10px
+          text-align center
+          z-index 100
+          content attr(data-title)
+          font-size 20px
+          color #fff
+          padding 10px
+          background-color rgba($theme-color,0.8)
 
       .cover
         width 100%
@@ -150,7 +150,7 @@
           text-align center
           pointer-events none
         span
-          padding 20px 10% 60px 10%
+          padding 20px 10% 75px 10%
           width 100%
           text-align center
           box-shadow 0 0 10px rgba(0, 0, 0, .3)
@@ -175,27 +175,23 @@
       & > a
         width calc(50% - 15px)
 
-  [data-theme=dark]
-    .flink-list 
-      & >a 
-        .info
-          background-color rgba(#121212,0.8)
-        span
-          background-color rgba(#121212,0.8)
-    .flink-list
-      & > a
-        &:hover
-          &:before
-            background-color rgba(#121212,0.8)
-  .justified-gallery > div > img,
-  .justified-gallery > figure > img,
-  .justified-gallery > a > a > img,
-  .justified-gallery > div > a > img,
-  .justified-gallery > figure > a > img,
-  .justified-gallery > a > svg,
-  .justified-gallery > div > svg,
-  .justified-gallery > figure > svg,
-  .justified-gallery > a > a > svg,
-  .justified-gallery > div > a > svg,
-  .justified-gallery > figure > a > svg
-    position static!important
+[data-theme=dark]
+  .flink-list 
+    & >a 
+      .info
+        background-color rgba(#121212,0.8) !important
+      span
+        background-color rgba(#121212,0.8) !important
+
+.justified-gallery > div > img,
+.justified-gallery > figure > img,
+.justified-gallery > a > a > img,
+.justified-gallery > div > a > img,
+.justified-gallery > figure > a > img,
+.justified-gallery > a > svg,
+.justified-gallery > div > svg,
+.justified-gallery > figure > svg,
+.justified-gallery > a > a > svg,
+.justified-gallery > div > a > svg,
+.justified-gallery > figure > a > svg
+  position static!important
