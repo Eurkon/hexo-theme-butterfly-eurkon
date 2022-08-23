@@ -1,143 +1,99 @@
-if hexo-config('flink_style') == 'butterfly'
-  #article-container
-    .flink
-      margin-bottom: 20px
-
-      .flink-list
-        overflow: auto
-        padding: 10px 10px 0
-    @@ -23,8 +25,9 @@
-            width: calc(100% - 15px) !important
-
-          &:hover
-            .flink-item-icon
-              margin-left: -10px
-              width: 0
-
-          &:before
-            position: absolute
-    @@ -54,25 +57,31 @@
-              width: 60px
-              height: 60px
-              border-radius: 35px
-              transition: width .3s ease-out
-
-              img
-                width: 100%
-                height: 100%
-                transition: filter 375ms ease-in .2s, transform .3s
-                object-fit: cover
-
-            .img-alt
-              display: none
-
-      .flink-item-name
-        @extend .limit-one-line
-        padding: 16px 10px 0 0
-        height: 40px
-        font-weight: bold
-        font-size: 1.43em
-
-      .flink-item-desc
-        @extend .limit-one-line
-        padding: 16px 10px 16px 0
-        height: 50px
-        font-size: .93em
-
-      .flink-name
-        margin-bottom: 5px
-        font-weight: bold
-        font-size: 1.5em
-else if hexo-config('flink_style') == 'volantis'
-  trans($time = 0.28s)
-    transition: all $time ease
-    -moz-transition: all $time ease
-    -webkit-transition: all $time ease
-    -o-transition: all $time ease
-  .site-card-group
-    display: flex
-    flex-wrap: wrap
-    justify-content: flex-start
-    margin: -0.5 * 16px
-    align-items: stretch
-  .site-card
-    margin: 16px * 0.5
-    width: "calc(100% / 4 - %s)" % 16px
-    @media screen and (min-width: 2048px)
-        width: "calc(100% / 5 - %s)" % 16px
-    @media screen and (max-width: 768px)
-        width: "calc(100% / 3 - %s)" % 16px
-    @media screen and (max-width: 500px)
-        width: "calc(100% / 2 - %s)" % 16px
-    display: block
-    line-height: 1.4
-    height 100%
-    .img
-      width: 100%
-      height 120px
-      @media screen and (max-width: 500px)
-        height 100px
-      overflow: hidden
-      border-radius: 12px * 0.5
-      box-shadow: 0 1px 2px 0px rgba(0, 0, 0, 0.2)
-      background: #f6f6f6
-      img
-        width: 100%
-        height 100%
-        // trans(.75s)
-        transition: transform 2s ease
-        object-fit: cover
-
-    .info
-      margin-top: 16px * 0.5
-      img
-        width: 32px
-        height: 32px
-        border-radius: 16px
-        float: left
-        margin-right: 8px
-        margin-top: 2px
-      span
-        display: block
-      .title
-        font-weight: 600
-        font-size: $fontsize-list
-        color: #444
-        display: -webkit-box
-        -webkit-box-orient: vertical
-        overflow: hidden
-        -webkit-line-clamp: 1
-        trans()
-      .desc
-        font-size: $fontsize-footnote
-        word-wrap: break-word;
-        line-height: 1.2
-        color: #888
-        display: -webkit-box
-        -webkit-box-orient: vertical
-        overflow: hidden
-        -webkit-line-clamp: 2
-    .img
-      trans()
-    &:hover
-      .img
-        box-shadow: 0 4px 8px 0px rgba(0, 0, 0, 0.1), 0 2px 4px 0px rgba(0, 0, 0, 0.1), 0 4px 8px 0px rgba(0, 0, 0, 0.1), 0 8px 16px 0px rgba(0, 0, 0, 0.1)
-      .info .title
-        color: #ff5722
-else if hexo-config('flink_style') == 'flexcard'
-  #article-container .flink-list img
-    margin 0 auto !important
+#article-container
   .flink-list
-    overflow auto
-    & > a
-      width calc(20% - .5rem)
-      height 130px
+    overflow: auto
+    padding: 10px 10px 0
+    text-align: center
+
+    & > .flink-list-item
+      position: relative
+      float: left
+      overflow: hidden
+      margin: 15px 7px
+      width: calc(100% / 3 - 15px)
+      height: 90px
+      border-radius: 8px
+      line-height: 17px
+      -webkit-transform: translateZ(0)
+
+      +maxWidth1024()
+        width: calc(50% - 15px) !important
+
+      +maxWidth600()
+        width: calc(100% - 15px) !important
+
+      &:hover
+        .flink-item-icon
+          margin-left: -10px
+          width: 0
+
+      &:before
+        position: absolute
+        top: 0
+        right: 0
+        bottom: 0
+        left: 0
+        z-index: -1
+        background: var(--text-bg-hover)
+        content: ''
+        transition: transform .3s ease-out
+        transform: scale(0)
+
+      &:hover:before,
+      &:focus:before,
+      &:active:before
+        transform: scale(1)
+
+      a
+        color: var(--font-color)
+        text-decoration: none
+
+        .flink-item-icon
+          float: left
+          overflow: hidden
+          margin: 15px 10px
+          width: 60px
+          height: 60px
+          border-radius: 35px
+          transition: width .3s ease-out
+
+          img
+            width: 100%
+            height: 100%
+            transition: filter 375ms ease-in .2s, transform .3s
+            object-fit: cover
+
+        .img-alt
+          display: none
+
+  .flink-item-name
+    @extend .limit-one-line
+    padding: 16px 10px 0 0
+    height: 40px
+    font-weight: bold
+    font-size: 1.43em
+
+  .flink-item-desc
+    @extend .limit-one-line
+    padding: 16px 10px 16px 0
+    height: 50px
+    font-size: .93em
+
+  .flink-name
+    margin-bottom: 5px
+    font-weight: bold
+    font-size: 1.5em
+
+#article-container
+  .flink-list
+    & > a.flink-list-card
+      width calc(25% - 15px)
+      height 150px
       position relative
       display block
-      margin .5rem .25rem
+      margin 15px 7px
       float left
       overflow hidden
-      border-radius .5rem
+      border-radius 10px
       transition all .3s ease 0s, transform .6s cubic-bezier(.6, .2, .1, 1) 0s
       box-shadow 0 14px 38px rgba(0, 0, 0, .08), 0 3px 8px rgba(0, 0, 0, .06)
       &:hover
@@ -146,7 +102,7 @@ else if hexo-config('flink_style') == 'flexcard'
         .wrapper
           img
             transform scale(1.2)
-        &:before
+        &::before
           position: fixed
           width:inherit
           margin:auto
@@ -161,6 +117,7 @@ else if hexo-config('flink_style') == 'flexcard'
           color: #fff
           padding: 10px
           background-color: rgba($theme-color,0.8)
+
       .cover
         width 100%
         transition transform .5s ease-out
@@ -169,10 +126,10 @@ else if hexo-config('flink_style') == 'flexcard'
         .fadeIn
           animation coverIn .8s ease-out forwards
         img
-          height 130px
+          height 150px
           pointer-events none
       .info
-        display block !important
+        display flex
         flex-direction column
         justify-content center
         align-items center
@@ -182,27 +139,23 @@ else if hexo-config('flink_style') == 'flexcard'
         border-radius 3px
         background-color hsla(0, 0%, 100%, .7)
         transition transform .5s cubic-bezier(.6, .2, .1, 1) 0s
-        .fancybox
-          overflow visible !important
         img
           position relative
-          top 1.6rem //因为字体大小不同，可能导致头像偏高，可以在此处通过修改top的值来微调头像框的位置至卡片正中。
-          width 66px
-          height 66px
-          border-radius 50% !important
+          top 45px
+          width 80px
+          height 80px
+          border-radius 50%
           box-shadow 0 0 10px rgba(0, 0, 0, .3)
           z-index 1
           text-align center
           pointer-events none
         span
-          display block !important
           padding 20px 10% 60px 10%
-          font-size 16px
           width 100%
           text-align center
           box-shadow 0 0 10px rgba(0, 0, 0, .3)
           background-color hsla(0, 0%, 100%, .7)
-          color var(--font-color)
+          font-weight bold
           white-space nowrap
           overflow hidden
           text-overflow ellipsis
@@ -215,20 +168,34 @@ else if hexo-config('flink_style') == 'flexcard'
   @media screen and (max-width:1024px)
     .flink-list
       & > a
-        width calc(33.33333% - .5rem)
+        width calc(33.33333% - 15px)
 
   @media screen and (max-width:600px)
     .flink-list
       & > a
-        width calc(50% - .5rem)
+        width calc(50% - 15px)
 
   [data-theme=dark]
-    .flink-list a .info,
-    .flink-list a .info span
-      background-color rgba(0, 0, 0, .6)
+    .flink-list 
+      & >a 
+        .info
+          background-color rgba(#121212,0.8)
+        span
+          background-color rgba(#121212,0.8)
     .flink-list
       & > a
         &:hover
           &:before
-            background-color: rgba(#121212,0.8);
-
+            background-color rgba(#121212,0.8)
+  .justified-gallery > div > img,
+  .justified-gallery > figure > img,
+  .justified-gallery > a > a > img,
+  .justified-gallery > div > a > img,
+  .justified-gallery > figure > a > img,
+  .justified-gallery > a > svg,
+  .justified-gallery > div > svg,
+  .justified-gallery > figure > svg,
+  .justified-gallery > a > a > svg,
+  .justified-gallery > div > a > svg,
+  .justified-gallery > figure > a > svg
+    position static!important
