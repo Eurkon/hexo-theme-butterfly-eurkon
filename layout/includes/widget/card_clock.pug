@@ -1,4 +1,4 @@
-if theme.aside.card_clock.enable
+if config.card_clock && config.card_clock.enable
   .card-widget.card-clock
         .card-content()
           #electric_clock
@@ -6,4 +6,4 @@ if theme.aside.card_clock.enable
               center
                 i.fa.fas.fa-spinner.fa-spin(style="font-size: 50px; padding: 30px")
   script(defer data-pjax src=url_for('https://pv.sohu.com/cityjson?ie=utf-8'))
-  script(defer data-pjax src=url_for(theme.asset.card_clock))
+  script(defer data-pjax src=url_for(config.card_clock.CDN))

@@ -1,4 +1,4 @@
-if theme.aside.card_weibo.enable
+if config.card_weibo && config.card_weibo.enable
   .card-widget.card-weibo
     .card-content
       .item-headline
@@ -7,4 +7,4 @@ if theme.aside.card_weibo.enable
       #weibo-container(style="width: 100%; height: 150px;font-size: 95%;")
         center
           i.fa.fas.fa-spinner.fa-spin(style="font-size: 90px; padding: 30px")
-  script(defer data-pjax src=url_for(theme.asset.card_weibo))
+  script(defer data-pjax src=url_for(config.card_weibo.CDN))
