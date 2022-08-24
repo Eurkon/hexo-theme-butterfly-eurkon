@@ -53,7 +53,7 @@ hexo.extend.helper.register('aside_categories', function (categories, options) {
 
           result += `<a class="card-category-list-link" href="${this.url_for(cat.path)}">`
 
-          result += `<span class="card-category-list-name">${theme.emoji[cat.name] + [cat.name]}</span>`
+          result += `<span class="card-category-list-name">${(config.emoji && config.emoji[cat.name] || '') + [cat.name]}</span>`
 
           if (showCount) {
             result += `<span class="card-category-list-count">${cat.length}</span>`
