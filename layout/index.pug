@@ -6,8 +6,8 @@ block content
     if config.swiperNotice && config.swiperNotice.enable
       .recent-post-item(style='width:100%; height:auto; padding: 0.6rem 1rem; flex-direction:row')
         !=partial('includes/swiper-notice', {}, {cache:theme.fragment_cache})
-    if theme.catalogMagnet.enable
-      .recent-post-item(style='width:100%; height:auto')
+    if config.catalogMagnet && config.catalogMagnet.enable
+      .recent-post-item(style='width:100%; height:auto;')
         !=catalog_magnet()
     if config.swiperPost && config.swiperPost.enable
       .recent-post-item(style='width:100%; height:auto;')
