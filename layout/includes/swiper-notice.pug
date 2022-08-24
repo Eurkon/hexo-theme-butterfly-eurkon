@@ -11,7 +11,56 @@
   a(href='/notice/' title='查看更多...')
     i.fas.fa-arrow-circle-right
 script.
-  noticeSwiper = new Swiper('#notice-container', {
+  var noticeContainer = document.getElementById('notice-container');  
+  noticeContainer.insertAdjacentHTML('beforebegin', `
+    <style>
+      #notice-container {
+        display: flex;
+        flex: 1;
+        margin: 0 .5rem;
+        overflow: hidden;
+      }
+
+      #notice-container .swiper-wrapper {
+        height: 1.5rem;
+        line-height: 1.5rem;
+        text-align: center;
+      }
+
+      .notice-title {
+        color: red;
+        font-weight: bold;
+      }
+
+      .notice-title a {
+        margin-left: .3rem;
+      }
+
+      .notice-item {
+        overflow: hidden;
+        font-weight: bold;
+        margin: auto;
+      }
+
+      .notice-title a,
+      .notice-item-msg a,
+      .notice-goto a {
+        color: var(--font-color);
+        -webkit-transition: all .3s ease-in-out;
+        -moz-transition: all .3s ease-in-out;
+        -o-transition: all .3s ease-in-out;
+        -ms-transition: all .3s ease-in-out;
+        transition: all .3s ease-in-out;
+      }
+
+      .notice-title a:hover,
+      .notice-item-msg a:hover,
+      .notice-goto a:hover {
+        color: var(--theme-color) !important;
+      }
+    </style>
+  `)
+    noticeSwiper = new Swiper('#notice-container', {
     direction: 'vertical',
     loop: true,
     mousewheel: true,
@@ -20,7 +69,6 @@ script.
       disableOnInteraction: true,
     }
   })
-  var noticeContainer = document.getElementById('notice-container');
   noticeContainer.onmouseenter = function () {
     noticeSwiper.autoplay.stop();
   };

@@ -3,7 +3,7 @@ extends includes/layout.pug
 block content
   include ./includes/mixins/post-ui.pug
   #recent-posts.recent-posts
-    if theme.swiperNotice.enable
+    if config.swiperNotice && config.swiperNotice.enable
       .recent-post-item(style='width:100%; height:auto; padding: 0.6rem 1rem; flex-direction:row')
         !=partial('includes/swiper-notice', {}, {cache:theme.fragment_cache})
     if theme.catalogMagnet.enable
