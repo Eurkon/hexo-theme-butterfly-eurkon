@@ -15,7 +15,7 @@
                   img.no-lightbox.cover.fadeIn(src=siteshot onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.post_page) + `'` alt='' )    
                 .info
                   img.no-lightbox(src=url_for(item.avatar) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt='' )
-                  span.flink-site-name= item.name
+                  span.flink-sitename= item.name
         else 
           .flink-list
             each item in i.link_list
