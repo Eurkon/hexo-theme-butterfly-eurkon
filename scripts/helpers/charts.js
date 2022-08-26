@@ -158,6 +158,9 @@ function postsChart (startMonth) {
     window.addEventListener('resize', () => { 
       postsChart.resize();
     });
+    postsChart.on('click', 'series', (event) => {
+      if (event.componentType === 'series' && event.value) window.location.href = '/archives/' + event.name.replace('-', '/') + '/';
+    });
   </script>`
 }
 
