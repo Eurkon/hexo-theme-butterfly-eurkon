@@ -1,5 +1,10 @@
 if theme.aside.card_author.enable
   .card-widget.card-info
+    if config.card_info && config.card_info.enable
+      .card-info-top.is-center
+        #card-info-date
+        #card-info-time
+        #card-info-weather
     .is-center
       .avatar-img
         img(src=url_for(theme.avatar.img) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt="avatar")
@@ -25,3 +30,9 @@ if theme.aside.card_author.enable
     if(theme.social)
         .card-info-social-icons.is-center
           !=fragment_cache('social', function(){return partial('includes/header/social')}) 
+    if config.card_info && config.card_info.enable
+      .card-info-bottom.is-center
+        #card-info-city
+        #card-info-ip
+      script(defer data-pjax src=url_for('https://pv.sohu.com/cityjson?ie=utf-8'))
+      script(defer data-pjax src=url_for(config.card_info.CDN))
