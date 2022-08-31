@@ -1,10 +1,19 @@
 if theme.aside.card_author.enable
   .card-widget.card-info
-    .is-center
-      .avatar-img
-        img(src=url_for(theme.avatar.img) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt="avatar")
-      .author-info__name= config.author
-      .author-info__description!= theme.aside.card_author.description || config.description
+    if config.card_info && config.card_info.enable
+      .card-info-top
+        #card-info-hello
+        .card-info-img
+          img(src=url_for(theme.avatar.img) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt="avatar")
+      .author-info__name.is-center= config.author
+      .author-info__description.is-center!= theme.aside.card_author.description || config.description
+      script(defer data-pjax src=url_for(config.card_info.CDN))
+    else 
+      .is-center
+          .avatar-img
+            img(src=url_for(theme.avatar.img) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt="avatar")
+          .author-info__name= config.author
+          .author-info__description!= theme.aside.card_author.description || config.description
 
     .card-info-data.site-data.is-center
       a(href=url_for(config.archive_dir) + '/')
