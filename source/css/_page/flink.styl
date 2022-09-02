@@ -104,18 +104,19 @@
             transform scale(1.2)
         &::before
           position fixed
-          width inherit
+          width fit-content
+          max-width 80%
           margin auto
           left 0
           right 0
           top 15%
-          border-radius 10px
+          border-radius 1rem
           text-align center
-          z-index 100
+          z-index 2
           content attr(data-title)
-          font-size 20px
+          font-size 1.5rem
           color #fff
-          padding 10px
+          padding .5rem 1rem
           background-color rgba($theme-color,0.8)
 
       .cover
