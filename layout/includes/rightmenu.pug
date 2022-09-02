@@ -15,30 +15,41 @@
     .rightmenu-item#menu-comment
       i.fas.fa-comment
       span=_p('引用评论')
-    .rightmenu-item#menu-link
-      i.fas.fa-link
-      span=_p('分享链接')
-    .rightmenu-item#menu-copy-image
+    .rightmenu-item#menu-paste
       i.fas.fa-paste
-      span=_p('复制图片')
-    .rightmenu-item#menu-download-image
-      i.fas.fa-download
-      span=_p('下载图片')
-    .rightmenu-item#menu-window
-      i.fas.fa-window-restore
-      span=_p('新窗口打开')
+      span=_p('粘贴文本')
     .rightmenu-item#menu-search
       i.fas.fa-search
       span=_p('在本站搜索')
     .rightmenu-item#menu-baidu
       i.fas.fa-search-plus
       span=_p('去百度搜索')
+  .rightmenu-group.rightmenu-line#rightmenu-href
+    .rightmenu-item#menu-copy-image
+      i.fas.fa-paste
+      span=_p('复制图片')
+    .rightmenu-item#menu-download-image
+      i.fas.fa-download
+      span=_p('下载图片')
+    .rightmenu-item#menu-link
+      i.fas.fa-link
+      span=_p('分享链接')
+    .rightmenu-item#menu-window
+      i.fas.fa-window-restore
+      span=_p('新窗口打开')
+  .rightmenu-group.rightmenu-line#rightmenu-post
+    a.rightmenu-item#menu-random(href="/random/")
+      i.fas.fa-random
+      span=_p('随机文章')
+    a.rightmenu-item#menu-categories(href="/categories/")
+      i.fas.fa-shapes
+      span=_p('全部分类')
+    a.rightmenu-item#menu-tags(href="/tags/")
+      i.fas.fa-tags
+      span=_p('所有标签')
     .rightmenu-item#menu-share
       i.fas.fa-share-square
       span=_p('分享本页')
-    //- .rightmenu-item#menu-star
-    //-   i.fas.fa-star
-    //-   span=_p('收藏本站')
   .rightmenu-group.rightmenu-line#rightmenu-mode
     //- .rightmenu-item#menu-darkmode
     //-   i.fas.fa-adjust
@@ -52,16 +63,6 @@
     .rightmenu-item#menu-translate
       i.fas.fa-earth-asia
       span=_p('rightside.translate_title')
-  .rightmenu-group.rightmenu-line#rightmenu-post
-    a.rightmenu-item#menu-random(href="/random/")
-      i.fas.fa-random
-      span=_p('随机文章')
-    a.rightmenu-item#menu-categories(href="/categories/")
-      i.fas.fa-shapes
-      span=_p('全部分类')
-    a.rightmenu-item#menu-tags(href="/tags/")
-      i.fas.fa-tags
-      span=_p('所有标签')
   .rightmenu-group.rightmenu-line#rightmenu-site
     a.rightmenu-item#menu-message(href="/message/")
       i.fas.fa-envelope
@@ -69,4 +70,7 @@
     a.rightmenu-item#menu-about(href="/about/")
       i.fas.fa-address-card
       span=_p('关于本站')
+    //- .rightmenu-item#menu-star
+    //-   i.fas.fa-star
+    //-   span=_p('收藏本站')
 #rightmenu-mask
