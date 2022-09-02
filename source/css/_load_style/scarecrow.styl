@@ -1,6 +1,6 @@
 .loading-bg
   position fixed
-  z-index 1000
+  z-index 10000
   width 50%
   height 100%
   background var(--preloader-bg)
@@ -12,7 +12,7 @@
     @extend .loading-bg
     right 0
   &.loaded
-    z-index -1000
+    z-index -10000
     .loading-left-bg
       transition all 1.0s
       transform translate(-100%, 0)
@@ -22,7 +22,7 @@
 
 #loading-box
   position fixed
-  z-index 1000
+  z-index 10000
   display -webkit-box
   display flex
   -webkit-box-align center
@@ -40,7 +40,7 @@
     .scarecrow
       display none
   .scarecrow
-    z-index 1001
+    z-index 10001
     position relative
     animation hop 0.2s ease-in alternate infinite
 
