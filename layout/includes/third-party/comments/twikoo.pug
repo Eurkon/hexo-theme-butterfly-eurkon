@@ -18,7 +18,122 @@ script.
               let tk_time = document.querySelectorAll('.tk-comments-container .tk-comment .tk-time')
               let tk_city = document.querySelectorAll('.tk-comments-container .tk-comment .tk-extras .tk-extra:first-child span:last-child')
               let tk_content = document.querySelectorAll('.tk-comments-container .tk-comment .tk-content>span:last-child')
-              let html = '<div class="swiper-wrapper">'
+              let html = `
+              <style>
+                #comment-barrage {
+                  display: block;
+                  position: fixed;
+                  z-index: 1;
+                  font-size: 90%;
+                  bottom: 1rem;
+                  right: 2rem;
+                  width: 300px;
+                  height: 150px;
+                  overflow: hidden;
+                }
+
+                @media (max-width: 738px) {
+                  #comment-barrage {
+                    z-index: -1001 !important;
+                  }
+                }
+
+                #comment-barrage .comment-barrage-item {
+                  opacity: 0;
+                  width: 300px;
+                  height: fit-content;
+                  max-height: 150px;
+                  padding: 10px;
+                  position: absolute;
+                  bottom: 0;
+                  background: var(--card-bg);
+                  border: var(--card-border);
+                  border-radius: var(--border-radius);
+                  box-shadow: var(--box-shadow);
+                  -webkit-transition: all .3s ease-in-out;
+                  -moz-transition: all .3s ease-in-out;
+                  -o-transition: all .3s ease-in-out;
+                  -ms-transition: all .3s ease-in-out;
+                  transition: all .3s ease-in-out;
+                }
+
+                #comment-barrage .swiper-slide-active .comment-barrage-item {
+                  opacity: 1;
+                }
+
+                #comment-barrage .comment-barrage-item:hover {
+                  border-color: var(--cover-bg) !important;
+                  box-shadow: var(--main-shadow) !important;
+                }
+
+                .barrage-info {
+                  overflow: hidden;
+                  font-size: 90%;
+                  height: 40px;
+                  border-bottom: var(--card-border-dashed);
+                }
+
+                .barrage-info span {
+                  margin: 0 .2em;
+                  vertical-align: middle;
+                }
+
+                .barrage-title {
+                  font-weight: bold;
+                  padding: .3em 0.5em;
+                  background: var(--font-color);
+                  color: var(--card-bg);
+                  margin-right: .5em;
+                  border-radius: .5em;
+                  vertical-align: middle;
+                }
+
+                .barrage-title:hover {
+                  color: var(--second);
+                  background: var(--main);
+                }
+
+                .barrage-avatar {
+                  height: 2em;
+                  width: 2em;
+                  border-radius: 50%;
+                  vertical-align: middle;
+                }
+
+                .barrage-nick {
+                  font-weight: bold;
+                }
+
+                .barrage-close {
+                  float: right;
+                  vertical-align: middle;
+                }
+
+                .barrage-close:hover {
+                  color: var(--cover-bg);
+                }
+
+                .barrage-content {
+                  padding-top: 0.5em;
+                  max-height: 90px;
+                  height: fit-content;
+                  overflow: hidden;
+                  display: -webkit-box;
+                  -webkit-box-orient: vertical;
+                  text-align: justify;
+                  word-break: break-all;
+                  -webkit-line-clamp: 3;
+                }
+
+                .barrage-content p {
+                  margin: 0;
+                }
+
+                .barrage-content img {
+                  width: 3em;
+                }
+              </style>
+              <div class="swiper-wrapper">`
               for (let i = 0; i < comment.length; i++) {
                 let content = tk_content[i].innerHTML
                 content = content.replace(/\n/g,'') // replace \n
