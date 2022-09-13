@@ -159,7 +159,7 @@ script.
                   </div>`
               }
               html += '</div>'
-              let barrageContainer = document.createElement('div')
+              let barrageContainer = document.getElementById('comment-barrage') || document.createElement('div')
               barrageContainer.id = 'comment-barrage'
               barrageContainer.innerHTML = html
               barrageContainer.style.zIndex = window.localStorage.getItem('commentBarrageDisplay') === 'false' ? '-1001' : '1'
