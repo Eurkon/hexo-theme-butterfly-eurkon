@@ -10,6 +10,62 @@ script.
         region: '!{region}',
         onCommentLoaded: function () {
           btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+          setTimeout(function(){
+            let comment = document.querySelectorAll('.tk-comments-container .tk-comment')
+            if (comment.length > 0) {
+              let tk_nick = document.querySelectorAll('.tk-comments-container .tk-comment .tk-nick')
+              let tk_avatar = document.querySelectorAll('.tk-comments-container .tk-comment .tk-avatar-img')
+              let tk_time = document.querySelectorAll('.tk-comments-container .tk-comment .tk-time')
+              let tk_city = document.querySelectorAll('.tk-comments-container .tk-comment .tk-extras .tk-extra:first-child span:last-child')
+              let tk_content = document.querySelectorAll('.tk-comments-container .tk-comment .tk-content>span:last-child')
+              let html = '<div class="swiper-wrapper">'
+              for (let i = 0; i < comment.length; i++) {
+                let content = tk_content[i].innerHTML
+                content = content.replace(/\n/g,'') // replace \n
+                content = content.replace(/<blockquote>.*?<\/blockquote>/gi, '') // replace blockquote
+                //- content = content.replace(/<a[^>]+?data-caption="image".*?<img.*?src="(.*?)"?[^\>]+><\/a>/ig, '[!{_p("aside.card_newest_comments.image")}]') // replace image link
+                //- content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[!{_p("aside.card_newest_comments.image")}]') // replace image link
+                //- content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[!{_p("aside.card_newest_comments.link")}]') // replace url
+                content = content.replace(/<pre.*?<\/pre>/gi, '[!{_p("aside.card_newest_comments.code")}]') // replace code
+                //- content = content.replace(/<[^>]+>/g, "") // remove html tag
+                html += `
+                  <div class="swiper-slide">
+                    <div class="comment-barrage-item">
+                      <div class="barrage-info">
+                        <a class="barrage-title" title="跳转至该评论" href="#${comment[i].getAttribute('id')}">热评</a>
+                        <img class="barrage-avatar" src="${tk_avatar[i].src}">
+                        <span class="barrage-nick">${tk_nick[i].innerText}</span>
+                        <span class="barrage-city">${tk_city[i].innerText}</span>
+                        <span class="barrage-time">${tk_time[i].innerText}</span>
+                        <a class="barrage-close" onclick="switchCommentBarrage()" title="隐藏热评"><i class="fa-solid fa-xmark"></i></a>
+                      </div>
+                      <div class="barrage-content">${content}</div>
+                    </div>
+                  </div>`
+              }
+              html += '</div>'
+              let barrageContainer = document.createElement('div')
+              barrageContainer.id = 'comment-barrage'
+              barrageContainer.innerHTML = html
+              barrageContainer.style.zIndex = window.localStorage.getItem('commentBarrageDisplay') === 'false' ? '-1001' : '1'
+              document.getElementById('post-comment').appendChild(barrageContainer)
+              var barrageSwiper = new Swiper('#comment-barrage', {
+                direction: 'vertical',
+                loop: true,
+                mousewheel: true,
+                autoplay: {
+                  delay: 3000,
+                  disableOnInteraction: true,
+                }
+              })
+              barrageContainer.onmouseenter = function () {
+                barrageSwiper.autoplay.stop()
+              };
+              barrageContainer.onmouseleave = function () {
+                barrageSwiper.autoplay.start()
+              };
+            }
+          }, 1000)
         }
       }, !{JSON.stringify(option)}))
     }
