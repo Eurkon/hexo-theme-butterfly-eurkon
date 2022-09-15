@@ -15,18 +15,18 @@ nav#nav
       if (theme.algolia_search.enable || theme.local_search.enable)
         #search-button
           a.site-page.social-icon.search(title=_p('search.title'))
-            i.ri-search-eye-line
+            i.fas.fa-search.fa-fw
       if (theme.darkmode.enable && theme.darkmode.button)
         #mode-button
           a.site-page(title=_p('rightside.night_mode_title'))
-            i.ri-sun-fill
+            i.fas.fa-sun.fa-fw
       if (page.comments !== false && theme.comments && theme.comments.use)
         #comment-button
           a.site-page(href="#post-comment" title=_p("rightside.scroll_to_comment"))
-            i.ri-question-answer-fill
+            i.fas.fa-comments.fa-fw
       #top-button
         a.site-page(title=_p("rightside.back_to_top"))
-          i.ri-rocket-fill
+          i.fas.fa-arrow-up.fa-fw
       #toggle-menu
         a.site-page
-          i.ri-dashboard-fill
+          i.fas.fa-bars.fa-fw
