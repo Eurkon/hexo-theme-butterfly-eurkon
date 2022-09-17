@@ -27,7 +27,7 @@ script.
                   font-size: 90%;
                   bottom: 1rem;
                   right: 2rem;
-                  width: 300px;
+                  width: 306px;
                   height: 150px;
                   overflow: hidden;
                 }
@@ -42,10 +42,11 @@ script.
                   opacity: 0;
                   width: 300px;
                   height: fit-content;
-                  max-height: 150px;
+                  max-height: 144px;
                   padding: 10px;
                   position: absolute;
-                  bottom: 0;
+                  margin: 0 3px;
+                  bottom: 5px;
                   background: var(--card-bg);
                   border: var(--card-border);
                   border-radius: var(--border-radius);
@@ -69,7 +70,7 @@ script.
                 .barrage-info {
                   overflow: hidden;
                   font-size: 90%;
-                  height: 40px;
+                  height: 35px;
                   border-bottom: var(--card-border-dashed);
                 }
 
@@ -111,15 +112,12 @@ script.
                 }
 
                 .barrage-content {
-                  padding-top: 0.5em;
-                  max-height: 90px;
+                  padding-top: 5px;
+                  max-height: 95px;
                   height: fit-content;
-                  overflow: hidden;
-                  display: -webkit-box;
-                  -webkit-box-orient: vertical;
+                  overflow-y: scroll;
                   text-align: justify;
                   word-break: break-all;
-                  -webkit-line-clamp: 3;
                 }
 
                 .barrage-content p {
@@ -145,7 +143,7 @@ script.
                     <div class="comment-barrage-item">
                       <div class="barrage-info">
                         <a class="barrage-title" title="跳转至该评论" href="#${comment[i].getAttribute('id')}">热评</a>
-                        <img class="barrage-avatar" src="${tk_avatar[i].src}">
+                        <a href="${tk_nick[i].href ? tk_nick[i].href + '" target="_blank" rel="noopener noreferrer"': 'javascript:void(0);"'}><img class="barrage-avatar" src="${tk_avatar[i].src}"></a>
                         <span class="barrage-nick">${tk_nick[i].innerText}</span>
                         <span class="barrage-city">${tk_city[i].innerText}</span>
                         <span class="barrage-time">${tk_time[i].innerText}</span>
