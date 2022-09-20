@@ -1,12 +1,12 @@
 #footer-wrap
   //- #footer-social
-  //-   a.footer-social-icon(href='mailto:eurkon@foxmail.com')  
+  //-   a.footer-social-icon(href='/atom.xml' title='Atom 订阅')
+  //-     i.fas.fa-atom
+  //-   a.footer-social-icon(href='/rss.xml' title='RSS 订阅')
+  //-     i.fas.fa-square-rss
+  //-   a.footer-social-icon(href='mailto:eurkon@foxmail.com' title='Email')
   //-     i.fas.fa-envelope
-  //-   a.footer-social-icon(href='/atom.xml')
-  //-     i.fas.fa-rss
-  //-   a.footer-social-icon(href='https://github.com/Eurkon')
-  //-     i.fab.fa-github
-  //-   a.footer-social-icon(href='https://github.com/Eurkon')
+  //-   a.footer-social-icon(href='https://github.com/Eurkon' title='GitHub')
   //-     i.fab.fa-github
   //-   img#footer-social-top.footer-social-img(src=url_for(theme.avatar.img) onerror=`onerror=null;src='${theme.error_img.flink}'` alt="avatar" title=_p("rightside.back_to_top"))
   //-   a.footer-social-icon(href='https://github.com/Eurkon')
@@ -24,11 +24,10 @@
       a.footer-group-item(href='/census/')= '博客统计'
     .footer-group
       span.footer-group-title= '导航'
-      
-      a.footer-group-item(href='https://github.com/Eurkon/hexo-theme-butterfly-eurkon')= '魔改源码'
-      a.footer-group-item(href='/link/')= '友情链接'
       a.footer-group-item(href='/link/#我的友链-amp-友链格式')= '申请友链'
+      a.footer-group-item(href='https://github.com/Eurkon/hexo-theme-butterfly-eurkon')= '魔改源码'
       a.footer-group-item(href='/stars/')= '网站收藏'
+      a.footer-group-item(href='javascript:toRandomPost();')= '随机文章'
     .footer-group
       span.footer-group-title= '分类'
       a.footer-group-item(href=url_for(config.category_dir) + '/学习笔记/')= '学习笔记'
@@ -44,13 +43,17 @@
     .footer-group
       span.footer-group-title= '服务'
       a.footer-group-item(href='/fcircle/')= '友链订阅'
-      a.footer-group-item(href='/atom.xml')= 'Atom 订阅'
       a.footer-group-item(href='/rss.xml')= 'RSS 订阅'
+      a.footer-group-item(href='/atom.xml')= 'Atom 订阅'
       a.footer-group-item(href='https://bf.zzxworld.com/s/686')= 'BlogFinder'
       //- a.footer-group-item(href='https://v6.51.la/report/overview?comId=70576')= '51.LA 统计'
       //- a.footer-group-item(href='https://tongji.baidu.com/web/10000307608/overview/index?siteId=16265874')= '百度统计'
     .footer-group#footer-group-flink
       span.footer-group-title= '友链'
+      a.footer-group-item(href='' target='_blank' rel='noopener external nofollow noreferrer')= '加载中...'
+      a.footer-group-item(href='' target='_blank' rel='noopener external nofollow noreferrer')= '加载中...'
+      a.footer-group-item(href='' target='_blank' rel='noopener external nofollow noreferrer')= '加载中...'
+      a.footer-group-item(href='/link/')= '更多友链'
     .footer-group
       span.footer-group-title= '协议'
       a.footer-group-item(href='/protocol/comment/' title='用户发言前，请认真阅读本条例。一经发言，即视为同意接受本条例；如不同意，请勿发言。')= '评论协议'
