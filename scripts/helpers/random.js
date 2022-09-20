@@ -7,6 +7,18 @@ hexo.extend.filter.register('after_render:html', function (data) {
   return data
 })
 
+hexo.extend.filter.register('after_render:html', function (data) {
+  const flinks = []
+  hexo.locals.get('data').link.map(function (list) {
+    list.link_list.map(function (flink) {
+      flinks.push(flink.link)
+    })
+  })
+
+  data += `<script>var flinks=${JSON.stringify(flinks)};function toRandomFlink(){window.open(flinks[Math.floor(Math.random()*flinks.length)]);};</script>`
+  return data
+})
+
 // hexo.extend.generator.register('random', function (locals) {
 //   const config = hexo.config.random || {}
 //   const posts = []
