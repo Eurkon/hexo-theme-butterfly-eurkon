@@ -13,9 +13,12 @@
       .sticky_layout
         if showToc
           include ./card_post_toc.pug
-        !=partial('includes/widget/card_clock', {}, {cache: true})
-        //- !=partial('includes/widget/card_weibo', {}, {cache: true})
-        //- !=partial('includes/widget/card_history', {}, {cache: true})
+        if config.card_clock && config.card_clock.enable
+          !=partial('includes/widget/card_clock', {}, {cache: true})
+        if config.card_weibo && config.card_weibo.enable
+          !=partial('includes/widget/card_weibo', {}, {cache: true})
+        if config.card_history && config.card_history.enable
+          !=partial('includes/widget/card_history', {}, {cache: true})
         !=partial('includes/widget/card_recent_post', {}, {cache: true})
         !=partial('includes/widget/card_ad', {}, {cache: true})
   else
@@ -27,9 +30,12 @@
     .sticky_layout
       if showToc
         include ./card_post_toc.pug
-      !=partial('includes/widget/card_clock', {}, {cache: true})
-      !=partial('includes/widget/card_weibo', {}, {cache: true})
-      !=partial('includes/widget/card_history', {}, {cache: true})
+      if config.card_clock && config.card_clock.enable
+        !=partial('includes/widget/card_clock', {}, {cache: true})
+      if config.card_weibo && config.card_weibo.enable
+        !=partial('includes/widget/card_weibo', {}, {cache: true})
+      if config.card_history && config.card_history.enable
+        !=partial('includes/widget/card_history', {}, {cache: true})
       //- !=partial('includes/widget/card_recent_post', {}, {cache: true})
       !=partial('includes/widget/card_ad', {}, {cache: true})
       !=partial('includes/widget/card_newest_comment', {}, {cache: true})
