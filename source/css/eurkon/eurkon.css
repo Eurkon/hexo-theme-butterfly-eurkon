@@ -390,18 +390,18 @@ a {
   text-decoration: none !important;
 }
 
-#article-container p a:not([data-fancybox="gallery"]):not(.headerlink):not(.ghcard),
-#article-container li a:not([data-fancybox="gallery"]):not(.headerlink):not(.ghcard),
-#article-container blockquote a:not([data-fancybox="gallery"]):not(.headerlink):not(.ghcard) {
+#article-container p a:not([data-fancybox="gallery"]):not(.headerlink):not(.ghcard):not(.article-sort-item-title),
+#article-container li a:not([data-fancybox="gallery"]):not(.headerlink):not(.ghcard):not(.article-sort-item-title),
+#article-container blockquote a:not([data-fancybox="gallery"]):not(.headerlink):not(.ghcard):not(.article-sort-item-title) {
   font-weight: 500;
   border-bottom: solid 2px var(--main);
   color: var(--text-highlight-color) !important;
   padding: 0 .2em;
 }
 
-#article-container p a:not([data-fancybox="gallery"]):not(.headerlink):not(.ghcard):hover,
-#article-container li a:not([data-fancybox="gallery"]):not(.headerlink):not(.ghcard):hover,
-#article-container blockquote a:not([data-fancybox="gallery"]):not(.headerlink):not(.ghcard):hover {
+#article-container p a:not([data-fancybox="gallery"]):not(.headerlink):not(.ghcard):not(.article-sort-item-title):hover,
+#article-container li a:not([data-fancybox="gallery"]):not(.headerlink):not(.ghcard):not(.article-sort-item-title):hover,
+#article-container blockquote a:not([data-fancybox="gallery"]):not(.headerlink):not(.ghcard):not(.article-sort-item-title):hover {
   color: var(--second) !important;
   background: var(--main);
   box-shadow: var(--main-shadow);
