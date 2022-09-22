@@ -1,11 +1,10 @@
 beautify()
-  headStyle(fontsize, text)
+  headStyle(fontsize)
     padding-left: unit(fontsize + 12, 'px')
 
     &:before
       margin-left: unit((-(fontsize + 6)), 'px')
       font-size: unit(fontsize, 'px')
-      content: '\f1dc' + text
 
     &:hover
       padding-left: unit(fontsize + 18, 'px')
@@ -32,22 +31,22 @@ beautify()
         color: $light-blue
 
   h1
-    headStyle(20, '₁')
+    headStyle(20)
 
   h2
-    headStyle(18, '₂')
+    headStyle(18)
 
   h3
-    headStyle(16, '₃')
+    headStyle(16)
 
   h4
-    headStyle(14, '₄')
+    headStyle(14)
 
   h5
-    headStyle(12, '₅')
+    headStyle(12)
 
   h6
-    headStyle(12, '₆')
+    headStyle(12)
 
   ol,
   ul
@@ -194,49 +193,38 @@ beautify()
           line-height: w
 
   .post-copyright
-    color: var(--second);
     position: relative
     margin: 40px 0 10px
     padding: 10px 16px
-    overflow: hidden
-    border-radius: 12px !important
-    background-color: var(--main)
-    box-shadow: var(--main-shadow)
     border: 1px solid var(--light-grey)
     transition: box-shadow .3s ease-in-out
 
     &:before
       @extend .fontawesomeIcon
       position: absolute
-      right: -30px
-      top: -110px
-      content: '\f25e'
-      font-size: 180px
-      font-family: 'Font Awesome 5 Brands'
-      opacity: .3
-      filter: blur(1px)
+      top: 2px
+      right: 12px
+      color: $theme-color
+      content: '\f1f9'
+      font-size: 1.3em
 
-  .post-copyright__title
-    color: var(--second)
-    font-size: 1.4em
-    font-weight: bold
-  
-  .post-copyright__url
-    opacity: .6
+    &:hover
+      box-shadow: 0 0 8px 0 rgba(232, 237, 250, .6), 0 2px 4px 0 rgba(232, 237, 250, .5)
 
-    a
-      color: var(--second)
+    .post-copyright
+      &-meta
+        color: $light-blue
+        font-weight: bold
 
-  .post-copyright__cc
-    a
-      color: var(--second)
-      border-radius: 8px
-      padding: .2rem
-      font-weight: bold
+      &-info
+        padding-left: 6px
 
-      &:hover
-        color: var(--main)
-        background: var(--second)
+        a
+          text-decoration: underline
+          word-break: break-word
+
+          &:hover
+            text-decoration: none
 
   .post-outdate-notice
     position: relative
