@@ -5,7 +5,7 @@ nav#nav
         span #[=config.title]
         i.fas.fa-home
     span#page_name
-      a#page-name-text(title=_p("rightside.back_to_top"))
+      a#page-title(title=_p("rightside.back_to_top") onclick="btf.scrollToDest(0, 500)")
         span #[=config.title]
       
     #menus
@@ -18,14 +18,14 @@ nav#nav
             i.fas.fa-search.fa-fw
       if (theme.darkmode.enable && theme.darkmode.button)
         #mode-button
-          a.site-page(title=_p('rightside.night_mode_title'))
+          a.site-page(title=_p('rightside.night_mode_title') onclick="btf.switchDarkMode()")
             i.fas.fa-sun.fa-fw
       if (page.comments !== false && theme.comments && theme.comments.use)
         #comment-button
           a.site-page(href="#post-comment" title=_p("rightside.scroll_to_comment"))
             i.fas.fa-comments.fa-fw
       #top-button
-        a.site-page(title=_p("rightside.back_to_top"))
+        a.site-page(title=_p("rightside.back_to_top") onclick="btf.scrollToDest(0, 500)")
           i.fas.fa-arrow-up.fa-fw
       #toggle-menu
         a.site-page

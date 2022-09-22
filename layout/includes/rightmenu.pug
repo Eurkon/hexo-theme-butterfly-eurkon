@@ -1,13 +1,13 @@
 #rightmenu
   .rightmenu-group.rightmenu-small
-    .rightmenu-item#menu-backward
+    .rightmenu-item#menu-backward(onclick="window.history.back()")
       i.fas.fa-arrow-left
-    .rightmenu-item#menu-forward
+    .rightmenu-item#menu-forward(onclick="window.history.forward()")
       i.fas.fa-arrow-right
-    .rightmenu-item#menu-refresh
+    .rightmenu-item#menu-refresh(onclick="window.history.reload()")
       i.fas.fa-arrow-rotate-right
-    .rightmenu-item#menu-top
-      i.fas.fa-rocket(style="transform: rotate(-45deg) translate(-0.1rem,0.1rem);")
+    .rightmenu-item#menu-top(onclick="btf.scrollToDest(0, 500)")
+      i.fas.fa-arrow-up
   .rightmenu-group.rightmenu-line#rightmenu-text
     .rightmenu-item#menu-copy
       i.fas.fa-paste
@@ -51,16 +51,16 @@
       i.fas.fa-share-square
       span=_p('分享本页')
   .rightmenu-group.rightmenu-line#rightmenu-mode
-    //- .rightmenu-item#menu-darkmode
+    //- .rightmenu-item#menu-darkmode(onclick="btf.switchDarkMode()")
     //-   i.fas.fa-adjust
     //-   span=_p('rightside.night_mode_title')
-    .rightmenu-item#menu-barrage
+    .rightmenu-item#menu-barrage(onclick="eurkon.switchCommentBarrage()")
       i.fas.fa-comments
       span=_p('隐藏热评')
-    .rightmenu-item#menu-readmode
+    .rightmenu-item#menu-readmode(onclick="btf.switchReadMode()")
       i.fas.fa-book-open
       span=_p('rightside.readmode_title')
-    .rightmenu-item#menu-hideside
+    .rightmenu-item#menu-hideside(onclick="btf.hideAsideBtn()")
       i.fas.fa-arrows-alt-h
       span=_p('隐藏侧栏')
     .rightmenu-item#menu-translate

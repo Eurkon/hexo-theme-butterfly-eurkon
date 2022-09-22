@@ -1,6 +1,9 @@
 div
   script(src=url_for(theme.asset.utils))
   script(src=url_for(theme.asset.main))
+  script(src=url_for('/js/eurkon/rgbaster.min.js'))
+  script(src=url_for('/js/eurkon/eurkon.js'))
+  script(data-pjax src=url_for('/js/eurkon/refresh.js'))
 
   if theme.translate.enable
     script(src=url_for(theme.asset.translate))
@@ -30,7 +33,7 @@ div
   else if theme.local_search.enable
     script(src=url_for(theme.asset.local_search))
 
-  if theme.preloader
+  if theme.preloader && theme.preloader.enable
     != partial("includes/loading/loading-js", {}, { cache: true })
 
   .js-pjax

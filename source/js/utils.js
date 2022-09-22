@@ -275,5 +275,85 @@ const btf = {
         title: title
       }, title, anchor)
     }
+  },
+
+  switchReadMode: function () { // read-mode
+    const $body = document.body
+    if ($body.classList.contains('read-mode')) {
+      $body.classList.remove('read-mode')
+      if (document.querySelector('#menu-readmode>span')) document.querySelector('#menu-readmode>span').innerHTML = '阅读模式'
+      btf.snackbarShow('已关闭阅读模式')
+      return
+    }
+    $body.classList.add('read-mode')
+    if (document.querySelector('#menu-readmode>span')) document.querySelector('#menu-readmode>span').innerHTML = '退出阅读'
+    btf.snackbarShow('已开启阅读模式')
+
+    // const newEle = document.createElement('button')
+    // newEle.type = 'button'
+    // newEle.className = 'fas fa-sign-out-alt exit-readmode'
+    // $body.appendChild(newEle)
+
+    // function clickFn () {
+    //   $body.classList.remove('read-mode')
+    //   newEle.remove()
+    //   newEle.removeEventListener('click', clickFn)
+    // }
+    // newEle.addEventListener('click', clickFn)
+  },
+
+  switchDarkMode: function () { // Switch Between Light And Dark Mode
+    const nowMode = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'
+    if (nowMode === 'light') {
+      activateDarkMode()
+      saveToLocal.set('theme', 'dark', 2)
+      GLOBAL_CONFIG.Snackbar !== undefined && btf.snackbarShow(GLOBAL_CONFIG.Snackbar.day_to_night)
+    } else {
+      activateLightMode()
+      saveToLocal.set('theme', 'light', 2)
+      GLOBAL_CONFIG.Snackbar !== undefined && btf.snackbarShow(GLOBAL_CONFIG.Snackbar.night_to_day)
+    }
+    // handle some cases
+    typeof utterancesTheme === 'function' && utterancesTheme()
+    typeof FB === 'object' && window.loadFBComment()
+    window.DISQUS && document.getElementById('disqus_thread').children.length && setTimeout(() => window.disqusReset(), 200)
+  },
+
+  hideAsideBtn: function () { // Hide aside
+    const $htmlDom = document.documentElement.classList
+    if ($htmlDom.contains('hide-aside')) {
+      saveToLocal.set('aside-status', 'show', 2)
+      document.querySelector('#menu-hideside>span').innerHTML = '隐藏侧栏'
+      btf.snackbarShow('已显示侧边栏')
+    } else {
+      saveToLocal.set('aside-status', 'hide', 2)
+      document.querySelector('#menu-hideside>span').innerHTML = '显示侧栏'
+      btf.snackbarShow('已隐藏侧边栏')
+    }
+    $htmlDom.toggle('hide-aside')
+  },
+
+  adjustFontSize: function (plus) {
+    const fontSizeVal = parseInt(window.getComputedStyle(document.documentElement).getPropertyValue('--global-font-size'))
+    let newValue = ''
+    if (plus) {
+      if (fontSizeVal >= 20) return
+      newValue = fontSizeVal + 1
+      document.documentElement.style.setProperty('--global-font-size', newValue + 'px')
+      !document.getElementById('nav').classList.contains('hide-menu') && adjustMenu(true)
+    } else {
+      if (fontSizeVal <= 10) return
+      newValue = fontSizeVal - 1
+      document.documentElement.style.setProperty('--global-font-size', newValue + 'px')
+      document.getElementById('nav').classList.contains('hide-menu') && adjustMenu(true)
+    }
+
+    saveToLocal.set('global-font-size', newValue, 2)
+    // document.getElementById('font-text').innerText = newValue
+  },
+
+  copyFn: function (text) {
+    navigator.clipboard.writeText(text)
+    btf.snackbarShow(GLOBAL_CONFIG.copy.success)
   }
 }

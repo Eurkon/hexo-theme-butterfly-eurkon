@@ -1,23 +1,15 @@
 #footer-wrap
-  //- #footer-social
+  //- #footer-social-container
   //-   a.footer-social-icon(href='/atom.xml' title='Atom 订阅')
   //-     i.fas.fa-atom
   //-   a.footer-social-icon(href='/rss.xml' title='RSS 订阅')
   //-     i.fas.fa-square-rss
+  //-   img#footer-social-top.footer-social-img(src=url_for(theme.avatar.img) onerror=`onerror=null;src='${theme.error_img.flink}'` alt="avatar" title=_p("rightside.back_to_top"))
   //-   a.footer-social-icon(href='mailto:eurkon@foxmail.com' title='Email')
   //-     i.fas.fa-envelope
   //-   a.footer-social-icon(href='https://github.com/Eurkon' title='GitHub')
   //-     i.fab.fa-github
-  //-   img#footer-social-top.footer-social-img(src=url_for(theme.avatar.img) onerror=`onerror=null;src='${theme.error_img.flink}'` alt="avatar" title=_p("rightside.back_to_top"))
-  //-   a.footer-social-icon(href='https://github.com/Eurkon')
-  //-     i.fab.fa-github
-  //-   a.footer-social-icon(href='https://github.com/Eurkon')
-  //-     i.fab.fa-github
-  //-   a.footer-social-icon(href='https://github.com/Eurkon')
-  //-     i.fab.fa-github
-  //-   a.footer-social-icon(href='https://github.com/Eurkon')
-  //-     i.fab.fa-github
-  #footer-container
+  #footer-group-container
     .footer-group
       span.footer-group-title= '统计'
       a.footer-group-item(href='/charts/')= '文章统计'
@@ -60,27 +52,36 @@
       a.footer-group-item(href='/protocol/copyright/' title='本站所有原创文章采用知识共享(Creative Commons)署名—非商业性使用—相同方式共享4.0国际公共许可协议')= '版权协议'
 
   #footer-banner
-    if theme.footer.owner.enable
-      - var now = new Date()
-      - var nowYear = now.getFullYear()
-      if theme.footer.owner.since && theme.footer.owner.since != nowYear
-        .copyright!= `Copyright &copy; ${theme.footer.owner.since} - ${nowYear}  ${config.author}.com  All Rights Reserved.`
-      else
-        .copyright!= `Copyright &copy; ${nowYear}  ${config.author}.com  All Rights Reserved.`
-    if theme.footer.copyright
-      .framework-info
-        span= _p('footer.framework') + ' '
-        a(href='https://hexo.io')= 'Hexo'
-        span.footer-separator |
-        span= _p('footer.theme') + ' '
-        a(href='https://github.com/jerryc127/hexo-theme-butterfly')= 'Butterfly'
-    if theme.footer.custom_text
-      .footer_custom_text!=`${theme.footer.custom_text}`
-    <p id="badges" style="margin: 0;">
-      <a target="_blank" href="https://hexo.io/" style="margin-inline: 5px;" one-link-mark="yes"><img title="博客框架Hexo" class="entered loaded" src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&amp;logo=hexo" data-ll-status="loaded"></a>
-      <a target="_blank" href="https://butterfly.js.org/" style="margin-inline: 5px;" one-link-mark="yes"><img title="博客主题Butterfly" class="entered loaded" src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&amp;logo=bitdefender" data-ll-status="loaded"></a>
-      <a target="_blank" href="https://www.jsdelivr.com/" style="margin-inline: 5px;" one-link-mark="yes"><img title="本站使用JsDelivr为静态资源提供CDN加速" class="entered loaded" src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&amp;logo=jsDelivr" data-ll-status="loaded"></a>
-      <a target="_blank" href="https://vercel.com/" style="margin-inline: 5px;" one-link-mark="yes"><img title="本站部署托管于Vercel" class="entered loading" src="https://img.shields.io/badge/Hosted-Vercel-brightgreen?style=flat&amp;logo=Vercel" data-ll-status="loaded" ></a>
-      <a target="_blank" href="https://github.com/" style="margin-inline: 5px;" one-link-mark="yes"><img title="本站项目由GitHub托管" class="entered loaded" src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&amp;logo=GitHub" data-ll-status="loaded"></a>
-      <a target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="margin-inline: 5px;" one-link-mark="yes"><img title="本站采用创作共用-署名-非商业性-相同方式共享4.0版国际许可协议" class="entered loaded" src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&amp;logo=Claris" data-ll-status="loaded"></a>
-    </p>
+    #footer-banner-container
+      .footer-banner
+        if theme.footer.owner.enable
+          - var now = new Date()
+          - var nowYear = now.getFullYear()
+          if theme.footer.owner.since && theme.footer.owner.since != nowYear
+            .copyright!= `Copyright &copy; ${theme.footer.owner.since} - ${nowYear}  ${config.author}.com  All Rights Reserved.`
+          else
+            .copyright!= `Copyright &copy; ${nowYear}  ${config.author}.com  All Rights Reserved.`
+        if theme.footer.copyright
+          .framework-info
+            span= _p('footer.framework') + ' '
+            a(href='https://hexo.io')= 'Hexo'
+            span.footer-separator |
+            span= _p('footer.theme') + ' '
+            a(href='https://github.com/jerryc127/hexo-theme-butterfly')= 'Butterfly'
+        if theme.footer.custom_text
+          .footer_custom_text!=`${theme.footer.custom_text}`
+      .footer-banner
+        a(href='https://beian.miit.gov.cn')!= '粤ICP备2022108639号'
+        a(href='/protocol/copyright/' title="版权协议" )
+          i.fab.fa-creative-commons
+          i.fab.fa-creative-commons-by
+          i.fab.fa-creative-commons-ns
+          i.fab.fa-creative-commons-sa
+      //- <p id="badges" style="margin: 0;">
+      //-   <a target="_blank" href="https://hexo.io/" style="margin-inline: 5px;" one-link-mark="yes"><img title="博客框架Hexo" class="entered loaded" src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&amp;logo=hexo" data-ll-status="loaded"></a>
+      //-   <a target="_blank" href="https://butterfly.js.org/" style="margin-inline: 5px;" one-link-mark="yes"><img title="博客主题Butterfly" class="entered loaded" src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&amp;logo=bitdefender" data-ll-status="loaded"></a>
+      //-   <a target="_blank" href="https://www.jsdelivr.com/" style="margin-inline: 5px;" one-link-mark="yes"><img title="本站使用JsDelivr为静态资源提供CDN加速" class="entered loaded" src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&amp;logo=jsDelivr" data-ll-status="loaded"></a>
+      //-   <a target="_blank" href="https://vercel.com/" style="margin-inline: 5px;" one-link-mark="yes"><img title="本站部署托管于Vercel" class="entered loading" src="https://img.shields.io/badge/Hosted-Vercel-brightgreen?style=flat&amp;logo=Vercel" data-ll-status="loaded" ></a>
+      //-   <a target="_blank" href="https://github.com/" style="margin-inline: 5px;" one-link-mark="yes"><img title="本站项目由GitHub托管" class="entered loaded" src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&amp;logo=GitHub" data-ll-status="loaded"></a>
+      //-   <a target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="margin-inline: 5px;" one-link-mark="yes"><img title="本站采用创作共用-署名-非商业性-相同方式共享4.0版国际许可协议" class="entered loaded" src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&amp;logo=Claris" data-ll-status="loaded"></a>
+      //- </p>
