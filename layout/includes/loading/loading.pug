@@ -1,5 +1,5 @@
-if theme.preloader.enable
-  case theme.preloader.load_style    
+if theme.preloader && theme.preloader.enable
+  case theme.preloader.load_style
     when 'gear'
       include ./load_style/gear.pug
     when 'ironheart'
