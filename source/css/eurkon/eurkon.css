@@ -1306,7 +1306,11 @@ strong {
   text-shadow: none;
 }
 
-.sticky_layout {
+#aside-content .sticky_layout {
+  top: 50px !important;
+}
+
+.post #aside-content .sticky_layout {
   top: 70px !important;
 }
 
