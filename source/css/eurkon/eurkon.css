@@ -1544,7 +1544,7 @@ div.menus_items>div:nth-child(4)>ul {
 #page-header.not-top-img #nav #page-title:hover,
 #page-header.not-top-img #nav .menus_item>.site-page:hover,
 #page-header.not-top-img #nav #hotkey .site-page:hover {
-  color: var(--second) !important;
+  color: var(--second);
   background: var(--main);
   box-shadow: var(--main-shadow);
 }
@@ -1636,26 +1636,52 @@ div.menus_items>div:nth-child(4)>ul {
   transform: translateY(-50%);
 }
 
+#nav #hotkey #mode-button i.fa-moon {
+  opacity: 0;
+  color: #FFB449 !important;
+  width: 40px;
+  left: 0;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
 #nav #hotkey #mode-button i {
-  color: var(--light-text);
+  -webkit-transition: all .3s linear;
+  -moz-transition: all .3s linear;
+  -o-transition: all .3s linear;
+  -ms-transition: all .3s linear;
+  transition: all .3s linear;
 }
 
-#nav #hotkey #mode-button i::before {
-  content: '\f185';
+[data-theme="dark"] #nav #hotkey #mode-button i.fa-moon {
+  opacity: 1;
 }
 
-#nav #hotkey #mode-button:hover i::before {
-  content: '\f186';
+[data-theme="dark"] #nav #hotkey #mode-button i.fa-sun {
+  opacity: 0;
+  color: #FF7242 !important;
 }
 
-[data-theme="dark"] #nav #hotkey #mode-button i::before {
-  content: '\f186';
+#nav #hotkey #mode-button a:hover i.fa-sun {
+  opacity: 0;
 }
 
-[data-theme="dark"] #nav #hotkey #mode-button:hover i::before {
-  content: '\f185';
+#nav #hotkey #mode-button a:hover i.fa-moon {
+  opacity: 1;
 }
 
+[data-theme="dark"] #nav #hotkey #mode-button a:hover i.fa-sun {
+  opacity: 1;
+}
+
+[data-theme="dark"] #nav #hotkey #mode-button a:hover i.fa-moon {
+  opacity: 0;
+}
 
 /* 友链 */
 #article-container .flink-list {
