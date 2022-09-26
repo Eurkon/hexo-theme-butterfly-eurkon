@@ -95,7 +95,7 @@
 }
 
 @media screen and (max-width: 900px) {
-  #aside-content .card-widget:not(#card-toc) {
+  #aside-content .card-widget.card-info{
     display: none;
   }
 }
