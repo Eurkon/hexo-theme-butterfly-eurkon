@@ -1616,8 +1616,8 @@ div.menus_items>div:nth-child(4)>ul {
 #page-header.not-top-img #nav #page-title:hover,
 #page-header.not-top-img #nav .menus_item>.site-page:hover,
 #page-header.not-top-img #nav #hotkey .site-page:hover {
-  color: var(--second);
-  background: var(--main);
+  color: var(--second) !important;
+  background: var(--main) !important;
   -webkit-box-shadow: var(--main-shadow);
   -moz-box-shadow: var(--main-shadow);
   -ms-box-shadow: var(--main-shadow);
