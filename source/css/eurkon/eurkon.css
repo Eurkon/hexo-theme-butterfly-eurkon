@@ -136,14 +136,23 @@ body.read-mode .layout>div:first-child {
 }
 
 /* 滚动条 */
-::-webkit-scrollbar-thumb {
-  border-radius: var(--border-radius);
-  background: var(--main);
-  background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, .4) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .4) 50%, rgba(255, 255, 255, .4) 75%, transparent 75%, transparent);
+*::-webkit-scrollbar {
+  width: 6px;
 }
 
-::-webkit-scrollbar-thumb:hover {
+*::-webkit-scrollbar:hover {
+  width: 8px;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: var(--border-radius);
+  background: var(--main-light);
+  /* background-image: linear-gradient(45deg, rgba(255, 255, 255, .4) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .4) 50%, rgba(255, 255, 255, .4) 75%, transparent 75%, transparent); */
+}
+
+*::-webkit-scrollbar-thumb:hover {
   background-image: none;
+  background: var(--main);
 }
 
 body {
