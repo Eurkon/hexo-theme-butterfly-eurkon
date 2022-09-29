@@ -1,39 +1,53 @@
 const eurkon = {
   // CSS 主颜色变量
-  switchCSSValue: function () {
-    let theme_color = '#1677B3' // 主颜色，可修改
-    let theme_r = parseInt('0x' + theme_color.slice(1, 3))
-    let theme_g = parseInt('0x' + theme_color.slice(3, 5))
-    let theme_b = parseInt('0x' + theme_color.slice(5, 7))
+  switchThemeColor: function ([r, g, b]) {
+    document.documentElement.style.setProperty('--r', r)
+    document.documentElement.style.setProperty('--g', g)
+    document.documentElement.style.setProperty('--b', b)
+    document.documentElement.style.setProperty('--second', r * 0.299 + g * 0.587 + b * 0.114 >= 192 ? '#000' : '#FFF')
+    document.documentElement.style.setProperty('--cover-text', r * 0.299 + g * 0.587 + b * 0.114 >= 192 ? '#4C4948' : '#EEE')
+  },
 
-    if (document.getElementById('post-cover-img') && typeof eval(RGBaster) === "object") {
-      let list = []
-      for (let i = 0; i <= 20; i++) {
-        for (let j = 0; j <= 20; j++) {
-          for (let k = 0; k <= 20; k++) {
-            list.push(`rgb(${i},${j},${k})`)
-            list.push(`rgb(${255 - i},${255 - j},${255 - k})`)
-          }
+  // ColorThief 获取主颜色
+  getMainColor: function (theme = '#1677B3') {
+    let rgb = [parseInt('0x' + theme.slice(1, 3)), parseInt('0x' + theme.slice(3, 5)), parseInt('0x' + theme.slice(5, 7))]
+    if (document.getElementById('post-cover-img')) rgb = new ColorThief().getColor(document.getElementById('post-cover-img'))
+    return rgb
+  },
+
+  // RGBaster 切换主颜色
+  switchMainColor: function () {
+    let exclude_list = []
+    for (let i = 0; i <= 20; i++) {
+      for (let j = 0; j <= 20; j++) {
+        for (let k = 0; k <= 20; k++) {
+          exclude_list.push(`rgb(${i},${j},${k})`)
+          exclude_list.push(`rgb(${255 - i},${255 - j},${255 - k})`)
         }
       }
-      RGBaster.colors(document.getElementById('post-cover-img').getAttribute('src'), {
+    }
+    if (document.getElementById('post-cover-img')) {
+      RGBaster.colors(document.getElementById('post-cover-img'), {
         paletteSize: 30,
-        exclude: list,
+        exclude: exclude_list,
         success: function (payload) {
-          [theme_r, theme_g, theme_b] = payload.dominant.match(/\d+/g)
-          document.documentElement.style.setProperty('--r', theme_r);
-          document.documentElement.style.setProperty('--g', theme_g);
-          document.documentElement.style.setProperty('--b', theme_b);
-          document.documentElement.style.setProperty('--second', theme_r * 0.299 + theme_g * 0.587 + theme_b * 0.114 >= 192 ? '#000' : '#FFF');
-          document.documentElement.style.setProperty('--cover-text', theme_r * 0.299 + theme_g * 0.587 + theme_b * 0.114 >= 192 ? '#4C4948' : '#EEE');
+          let [r, g, b] = payload.dominant.match(/\d+/g)
+          document.documentElement.style.setProperty('--r', r)
+          document.documentElement.style.setProperty('--g', g)
+          document.documentElement.style.setProperty('--b', b)
+          document.documentElement.style.setProperty('--second', r * 0.299 + g * 0.587 + b * 0.114 >= 192 ? '#000' : '#FFF')
+          document.documentElement.style.setProperty('--cover-text', r * 0.299 + g * 0.587 + b * 0.114 >= 192 ? '#4C4948' : '#EEE')
         }
       })
-    } else {
-      document.documentElement.style.setProperty('--r', theme_r);
-      document.documentElement.style.setProperty('--g', theme_g);
-      document.documentElement.style.setProperty('--b', theme_b);
-      document.documentElement.style.setProperty('--second', theme_r * 0.299 + theme_g * 0.587 + theme_b * 0.114 >= 192 ? '#000' : '#FFF');
-      document.documentElement.style.setProperty('--cover-text', theme_r * 0.299 + theme_g * 0.587 + theme_b * 0.114 >= 192 ? '#4C4948' : '#EEE');
+    }
+    else {
+      let theme = '#1677B3'
+      let [r, g, b] = [parseInt('0x' + theme.slice(1, 3)), parseInt('0x' + theme.slice(3, 5)), parseInt('0x' + theme.slice(5, 7))]
+      document.documentElement.style.setProperty('--r', r)
+      document.documentElement.style.setProperty('--g', g)
+      document.documentElement.style.setProperty('--b', b)
+      document.documentElement.style.setProperty('--second', r * 0.299 + g * 0.587 + b * 0.114 >= 192 ? '#000' : '#FFF')
+      document.documentElement.style.setProperty('--cover-text', r * 0.299 + g * 0.587 + b * 0.114 >= 192 ? '#4C4948' : '#EEE')
     }
   },
 

@@ -1,4 +1,4 @@
-eurkon.switchCSSValue()
+eurkon.switchThemeColor(eurkon.getMainColor())
 eurkon.switchPageTitle()
 eurkon.catalogActive()
 
