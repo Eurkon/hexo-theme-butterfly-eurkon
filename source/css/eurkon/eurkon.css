@@ -142,10 +142,12 @@ body.read-mode .layout>div:first-child {
 /* 滚动条 */
 *::-webkit-scrollbar {
   width: 6px;
+  height: 6px;
 }
 
 *::-webkit-scrollbar:hover {
   width: 8px;
+  height: 8px;
 }
 
 *::-webkit-scrollbar-thumb {
