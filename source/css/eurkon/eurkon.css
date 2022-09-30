@@ -78,6 +78,10 @@
   margin-top: 20px;
 }
 
+#comment-mask {
+  display: none;
+}
+
 @media screen and (min-width: 901px) {
 
   .layout>div:first-child {
