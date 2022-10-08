@@ -8,7 +8,8 @@
   --main: rgb(var(--r), var(--g), var(--b));
   --second: var(--white);
   --cover-bg: rgb(var(--r), var(--g), var(--b));
-  --main-light: rgba(var(--r), var(--g), var(--b), .4);
+  --main-lighter: rgba(var(--r), var(--g), var(--b), .4);
+  --main-bolder: rgba(var(--r), var(--g), var(--b), .8);
   /* --box-shadow: 0 8px 16px -4px rgba(45, 45, 45, .05); */
   --box-shadow: 0 2px 3px 1px rgba(45, 45, 45, .05);
   --main-shadow: 0 2px 3px 1px rgba(var(--r), var(--g), var(--b), .2);
@@ -24,7 +25,8 @@
   --global-bg-op: rgba(0, 0, 0, .4);
   --main: #5C5C5C;
   --second: #EEE !important;
-  --main-light: rgba(92, 92, 92, .4);
+  --main-lighter: rgba(92, 92, 92, .4);
+  --main-bolder: rgba(92, 92, 92, .8);
   --main-shadow: 0 2px 3px 1px rgba(92, 92, 92, .2);
   --light-text: #FFB449;
 }
@@ -152,7 +154,7 @@ body.read-mode .layout>div:first-child {
 
 *::-webkit-scrollbar-thumb {
   border-radius: var(--border-radius);
-  background: var(--main-light);
+  background: var(--main-bolder);
   /* background-image: linear-gradient(45deg, rgba(255, 255, 255, .4) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .4) 50%, rgba(255, 255, 255, .4) 75%, transparent 75%, transparent); */
 }
 
@@ -935,7 +937,7 @@ a.catalog-more:hover {
 #aside-content #card-toc .toc-content a.toc-link:hover {
   color: var(--second);
   border-radius: var(--border-radius);
-  background: var(--main-light);
+  background: var(--main-lighter);
   -webkit-transform: scale(1.05);
   -moz-transform: scale(1.05);
   -ms-transform: scale(1.05);
