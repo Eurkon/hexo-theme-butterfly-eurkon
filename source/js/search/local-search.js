@@ -60,7 +60,9 @@ window.addEventListener('load', () => {
         return {
           title: item.querySelector('title').textContent,
           content: item.querySelector('content') && item.querySelector('content').textContent,
-          url: item.querySelector('url').textContent
+          url: item.querySelector('url').textContent,
+          categories: [...item.querySelectorAll('category')].map(category => { return category.textContent.trim() }),
+          tags: [...item.querySelectorAll('tag')].map(tag => { return tag.textContent.trim() }),
         }
       })
     }
@@ -96,6 +98,8 @@ window.addEventListener('load', () => {
           let dataTitle = data.title ? data.title.trim().toLowerCase() : ''
           const dataContent = data.content ? data.content.trim().replace(/<[^>]+>/g, '').toLowerCase() : ''
           const dataUrl = data.url.startsWith('/') ? data.url : GLOBAL_CONFIG.root + data.url
+          // let dataCategories = data.categories
+          let dataTags = data.tags
           let indexTitle = -1
           let indexContent = -1
           let firstOccur = -1
@@ -156,6 +160,9 @@ window.addEventListener('load', () => {
               })
 
               str += '<div class="local-search__hit-item"><a href="' + dataUrl + '" class="search-result-title">' + dataTitle + '</a>'
+              dataTags.forEach(tag => {
+                str += `<a class="search-result-tag" href="${GLOBAL_CONFIG.root + 'tags/' + tag + '/'}">${(GLOBAL_CONFIG.emoji && GLOBAL_CONFIG.emoji[tag] || '') + tag}</a>`
+              })
               count += 1
 
               if (dataContent !== '') {

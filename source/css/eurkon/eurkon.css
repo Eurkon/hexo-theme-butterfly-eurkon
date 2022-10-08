@@ -329,6 +329,29 @@ body.hidden-y {
   color: var(--light-text);
 }
 
+#local-search .search-dialog .local-search__hit-item a.search-result-title {
+  display: inline;
+}
+
+#local-search .search-dialog .local-search__hit-item a.search-result-tag {
+  display: inline-block;
+  opacity: .9;
+  font-size: 90%;
+  background: var(--tab-button-hover-bg);
+  padding: 0 0.5em;
+  margin-left: 0.5em;
+  border-radius: 0.5rem;
+  -webkit-transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  -ms-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+}
+
+#local-search .search-dialog .local-search__hit-item a.search-result-tag:hover {
+  color: var(--card-bg);
+  background: var(--font-color);
+}
 
 /* 文章段落标题 */
 #article-container.post-content .headerlink {
