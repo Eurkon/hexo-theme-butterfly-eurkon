@@ -84,6 +84,9 @@
     })
   }
 
+  let emoji = 'undefined';
+  if (config.emoji) emoji = JSON.stringify(config.emoji)
+
 script.
   const GLOBAL_CONFIG = { 
     root: '!{config.root}',
@@ -120,5 +123,6 @@ script.
     },
     isPhotoFigcaption: !{theme.photofigcaption},
     islazyload: !{theme.lazyload.enable},
-    isAnchor: !{theme.anchor}
+    isAnchor: !{theme.anchor},
+    emoji: !{emoji}
   }
