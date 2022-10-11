@@ -19,6 +19,61 @@ script.
         path: window.location.pathname,
         comment: !{lazyload ? false : count},
       }, !{JSON.stringify(option)}))
+      
+      //- let comment = document.querySelectorAll('#waline-wrap .wl-item')
+      //- if (comment.length > 0) {
+      //-   let html = `<div class="swiper-wrapper">`
+      //-   for (let i = 0; i < comment.length; i++) {
+      //-     let id = comment[i].getAttribute('id')
+      //-     let nick = comment[i].querySelector('.wl-nick')
+      //-     let avatar = comment[i].querySelector('.wl-user img')
+      //-     let time = comment[i].querySelector('.wl-time')
+      //-     let city = comment[i].querySelector('.wl-addr')
+      //-     let content = comment[i].querySelector('.wl-content').innerHTML
+      //-     content = content.replace(/\n/g, '') // replace \n
+      //-     content = content.replace(/<blockquote>.*?<\/blockquote>/gi, '') // replace blockquote
+      //-     //- content = content.replace(/<a[^>]+?data-caption="image".*?<img.*?src="(.*?)"?[^\>]+><\/a>/ig, '[!{_p("aside.card_newest_comments.image")}]') // replace image link
+      //-     //- content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[!{_p("aside.card_newest_comments.image")}]') // replace image link
+      //-     //- content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[!{_p("aside.card_newest_comments.link")}]') // replace url
+      //-     content = content.replace(/<pre.*?<\/pre>/gi, '[!{_p("aside.card_newest_comments.code")}]') // replace code
+      //-     //- content = content.replace(/<[^>]+>/g, "") // remove html tag
+      //-     html += `
+      //-   <div class="swiper-slide">
+      //-     <div class="comment-barrage-item">
+      //-       <div class="barrage-info">
+      //-         <a class="barrage-title" title="跳转至该评论" href="#${id}">热评</a>
+      //-         <a href="${nick.href ? nick.href + '" target="_blank" rel="noopener noreferrer"' : 'javascript:void(0);"'}><img class="barrage-avatar" src="${avatar.src}"></a>
+      //-         <span class="barrage-nick">${nick.innerText || ''}</span>
+      //-         <span class="barrage-city">${city && city.innerText || ''}</span>
+      //-         <span class="barrage-time">${time.innerText || ''}</span>
+      //-         <a class="barrage-close" onclick="eurkon.switchCommentBarrage()" title="隐藏热评"><i class="fa-solid fa-xmark"></i></a>
+      //-       </div>
+      //-       <div class="barrage-content">${content}</div>
+      //-     </div>
+      //-   </div>`
+      //-   }
+      //-   html += '</div>'
+      //-   let barrageContainer = document.getElementById('comment-barrage') || document.createElement('div')
+      //-   barrageContainer.id = 'comment-barrage'
+      //-   barrageContainer.innerHTML = html
+      //-   barrageContainer.style.zIndex = window.localStorage.getItem('commentBarrageDisplay') === 'false' ? '-1001' : '1'
+      //-   document.getElementById('post-comment').appendChild(barrageContainer)
+      //-   var barrageSwiper = new Swiper('#comment-barrage', {
+      //-     direction: 'vertical',
+      //-     loop: true,
+      //-     mousewheel: true,
+      //-     autoplay: {
+      //-       delay: 3000,
+      //-       disableOnInteraction: true,
+      //-     }
+      //-   })
+      //-   barrageContainer.onmouseenter = function () {
+      //-     barrageSwiper.autoplay.stop()
+      //-   };
+      //-   barrageContainer.onmouseleave = function () {
+      //-     barrageSwiper.autoplay.start()
+      //-   };
+      //- }
     }
 
     if (typeof Waline === 'function') initWaline()
