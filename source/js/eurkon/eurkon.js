@@ -11,7 +11,9 @@ const eurkon = {
   // ColorThief 获取主颜色
   getMainColor: function (theme = '#1677B3') {
     let rgb = [parseInt('0x' + theme.slice(1, 3)), parseInt('0x' + theme.slice(3, 5)), parseInt('0x' + theme.slice(5, 7))]
-    if (document.getElementById('post-cover-img')) rgb = new ColorThief().getColor(document.getElementById('post-cover-img'))
+    if (document.getElementById('post-cover-img')) {
+      try { rgb = new ColorThief().getColor(document.getElementById('post-cover-img')) } catch (err) { console.log(err) }
+    }
     return rgb
   },
 
