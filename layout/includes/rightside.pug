@@ -12,7 +12,9 @@ mixin rightsideItem(array)
       when 'darkmode'
         if darkmode.enable && darkmode.button
           button#darkmode(type="button" title=_p('rightside.night_mode_title'))
-            i.fas.fa-adjust
+            //- i.fas.fa-adjust
+            i.fas.fa-sun
+            i.fas.fa-moon
       when 'hideAside'
         if aside.enable && aside.button && page.aside !== false
           button#hide-aside-btn(type="button" title=_p('rightside.aside'))
@@ -30,7 +32,7 @@ mixin rightsideItem(array)
           a#to_comment(href="#post-comment" title=_p("rightside.scroll_to_comment"))
             i.fas.fa-comments
 
-#rightside
+#rightside.hidden
   - const { enable, hide, show } = theme.rightside_item_order
   - const hideArray = enable ? hide && hide.split(',') : ['readmode','translate','darkmode','hideAside']
   - const showArray = enable ? show && show.split(',') : ['toc','chat','comment']

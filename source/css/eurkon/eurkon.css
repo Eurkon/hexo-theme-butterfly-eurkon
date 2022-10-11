@@ -153,7 +153,7 @@
     padding: 1rem;
   }
 
-  :not(#recent-posts)~#aside-content .card-widget {
+  :not(#recent-posts)~#aside-content .card-widget:not(#card-toc) {
     border-radius: 0;
   }
 }
@@ -1867,6 +1867,118 @@ div.menus_items>div:nth-child(4)>ul {
   opacity: 0;
 }
 
+/* 右下角设置按钮 */
+#rightside {
+  z-index: 100;
+  opacity: 1 !important;
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  background: var(--global-bg-op);
+  backdrop-filter: var(--backdrop-filter);
+  -webkit-transform: translate(0, 0) !important;
+  -moz-transform: translate(0, 0) !important;
+  -ms-transform: translate(0, 0) !important;
+  -o-transform: translate(0, 0) !important;
+  transform: translate(0, 0) !important;
+  -webkit-transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  -ms-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+}
+
+#rightside.hidden {
+  z-index: -1;
+  opacity: 0 !important;
+}
+
+#rightside-config-hide {
+  opacity: 1 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  -ms-filter: none !important;
+  filter: none !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-transform: translate(0, 0) !important;
+  -moz-transform: translate(0, 0) !important;
+  -ms-transform: translate(0, 0) !important;
+  -o-transform: translate(0, 0) !important;
+  transform: translate(0, 0) !important;
+  -webkit-transition: none;
+  -moz-transition: none;
+  -ms-transition: none;
+  -o-transition: none;
+  transition: none;
+}
+
+#rightside>div>button,
+#rightside>div>a {
+  position: relative;
+  color: var(--second);
+  background: var(--main);
+  border-radius: 50%;
+  margin: 10px;
+  width: 50px;
+  height: 50px;
+  font-size: 20px;
+}
+
+#rightside>div>button:hover,
+#rightside>div>a:hover {
+  background: var(--light-text);
+}
+
+#darkmode i.fa-moon {
+  opacity: 0;
+  color: #FFB449 !important;
+  width: 50px;
+  left: 0;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+#darkmode i {
+  -webkit-transition: all .3s linear;
+  -moz-transition: all .3s linear;
+  -ms-transition: all .3s linear;
+  -o-transition: all .3s linear;
+  transition: all .3s linear;
+}
+
+[data-theme="dark"] #darkmode i.fa-moon {
+  opacity: 1;
+}
+
+[data-theme="dark"] #darkmode i.fa-sun {
+  opacity: 0;
+  color: #FF7242 !important;
+}
+
+#darkmode:hover i.fa-sun {
+  opacity: 0;
+}
+
+#darkmode:hover i.fa-moon {
+  opacity: 1;
+}
+
+[data-theme="dark"] #darkmode:hover i.fa-sun {
+  opacity: 1;
+}
+
+[data-theme="dark"] #darkmode:hover i.fa-moon {
+  opacity: 0;
+}
+
 /* 友链 */
 #article-container .flink-list {
   padding: 0;
@@ -2183,7 +2295,11 @@ div.menus_items>div:nth-child(4)>ul {
   #post-cover {
     width: 100%;
     height: 400px;
-    transform: none;
+    -webkit-transform: translate(0, 0);
+    -moz-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+    -o-transform: translate(0, 0);
+    transform: translate(0, 0);
     margin: 0;
     filter: none;
   }
@@ -2496,11 +2612,11 @@ body.read-mode #comment-barrage {
 
 .post-item.swiper-slide-active .post-item-content>* {
   opacity: 1;
-  -webkit-transform: none;
-  -moz-transform: none;
-  -ms-transform: none;
-  -o-transform: none;
-  transform: none;
+  -webkit-transform: translate(0, 0);
+  -moz-transform: translate(0, 0);
+  -ms-transform: translate(0, 0);
+  -o-transform: translate(0, 0);
+  transform: translate(0, 0);
 }
 
 .post-item-img {
