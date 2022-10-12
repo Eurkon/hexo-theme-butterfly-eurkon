@@ -48,6 +48,7 @@ script.
               barrageContainer.id = 'comment-barrage'
               barrageContainer.innerHTML = html
               barrageContainer.style.zIndex = window.localStorage.getItem('commentBarrageDisplay') === 'false' ? '-1001' : '1'
+              if( document.getElementById('barrage-btn') ) document.getElementById('barrage-btn').classList.add(window.localStorage.getItem('commentBarrageDisplay') === 'false' ? 'off' : 'on')
               document.getElementById('post-comment').appendChild(barrageContainer)
               var barrageSwiper = new Swiper('#comment-barrage', {
                 direction: 'vertical',

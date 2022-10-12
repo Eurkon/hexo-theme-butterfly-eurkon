@@ -15,6 +15,9 @@ mixin rightsideItem(array)
             //- i.fas.fa-adjust
             i.fas.fa-sun
             i.fas.fa-moon
+      when 'barrage'
+        button#barrage-btn(type="button" title=_p('热评开关') onclick="eurkon.switchCommentBarrage()")
+          i.fas.fa-message
       when 'hideAside'
         if aside.enable && aside.button && page.aside !== false
           button#hide-aside-btn(type="button" title=_p('rightside.aside'))

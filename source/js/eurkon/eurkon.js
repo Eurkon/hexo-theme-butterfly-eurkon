@@ -85,7 +85,11 @@ const eurkon = {
     let flag = window.localStorage.getItem('commentBarrageDisplay') // undefined || false
     document.getElementById('comment-barrage').style.zIndex = flag === 'false' ? '1' : '-1001'
     window.localStorage.setItem('commentBarrageDisplay', flag === 'false' ? 'undefined' : 'false', 86400000)
-    if (document.querySelector('#menu-barrage>span')) document.querySelector('#menu-barrage>span').innerHTML = flag === 'false' ? '隐藏热评' : '显示热评'
+    if (document.getElementById('menu-barrage')) document.querySelector('#menu-barrage>span').innerHTML = flag === 'false' ? '隐藏热评' : '显示热评'
+    if (document.getElementById('barrage-btn')) {
+      if (flag === 'false') { document.getElementById('barrage-btn').classList.add('on') }
+      else { document.getElementById('barrage-btn').classList.remove('on') }
+    }
   },
 
 }
