@@ -348,6 +348,7 @@ document.addEventListener('DOMContentLoaded', function () {
       window.mobileToc = {
         open: () => {
           $cardTocLayout.style.cssText = 'animation: toc-open .3s; opacity: 1; right: 55px'
+          if (document.getElementById('mobile-toc-button')) document.getElementById('mobile-toc-button').classList.add('on')
         },
 
         close: () => {
@@ -355,6 +356,7 @@ document.addEventListener('DOMContentLoaded', function () {
           setTimeout(() => {
             $cardTocLayout.style.cssText = "opacity:''; animation: ''; right: ''"
           }, 100)
+          if (document.getElementById('mobile-toc-button')) document.getElementById('mobile-toc-button').classList.remove('on')
         }
       }
 
