@@ -50,10 +50,10 @@
     .rightmenu-item#menu-share
       i.fas.fa-share-square
       span=_p('分享本页')
-  .rightmenu-group.rightmenu-line#rightmenu-mode
-    //- .rightmenu-item#menu-darkmode(onclick="btf.switchDarkMode()")
-    //-   i.fas.fa-adjust
-    //-   span=_p('rightside.night_mode_title')
+  //- .rightmenu-group.rightmenu-line#rightmenu-mode
+    .rightmenu-item#menu-darkmode(onclick="btf.switchDarkMode()")
+      i.fas.fa-adjust
+      span=_p('rightside.night_mode_title')
     .rightmenu-item#menu-barrage(onclick="eurkon.switchCommentBarrage()")
       i.fas.fa-comments
       span=_p('隐藏热评')
