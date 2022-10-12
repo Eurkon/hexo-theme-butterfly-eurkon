@@ -1,7 +1,8 @@
 :root {
   --theme-color: #1677B3;
   --global-bg: #F2F6FC;
-  --global-bg-op: rgba(242, 246, 252, .4);
+  --global-bg-lighter: rgba(242, 246, 252, .4);
+  --global-bg-bolder: rgba(242, 246, 252, .8);
   --r: 22;
   --g: 119;
   --b: 179;
@@ -17,12 +18,13 @@
   --card-border-dashed: 2px dashed var(--tab-button-hover-bg);
   --border-radius: .5rem;
   --light-text: #FF7242;
-  --backdrop-filter: saturate(240%) blur(10px);
+  --backdrop-filter: saturate(240%) blur(20px);
 }
 
 [data-theme='dark'] {
   --global-bg: #000;
-  --global-bg-op: rgba(0, 0, 0, .4);
+  --global-bg-lighter: rgba(0, 0, 0, .4);
+  --global-bg-bolder: rgba(0, 0, 0, .8);
   --main: #5C5C5C;
   --second: #EEE !important;
   --main-lighter: rgba(92, 92, 92, .4);
@@ -1875,7 +1877,7 @@ div.menus_items>div:nth-child(4)>ul {
   height: 100vh;
   left: 0;
   top: 0;
-  background: var(--global-bg-op);
+  background: var(--global-bg-bolder);
   backdrop-filter: var(--backdrop-filter);
   -webkit-transform: translate(0, 0) !important;
   -moz-transform: translate(0, 0) !important;
@@ -1918,18 +1920,49 @@ div.menus_items>div:nth-child(4)>ul {
 #rightside>div>button,
 #rightside>div>a {
   position: relative;
-  color: var(--second);
-  background: var(--main);
+  color: var(--font-color);
+  background: var(--card-bg);
   border-radius: 50%;
   margin: 10px;
   width: 50px;
   height: 50px;
   font-size: 20px;
+  border: var(--card-border);
+  -webkit-box-shadow: var(--box-shadow);
+  -moz-box-shadow: var(--box-shadow);
+  -ms-box-shadow: var(--box-shadow);
+  -o-box-shadow: var(--box-shadow);
+  box-shadow: var(--box-shadow);
+  -webkit-transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  -ms-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
 }
+
+#rightside>div>button.on,
+#rightside>div>a.on,
+html.hide-aside #hide-aside-btn {
+  color: var(--white);
+  background: var(--light-text);
+  border-color: var(--light-text);
+}
+
 
 #rightside>div>button:hover,
 #rightside>div>a:hover {
-  background: var(--light-text);
+  color: var(--second);
+  background: var(--main);
+  border-color: var(--main);
+  -webkit-box-shadow: var(--main-shadow);
+  -moz-box-shadow: var(--main-shadow);
+  -ms-box-shadow: var(--main-shadow);
+  -o-box-shadow: var(--main-shadow);
+  box-shadow: var(--main-shadow);
+}
+
+#darkmode i.fa-sun {
+  color: #FF7242 !important;
 }
 
 #darkmode i.fa-moon {
@@ -1960,7 +1993,6 @@ div.menus_items>div:nth-child(4)>ul {
 
 [data-theme="dark"] #darkmode i.fa-sun {
   opacity: 0;
-  color: #FF7242 !important;
 }
 
 #darkmode:hover i.fa-sun {
@@ -2465,6 +2497,10 @@ div.menus_items>div:nth-child(4)>ul {
 @media screen and (max-width: 900px) {
   #comment-barrage {
     z-index: -1001 !important;
+  }
+
+  #barrage-btn {
+    display: none !important;
   }
 }
 
