@@ -230,6 +230,20 @@ body.hidden-y {
 #recent-posts .recent-post-item {
   height: 20rem;
   flex-direction: column;
+  margin-bottom: 20px;
+}
+
+#recent-posts .recent-post-item:not(:first-child) {
+  margin-top: unset;
+}
+
+#recent-posts>.recent-post-item .post_cover.right {
+  order: unset;
+  -webkit-order: unset;
+  -ms-flex-order: unset;
+  -o-box-ordinal-group: unset;
+  -moz-box-ordinal-group: unset;
+  -webkit-box-ordinal-group: unset;
 }
 
 @media screen and (min-width: 769px) {
