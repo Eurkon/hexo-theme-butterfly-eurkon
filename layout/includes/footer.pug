@@ -61,7 +61,8 @@
             .copyright!= `Copyright &copy; ${theme.footer.owner.since} - ${nowYear}  ${config.author}.com  All Rights Reserved.`
           else
             .copyright!= `Copyright &copy; ${nowYear}  ${config.author}.com  All Rights Reserved.`
-        if theme.footer.copyright
+      if theme.footer.copyright
+        .footer-banner
           .framework-info
             span= _p('footer.framework') + ' '
             a(href='https://hexo.io')= 'Hexo'
