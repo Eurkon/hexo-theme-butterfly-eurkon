@@ -1725,6 +1725,7 @@ div.menus_items>div:nth-child(4)>ul {
 #page-header.not-top-img #nav .menus_item>.site-page,
 #page-header.not-top-img #nav #hotkey .site-page {
   color: var(--font-color);
+  cursor: pointer;
   -webkit-transition: all .3s ease-in-out;
   -moz-transition: all .3s ease-in-out;
   -ms-transition: all .3s ease-in-out;
@@ -2480,6 +2481,7 @@ html.hide-aside #hide-aside-btn {
 }
 
 #post .post-copyright #post-url-copy {
+  cursor: pointer;
   margin-left: .5rem;
 }
 
