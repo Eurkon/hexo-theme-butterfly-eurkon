@@ -269,12 +269,20 @@ body.hidden-y {
   width: 100%;
   padding: .5rem .8rem;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#recent-posts>.recent-post-item>.recent-post-info>.article-title {
+  order: -1;
 }
 
 #recent-posts>.recent-post-item>.recent-post-info>.content {
   opacity: 0;
+  order: -1;
   position: absolute;
-  top: -4rem;
+  top: -6rem;
   left: 0;
   right: 0;
   font-size: 1.1rem;
@@ -299,8 +307,7 @@ body.hidden-y {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(180deg, transparent 0, rgba(0, 0, 0, .8) 75%);
-  /* background: rgba(0, 0, 0, .5); */
+  background: linear-gradient(180deg, transparent 0, rgba(0, 0, 0, .6) 75%);
   -webkit-transition: all .6s ease-in-out;
   -moz-transition: all .6s ease-in-out;
   -ms-transition: all .6s ease-in-out;
@@ -317,6 +324,13 @@ body.hidden-y {
   opacity: 1;
 }
 
+#recent-posts>.recent-post-item>.recent-post-info>.article-meta-wrap {
+  color: var(--font-color);
+  white-space: nowrap;
+  display: flex;
+  justify-content: space-between;
+}
+
 #recent-posts>.recent-post-item:hover>.recent-post-info>.content {
   top: -8rem;
 }
@@ -328,41 +342,49 @@ body.hidden-y {
   display: none;
 }
 
+#recent-posts>.recent-post-item>.recent-post-info>.article-meta-wrap>.article-meta a {
+  color: var(--text-highlight-color);
+  padding: .3em;
+  border-radius: .4em;
+}
+
 #recent-posts>.recent-post-item>.recent-post-info>.article-meta-wrap>.article-meta.categories {
   position: absolute;
   top: -11rem;
-  left: .8rem;
+  border-radius: .4em;
+  backdrop-filter: var(--backdrop-filter);
+  background: var(--global-bg-bolder);
+  -webkit-transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  -ms-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
 }
 
-#recent-posts>.recent-post-item>.recent-post-info>.article-meta-wrap>.article-meta.tags {
-  position: absolute;
-  bottom: .8rem;
-  right: .8rem;
+#recent-posts>.recent-post-item>.recent-post-info>.article-meta-wrap>.article-meta.categories:hover {
+  background: var(--main);
+  -webkit-box-shadow: var(--main-shadow);
+  -moz-box-shadow: var(--main-shadow);
+  -ms-box-shadow: var(--main-shadow);
+  -o-box-shadow: var(--main-shadow);
+  box-shadow: var(--main-shadow);
+}
+
+#recent-posts>.recent-post-item>.recent-post-info>.article-meta-wrap>.article-meta.categories:hover a {
+  color: var(--second);
 }
 
 #recent-posts>.recent-post-item>.recent-post-info>.article-meta-wrap>.article-meta.tags a {
   margin-left: .4em;
+  background: var(--global-bg-bolder);
+  -webkit-transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  -ms-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
 }
 
-#recent-posts>.recent-post-item>.recent-post-info>.article-meta-wrap {
-  color: var(--font-color);
-  white-space: nowrap;
-}
-
-#recent-posts>.recent-post-item>.recent-post-info>.article-meta-wrap a {
-  color: var(--font-color);
-  padding: .3em;
-  border-radius: .4em;
-  background: var(--global-bg);
-}
-
-#recent-posts>.recent-post-item>.recent-post-info>.article-meta-wrap>.post-meta-date {
-  position: absolute;
-  left: 1rem;
-  bottom: .8rem;
-}
-
-#recent-posts>.recent-post-item>.recent-post-info>.article-meta-wrap a:hover {
+#recent-posts>.recent-post-item>.recent-post-info>.article-meta-wrap>.article-meta.tags>a:hover {
   color: var(--second);
   background: var(--main);
   -webkit-box-shadow: var(--main-shadow);
