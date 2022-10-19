@@ -276,11 +276,15 @@ body.hidden-y {
 
 #recent-posts>.recent-post-item>.recent-post-info>.article-title {
   order: -1;
+  -webkit-order: -1;
+  -ms-flex-order: -1;
+  -o-box-ordinal-group: -1;
+  -moz-box-ordinal-group: -1;
+  -webkit-box-ordinal-group: -1;
 }
 
 #recent-posts>.recent-post-item>.recent-post-info>.content {
   opacity: 0;
-  order: -1;
   position: absolute;
   top: -6rem;
   left: 0;
@@ -292,6 +296,12 @@ body.hidden-y {
   text-align: justify;
   word-break: break-all;
   -webkit-line-clamp: 3;
+  order: -1;
+  -webkit-order: -1;
+  -ms-flex-order: -1;
+  -o-box-ordinal-group: -1;
+  -moz-box-ordinal-group: -1;
+  -webkit-box-ordinal-group: -1;
   -webkit-transition: all .6s ease-in-out;
   -moz-transition: all .6s ease-in-out;
   -ms-transition: all .6s ease-in-out;
