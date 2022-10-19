@@ -644,6 +644,11 @@ a {
   margin: .5rem;
   border-radius: var(--border-radius);
   background: var(--global-bg);
+  -webkit-transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  -ms-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
 }
 
 #aside-content .card-tag-cloud a {
@@ -652,6 +657,11 @@ a {
   margin: .1em .2em 0 0;
   border-radius: var(--border-radius);
   background: var(--global-bg);
+  -webkit-transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  -ms-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
 }
 
 .tag-cloud-list a:hover,
@@ -1456,17 +1466,12 @@ strong {
 #post-comment:hover, */
 #aside-content .card-widget:hover,
 #recent-posts>.recent-post-item:hover {
-  /* border-color: var(--main); */
-  /* -webkit-box-shadow: var(--main-shadow);
+  border-color: var(--main);
+  -webkit-box-shadow: var(--main-shadow);
   -moz-box-shadow: var(--main-shadow);
   -ms-box-shadow: var(--main-shadow);
   -o-box-shadow: var(--main-shadow);
-  box-shadow: var(--main-shadow); */
-  -webkit-box-shadow: var(--box-shadow);
-  -moz-box-shadow: var(--box-shadow);
-  -ms-box-shadow: var(--box-shadow);
-  -o-box-shadow: var(--box-shadow);
-  box-shadow: var(--box-shadow);
+  box-shadow: var(--main-shadow);
 }
 
 /* nav导航栏 */
