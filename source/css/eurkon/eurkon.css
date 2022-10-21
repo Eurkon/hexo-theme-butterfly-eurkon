@@ -1243,6 +1243,11 @@ a.catalog-more:hover {
 
 .relatedPosts>.relatedPosts-list>div {
   border-radius: var(--border-radius);
+  -webkit-transition: all .6s ease-in-out;
+  -moz-transition: all .6s ease-in-out;
+  -ms-transition: all .6s ease-in-out;
+  -o-transition: all .6s ease-in-out;
+  transition: all .6s ease-in-out;
 }
 
 .relatedPosts>.relatedPosts-list .content .date {
