@@ -1150,6 +1150,11 @@ a.catalog-more:hover {
 /* 上下一篇文章 */
 #pagination.pagination-post {
   border-radius: var(--border-radius);
+  -webkit-transition: all .6s ease-in-out;
+  -moz-transition: all .6s ease-in-out;
+  -ms-transition: all .6s ease-in-out;
+  -o-transition: all .6s ease-in-out;
+  transition: all .6s ease-in-out;
 }
 
 #pagination .prev-post .label,
