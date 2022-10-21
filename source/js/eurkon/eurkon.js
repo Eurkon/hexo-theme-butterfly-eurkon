@@ -55,7 +55,7 @@ const eurkon = {
 
   // 页面标题
   switchPageTitle: function () {
-    document.getElementById('page-title').style.display = window.location.pathname === '/' ? 'none' : 'flex'
+    document.getElementById('page-title').style.display = window.location.pathname === '/' || /^\/page\/[0-9]+\//.test(window.location.pathname) ? 'none' : 'flex'
     document.querySelector('#page-title>span').innerHTML = GLOBAL_CONFIG_SITE.title
   },
 
