@@ -6,7 +6,8 @@
     if site.data.notice
       each i in site.data.notice
         .notice-item.swiper-slide
-          .notice-item-msg!= '【' + i.date + '】 ' + i.msg
+          span.notice-item-date!= '【' + i.date + '】'
+          span.notice-item-msg!= i.msg
 .notice-goto
   a(href='/notice/' title='查看更多...')
     i.fas.fa-arrow-circle-right

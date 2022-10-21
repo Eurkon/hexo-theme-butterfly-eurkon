@@ -2910,10 +2910,11 @@ body.read-mode #comment-barrage {
   overflow: hidden;
   font-weight: bold;
   margin: auto;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .notice-title a,
-.notice-item-msg a,
 .notice-goto a {
   color: var(--font-color);
   -webkit-transition: all .3s ease-in-out;
@@ -2923,8 +2924,32 @@ body.read-mode #comment-barrage {
   transition: all .3s ease-in-out;
 }
 
-.notice-title a:hover,
-.notice-item-msg a:hover,
+.notice-item-date {
+  color: var(--light-text)
+}
+
+.notice-item-msg a {
+  color: var(--text-highlight-color);
+  border-bottom: solid 2px var(--main);
+  padding: 0 0.2em;
+  -webkit-transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  -ms-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+}
+
+.notice-item-msg a:hover {
+  color: var(--second) !important;
+  background: var(--main);
+  -webkit-box-shadow: var(--main-shadow);
+  -moz-box-shadow: var(--main-shadow);
+  -ms-box-shadow: var(--main-shadow);
+  -o-box-shadow: var(--main-shadow);
+  box-shadow: var(--main-shadow);
+  border-radius: 0.25em;
+}
+
 .notice-goto a:hover {
-  color: var(--theme-color) !important;
+  color: var(--theme-color);
 }
