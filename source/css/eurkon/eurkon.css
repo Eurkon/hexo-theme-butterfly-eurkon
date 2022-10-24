@@ -2661,6 +2661,14 @@ body.read-mode #comment-barrage {
   word-break: break-all;
 }
 
+.barrage-content a {
+  color: var(--font-color);
+}
+
+.barrage-content a:hover {
+  color: var(--theme-color);
+}
+
 .barrage-content p {
   margin: 0;
 }
