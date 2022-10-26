@@ -1,4 +1,5 @@
 mixin postUI(posts)
+  - let sticky_post_num = 0
   each article , index in page.posts.data
     .recent-post-item
       -
@@ -10,13 +11,16 @@ mixin postUI(posts)
           : position === 'left' ? 'left' : 'right'
         let post_cover = article.cover
         let no_cover = article.cover === false || !theme.cover.index_enable ? 'no-cover' : ''
+        if(article.top || article.sticky > 0) sticky_post_num += 1
+        let updated_post = article.updated > article.date ? 'article-title-update' : ''
+        let new_post = (is_current('/') && !(article.top || article.sticky > 0) && (index === sticky_post_num)) ? ' article-title-new' : ''
       -
       if post_cover && theme.cover.index_enable
         .post_cover(class=leftOrRight)
           a(href=url_for(link) title=title)
             img.post_bg(src=url_for(post_cover) onerror=`this.onerror=null;this.src='`+ url_for(theme.error_img.post_page) + `'` alt=title)
       .recent-post-info(class=no_cover)
-        a.article-title(href=url_for(link) title=title)= title
+        a.article-title(href=url_for(link) title=title class=updated_post + new_post)= title
         .article-meta-wrap
           if (is_home() && (article.top || article.sticky > 0))
             span.article-meta.sticky

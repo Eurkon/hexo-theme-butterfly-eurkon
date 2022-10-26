@@ -6,6 +6,7 @@ mixin articleSort(posts, current)
       - let no_cover = article.cover === false || !theme.cover.archives_enable ? 'no-article-cover' : ''
       - let title = article.title || _p('no_title')
       - let iconAnimal = '#'+ getAnimalIcon(tempYear)
+      - let updated_post = article.updated > article.date ? 'article-title-update' : ''
       if tempYear !== year
         - year = tempYear
         .article-sort-item.year
@@ -17,7 +18,7 @@ mixin articleSort(posts, current)
           a.article-sort-item-img(href=url_for(article.path) title=title)
             img(src=url_for(article.cover) alt=title onerror=`this.onerror=null;this.src='${url_for(theme.error_img.post_page)}'`)
         .article-sort-item-info
-          a.article-sort-item-title(href=url_for(article.path) title=title)= title
+          a.article-sort-item-title(href=url_for(article.path) title=title class=updated_post)= title
           span.article-sort-item-index= (current - 1) * config.per_page + post_index + 1
           .article-meta-wrap
             if (theme.post_meta.page.categories && article.categories.data.length > 0)
