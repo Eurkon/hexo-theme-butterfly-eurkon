@@ -38,6 +38,6 @@ mixin articleSort(posts, current)
             .article-sort-item-time
               i.far.fa-calendar-alt
               time.post-meta-date-created(datetime=date_xml(article.date) title=_p('post.created') + ' ' + full_date(article.date))= date(article.date, config.date_format)
-              i.fas.fa-history
-              time.post-meta-date-updated(datetime=date_xml(article.updated) title=_p('post.updated') + ' ' + full_date(article.updated))= date(article.updated, config.date_format)
+              //- i.fas.fa-history
+              //- time.post-meta-date-updated(datetime=date_xml(article.updated) title=_p('post.updated') + ' ' + full_date(article.updated))= date(article.updated, config.date_format)
     - })
