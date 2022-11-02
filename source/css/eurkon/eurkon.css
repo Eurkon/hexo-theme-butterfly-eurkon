@@ -18,6 +18,7 @@
   --card-border-dashed: 2px dashed var(--tab-button-hover-bg);
   --border-radius: .5rem;
   --light-text: #FF7242;
+  --light-text-bg: rgba(255, 149, 63, .1);
   --backdrop-filter: saturate(240%) blur(20px);
 }
 
@@ -31,6 +32,7 @@
   --main-bolder: rgba(92, 92, 92, .8);
   --main-shadow: 0 2px 3px 1px rgba(92, 92, 92, .2);
   --light-text: #FFB449;
+  --light-text-bg: rgba(255, 180, 73, .1);
 }
 
 [data-theme='dark'] #web_bg:before,
