@@ -1,0 +1,172 @@
+#article-container
+  #about 
+    .author-img
+      img.no-lightbox(src=url_for(theme.avatar.img))
+    .author-title= _p('关于本站')
+    
+    .author-card-group
+      .author-card.author-card-info
+        .author-card-desc
+          div= _p('简介')
+        .author-card-subtitle
+          div= _p('您好，很高兴认识你👋')
+        .author-card-title
+          div= _p('我是 Eurkon')
+        .author-card-subtitle
+          div= _p('是一名 数据分析师、BI设计师、ETL工程师、取数工具人')
+        //- .author-card-img
+        //-   img.no-lightbox(src=url_for(theme.avatar.img))
+        //- .author-card-btn
+        //-   a(href=url_for('https://github.com/Eurkon') title='Github')
+        //-     i.fas.fa-chevron-circle-right
+        //-     span= _p('Github')
+
+      .author-card.author-card-personalities
+        .author-card-desc
+          div= _p('性格')
+        .author-card-title
+          div= _p('守护者')
+        .author-card-subtitle
+          div= _p('ISFJ-T')
+        .author-card-img
+          img.no-lightbox(src=url_for('/images/user/isfj.svg'))
+        .author-card-btn
+          a(href=url_for('https://www.16personalities.com/ch/isfj-%E4%BA%BA%E6%A0%BC') title='“守护者”人格')
+            i.fas.fa-chevron-circle-right
+            span= _p('ISFJ-T')
+
+    .author-card-group
+      .author-card.author-card-career
+        .author-card-desc= _p('生涯')
+        //- .author-card-subtitle= _p('你好，很高兴认识你👋')
+        .author-card-title= _p('去码头整点薯条')
+        //- .author-card-subtitle= _p('是一名 数据分析师')
+        //- .author-card-img
+        //-   img..no-lightbox(src=url_for(theme.avatar.img))
+        //- .author-card-btn
+        //-   a(href=url_for('https://github.com/Eurkon') title='Github')
+        //-     i.fas.fa-chevron-circle-right
+        //-     span= _p('Github')
+        #author-career-container
+          script(data-pjax src=url_for('/js/career.js'))
+            
+
+      .author-card.author-card-skills
+        .author-card-desc= _p('技能')
+        .author-card-title= _p('开启创造力')
+        .skills-contain
+          .skills-info
+            .skill-info-item
+              .skill-info-icon
+                img.no-lightbox(src=url_for('/images/user/sql.png'))
+              .skill-info-name
+                span= _p('SQL')
+              .skill-info-process!= numToStars(4.5)
+            .skill-info-item
+              .skill-info-icon
+                img.no-lightbox(src=url_for('/images/user/echarts.png'))
+              .skill-info-name
+                span= _p('ECharts')
+              .skill-info-process!= numToStars(4.5)
+            .skill-info-item
+              .skill-info-icon(style='background: #036fba')
+                img.no-lightbox(src=url_for('/images/user/css3.png'))
+              .skill-info-name
+                span= _p('CSS3')
+              .skill-info-process!= numToStars(4.5)
+            .skill-info-item
+              .skill-info-icon(style='background: #d84925')
+                img.no-lightbox(src=url_for('/images/user/html5.png'))
+              .skill-info-name
+                span= _p('HTML')
+              .skill-info-process!= numToStars(4)
+            .skill-info-item
+              .skill-info-icon(style='background: #f0c901')
+                img.no-lightbox(src=url_for('/images/user/js.png'))
+              .skill-info-name
+                span= _p('JS')
+              .skill-info-process!= numToStars(4)
+            .skill-info-item
+              .skill-info-icon
+                img.no-lightbox(src=url_for('/images/user/python.png'))
+              .skill-info-name
+                span= _p('Python')
+              .skill-info-process!= numToStars(3.5)
+            .skill-info-item
+              .skill-info-icon(style='background: #ee4b26')
+                img.no-lightbox(src=url_for('/images/user/git.png'))
+              .skill-info-name
+                span= _p('Git')
+              .skill-info-process!= numToStars(3.5)
+            .skill-info-item
+              .skill-info-icon
+                img.no-lightbox(src=url_for('/images/user/java.png'))
+              .skill-info-name
+                span= _p('Java')
+              .skill-info-process!= numToStars(3)
+
+          .skills-wrapper
+            .skills-icon-pair
+              .skill-icon(style='background: #f0c901')
+                img.no-lightbox(src=url_for('/images/user/js.png'))
+              .skill-icon
+                img.no-lightbox(src=url_for('/images/user/sql.png'))
+            .skills-icon-pair
+              .skill-icon
+                img.no-lightbox(src=url_for('/images/user/python.png'))
+              .skill-icon(style='background: #036fba')
+                img.no-lightbox(src=url_for('/images/user/css3.png'))
+            .skills-icon-pair
+              .skill-icon(style='background: #ee4b26')
+                img.no-lightbox(src=url_for('/images/user/git.png'))
+              .skill-icon
+                img.no-lightbox(src=url_for('/images/user/echarts.png'))
+            .skills-icon-pair
+              .skill-icon
+                img.no-lightbox(src=url_for('/images/user/java.png'))
+              .skill-icon(style='background: #d84925')
+                img.no-lightbox(src=url_for('/images/user/html5.png'))
+
+            .skills-icon-pair
+              .skill-icon(style='background: #f0c901')
+                img.no-lightbox(src=url_for('/images/user/js.png'))
+              .skill-icon
+                img.no-lightbox(src=url_for('/images/user/sql.png'))
+            .skills-icon-pair
+              .skill-icon
+                img.no-lightbox(src=url_for('/images/user/python.png'))
+              .skill-icon(style='background: #036fba')
+                img.no-lightbox(src=url_for('/images/user/css3.png'))
+            .skills-icon-pair
+              .skill-icon
+                img.no-lightbox(src=url_for('/images/user/echarts.png'))
+              .skill-icon(style='background: #ee4b26')
+                img.no-lightbox(src=url_for('/images/user/git.png'))
+            .skills-icon-pair
+              .skill-icon
+                img.no-lightbox(src=url_for('/images/user/java.png'))
+              .skill-icon(style='background: #d84925')
+                img.no-lightbox(src=url_for('/images/user/html5.png'))
+
+            .skills-icon-pair
+              .skill-icon(style='background: #f0c901')
+                img.no-lightbox(src=url_for('/images/user/js.png'))
+              .skill-icon
+                img.no-lightbox(src=url_for('/images/user/sql.png'))
+            .skills-icon-pair
+              .skill-icon
+                img.no-lightbox(src=url_for('/images/user/python.png'))
+              .skill-icon(style='background: #036fba')
+                img.no-lightbox(src=url_for('/images/user/css3.png'))
+            .skills-icon-pair
+              .skill-icon(style='background: #ee4b26')
+                img.no-lightbox(src=url_for('/images/user/git.png'))
+              .skill-icon
+                img.no-lightbox(src=url_for('/images/user/echarts.png'))
+            .skills-icon-pair
+              .skill-icon
+                img.no-lightbox(src=url_for('/images/user/java.png'))
+              .skill-icon(style='background: #d84925')
+                img.no-lightbox(src=url_for('/images/user/html5.png'))
+
+    != page.content
