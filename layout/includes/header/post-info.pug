@@ -1,30 +1,7 @@
 - let comments = theme.comments
 #post-info
-  h1.post-title= page.title || _p('no_title')
-    if theme.post_edit.enable
-      a.post-edit-link(href=theme.post_edit.url + page.source title=_p('post.edit') target="_blank")
-        i.fas.fa-pencil-alt
-        
   #post-meta
     .meta-firstline
-      if (theme.post_meta.post.date_type)
-        span.post-meta-date
-          if (theme.post_meta.post.date_type === 'both')
-            i.far.fa-calendar-alt.fa-fw.post-meta-icon
-            span.post-meta-label= _p('post.created')
-            time.post-meta-date-created(datetime=date_xml(page.date) title=_p('post.created') + ' ' + full_date(page.date))=date(page.date, config.date_format)
-            span.post-meta-separator |
-            i.fas.fa-history.fa-fw.post-meta-icon
-            span.post-meta-label= _p('post.updated')
-            time.post-meta-date-updated(datetime=date_xml(page.updated) title=_p('post.updated') + ' ' + full_date(page.updated))=date(page.updated, config.date_format)
-          else
-            - let data_type_update = theme.post_meta.post.date_type === 'updated'
-            - let date_type = data_type_update ? 'updated' : 'date'
-            - let date_icon = data_type_update ? 'fas fa-history' :'far fa-calendar-alt'
-            - let date_title = data_type_update ? _p('post.updated') : _p('post.created')
-            i.fa-fw.post-meta-icon(class=date_icon)
-            span.post-meta-label= date_title
-            time(datetime=date_xml(page[date_type]) title=date_title + ' ' + full_date(page[date_type]))=date(page[date_type], config.date_format)
       if (theme.post_meta.post.categories && page.categories.data.length > 0)
         span.post-meta-categories
           if (theme.post_meta.post.date_type)
@@ -46,7 +23,31 @@
             if (index < page.tags.data.length - 1)
               span.post-meta-separator #[='•']
 
+    h1.post-title= page.title || _p('no_title')
+      if theme.post_edit.enable
+        a.post-edit-link(href=theme.post_edit.url + page.source title=_p('post.edit') target="_blank")
+          i.fas.fa-pencil-alt
+          
     .meta-secondline
+      if (theme.post_meta.post.date_type)
+        span.post-meta-date
+          if (theme.post_meta.post.date_type === 'both')
+            i.far.fa-calendar-alt.fa-fw.post-meta-icon
+            span.post-meta-label= _p('post.created')
+            time.post-meta-date-created(datetime=date_xml(page.date) title=_p('post.created') + ' ' + full_date(page.date))=date(page.date, config.date_format)
+            span.post-meta-separator |
+            i.fas.fa-history.fa-fw.post-meta-icon
+            span.post-meta-label= _p('post.updated')
+            time.post-meta-date-updated(datetime=date_xml(page.updated) title=_p('post.updated') + ' ' + full_date(page.updated))=date(page.updated, config.date_format)
+          else
+            - let data_type_update = theme.post_meta.post.date_type === 'updated'
+            - let date_type = data_type_update ? 'updated' : 'date'
+            - let date_icon = data_type_update ? 'fas fa-history' :'far fa-calendar-alt'
+            - let date_title = data_type_update ? _p('post.updated') : _p('post.created')
+            i.fa-fw.post-meta-icon(class=date_icon)
+            span.post-meta-label= date_title
+            time(datetime=date_xml(page[date_type]) title=date_title + ' ' + full_date(page[date_type]))=date(page[date_type], config.date_format)
+
       - let postWordcount = theme.wordcount.enable && (theme.wordcount.post_wordcount || theme.wordcount.min2read)
       if (postWordcount)
         span.post-meta-separator |
@@ -55,9 +56,10 @@
             i.far.fa-file-word.fa-fw.post-meta-icon
             span.post-meta-label= _p('post.wordcount') + ':'
             span.word-count= wordcount(page.content)
-            if theme.wordcount.min2read
-              span.post-meta-separator |
           if theme.wordcount.min2read
+            span.post-meta-separator |
+        if theme.wordcount.min2read
+          span.post-meta-min2read
             i.far.fa-clock.fa-fw.post-meta-icon
             span.post-meta-label= _p('post.min2read') + ':'
             span= min2read(page.content, {cn: 350, en: 160}) + _p('post.min2read_unit')
