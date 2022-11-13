@@ -3000,3 +3000,7 @@ body.read-mode #comment-barrage {
 .notice-goto a:hover {
   color: var(--theme-color);
 }
+
+.flink-card {
+  display: none;
+}

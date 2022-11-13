@@ -1,6 +1,22 @@
 #article-container
   .flink
     if site.data.link
+      .flink-card.author-card
+        .flink-card-desc!= _p('友情链接')
+          .flink-card-title!= _p('与各类博主共同进步')
+        .flink-card-container
+          .flink-card-wrapper!= flink_list()
+        .flink-card-btn-group
+          .flink-card-btn
+            a(href="javascript:toRandomFlink();" title='随机访问')
+              i.fas.fa-random
+              span= _p('随机访问')
+          .flink-card-btn
+            a(href=url_for('javascript:utils.applyFLink();') title='申请友链')
+              i.fas.fa-plus-circle
+              span= _p('申请友链')
+
+    if site.data.link
       each i in site.data.link
         if i.class_name
           h2!= i.class_name
