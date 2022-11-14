@@ -1,5 +1,5 @@
 #article-container
-  #about 
+  #author-about 
     .author-img
       img.no-lightbox(src=url_for(theme.avatar.img))
     .author-title= _p('关于本站')
@@ -169,4 +169,4 @@
               .skill-icon(style='background: #d84925')
                 img.no-lightbox(src=url_for('/images/user/html5.png'))
 
-    != page.content
+  != page.content

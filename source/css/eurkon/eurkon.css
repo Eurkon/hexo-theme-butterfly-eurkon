@@ -3001,6 +3001,9 @@ body.read-mode #comment-barrage {
   color: var(--theme-color);
 }
 
+#page>#article-container>#author-about {
+  display: none;
+}
 
 #article-container .flink .flink-card {
   display: none;
