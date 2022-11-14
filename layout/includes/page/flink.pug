@@ -1,9 +1,9 @@
 #article-container
   .flink
     if site.data.link
-      .flink-card.author-card
+      .flink-card
         .flink-card-desc!= _p('友情链接')
-          .flink-card-title!= _p('与各类博主共同进步')
+        .flink-card-title!= _p('与各类技术博主共同进步')
         .flink-card-container
           .flink-card-wrapper!= flink_list()
         .flink-card-btn-group

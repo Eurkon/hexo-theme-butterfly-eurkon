@@ -3001,6 +3001,7 @@ body.read-mode #comment-barrage {
   color: var(--theme-color);
 }
 
-.flink-card {
+
+#article-container .flink .flink-card {
   display: none;
 }
