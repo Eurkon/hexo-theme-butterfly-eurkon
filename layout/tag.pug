@@ -15,6 +15,8 @@ block content
           #catalog-list
             !=catalog_list("tags")
           a.catalog-more(href="/tags/")!= '更多'
+        .tag-cloud-list.is-center
+          !=cloudTags({source: site.tags, minfontsize: 1.2, maxfontsize: 2.1, limit: 0, unit: 'em'})
         .article-sort-title= _p('page.tag') + ' - ' + page.tag
         +articleSort(page.posts, page.current)
         include includes/pagination.pug

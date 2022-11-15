@@ -73,11 +73,13 @@ const eurkon = {
 
       // 高亮当前页面对应的分类或标签
       let $catalog = document.getElementById(decodeURIComponent(window.location.pathname))
-      $catalog.classList.add('selected')
+      $catalog?.classList.add('selected')
 
       // 滚动当前页面对应的分类或标签到中部
       $list.scrollLeft = ($catalog.offsetLeft - $list.offsetLeft) - ($list.offsetWidth - $catalog.offsetWidth) / 2
     }
+
+    document.getElementById(decodeURIComponent(window.location.pathname.slice(1)))?.classList.add('selected')
   },
 
   // 热评
