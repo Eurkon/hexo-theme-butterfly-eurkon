@@ -12,7 +12,7 @@ block content
         if (theme.post_meta.post.tags)
           .post-meta__tag-list
             each item, index in page.tags.data
-              a(href=url_for(item.path)).post-meta__tags #[=(config.emoji && config.emoji[item.name] || '') + item.name]
+              a(href=url_for(item.path)).post-meta__tags #[=(config.emoji && config.emoji.tags && config.emoji.tags[item.name] || '') + item.name]
         include includes/third-party/share/index.pug
           
       if theme.reward.enable && theme.reward.QR_code

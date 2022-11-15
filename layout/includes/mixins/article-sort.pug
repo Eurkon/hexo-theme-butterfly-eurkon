@@ -25,14 +25,14 @@ mixin articleSort(posts, current)
               span.article-sort-item-categories
                 i.fas.fa-shapes
                 each item, index in article.categories.data
-                  a(href=url_for(item.path)).article-meta__categories #[=(config.emoji && config.emoji[item.name] || '') + item.name]
+                  a(href=url_for(item.path)).article-meta__categories #[=(config.emoji && config.emoji.categories && config.emoji.categories[item.name] || '') + item.name]
                   if (index < article.categories.data.length - 1)
                     i.fas.fa-angle-right
             if (theme.post_meta.page.tags && article.tags.data.length > 0)
               span.article-sort-item-tags
                 i.fas.fa-tags
                 each item, index in article.tags.data
-                  a(href=url_for(item.path)).article-meta__tags #[=(config.emoji && config.emoji[item.name] || '') + item.name]
+                  a(href=url_for(item.path)).article-meta__tags #[=(config.emoji && config.emoji.tags && config.emoji.tags[item.name] || '') + item.name]
                   if (index < article.tags.data.length - 1)
                     span.article-meta__link #[='•']
             .article-sort-item-time

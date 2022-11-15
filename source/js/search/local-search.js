@@ -161,7 +161,7 @@ window.addEventListener('load', () => {
 
               str += '<div class="local-search__hit-item"><a href="' + dataUrl + '" class="search-result-title">' + dataTitle + '</a>'
               dataTags.forEach(tag => {
-                str += `<a class="search-result-tag" href="${GLOBAL_CONFIG.root + 'tags/' + tag + '/'}">${(GLOBAL_CONFIG.emoji && GLOBAL_CONFIG.emoji[tag] || '') + tag}</a>`
+                str += `<a class="search-result-tag" href="${GLOBAL_CONFIG.root + 'tags/' + tag + '/'}">${(GLOBAL_CONFIG.emoji && GLOBAL_CONFIG.emoji.tags && GLOBAL_CONFIG.emoji.tags[tag] || '') + tag}</a>`
               })
               count += 1
 
