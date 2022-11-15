@@ -5,7 +5,29 @@
         .flink-card-desc!= _p('友情链接')
         .flink-card-title!= _p('与各类技术博主共同进步')
         .flink-card-container
-          .flink-card-wrapper!= flink_list()
+          .flink-card-wrapper
+            if site.data.link
+              - let linkList = []
+              - site.data.link.map(function (list) { list.link_list.map(function (item) { linkList.push(item) }) })
+              - if (linkList.length % 2 !== 0) linkList.shift()
+              - let evenList = linkList.filter((x, index) => index % 2 === 0)
+              - let oddList = linkList.filter((x, index) => index % 2 === 1)
+              each item, index in evenList
+                .flink-icon-pair
+                  .flink-icon 
+                    a(href=url_for(evenList[index].link) target='_blank' title=evenList[index].name)
+                      img.no-lightbox(src=url_for(evenList[index].avatar) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt=evenList[index].name)
+                  .flink-icon 
+                    a(href=url_for(oddList[index].link) target='_blank' title=oddList[index].name)
+                      img.no-lightbox(src=url_for(oddList[index].avatar) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt=oddList[index].name)
+              each item, index in evenList
+                .flink-icon-pair
+                  .flink-icon 
+                    a(href=url_for(evenList[index].link) target='_blank' title=evenList[index].name)
+                      img.no-lightbox(src=url_for(evenList[index].avatar) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt=evenList[index].name)
+                  .flink-icon 
+                    a(href=url_for(oddList[index].link) target='_blank' title=oddList[index].name)
+                      img.no-lightbox(src=url_for(oddList[index].avatar) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt=oddList[index].name)
         .flink-card-btn-group
           .flink-card-btn
             a(href="javascript:toRandomFlink();" title='随机访问')
