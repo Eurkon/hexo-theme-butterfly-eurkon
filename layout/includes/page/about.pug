@@ -49,124 +49,37 @@
         //-     span= _p('Github')
         #author-career-container
           script(data-pjax src=url_for('/js/career.js'))
-            
 
       .author-card.author-card-skills
-        .author-card-desc= _p('技能')
-        .author-card-title= _p('开启创造力')
-        .skill-card-container
-          .skill-info-container
-            .skill-info-item
-              .skill-info-icon
-                img.no-lightbox(src=url_for('/images/user/sql.png'))
-              .skill-info-name
-                span= _p('SQL')
-              .skill-info-process!= numToStars(4.5)
-            .skill-info-item
-              .skill-info-icon
-                img.no-lightbox(src=url_for('/images/user/echarts.png'))
-              .skill-info-name
-                span= _p('ECharts')
-              .skill-info-process!= numToStars(4.5)
-            .skill-info-item
-              .skill-info-icon(style='background: #036fba')
-                img.no-lightbox(src=url_for('/images/user/css3.png'))
-              .skill-info-name
-                span= _p('CSS3')
-              .skill-info-process!= numToStars(4.5)
-            .skill-info-item
-              .skill-info-icon(style='background: #d84925')
-                img.no-lightbox(src=url_for('/images/user/html5.png'))
-              .skill-info-name
-                span= _p('HTML')
-              .skill-info-process!= numToStars(4)
-            .skill-info-item
-              .skill-info-icon(style='background: #f0c901')
-                img.no-lightbox(src=url_for('/images/user/js.png'))
-              .skill-info-name
-                span= _p('JS')
-              .skill-info-process!= numToStars(4)
-            .skill-info-item
-              .skill-info-icon
-                img.no-lightbox(src=url_for('/images/user/python.png'))
-              .skill-info-name
-                span= _p('Python')
-              .skill-info-process!= numToStars(3.5)
-            .skill-info-item
-              .skill-info-icon(style='background: #ee4b26')
-                img.no-lightbox(src=url_for('/images/user/git.png'))
-              .skill-info-name
-                span= _p('Git')
-              .skill-info-process!= numToStars(3.5)
-            .skill-info-item
-              .skill-info-icon
-                img.no-lightbox(src=url_for('/images/user/java.png'))
-              .skill-info-name
-                span= _p('Java')
-              .skill-info-process!= numToStars(3)
-
-          .skill-card-wrapper
-            .skill-icon-pair
-              .skill-icon(style='background: #f0c901')
-                img.no-lightbox(src=url_for('/images/user/js.png'))
-              .skill-icon
-                img.no-lightbox(src=url_for('/images/user/sql.png'))
-            .skill-icon-pair
-              .skill-icon
-                img.no-lightbox(src=url_for('/images/user/python.png'))
-              .skill-icon(style='background: #036fba')
-                img.no-lightbox(src=url_for('/images/user/css3.png'))
-            .skill-icon-pair
-              .skill-icon(style='background: #ee4b26')
-                img.no-lightbox(src=url_for('/images/user/git.png'))
-              .skill-icon
-                img.no-lightbox(src=url_for('/images/user/echarts.png'))
-            .skill-icon-pair
-              .skill-icon
-                img.no-lightbox(src=url_for('/images/user/java.png'))
-              .skill-icon(style='background: #d84925')
-                img.no-lightbox(src=url_for('/images/user/html5.png'))
-
-            .skill-icon-pair
-              .skill-icon(style='background: #f0c901')
-                img.no-lightbox(src=url_for('/images/user/js.png'))
-              .skill-icon
-                img.no-lightbox(src=url_for('/images/user/sql.png'))
-            .skill-icon-pair
-              .skill-icon
-                img.no-lightbox(src=url_for('/images/user/python.png'))
-              .skill-icon(style='background: #036fba')
-                img.no-lightbox(src=url_for('/images/user/css3.png'))
-            .skill-icon-pair
-              .skill-icon
-                img.no-lightbox(src=url_for('/images/user/echarts.png'))
-              .skill-icon(style='background: #ee4b26')
-                img.no-lightbox(src=url_for('/images/user/git.png'))
-            .skill-icon-pair
-              .skill-icon
-                img.no-lightbox(src=url_for('/images/user/java.png'))
-              .skill-icon(style='background: #d84925')
-                img.no-lightbox(src=url_for('/images/user/html5.png'))
-
-            .skill-icon-pair
-              .skill-icon(style='background: #f0c901')
-                img.no-lightbox(src=url_for('/images/user/js.png'))
-              .skill-icon
-                img.no-lightbox(src=url_for('/images/user/sql.png'))
-            .skill-icon-pair
-              .skill-icon
-                img.no-lightbox(src=url_for('/images/user/python.png'))
-              .skill-icon(style='background: #036fba')
-                img.no-lightbox(src=url_for('/images/user/css3.png'))
-            .skill-icon-pair
-              .skill-icon(style='background: #ee4b26')
-                img.no-lightbox(src=url_for('/images/user/git.png'))
-              .skill-icon
-                img.no-lightbox(src=url_for('/images/user/echarts.png'))
-            .skill-icon-pair
-              .skill-icon
-                img.no-lightbox(src=url_for('/images/user/java.png'))
-              .skill-icon(style='background: #d84925')
-                img.no-lightbox(src=url_for('/images/user/html5.png'))
+        if site.data.skill
+          - let background = '#fff'
+          - let evenList = site.data.skill.link_list.filter((x, index) => index % 2 === 0)
+          - let oddList = site.data.skill.link_list.filter((x, index) => index % 2 === 1)
+          - evenList = evenList.slice(0, oddList.length)
+          .author-card-desc!= site.data.skill.class_desc
+          .author-card-title!= site.data.skill.class_name
+          .skill-card-container
+            .skill-info-container
+              each item in site.data.skill.link_list
+                if item.star > 0
+                  .skill-info-item
+                    .skill-info-icon(style=`background: ${item.color || background}`)
+                      img.no-lightbox(src=url_for(item.image))
+                    .skill-info-name
+                      span= item.name
+                    .skill-info-process!= numToStars(item.star)
+            .skill-card-wrapper
+              each item, index in evenList
+                .skill-icon-pair
+                  .skill-icon(style=`background: ${evenList[index].color || background}`)
+                    img.no-lightbox(src=url_for(evenList[index].image))
+                  .skill-icon(style=`background: ${oddList[index].color || background}`)
+                    img.no-lightbox(src=url_for(oddList[index].image))
+              each item, index in evenList
+                .skill-icon-pair
+                  .skill-icon(style=`background: ${evenList[index].color || background}`)
+                    img.no-lightbox(src=url_for(evenList[index].image))
+                  .skill-icon(style=`background: ${oddList[index].color || background}`)
+                    img.no-lightbox(src=url_for(oddList[index].image))
 
   != page.content
