@@ -881,8 +881,8 @@ a {
 }
 
 .article-sort-item-img {
-  height: 100px;
-  width: 140px;
+  height: 80px;
+  width: 120px;
   border-radius: var(--border-radius);
 }
 
@@ -895,13 +895,26 @@ a {
   bottom: 0.8rem;
 }
 
+.fc-article-sort .fc-article-author {
+  margin-left: .5em;
+}
+
 .article-sort-item-info {
-  padding-right: .25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 85%;
 }
 
 .article-sort-item-title {
   color: var(--theme-color) !important;
   font-size: 1.2em;
+  line-height: 1.5;
+  -webkit-transform: none !important;
+  -moz-transform: none !important;
+  -ms-transform: none !important;
+  -o-transform: none !important;
+  transform: none !important;
 }
 
 @media screen and (max-width: 600px) {
@@ -930,11 +943,14 @@ a {
 }
 
 .article-sort-item-categories {
-  display: block;
+  margin-right: .5em;
 }
 
 .article-sort-item .article-meta-wrap {
   font-size: 95%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 .article-sort-item .article-meta__link {
@@ -1148,12 +1164,7 @@ a.catalog-more:hover {
   background: transparent !important;
 }
 
-#pagination a.extend i {
-  line-height: 2.1em;
-}
-
 #pagination a.extend.prev {
-  display: flex;
   width: 4.5rem;
   float: left;
   padding: 0 .8rem 0 .2rem;
@@ -1162,12 +1173,45 @@ a.catalog-more:hover {
 }
 
 #pagination a.extend.next {
-  display: flex;
   width: 4.5rem;
   float: right;
   padding: 0 .2rem 0 .8rem;
   border-top-left-radius: 1rem;
   border-bottom-left-radius: 1rem;
+}
+
+#pagination a.extend.prev .pagination-prev {
+  opacity: 0;
+  display: inline;
+  color: var(--second);
+  margin-right: -2em;
+  -webkit-transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  -ms-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+}
+
+#pagination a.extend.prev:hover .pagination-prev {
+  opacity: 1;
+  margin-right: 0;
+}
+
+#pagination a.extend.next .pagination-next {
+  opacity: 0;
+  display: inline;
+  color: var(--second);
+  margin-left: -2em;
+  -webkit-transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  -ms-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+}
+
+#pagination a.extend.next:hover .pagination-next {
+  opacity: 1;
+  margin-left: 0;
 }
 
 /* 上下一篇文章 */
@@ -1762,6 +1806,7 @@ div.menus_items>div:nth-child(4)>ul {
 
 #page-header.post-bg #nav #site-name:hover,
 #page-header.post-bg #nav .menus_item>.site-page:hover,
+#page-header.post-bg #nav .menus_items .menus_item:hover>a.site-page.group,
 #page-header.post-bg #nav #hotkey .site-page:hover {
   color: var(--main) !important;
   background: var(--second);
@@ -1769,6 +1814,7 @@ div.menus_items>div:nth-child(4)>ul {
 
 [data-theme="dark"] #page-header.post-bg #nav #site-name:hover,
 [data-theme="dark"] #page-header.post-bg #nav .menus_item>.site-page:hover,
+[data-theme="dark"] #page-header.post-bg #nav .menus_items .menus_item:hover>a.site-page.group,
 [data-theme="dark"] #page-header.post-bg #nav #hotkey .site-page:hover {
   color: var(--second) !important;
   background: var(--main);
@@ -1806,11 +1852,13 @@ div.menus_items>div:nth-child(4)>ul {
 #page-header.post-bg.nav-fixed #nav #site-name:hover,
 #page-header.post-bg.nav-fixed #nav #page-title:hover,
 #page-header.post-bg.nav-fixed #nav .menus_item>.site-page:hover,
+#page-header.post-bg.nav-fixed #nav .menus_items .menus_item:hover>a.site-page.group,
 #page-header.post-bg.nav-fixed #nav #hotkey .site-page:hover,
 
 #page-header.not-top-img #nav #site-name:hover,
 #page-header.not-top-img #nav #page-title:hover,
 #page-header.not-top-img #nav .menus_item>.site-page:hover,
+#page-header.not-top-img #nav .menus_items .menus_item:hover>a.site-page.group,
 #page-header.not-top-img #nav #hotkey .site-page:hover {
   color: var(--second) !important;
   background: var(--main) !important;
@@ -2463,7 +2511,7 @@ html.hide-aside #hide-aside-btn {
 #post-info #post-meta .meta-firstline a.post-meta-categories {
   font-weight: bold;
   font-size: .95rem;
-  background: rgba(255, 255, 255, .5);
+  background: rgba(255, 255, 255, .2);
   border-radius: var(--border-radius);
   padding: .3rem .4rem;
   margin-right: 1rem;
