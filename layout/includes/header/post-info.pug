@@ -4,9 +4,6 @@
     .meta-firstline
       if (theme.post_meta.post.categories && page.categories.data.length > 0)
         span.post-meta-categories
-          if (theme.post_meta.post.date_type)
-            span.post-meta-separator |
-
           each item, index in page.categories.data
             i.fas.fa-shapes.fa-fw.post-meta-icon
             a(href=url_for(item.path)).post-meta-categories #[=(config.emoji && config.emoji.categories && config.emoji.categories[item.name] || '') + item.name]
@@ -14,9 +11,8 @@
               i.fas.fa-angle-right.post-meta-separator
       if (theme.post_meta.post.tags && page.tags.data.length > 0)
         span.post-meta-tags
-          if (theme.post_meta.post.date_type)
-            span.post-meta-separator |
-            i.fas.fa-tags.fa-fw.post-meta-icon
+          span.post-meta-separator |
+          i.fas.fa-tags.fa-fw.post-meta-icon
 
           each item, index in page.tags.data
             a(href=url_for(item.path)).post-meta-tags #[=(config.emoji && config.emoji.tags && config.emoji.tags[item.name] || '') + item.name]
@@ -27,7 +23,7 @@
       if theme.post_edit.enable
         a.post-edit-link(href=theme.post_edit.url + page.source title=_p('post.edit') target="_blank")
           i.fas.fa-pencil-alt
-          
+
     .meta-secondline
       if (theme.post_meta.post.date_type)
         if (theme.post_meta.post.date_type === 'both')
@@ -35,6 +31,7 @@
             i.far.fa-calendar-alt.fa-fw.post-meta-icon
             span.post-meta-label= _p('post.created')
             time.post-meta-date-created(datetime=date_xml(page.date) title=_p('post.created') + ' ' + full_date(page.date))=date(page.date, config.date_format)
+          span.post-meta-separator |
           span.post-meta-date
             i.fas.fa-history.fa-fw.post-meta-icon
             span.post-meta-label= _p('post.updated')

@@ -2502,6 +2502,9 @@ html.hide-aside #hide-aside-btn {
   display: none;
 }
 
+#post-info #post-meta>.meta-secondline>span:first-child {
+  display: unset;
+}
 
 #post-info #post-meta .meta-secondline>span:not(:last-child) {
   opacity: .9;
