@@ -34,7 +34,7 @@
               i.fas.fa-random
               span= _p('随机访问')
           .flink-card-btn
-            a(href=url_for('javascript:utils.applyFLink();') title='申请友链')
+            a(href=url_for("javascript:utils.commentSelect('name: \\nlink: \\navatar: \\ndescr: ', '请填写友链信息...');") title='申请友链')
               i.fas.fa-plus-circle
               span= _p('申请友链')
 
@@ -58,7 +58,7 @@
           .flink-list
             each item in i.link_list
               .flink-list-item
-                a(href=url_for(item.link) title=item.name target="_blank")
+                a(href=url_for(item.link) title=item.name target='_blank')
                   .flink-item-icon.info
                     img.no-lightbox(src=url_for(item.avatar) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt=item.name)
                   .flink-item-info
