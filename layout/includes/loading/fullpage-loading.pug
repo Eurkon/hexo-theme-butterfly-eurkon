@@ -1,0 +1,53 @@
+if theme.preloader && theme.preloader.enable
+  case theme.preloader.load_style
+    when 'gear'
+      include ./load_style/gear.pug
+    when 'ironheart'
+      include ./load_style/ironheart.pug
+    when 'scarecrow'
+      include ./load_style/scarecrow.pug
+    when 'triangles'
+      include ./load_style/triangles.pug
+    when 'wizard'
+      include ./load_style/wizard.pug
+    when 'image'
+      include ./load_style/image.pug
+    when 'spinner'
+      include ./load_style/spinner.pug
+    default
+      #loading-box
+        .loading-left-bg
+        .loading-right-bg
+        .spinner-box
+          .configure-border-1
+            .configure-core
+          .configure-border-2
+            .configure-core
+          .loading-word= _p('loading')
+
+script.
+  const preloader = {
+    endLoading: () => {
+      document.body.style.overflow = 'auto';
+      document.getElementById('loading-box').style.transition = 'opacity 1s';
+      document.getElementById('loading-box').style.opacity = '0';
+      setTimeout(function () { document.getElementById('loading-box').classList.add("loaded") }, 1000)
+      document.body.classList.remove("hidden-y")
+    },
+    initLoading: () => {
+      document.body.style.overflow = '';
+      document.getElementById('loading-box').style.transition = '';
+      document.getElementById('loading-box').style.opacity = '1'; 
+      document.getElementById('loading-box').classList.remove("loaded")
+      document.body.classList.add("hidden-y")
+    }
+  }
+  window.addEventListener('load',()=> { preloader.endLoading() })
+
+  if (!{theme.pjax && theme.pjax.enable}) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+
+  setTimeout(function () { preloader.endLoading() }, 3000)
+  document.getElementById('loading-box').addEventListener('click', () => { preloader.endLoading() })
