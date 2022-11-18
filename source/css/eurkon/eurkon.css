@@ -425,7 +425,20 @@ body.hidden-y {
   border-radius: var(--border-radius);
 }
 
+@media screen and (max-width: 768px) {
   .search-dialog {
+    top: 10%;
+    left: 10%;
+    margin: 0;
+    width: 80%;
+    height: auto;
+  }
+
+  #local-search .search-dialog .search-result-list {
+    max-height: calc(80vh - 130px) !important;
+  }
+}
+
 #local-search .search-dialog .local-search__hit-item:hover::before {
   border-color: var(--light-text);
 }
