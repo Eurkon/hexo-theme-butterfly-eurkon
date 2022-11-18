@@ -425,6 +425,7 @@ body.hidden-y {
   border-radius: var(--border-radius);
 }
 
+  .search-dialog {
 #local-search .search-dialog .local-search__hit-item:hover::before {
   border-color: var(--light-text);
 }
