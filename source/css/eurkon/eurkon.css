@@ -1769,6 +1769,28 @@ div.menus_items>div:nth-child(4)>ul {
 }
 
 /* 小屏导航栏 */
+#sidebar #sidebar-menus .menus_items .menus_item_child {
+  display: flex;
+  flex-wrap: wrap;
+  padding-inline-start: 1rem;
+  padding-inline-end: 1rem;
+  justify-content: space-between;
+}
+
+#sidebar #sidebar-menus .menus_items .menus_item_child li {
+  width: 50%;
+}
+
+#sidebar #sidebar-menus .menus_items .site-page.child {
+  padding: .5em;
+  background: var(--card-bg);
+  border: var(--card-border);
+  border-radius: var(--border-radius);
+  margin: .25em;
+  font-size: 1rem;
+  text-align: center;
+}
+
 #sidebar #sidebar-menus .sidebar-site-data a:hover,
 #sidebar #sidebar-menus .menus_items .site-page:hover {
   border-radius: var(--border-radius);
