@@ -6,14 +6,10 @@
     
     .author-card-group
       .author-card.author-card-info
-        .author-card-desc
-          div= _p('简介')
-        .author-card-subtitle
-          div= _p('您好，很高兴认识你👋')
-        .author-card-title
-          div= _p('我是 Eurkon')
-        .author-card-subtitle
-          div= _p('是一名 数据分析师、BI设计师、ETL工程师、取数工具人')
+        .author-card-desc= _p('简介')
+        .author-card-subtitle= _p('您好，很高兴认识你👋')
+        .author-card-title= _p('我是 Eurkon')
+        .author-card-subtitle= _p('是一名 数据分析师、BI设计师、ETL工程师、取数工具人')
         //- .author-card-img
         //-   img.no-lightbox(src=url_for(theme.avatar.img))
         //- .author-card-btn
@@ -22,16 +18,13 @@
         //-     span= _p('Github')
 
       .author-card.author-card-personalities
-        .author-card-desc
-          div= _p('性格')
-        .author-card-title
-          div= _p('守护者')
-        .author-card-subtitle
-          div= _p('ISFJ-T')
+        .author-card-desc= _p('性格')
+        .author-card-title= _p('守护者')
+        .author-card-subtitle= _p('ISFJ-T')
         .author-card-img
           img.no-lightbox(src=url_for('/images/user/isfj.svg'))
         .author-card-btn
-          a(href=url_for('https://www.16personalities.com/ch/isfj-%E4%BA%BA%E6%A0%BC') title='“守护者”人格')
+          a(href=url_for('https://www.16personalities.com/ch/isfj-%E4%BA%BA%E6%A0%BC') target='_blank' title='“守护者”人格')
             i.fas.fa-chevron-circle-right
             span= _p('ISFJ-T')
 
@@ -81,5 +74,41 @@
                     img.no-lightbox(src=url_for(evenList[index].image))
                   .skill-icon(style=`background: ${oddList[index].color || background}`)
                     img.no-lightbox(src=url_for(oddList[index].image))
+      
+    .author-card-group
+      .author-card
+      .author-card.author-card-statistics
+        .author-card-desc= _p('统计')
+        .author-card-title= _p('访问统计')
+        #statistics-counter
+        script.
+          // 链接替换即可，不需要后面的参数
+          fetch('https://v6-widget.51.la/v6/Je3G46ggxUPbVh1P/quote.js').then(res => res.text()).then(data => {
+              let title = ['最近活跃', '今日人数', '今日访问', '昨日人数', '昨日访问', '本月访问', '总访问量'];
+              // let num = data.match(/(?<=<\/span><span>).*?(?=<\/span><\/p>)/g)
+              let num = data.match(/(<\/span><span>).*?(\/span><\/p>)/g);
+              num = num.map(el => {
+                let val = el.replace(/(<\/span><span>)/g, '');
+                let str = val.replace(/(<\/span><\/p>)/g, '');
+                return str;
+              });
+              // 自定义不显示哪个或者显示哪个，如下为不显示 最近活跃访客 和 总访问量
+              let list = [];
+              for (let i = 0; i < num.length; i++) {
+                if (i == 0 || i == num.length - 1) continue;
+                document.getElementById('statistics-counter').innerHTML += '<div><span>' + title[i] + '</span><span id=' + title[i] + '>' + num[i] + '</span></div>';
+                queueMicrotask(() => {
+                  list.push(new CountUp(title[i], 0, num[i], 0, 2, CountUpOptions));
+                });
+              }
+            });
+        .author-card-desc
+          span= _p('统计信息来自')
+            a(href=url_for('https://invite.51.la/1NAzGKhh?target=V6') target='_blank' title='51la网站统计')= _p(' 51la网站统计')
+        .banner-button-group
+          .author-card-btn
+            a(href=url_for('/charts/') title='文章统计')
+              i.fas.fa-chevron-circle-right
+              span= _p('文章统计')
 
   != page.content
