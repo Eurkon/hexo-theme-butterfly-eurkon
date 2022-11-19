@@ -906,7 +906,7 @@ a {
 }
 
 .fc-article-sort .article-sort-item-time {
-  bottom: 0.8rem;
+  bottom: .8rem;
 }
 
 .fc-article-sort .fc-article-author {
@@ -2046,6 +2046,10 @@ div.menus_items>div:nth-child(4)>ul {
   height: 100vh;
   left: 0;
   top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background: var(--global-bg-bolder);
   backdrop-filter: var(--backdrop-filter);
   -webkit-transform: translate(0, 0) !important;
@@ -2066,28 +2070,19 @@ div.menus_items>div:nth-child(4)>ul {
 }
 
 #rightside-config-show {
+  display: flex;
   display: none;
 }
 
 #rightside-config-hide {
+  margin: 5rem;
   opacity: 1 !important;
-  width: 100vw !important;
-  height: 100vh !important;
-  -ms-filter: none !important;
-  filter: none !important;
   display: flex;
-  align-items: center;
-  justify-content: center;
   -webkit-transform: translate(0, 0) !important;
   -moz-transform: translate(0, 0) !important;
   -ms-transform: translate(0, 0) !important;
   -o-transform: translate(0, 0) !important;
   transform: translate(0, 0) !important;
-  -webkit-transition: none;
-  -moz-transition: none;
-  -ms-transition: none;
-  -o-transition: none;
-  transition: none;
 }
 
 #rightside>div>button,
@@ -2185,129 +2180,6 @@ html.hide-aside #hide-aside-btn {
 }
 
 #rightside #rightside-content {
-  width: 80vw;
-  max-width: 2000px;
-  height: 60vh;
-  margin: 5vh 10vw;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: center;
-  display: none;
-}
-
-#rightside .aside-list {
-  width: 40vw;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-#rightside .aside-list>.aside-list-item {
-  width: calc(100%/2 - 1rem);
-  margin: .5rem;
-  border: var(--card-border);
-  border-radius: var(--border-radius);
-  -webkit-box-shadow: var(--box-shadow);
-  -moz-box-shadow: var(--box-shadow);
-  -ms-box-shadow: var(--box-shadow);
-  -o-box-shadow: var(--box-shadow);
-  box-shadow: var(--box-shadow);
-}
-
-@media (max-width: 1400px) and (min-width: 769px) {
-  #rightside .aside-list {
-    width: 100%;
-    -webkit-transform: translateX(0);
-    -moz-transform: translateX(0);
-    -ms-transform: translateX(0);
-    -o-transform: translateX(0);
-    transform: translateX(0);
-  }
-
-  #rightside .aside-list>.aside-list-item {
-    margin: .3rem .5rem;
-    width: calc(100%/3 - 1rem);
-  }
-}
-
-@media screen and (max-width: 768px) {
-  #rightside .aside-list>.aside-list-item {
-    display: none;
-  }
-}
-
-#rightside .aside-list>.aside-list-item:hover .thumbnail>img {
-  -webkit-transform: scale(1.1);
-  -moz-transform: scale(1.1);
-  -ms-transform: scale(1.1);
-  -o-transform: scale(1.1);
-  transform: scale(1.1);
-}
-
-#rightside .aside-list>.aside-list-item .thumbnail>img {
-  width: 100%;
-  object-fit: cover;
-  -webkit-transition: all .3s ease-in-out;
-  -moz-transition: all .3s ease-in-out;
-  -ms-transition: all .3s ease-in-out;
-  -o-transition: all .3s ease-in-out;
-  transition: all .3s ease-in-out;
-}
-
-#rightside .aside-list>.aside-list-item .thumbnail {
-  overflow: hidden;
-  display: flex;
-  height: 4rem;
-  background: var(--card-bg);
-  border-radius: var(--border-radius) var(--border-radius) 0 0;
-}
-
-#rightside .aside-list>.aside-list-item .content {
-  background: var(--card-bg);
-  border-radius: 0 0 var(--border-radius) var(--border-radius);
-  -webkit-transition: all .3s ease-in-out;
-  -moz-transition: all .3s ease-in-out;
-  -ms-transition: all .3s ease-in-out;
-  -o-transition: all .3s ease-in-out;
-  transition: all .3s ease-in-out;
-  height: 4rem;
-}
-
-#rightside .aside-list>.aside-list-item .content .title {
-  color: var(--font-color);
-  line-height: 1.2em;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
-  -webkit-box-orient: vertical;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  height: 3rem;
-  padding: 0 .5rem;
-}
-
-#rightside .aside-list>.aside-list-item:hover {
-  border-color: var(--main);
-  -webkit-box-shadow: var(--main-shadow);
-  -moz-box-shadow: var(--main-shadow);
-  -ms-box-shadow: var(--main-shadow);
-  -o-box-shadow: var(--main-shadow);
-  box-shadow: var(--main-shadow);
-}
-
-#rightside .aside-list>.aside-list-item:hover .content {
-  background: var(--main);
-}
-
-#rightside .aside-list>.aside-list-item:hover .content .title {
-  color: var(--second) !important;
-}
-
-#rightside .aside-list>.aside-list-item .content time {
   display: none;
 }
 
