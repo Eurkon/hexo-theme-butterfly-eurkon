@@ -83,6 +83,7 @@
           .github-card-container
             //- #github_container
             //-   i.fa.fas.fa-spinner.fa-spin#github_loading(style="font-size: 150px; padding: calc(50% - 75px);")
+            //- script(data-pjax defer src=url_for('/js/gitcalendar.js'))
             .github-project-container
               each item in site.data.github.link_list
                 a.github-project(href=url_for(item.link) target='_blank')
