@@ -2269,15 +2269,31 @@ html.hide-aside #hide-aside-btn {
   text-align: left;
 }
 
+#article-container .flink-list>.flink-list-item a .flink-item-info img {
+  position: absolute;
+  opacity: .3;
+  right: -30px;
+  bottom: -50px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  z-index: -1;
+  -webkit-transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  -ms-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+}
+
 #article-container .flink-item-name {
   width: 100%;
   height: auto;
   padding: 12px 0 16px 0;
+  color: var(--text-highlight-color);
 }
 
 #article-container .flink-item-desc {
   width: 100%;
-  opacity: .8;
   height: auto;
   padding: 0;
   word-break: break-all;
@@ -2302,6 +2318,10 @@ html.hide-aside #hide-aside-btn {
 #article-container .flink-list>.flink-list-item:hover .flink-item-icon {
   width: 0;
   height: 0;
+}
+
+#article-container .flink-list>.flink-list-item:hover a .flink-item-info img {
+  opacity: .8;
 }
 
 #article-container .stars .flink-list>.flink-list-item a .flink-item-icon {

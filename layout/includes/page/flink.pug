@@ -64,4 +64,5 @@
                   .flink-item-info
                     .flink-item-name.flink-sitename= item.name
                     .flink-item-desc(title=item.descr)= item.descr
+                    img.no-lightbox(src=url_for(item.avatar) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt=item.name)
     != page.content
