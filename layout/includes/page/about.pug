@@ -61,6 +61,7 @@
                     .skill-info-name
                       span= item.name
                     .skill-info-process!= numToStars(item.star)
+              div(style="font-size: 2rem;line-height: 1;")= _p('...')
             .skill-card-wrapper
               each item, index in evenList
                 .skill-icon-pair
@@ -76,7 +77,17 @@
                     img.no-lightbox(src=url_for(oddList[index].image))
       
     .author-card-group
-      .author-card
+      .author-card.author-card-github
+        .author-card-desc!= site.data.github.class_desc
+          .author-card-title!= site.data.github.class_name
+          .github-card-container
+            //- #github_container
+            //-   i.fa.fas.fa-spinner.fa-spin#github_loading(style="font-size: 150px; padding: calc(50% - 75px);")
+            .github-project-container
+              each item in site.data.github.link_list
+                a.github-project(href=url_for(item.link) target='_blank')
+                  img(src=url_for(item.image) title=item.name)
+
       .author-card.author-card-statistics
         .author-card-desc= _p('统计')
         .author-card-title= _p('访问统计')
