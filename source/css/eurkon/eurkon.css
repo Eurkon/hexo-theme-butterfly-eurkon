@@ -1182,16 +1182,16 @@ a.catalog-more:hover {
   width: 4.5rem;
   float: left;
   padding: 0 .8rem 0 .2rem;
-  border-top-right-radius: 1rem;
-  border-bottom-right-radius: 1rem;
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
 }
 
 #pagination a.extend.next {
   width: 4.5rem;
   float: right;
   padding: 0 .2rem 0 .8rem;
-  border-top-left-radius: 1rem;
-  border-bottom-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
 }
 
 #pagination a.extend.prev .pagination-prev {
