@@ -25,9 +25,9 @@ nav#nav
         #comment-button
           a.site-page(href="#post-comment" title=_p("rightside.scroll_to_comment"))
             i.fas.fa-comments.fa-fw
-      #setting-button
+      #setting-button(onclick="eurkon.switchRightSide();")
         a.site-page(title=_p("rightside.setting"))
-          i.fas.fa-gear.fa-fw
+          i.fas.fa-screwdriver-wrench.fa-fw
       #top-button
         a.site-page(title=_p("rightside.back_to_top") onclick="btf.scrollToDest(0, 500)")
           i.fas.fa-arrow-up.fa-fw

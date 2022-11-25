@@ -94,4 +94,22 @@ const eurkon = {
     }
   },
 
+  // RightSide设置
+  switchRightSide: function () {
+    document.getElementById('rightside')?.classList.toggle('hidden')
+    document.getElementById('rightside-mask')?.classList.toggle('hidden')
+  },
+
+  fullScreen: function () {
+    var de = document.documentElement
+    if (de.requestFullscreen) { de.requestFullscreen() }
+    else if (de.mozRequestFullScreen) { de.mozRequestFullScreen() }
+    else if (de.webkitRequestFullScreen) { de.webkitRequestFullScreen() }
+  },
+
+  exitFullScreen: function () {
+    if (document.exitFullscreen) { document.exitFullscreen() }
+    else if (document.mozCancelFullScreen) { document.mozCancelFullScreen() }
+    else if (document.webkitExitFullscreen) { document.webkitExitFullscreen() }
+  },
 }

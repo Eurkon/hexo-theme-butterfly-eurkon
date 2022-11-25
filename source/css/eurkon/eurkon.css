@@ -2051,7 +2051,8 @@ div.menus_items>div:nth-child(4)>ul {
   justify-content: center;
   align-items: center;
   background: var(--global-bg-bolder);
-  backdrop-filter: var(--backdrop-filter);
+  /* backdrop-filter: var(--backdrop-filter); */
+  backdrop-filter: saturate(240%) blur(35px);
   -webkit-transform: translate(0, 0) !important;
   -moz-transform: translate(0, 0) !important;
   -ms-transform: translate(0, 0) !important;
@@ -2069,13 +2070,28 @@ div.menus_items>div:nth-child(4)>ul {
   opacity: 0 !important;
 }
 
+#rightside-mask.hidden {
+  z-index: -1;
+  opacity: 0 !important;
+}
+
+#rightside-mask {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 99;
+  /* background: rgba(0,0,0,0.6); */
+}
+
 #rightside-config-show {
   display: flex;
   display: none;
 }
 
 #rightside-config-hide {
-  margin: 5rem;
+  height: auto !important;
   opacity: 1 !important;
   display: flex;
   -webkit-transform: translate(0, 0) !important;
@@ -2179,6 +2195,7 @@ html.hide-aside #hide-aside-btn {
   opacity: 0;
 }
 
+#rightside #rightside-header,
 #rightside #rightside-content {
   display: none;
 }

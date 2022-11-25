@@ -35,9 +35,16 @@ mixin rightsideItem(array)
           a#to_comment(href="#post-comment" title=_p("rightside.scroll_to_comment"))
             i.fas.fa-comments
 
+#rightside-mask.hidden(onclick="eurkon.switchRightSide();")
 #rightside.hidden
 
-  if config.rightside && config.rightside.enable
+  if config.rightside && config.rightside.enable 
+    #rightside-header
+      #rightside-title= _p("rightside.setting")
+      #rightside-back
+        i.fas.fa-chevron-left(onclick="eurkon.backRightSide();")
+      #rightside-close(onclick="eurkon.switchRightSide();")
+        i.fas.fa-xmark
     #rightside-content
       if !['Livere','Facebook Comments','Giscus'].includes(theme.comments.use[0])
         #card-newest-comments
