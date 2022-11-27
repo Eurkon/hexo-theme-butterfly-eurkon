@@ -38,59 +38,58 @@ mixin rightsideItem(array)
 #rightside-mask.hidden(onclick="eurkon.switchRightSide();")
 #rightside.hidden
 
-  if config.rightside && config.rightside.enable 
-    #rightside-header
-      #rightside-title= _p("rightside.setting")
-      #rightside-back
-        i.fas.fa-chevron-left(onclick="eurkon.backRightSide();")
-      #rightside-close(onclick="eurkon.switchRightSide();")
-        i.fas.fa-xmark
-    #rightside-content
-      if !['Livere','Facebook Comments','Giscus'].includes(theme.comments.use[0])
-        #card-newest-comments
+  #rightside-header
+    #rightside-back
+      i.fas.fa-chevron-left(onclick="eurkon.backRightSide();")
+    #rightside-title= _p("rightside.setting")
+    #rightside-close(onclick="eurkon.switchRightSide();")
+      i.fas.fa-xmark
+  #rightside-content
+    if !['Livere','Facebook Comments','Giscus'].includes(theme.comments.use[0])
+      #card-newest-comments
+        .item-headline
+          i.fas.fa-comment-dots
+          span= _p('aside.card_newest_comments.headline')
+        .aside-list
+          span= _p('aside.card_newest_comments.loading_text')
+    //- .card-recent-post
+    //-   .item-headline
+    //-     i.fas.fa-history
+    //-     span= _p('aside.card_recent_post')
+    //-   .aside-list
+    //-     - let postLimit = theme.aside.card_recent_post.limit === 0 ? site.posts.length : theme.aside.card_recent_post.limit || 5
+    //-     - let sort = theme.aside.card_recent_post.sort === 'updated' ? 'updated' : 'date'
+    //-     - site.posts.sort(sort, -1).limit(postLimit).each(function(article){
+    //-       - let link = article.link || article.path
+    //-       - let title = article.title || _p('no_title')
+    //-       - let no_cover = article.cover === false || !theme.cover.aside_enable ? 'no-cover' : ''
+    //-       - let post_cover = article.cover
+    //-       .aside-list-item(class=no_cover)
+    //-         if post_cover && theme.cover.aside_enable
+    //-           a.thumbnail(href=url_for(link) title=title)
+    //-             img(src=url_for(post_cover) onerror=`this.onerror=null;this.src='${url_for(theme.error_img.post_page)}'` alt=title)
+    //-         .content
+    //-           a.title(href=url_for(link) title=title)= title
+    //-           if theme.aside.card_recent_post.sort === 'updated'
+    //-             time(datetime=date_xml(article.updated) title=_p('post.updated') + ' ' + full_date(article.updated)) #[=date(article.updated, config.date_format)]
+    //-           else
+    //-             time(datetime=date_xml(article.date) title=_p('post.created') + ' ' + full_date(article.date)) #[=date(article.date, config.date_format)]
+    //-     - })
+
+    #card-post-content
+      if site.categories.length
+        .card-widget.card-categories
+          !=aside_categories({ limit: theme.aside.card_categories.limit === 0 ? 0 : theme.aside.card_categories.limit || 8 , expand: theme.aside.card_categories.expand })
+
+      if site.tags.length
+        .card-widget.card-tags
           .item-headline
-            i.fas.fa-comment-dots
-            span= _p('aside.card_newest_comments.headline')
-          .aside-list
-            span= _p('aside.card_newest_comments.loading_text')
-      //- .card-recent-post
-      //-   .item-headline
-      //-     i.fas.fa-history
-      //-     span= _p('aside.card_recent_post')
-      //-   .aside-list
-      //-     - let postLimit = theme.aside.card_recent_post.limit === 0 ? site.posts.length : theme.aside.card_recent_post.limit || 5
-      //-     - let sort = theme.aside.card_recent_post.sort === 'updated' ? 'updated' : 'date'
-      //-     - site.posts.sort(sort, -1).limit(postLimit).each(function(article){
-      //-       - let link = article.link || article.path
-      //-       - let title = article.title || _p('no_title')
-      //-       - let no_cover = article.cover === false || !theme.cover.aside_enable ? 'no-cover' : ''
-      //-       - let post_cover = article.cover
-      //-       .aside-list-item(class=no_cover)
-      //-         if post_cover && theme.cover.aside_enable
-      //-           a.thumbnail(href=url_for(link) title=title)
-      //-             img(src=url_for(post_cover) onerror=`this.onerror=null;this.src='${url_for(theme.error_img.post_page)}'` alt=title)
-      //-         .content
-      //-           a.title(href=url_for(link) title=title)= title
-      //-           if theme.aside.card_recent_post.sort === 'updated'
-      //-             time(datetime=date_xml(article.updated) title=_p('post.updated') + ' ' + full_date(article.updated)) #[=date(article.updated, config.date_format)]
-      //-           else
-      //-             time(datetime=date_xml(article.date) title=_p('post.created') + ' ' + full_date(article.date)) #[=date(article.date, config.date_format)]
-      //-     - })
-
-      #card-post-content
-        if site.categories.length
-          .card-widget.card-categories
-            !=aside_categories({ limit: theme.aside.card_categories.limit === 0 ? 0 : theme.aside.card_categories.limit || 8 , expand: theme.aside.card_categories.expand })
-
-        if site.tags.length
-          .card-widget.card-tags
-            .item-headline
-              i.fas.fa-tags
-              span= _p('aside.card_tags')
-            if theme.aside.card_tags.color
-              .card-tag-cloud!= cloudTags({source: site.tags, minfontsize: 1.15, maxfontsize: 1.45, limit: 0, unit: 'em'})
-            else
-              .card-tag-cloud!= tagcloud({min_font: 1.1, max_font: 1.5, amount: 0 , color: true, start_color: '#999', end_color: '#99a9bf', unit: 'em'})
+            i.fas.fa-tags
+            span= _p('aside.card_tags')
+          if theme.aside.card_tags.color
+            .card-tag-cloud!= cloudTags({source: site.tags, minfontsize: 1.15, maxfontsize: 1.45, limit: 0, unit: 'em'})
+          else
+            .card-tag-cloud!= tagcloud({min_font: 1.1, max_font: 1.5, amount: 0 , color: true, start_color: '#999', end_color: '#99a9bf', unit: 'em'})
 
   - const { enable, hide, show } = theme.rightside_item_order
   - const hideArray = enable ? hide && hide.split(',') : ['readmode','translate','darkmode','hideAside']
