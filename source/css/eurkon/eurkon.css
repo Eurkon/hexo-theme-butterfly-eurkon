@@ -2045,11 +2045,12 @@ div.menus_items>div:nth-child(4)>ul {
   width: 1200px;
   max-width: 80vw;
   min-height: 250px;
-  max-height: 80vh;
+  max-height: 90vh;
   right: 50%;
   bottom: 50%;
   padding: 1rem;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   border-radius: calc(var(--border-radius) * 2);
@@ -2221,13 +2222,26 @@ html.hide-aside #hide-aside-btn {
 
 #rightside #rightside-content {
   display: none;
+  margin-top: 4rem;
 }
 
-#rightside #rightside-content,
+
 #rightside #rightside-config-hide,
 #rightside #rightside-config-show {
   margin-top: 4rem;
 }
+
+@media screen and (min-width: 1080px) {
+  #rightside #rightside-content {
+    display: flex !important;
+  }
+
+  #rightside #rightside-config-hide,
+  #rightside #rightside-config-show {
+    margin-top: 0 !important;
+  }
+}
+
 
 #rightside #rightside-close,
 #rightside #rightside-back {
@@ -2243,6 +2257,7 @@ html.hide-aside #hide-aside-btn {
   width: 100%;
   text-align: center;
   line-height: 1.5;
+  margin-bottom: 4rem;
 }
 
 #rightside #rightside-content>div {
@@ -2250,7 +2265,7 @@ html.hide-aside #hide-aside-btn {
   flex-wrap: wrap;
   align-items: flex-start;
   width: 50%;
-  max-height: calc(80vh - 9rem);
+  max-height: calc(90vh - 11rem);
   background: var(--card-bg);
   border: var(--card-border);
   border-radius: var(--border-radius);
@@ -2402,6 +2417,8 @@ html.hide-aside #hide-aside-btn {
   display: flex;
   flex-flow: wrap;
   justify-content: space-between;
+  margin-top: 0;
+  margin-bottom: .5rem;
 }
 
 #rightside .card-categories ul.card-category-list>.card-category-list-item {
@@ -2451,10 +2468,6 @@ html.hide-aside #hide-aside-btn {
   opacity: .8;
   font-size: 1rem;
   margin-left: .5rem;
-}
-
-#rightside .card-tag-cloud {
-  padding-top: .5rem;
 }
 
 #rightside .card-tag-cloud a {
