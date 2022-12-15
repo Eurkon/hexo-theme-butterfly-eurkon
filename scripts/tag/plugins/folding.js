@@ -12,14 +12,16 @@ function postFolding(args, content) {
   }
   if (style != undefined) {
     return `<details class="folding-tag" ${style}><summary> ${title} </summary>
-              <div class='content'>
+              <div class='content tabs'>
               ${hexo.render.renderSync({text: content, engine: 'markdown'}).split('\n').join('')}
+              <button type="button" class="tab-to-top" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button>
               </div>
             </details>`;
   } else {
     return `<details class="folding-tag"><summary> ${title} </summary>
-              <div class='content'>
+              <div class='content tabs'>
               ${hexo.render.renderSync({text: content, engine: 'markdown'}).split('\n').join('')}
+              <button type="button" class="tab-to-top" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button>
               </div>
             </details>`;
   }
