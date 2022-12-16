@@ -64,8 +64,8 @@
                   .flink-item-icon.info
                     img.no-lightbox(src=url_for(item.avatar) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt=item.name)
                   .flink-item-info
-                    .flink-item-name.flink-sitename= item.name
-                    .flink-item-desc(title=item.descr)= item.descr
+                    span.flink-item-name.flink-sitename= item.name
+                    span.flink-item-desc(title=item.descr)= item.descr
                     img.no-lightbox(src=url_for(item.avatar) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt=item.name)
     
       h2!= _p('友链文章')

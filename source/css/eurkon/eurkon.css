@@ -2523,11 +2523,11 @@ html.hide-aside #hide-aside-btn {
   border-radius: var(--border-radius);
   border: var(--card-border);
   background-color: var(--global-bg);
-  -webkit-transition: all .3s ease-in-out;
-  -moz-transition: all .3s ease-in-out;
-  -ms-transition: all .3s ease-in-out;
-  -o-transition: all .3s ease-in-out;
-  transition: all .3s ease-in-out;
+  -webkit-transition: all .5s ease;
+  -moz-transition: all .5s ease;
+  -ms-transition: all .5s ease;
+  -o-transition: all .5s ease;
+  transition: all .5s ease;
 }
 
 #article-container .flink-list>.flink-list-card {
@@ -2577,11 +2577,11 @@ html.hide-aside #hide-aside-btn {
   font-size: 1.5rem;
   z-index: 1;
   cursor: var(--pointer-cursor), pointer !important;
-  -webkit-transition: all .3s ease-in-out;
-  -moz-transition: all .3s ease-in-out;
-  -ms-transition: all .3s ease-in-out;
-  -o-transition: all .3s ease-in-out;
-  transition: all .3s ease-in-out;
+  -webkit-transition: all .5s ease;
+  -moz-transition: all .5s ease;
+  -ms-transition: all .5s ease;
+  -o-transition: all .5s ease;
+  transition: all .5s ease;
 }
 
 #article-container .flink-list>.flink-list-item .flink-item-icon {
@@ -2591,11 +2591,11 @@ html.hide-aside #hide-aside-btn {
   margin: 0 !important;
   background: var(--card-bg);
   border-radius: 50% !important;
-  -webkit-transition: all .3s ease-in-out !important;
-  -moz-transition: all .3s ease-in-out !important;
-  -ms-transition: all .3s ease-in-out !important;
-  -o-transition: all .3s ease-in-out !important;
-  transition: all .3s ease-in-out !important;
+  -webkit-transition: all .5s ease !important;
+  -moz-transition: all .5s ease !important;
+  -ms-transition: all .5s ease !important;
+  -o-transition: all .5s ease !important;
+  transition: all .5s ease !important;
 }
 
 #article-container .flink-list>.flink-list-item .flink-item-info {
@@ -2615,17 +2615,22 @@ html.hide-aside #hide-aside-btn {
   height: 100px;
   border-radius: 50%;
   z-index: -1;
-  -webkit-transition: all .3s ease-in-out;
-  -moz-transition: all .3s ease-in-out;
-  -ms-transition: all .3s ease-in-out;
-  -o-transition: all .3s ease-in-out;
-  transition: all .3s ease-in-out;
+  -webkit-transition: all .5s ease;
+  -moz-transition: all .5s ease;
+  -ms-transition: all .5s ease;
+  -o-transition: all .5s ease;
+  transition: all .5s ease;
 }
 
 #article-container .flink-item-name {
   height: auto;
   padding: 12px 0 16px 0;
   color: var(--text-highlight-color);
+  -webkit-transition: all .5s ease;
+  -moz-transition: all .5s ease;
+  -ms-transition: all .5s ease;
+  -o-transition: all .5s ease;
+  transition: all .5s ease;
 }
 
 #article-container .flink-item-desc {
@@ -2638,6 +2643,11 @@ html.hide-aside #hide-aside-btn {
   overflow: hidden;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
+  -webkit-transition: all .5s ease;
+  -moz-transition: all .5s ease;
+  -ms-transition: all .5s ease;
+  -o-transition: all .5s ease;
+  transition: all .5s ease;
 }
 
 #article-container .flink-list>.flink-list-item:hover,
