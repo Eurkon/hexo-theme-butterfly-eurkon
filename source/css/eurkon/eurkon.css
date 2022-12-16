@@ -13,9 +13,10 @@
   --cover-bg: rgb(var(--r), var(--g), var(--b));
   --main-lighter: rgba(var(--r), var(--g), var(--b), .4);
   --main-bolder: rgba(var(--r), var(--g), var(--b), .8);
-  /* --box-shadow: 0 8px 16px -4px rgba(45, 45, 45, .05); */
-  --box-shadow: 0 2px 3px 1px rgba(45, 45, 45, .05);
-  --main-shadow: 0 2px 3px 1px rgba(var(--r), var(--g), var(--b), .2);
+  --box-shadow: 0 8px 12px -3px rgba(45, 45, 45, .05);
+  /* --box-shadow: 0 2px 3px 1px rgba(45, 45, 45, .05); */
+  --main-shadow: 0 8px 12px -3px rgba(var(--r), var(--g), var(--b), .2);
+  /* --main-shadow: 0 2px 3px 1px rgba(var(--r), var(--g), var(--b), .2); */
   --card-border: 1px solid var(--tab-botton-bg);
   --card-border-dashed: 2px dashed var(--tab-button-hover-bg);
   --border-radius: .5rem;
