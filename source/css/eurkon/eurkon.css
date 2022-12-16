@@ -1,4 +1,6 @@
 :root {
+  --default-cursor: url(https://npm.elemecdn.com/eurkon-cdn/hexo/images/user/default.cur);
+  --pointer-cursor: url(https://npm.elemecdn.com/eurkon-cdn/hexo/images/user/pointer.cur);
   --theme-color: #1677B3;
   --global-bg: #F2F6FC;
   --global-bg-lighter: rgba(242, 246, 252, .4);
@@ -1877,7 +1879,7 @@ div.menus_items>div:nth-child(4)>ul {
 #page-header.not-top-img #nav .menus_item>.site-page,
 #page-header.not-top-img #nav #hotkey .site-page {
   color: var(--font-color);
-  cursor: pointer;
+  cursor: var(--pointer-cursor), pointer !important;
   -webkit-transition: all .3s ease-in-out;
   -moz-transition: all .3s ease-in-out;
   -ms-transition: all .3s ease-in-out;
@@ -2245,7 +2247,7 @@ html.hide-aside #hide-aside-btn {
 
 #rightside #rightside-close,
 #rightside #rightside-back {
-  cursor: var(--pointer-cursor), auto !important;
+  cursor: var(--pointer-cursor), pointer !important;
 }
 
 #rightside #rightside-close:hover,
@@ -2566,18 +2568,15 @@ html.hide-aside #hide-aside-btn {
   }
 }
 
-#article-container .flink-list>.flink-list-item a {
-  border: none !important;
-  padding: 0 !important;
-}
-
-#article-container .flink-list>.flink-list-item a .flink-item-icon {
-  overflow: hidden;
-  width: 80px;
-  height: 80px;
-  margin: 0;
-  background: var(--card-bg);
-  border-radius: 50%;
+#article-container .flink-list .flink-item-circle {
+  color: var(--theme-color);
+  opacity: .8;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 1.5rem;
+  z-index: 1;
+  cursor: var(--pointer-cursor), pointer !important;
   -webkit-transition: all .3s ease-in-out;
   -moz-transition: all .3s ease-in-out;
   -ms-transition: all .3s ease-in-out;
@@ -2585,18 +2584,33 @@ html.hide-aside #hide-aside-btn {
   transition: all .3s ease-in-out;
 }
 
-#article-container .flink-list>.flink-list-item a .flink-item-info {
+#article-container .flink-list>.flink-list-item .flink-item-icon {
+  overflow: hidden !important;
+  width: 80px !important;
+  height: 80px !important;
+  margin: 0 !important;
+  background: var(--card-bg);
+  border-radius: 50% !important;
+  -webkit-transition: all .3s ease-in-out !important;
+  -moz-transition: all .3s ease-in-out !important;
+  -ms-transition: all .3s ease-in-out !important;
+  -o-transition: all .3s ease-in-out !important;
+  transition: all .3s ease-in-out !important;
+}
+
+#article-container .flink-list>.flink-list-item .flink-item-info {
   display: flex;
   flex-wrap: wrap;
   padding-left: 10px;
   text-align: left;
 }
 
-#article-container .flink-list>.flink-list-item a .flink-item-info img {
+#article-container .flink-list>.flink-list-item .flink-item-info img {
+  /* display: none; */
   position: absolute;
-  opacity: .3;
+  opacity: 0;
   right: -30px;
-  bottom: -50px;
+  bottom: -55px;
   width: 100px;
   height: 100px;
   border-radius: 50%;
@@ -2609,7 +2623,6 @@ html.hide-aside #hide-aside-btn {
 }
 
 #article-container .flink-item-name {
-  width: 100%;
   height: auto;
   padding: 12px 0 16px 0;
   color: var(--text-highlight-color);
@@ -2639,8 +2652,9 @@ html.hide-aside #hide-aside-btn {
 }
 
 #article-container .flink-list>.flink-list-item:hover .flink-item-icon {
-  width: 0;
-  height: 0;
+  opacity: 0;
+  width: 0 !important;
+  height: 0 !important;
 }
 
 #article-container .flink-list>.flink-list-item:hover a .flink-item-info img {
@@ -2652,7 +2666,7 @@ html.hide-aside #hide-aside-btn {
   height: 0 !important;
 }
 
-#article-container .flink-list>.flink-list-item:hover div {
+#article-container .flink-list>.flink-list-item:hover * {
   color: var(--second);
 }
 
@@ -3020,7 +3034,7 @@ html.hide-aside #hide-aside-btn {
 }
 
 #post .post-copyright #post-url-copy {
-  cursor: pointer;
+  cursor: var(--pointer-cursor), pointer !important;
   margin-left: .5rem;
 }
 
