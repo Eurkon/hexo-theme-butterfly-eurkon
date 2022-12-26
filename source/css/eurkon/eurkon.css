@@ -2884,7 +2884,7 @@ html.hide-aside #hide-aside-btn {
 /* 文章信息 */
 #page-header #post-info {
   text-align: left;
-  bottom: 25%;
+  bottom: 30%;
   left: 0;
   right: 0;
   position: absolute;
@@ -2955,10 +2955,6 @@ html.hide-aside #hide-aside-btn {
 }
 
 @media screen and (max-width: 768px) {
-  #page-header #post-info {
-    bottom: 15%;
-  }
-
   #post-info #post-meta .post-meta-label {
     display: none;
   }
@@ -2966,7 +2962,7 @@ html.hide-aside #hide-aside-btn {
 
 @media screen and (max-width: 500px) {
   #page-header #post-info {
-    bottom: 10%;
+    bottom: 20%;
   }
 }
 
