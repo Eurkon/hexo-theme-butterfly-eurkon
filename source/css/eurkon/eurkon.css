@@ -641,14 +641,11 @@ a {
   -ms-box-shadow: var(--main-shadow);
   -o-box-shadow: var(--main-shadow);
   box-shadow: var(--main-shadow);
-}
-
-#aside-content .aside-list>.aside-list-item:hover .thumbnail>img {
-  -webkit-transform: scale(1.1);
-  -moz-transform: scale(1.1);
-  -ms-transform: scale(1.1);
-  -o-transform: scale(1.1);
-  transform: scale(1.1);
+  -webkit-transform: scale(1.03);
+  -moz-transform: scale(1.03);
+  -ms-transform: scale(1.03);
+  -o-transform: scale(1.03);
+  transform: scale(1.03);
 }
 
 #aside-content .aside-list>.aside-list-item * {
@@ -1567,8 +1564,8 @@ strong {
 #archive:hover,
 #tag:hover,
 #category:hover,
-#post-comment:hover, */
-#aside-content .card-widget:hover,
+#post-comment:hover,
+#aside-content .card-widget:hover, */
 #recent-posts>.recent-post-item:hover {
   border-color: var(--main);
   -webkit-box-shadow: var(--main-shadow);
@@ -1576,6 +1573,14 @@ strong {
   -ms-box-shadow: var(--main-shadow);
   -o-box-shadow: var(--main-shadow);
   box-shadow: var(--main-shadow);
+}
+
+#aside-content .card-widget:hover {
+  -webkit-box-shadow: var(--box-shadow) !important;
+  -moz-box-shadow: var(--box-shadow) !important;
+  -ms-box-shadow: var(--box-shadow) !important;
+  -o-box-shadow: var(--box-shadow) !important;
+  box-shadow: var(--box-shadow) !important;
 }
 
 /* nav导航栏 */
@@ -1623,7 +1628,16 @@ strong {
   position: fixed;
 }
 
-#page-header.not-top-img #nav.show,
+#page-header.not-top-img #nav.show {
+  background: transparent;
+  border-bottom: none;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  -ms-box-shadow: none !important;
+  -o-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
 #page-header.nav-fixed #nav.show {
   background: var(--card-bg);
   border-bottom: var(--card-border);
@@ -3046,6 +3060,51 @@ html.hide-aside #hide-aside-btn {
 }
 
 /* 文章结尾标签 */
+#post .tag_share .post_share .social-share .social-share-icon {
+  /* width: 2.5em;
+  height: 2em;
+  line-height: 2em;
+  border-radius: var(--border-radius); */
+  /* background: var(--main);
+  color: var(--second);
+  border-color: var(--main); */
+  -webkit-transition: all .6s ease-out 0s;
+  -moz-transition: all .6s ease-out 0s;
+  -ms-transition: all .6s ease-out 0s;
+  -o-transition: all .6s ease-out 0s;
+  transition: all .6s ease-out 0s;
+}
+
+.social-share .icon-wechat:hover .wechat-qrcode,
+.social-share .icon-wechat:hover .wechat-qrcode h4 {
+  border-radius: var(--border-radius);
+}
+
+/* #post .tag_share .post_share .social-share .icon-facebook:hover {
+  background: #44619D;
+  border-color: #44619D;
+}
+
+#post .tag_share .post_share .social-share .icon-twitter:hover {
+  background: #55acee;
+  border-color: #55acee;
+}
+
+#post .tag_share .post_share .social-share .icon-wechat:hover {
+  background: #7bc549;
+  border-color: #7bc549;
+}
+
+#post .tag_share .post_share .social-share .icon-weibo:hover {
+  background: #ff763b;
+  border-color: #ff763b;
+}
+
+#post .tag_share .post_share .social-share .icon-qq:hover {
+  background: #56b6e7;
+  border-color: #56b6e7;
+} */
+
 #post .tag_share .post-meta__tags:hover {
   color: var(--second);
   background: var(--main);
