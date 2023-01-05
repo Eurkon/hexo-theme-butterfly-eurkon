@@ -1,38 +1,83 @@
-#post-container
-  .swiper-wrapper
-    if site.data.post
-      each i in site.data.post
+
+- let data = site.posts.filter((item) => item.swiper > 0)
+if data.length > 0
+  #post-container
+    .swiper-wrapper
+      - data.sort('swiper', -1).each(function(article){
+        - let link = article.link || article.path
+        - let title = article.title || _p('no_title')
+        - let post_cover = article.cover
         .post-item.swiper-slide
-          a.post-item-img(href=url_for(i.link) alt='')|
-            img(src=url_for(i.cover) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.post_page) + `'`, alt='')
+          a.post-item-img(href=url_for(link))
+            img(src=url_for(post_cover) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.post_page) + `'`)
           .post-item-content
-            span.post-item-date!= i.time
-            a.post-item-title(href=url_for(i.link) alt='')!= i.title
-            .post-item-text!= i.desc
-  .post-item-pagination.swiper-pagination-clickable.swiper-pagination-bullets
-script.
-  var postContainer = document.getElementById('post-container');
-  var postSwiper = new Swiper('#post-container', {
-    passiveListeners: true,
-    spaceBetween: 30,
-    effect: 'fade',
-    loop: true,
-    autoplay: {
-      delay: 3000,
-      disableOnInteraction: true
-    },
-    observer: true,//修改swiper自己或子元素时，自动初始化swiper
-    observeParents: true,//修改swiper的父元素时，自动初始化swiper
-    mousewheel: true,
-    // autoHeight: true,
-    pagination: {
-      el: '.post-item-pagination',
-      clickable: true,
-    }
-  });
-  postContainer.onmouseenter = function () {
-    postSwiper.autoplay.stop();
-  };
-  postContainer.onmouseleave = function () {
-    postSwiper.autoplay.start();
-  };
+            span.post-item-date
+              if (theme.post_meta.page.date_type)
+                if (theme.post_meta.page.date_type === 'both')
+                  span.post-meta-date
+                    i.far.fa-calendar-alt.fa-fw.post-meta-icon
+                    span.post-meta-label= _p('post.created')
+                    time.post-meta-date-created(datetime=date_xml(article.date) title=_p('post.created') + ' ' + full_date(article.date))=date(article.date, config.date_format)
+                  span.post-meta-separator
+                  span.post-meta-date
+                    i.fas.fa-history.fa-fw.post-meta-icon
+                    span.post-meta-label= _p('post.updated')
+                    time.post-meta-date-updated(datetime=date_xml(article.updated) title=_p('post.updated') + ' ' + full_date(article.updated))=date(article.updated, config.date_format)
+                else
+                  - let data_type_update = theme.post_meta.page.date_type === 'updated'
+                  - let date_type = data_type_update ? 'updated' : 'date'
+                  - let date_icon = data_type_update ? 'fas fa-history' :'far fa-calendar-alt'
+                  - let date_title = data_type_update ? _p('post.updated') : _p('post.created')
+                  span.post-meta-date
+                    i.fa-fw.post-meta-icon(class=date_icon)
+                    span.post-meta-label= date_title
+                    time(datetime=date_xml(page[date_type]) title=date_title + ' ' + full_date(page[date_type]))=date(page[date_type], config.date_format)
+
+            a.post-item-title(href=url_for(link) title=title)= title
+            //- Display the article introduction on homepage
+            case theme.index_post_content.method
+              when false
+                - break
+              when 1
+                .post-item-text= article.description
+              when 2
+                if article.description
+                  .post-item-text= article.description
+                else
+                  - const content = strip_html(article.content)
+                  - let expert = content.substring(0, theme.index_post_content.length) 
+                  - content.length > theme.index_post_content.length ? expert += ' ...' : ''
+                  .post-item-text= expert
+              default
+                - const content = strip_html(article.content)
+                - let expert = content.substring(0, theme.index_post_content.length) 
+                - content.length > theme.index_post_content.length ? expert += ' ...' : ''
+                .post-item-text= expert
+      - })
+    .post-item-pagination.swiper-pagination-clickable.swiper-pagination-bullets
+  script.
+    var postContainer = document.getElementById('post-container');
+    var postSwiper = new Swiper('#post-container', {
+      passiveListeners: true,
+      spaceBetween: 30,
+      effect: 'fade',
+      loop: true,
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: true
+      },
+      observer: true,//修改swiper自己或子元素时，自动初始化swiper
+      observeParents: true,//修改swiper的父元素时，自动初始化swiper
+      mousewheel: true,
+      // autoHeight: true,
+      pagination: {
+        el: '.post-item-pagination',
+        clickable: true,
+      }
+    });
+    postContainer.onmouseenter = function () {
+      postSwiper.autoplay.stop();
+    };
+    postContainer.onmouseleave = function () {
+      postSwiper.autoplay.start();
+    };
