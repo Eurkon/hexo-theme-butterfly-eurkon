@@ -45,7 +45,7 @@ mixin rightsideItem(array)
     #rightside-close(onclick="eurkon.switchRightSide();")
       i.fas.fa-xmark
   #rightside-content
-    if !['Livere','Facebook Comments','Giscus'].includes(theme.comments.use[0])
+    if theme.newest_comments.enable && theme.comments && !['Livere','Facebook Comments','Giscus'].includes(theme.comments.use[0])
       #card-newest-comments
         .item-headline
           i.fas.fa-comment-dots
