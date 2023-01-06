@@ -897,6 +897,7 @@ a {
   border-radius: var(--border-radius);
 }
 
+/* 朋友圈 */
 .fc-article-sort .article-sort-item-img {
   width: 80px !important;
   height: 80px !important;
@@ -908,6 +909,108 @@ a {
 
 .fc-article-sort .fc-article-author {
   margin-left: .5em;
+}
+
+#fc-more {
+  width: 40%;
+  margin: 1rem auto !important;
+  flex-direction: column;
+  cursor: var(--pointer-cursor), pointer !important;
+}
+
+#fc-more:hover {
+  width: 60%;
+}
+
+#fc-more i.fas::before {
+  content: "∞";
+}
+
+/* 个人文章列表层 */
+#fc-overlay,
+#fc-overshow {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+#fc-overlay {
+  z-index: 998;
+  top: 0;
+  left: 100%;
+  background: var(--global-bg-lighter);
+  backdrop-filter: var(--backdrop-filter);
+}
+
+#fc-overshow {
+  bottom: 100%;
+  left: 0;
+  -webkit-transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  -ms-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+  z-index: 999;
+}
+
+#fc-overlay.fc-show-now {
+  left: 0;
+}
+
+#fc-overshow.fc-show-now {
+  bottom: 0;
+}
+
+.fc-overshow {
+  text-align: center;
+  border-radius: 1rem;
+  position: absolute;
+  width: clamp(20rem, 50%, 30rem);
+  min-height: 20rem;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  box-shadow: var(--card-box-shadow);
+  background: var(--card-bg);
+}
+
+.fc-overshow .fc-overshow-head {
+  margin-top: -55px;
+}
+
+.fc-overshow p {
+  margin-bottom: .5rem;
+  width: 100%;
+  position: relative;
+}
+
+.fc-overshow p span {
+  color: #858585;
+  position: absolute;
+  bottom: -1rem;
+  right: .5rem;
+  z-index: 1;
+  font-style: italic;
+}
+
+.fc-overshow .fc-overshow-content {
+  text-align: left;
+  font-size: 95%;
+  padding: 0 1rem 1rem;
+}
+
+.fc-overshow .fc-overshow-content a {
+  -webkit-line-clamp: 1;
+  line-height: 2;
+}
+
+#fc-overshow .fc-overshow-close {
+  width: 100%;
+  height: 100%;
 }
 
 .article-sort-item-info {
@@ -1651,7 +1754,8 @@ strong {
 
   #page-header.not-top-img #nav.show,
   #page-header.nav-fixed #nav.show {
-    border: none !important;
+    background: var(--card-bg);
+    border: var(--card-border) !important;
     -webkit-box-shadow: none !important;
     -moz-box-shadow: none !important;
     -ms-box-shadow: none !important;
@@ -3969,8 +4073,16 @@ body.read-mode #comment-barrage {
   line-height: 1.4;
 }
 
+.home-card .home-card-subtitle .author-card-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--text-highlight-color);
+}
+
 .home-card .home-card-subtitle .author-card-desc {
   margin-top: 1rem;
+  font-size: 80%;
+  opacity: .8;
 }
 
 .home-card .skill-card .skill-info-container {
