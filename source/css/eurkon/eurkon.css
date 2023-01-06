@@ -44,6 +44,100 @@
   display: none;
 }
 
+/* 鼠标样式 */
+html {
+  cursor: var(--default-cursor, default), default !important;
+}
+
+body {
+  cursor: var(--default-cursor, default), default !important;
+}
+
+#recent-posts>.recent-post-item>.recent-post-info>.article-meta-wrap>.post-meta-date {
+  cursor: var(--default-cursor, default), default !important;
+}
+
+ul::before,
+li::before {
+  cursor: var(--default-cursor, default), default !important;
+}
+
+#pagination span {
+  cursor: var(--default-cursor, default), default !important;
+}
+
+a,
+img,
+button,
+svg,
+canvas,
+select {
+  cursor: var(--pointer-cursor), pointer !important;
+}
+
+i.scroll-down-effects {
+  cursor: var(--pointer-cursor), pointer !important;
+}
+
+.reward-button {
+  cursor: var(--pointer-cursor), pointer !important;
+}
+
+#pagination a {
+  cursor: var(--pointer-cursor), pointer !important;
+}
+
+/* 图片预览 */
+.fancybox,
+.fancybox-button,
+.fancybox-content,
+.fancybox__caption,
+.fancybox__viewport,
+.fancybox__slide .fancybox__content,
+.fancybox__thumbs .carousel__slide,
+.fancybox__carousel.is-draggable .fancybox__slide,
+.fancybox__carousel.is-draggable .fancybox__slide .fancybox__content {
+  cursor: var(--pointer-cursor), pointer !important;
+}
+
+/* 代码块 */
+#article-container figure.highlight .highlight-tools .expand~.copy-button,
+#article-container figure.highlight .highlight-tools .expand,
+#article-container .code-expand-btn {
+  cursor: var(--pointer-cursor), pointer !important;
+}
+
+/* 评论与回复 */
+.switch-btn,
+.vcol *,
+.v[data-class=v] .vicon,
+.v[data-class=v] .vbtn,
+.vat,
+.vemojis *,
+.vcontent.expand {
+  cursor: var(--pointer-cursor), pointer !important;
+}
+
+/* twikoo */
+.tk-action-icon,
+.tk-panel .tk-tab,
+.tk-expand,
+.tk-pagination-pager,
+.OwO .OwO-body,
+.OwO .OwO-body .OwO-items .OwO-item,
+.OwO .OwO-body .OwO-bar .OwO-packages li {
+  cursor: var(--pointer-cursor), pointer !important;
+}
+
+/* 文章轮播 */
+.swiper-pagination-clickable .swiper-pagination-bullet {
+  cursor: var(--pointer-cursor), pointer !important;
+}
+
+#rightmenu .rightmenu-group .rightmenu-item {
+  cursor: var(--pointer-cursor), pointer !important;
+}
+
 /* pace进度条 */
 .pace {
   z-index: 2000;
@@ -4101,6 +4195,14 @@ body.read-mode #comment-barrage {
   -ms-transition: all .3s ease-in-out;
   -o-transition: all .3s ease-in-out;
   transition: all .3s ease-in-out;
+}
+
+.home-card .skill-card-container:hover {
+  -webkit-box-shadow: var(--main-shadow);
+  -moz-box-shadow: var(--main-shadow);
+  -ms-box-shadow: var(--main-shadow);
+  -o-box-shadow: var(--main-shadow);
+  box-shadow: var(--main-shadow);
 }
 
 .home-card .skill-card-container:hover .skill-card-wrapper {
