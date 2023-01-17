@@ -1,6 +1,7 @@
 eurkon.switchThemeColor(eurkon.getMainColor())
 eurkon.switchPageTitle()
 eurkon.catalogActive()
+eurkon.postAddToc()
 
 // 顶部菜单栏 评论按钮
 if (document.getElementById('comment-button')) document.getElementById('comment-button').style.display = document.getElementById('post-comment') ? 'block' : 'none'
