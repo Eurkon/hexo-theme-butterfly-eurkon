@@ -11,11 +11,11 @@ hexo.extend.filter.register('after_render:html', function (data) {
   const flinks = []
   hexo.locals.get('data').link.map(function (list) {
     list.link_list.map(function (flink) {
-      flinks.push(flink.link)
+      flinks.push(flink)
     })
   })
 
-  data += `<script>var flinks=${JSON.stringify(flinks)};function toRandomFlink(){window.open(flinks[Math.floor(Math.random()*flinks.length)]);};</script>`
+  data += `<script>var flinks=${JSON.stringify(flinks)};function toRandomFlink(){window.open(flinks[Math.floor(Math.random()*flinks.length)].link);};</script>`
   return data
 })
 
