@@ -1695,6 +1695,13 @@ strong {
   display: block;
 }
 
+#footer #footer-group-container .footer-group#footer-group-flink .footer-group-title i {
+  font-size: 80%;
+  margin-left: 0.3em;
+  opacity: .8;
+  cursor: var(--pointer-cursor), pointer !important;
+}
+
 #footer #footer-social-container {
   justify-content: center;
   display: flex;

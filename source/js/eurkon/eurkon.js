@@ -59,6 +59,23 @@ const eurkon = {
     document.querySelector('#page-title>span').innerHTML = GLOBAL_CONFIG_SITE.title
   },
 
+  // 页脚随机友链
+  footerRandomFlink: function (flinks, num=3) {
+    let flinkList = document.querySelectorAll('#footer-group-flink .footer-group-item')
+    let flinkArray = flinks
+    if (flinks.length > num) {
+      let flinkSet = new Set()
+      while (flinkSet.size < num) {
+        flinkSet.add(flinks[Math.floor(Math.random() * flinks.length)])
+      }
+      flinkArray = Array.from(flinkSet)
+    }
+    for (let i = 0; i < flinkArray.length; i++) {
+      flinkList[i].href = flinkArray[i].link
+      flinkList[i].innerText = flinkArray[i].name
+    }
+  },
+
   // 文章段落
   postAddToc: function () {
     let postContent = document.querySelector('#post>#article-container.post-content')
