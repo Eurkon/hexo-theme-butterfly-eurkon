@@ -3,8 +3,8 @@ div
   script(src=url_for(theme.asset.main))
   //- script(src=url_for('/js/eurkon/rgbaster.min.js'))
   script(src=url_for('/js/eurkon/color-thief.min.js'))
-  script(src=url_for('/js/eurkon/eurkon.js'))
-  script(data-pjax src=url_for('/js/eurkon/refresh.js'))
+  script(defer src=url_for('/js/eurkon/eurkon.js'))
+  script(defer data-pjax src=url_for('/js/eurkon/refresh.js'))
 
   if theme.translate.enable
     script(src=url_for(theme.asset.translate))
