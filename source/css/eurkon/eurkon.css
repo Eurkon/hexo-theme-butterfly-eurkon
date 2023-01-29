@@ -2271,6 +2271,50 @@ div.menus_items>div:nth-child(4)>ul {
   opacity: 0;
 }
 
+/* nav top btn */
+#page-header:not(.nav-fixed) #nav #hotkey #top-button {
+  width: 0;
+  opacity: 0;
+  margin-left: 0;
+  z-index: -1;
+}
+
+#nav #hotkey #top-button a.site-page {
+  width: 30px;
+  height: 30px;
+  margin: 0 5px;
+  color: var(--card-bg) !important;
+  background: var(--font-color);
+}
+
+#nav #hotkey #top-button:hover a.site-page {
+  width: 40px;
+  height: 40px;
+  margin: 0;
+  color: var(--second) !important;
+  background: var(--main);
+}
+
+#nav #hotkey #top-button i::before {
+  content: attr(data-percent);
+  position: absolute;
+  line-height: 1.8em;
+  left: 0;
+  right: 0;
+  top: 0;
+  font-size: 95%;
+  font-weight: normal;
+  font-family: UnidreamLED;
+}
+
+#nav #hotkey #top-button:hover i::before {
+  content: '\f062';
+  position: relative;
+  font-size: unset;
+  font-weight: unset;
+  font-family: unset;
+}
+
 /* 右下角设置按钮 */
 #rightside {
   z-index: 100;
