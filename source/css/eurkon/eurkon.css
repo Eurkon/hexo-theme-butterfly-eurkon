@@ -1090,8 +1090,13 @@ a {
   margin-top: -55px;
 }
 
+.fc-overshow .fc-overshow-head+div {
+  padding: .8rem;
+  color: var(--text-highlight-color);
+}
+
 .fc-overshow p {
-  margin-bottom: .5rem;
+  margin-top: .5rem;
   width: 100%;
   position: relative;
 }
