@@ -3765,6 +3765,7 @@ body.read-mode #comment-barrage {
 #notice-container .swiper-wrapper {
   height: 2rem;
   text-align: center;
+  width: 100%;
 }
 
 .notice-title {
