@@ -60,7 +60,7 @@ const eurkon = {
   },
 
   // 页脚随机友链
-  footerRandomFlink: function (flinks, num=3) {
+  footerRandomFlink: function (flinks, num = 3) {
     let flinkList = document.querySelectorAll('#footer-group-flink .footer-group-item')
     let flinkArray = flinks
     if (flinks.length > num) {
@@ -131,15 +131,26 @@ const eurkon = {
   },
 
   fullScreen: function () {
-    var de = document.documentElement
-    if (de.requestFullscreen) { de.requestFullscreen() }
-    else if (de.mozRequestFullScreen) { de.mozRequestFullScreen() }
-    else if (de.webkitRequestFullScreen) { de.webkitRequestFullScreen() }
+    try {
+      let de = document.documentElement
+      if (de.requestFullscreen) { de.requestFullscreen() }
+      else if (de.mozRequestFullScreen) { de.mozRequestFullScreen() }
+      else if (de.webkitRequestFullScreen) { de.webkitRequestFullScreen() }
+      else if (document.webkitExitFullscreen) { document.webkitExitFullscreen() }
+    }
+    catch (error) {
+      console.log(error)
+    }
   },
 
   exitFullScreen: function () {
-    if (document.exitFullscreen) { document.exitFullscreen() }
-    else if (document.mozCancelFullScreen) { document.mozCancelFullScreen() }
-    else if (document.webkitExitFullscreen) { document.webkitExitFullscreen() }
+    try {
+      if (document.exitFullscreen) { document.exitFullscreen() }
+      else if (document.mozCancelFullScreen) { document.mozCancelFullScreen() }
+      else if (document.webkitExitFullscreen) { document.webkitExitFullscreen() }
+    }
+    catch (error) {
+      console.log(error)
+    }
   },
 }

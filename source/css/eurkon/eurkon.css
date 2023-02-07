@@ -1045,13 +1045,17 @@ a {
 #fc-overlay {
   z-index: 998;
   top: 0;
-  left: 100%;
+  left: 0;
   background: var(--global-bg-lighter);
   backdrop-filter: var(--backdrop-filter);
 }
 
+#fc-overlay.hidden {
+  left: 100%;
+}
+
 #fc-overshow {
-  bottom: 100%;
+  bottom: 0;
   left: 0;
   -webkit-transition: all .3s ease-in-out;
   -moz-transition: all .3s ease-in-out;
@@ -1061,12 +1065,8 @@ a {
   z-index: 999;
 }
 
-#fc-overlay.fc-show-now {
-  left: 0;
-}
-
-#fc-overshow.fc-show-now {
-  bottom: 0;
+#fc-overshow.hidden{
+  bottom: 100%;
 }
 
 .fc-overshow {
@@ -1091,8 +1091,9 @@ a {
 }
 
 .fc-overshow .fc-overshow-head+div {
-  padding: .8rem;
+  padding-top: .8rem;
   color: var(--text-highlight-color);
+  font-weight: bold;
 }
 
 .fc-overshow p {
@@ -1114,11 +1115,14 @@ a {
   text-align: left;
   font-size: 95%;
   padding: 0 1rem 1rem;
+  max-height: 20rem;
+  overflow: hidden;
 }
 
 .fc-overshow .fc-overshow-content a {
   -webkit-line-clamp: 1;
   line-height: 2;
+  font-weight: bold;
 }
 
 #fc-overshow .fc-overshow-close {

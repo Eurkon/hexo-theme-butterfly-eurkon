@@ -10,12 +10,15 @@ if (document.getElementById('barrage-btn')) document.getElementById('barrage-btn
 
 document.addEventListener('keydown', function (event) {
   if (event.keyCode == 27) { // ESC
-    if (!document.getElementById('rightside')?.classList.contains('hidden') || !document.getElementById('rightside-mask')?.classList.contains('hidden')) {
+    try {
       document.getElementById('rightside')?.classList.add('hidden')
       document.getElementById('rightside-mask')?.classList.add('hidden')
+      document.getElementById('fc-overlay')?.classList.add('hidden')
+      document.getElementById('fc-overshow')?.classList.add('hidden')
+      // eurkon.exitFullScreen()
     }
-    else {
-      eurkon.exitFullScreen()
+    catch (error) {
+      console.log(error)
     }
   }
 });
