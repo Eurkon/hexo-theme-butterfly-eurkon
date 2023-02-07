@@ -1115,8 +1115,6 @@ a {
   text-align: left;
   font-size: 95%;
   padding: 0 1rem 1rem;
-  max-height: 20rem;
-  overflow: hidden;
 }
 
 .fc-overshow .fc-overshow-content a {
