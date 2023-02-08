@@ -115,7 +115,7 @@ const eurkon = {
   // 热评
   switchCommentBarrage: function () {
     let flag = window.localStorage.getItem('commentBarrageDisplay') // undefined || false
-    document.getElementById('comment-barrage').style.zIndex = flag === 'false' ? '1' : '-1001'
+    document.getElementById('comment-barrage').style.bottom = flag === 'false' ? '1rem' : '-1000px'
     window.localStorage.setItem('commentBarrageDisplay', flag === 'false' ? 'undefined' : 'false', 86400000)
     if (document.getElementById('menu-barrage')) document.querySelector('#menu-barrage>span').innerHTML = flag === 'false' ? '隐藏热评' : '显示热评'
     if (document.getElementById('barrage-btn')) {

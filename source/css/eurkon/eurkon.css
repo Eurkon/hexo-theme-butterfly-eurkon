@@ -3402,7 +3402,7 @@ html.hide-aside #hide-aside-btn {
 
 @media screen and (max-width: 900px) {
   #comment-barrage {
-    z-index: -1001 !important;
+    bottom: -1000px !important;
   }
 
   #barrage-btn {
