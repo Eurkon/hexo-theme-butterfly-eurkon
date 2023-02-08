@@ -175,6 +175,7 @@ i.scroll-down-effects {
 
 .layout {
   padding: 1rem;
+  z-index: 0;
 }
 
 #post-comment {
@@ -1065,7 +1066,7 @@ a {
   z-index: 999;
 }
 
-#fc-overshow.hidden{
+#fc-overshow.hidden {
   bottom: 100%;
 }
 
@@ -3146,7 +3147,7 @@ html.hide-aside #hide-aside-btn {
 @media screen and (max-width: 900px) {
   #post-cover {
     width: 100%;
-    height: 400px;
+    height: 300px;
     -webkit-transform: translate(0, 0);
     -moz-transform: translate(0, 0);
     -ms-transform: translate(0, 0);
@@ -3154,11 +3155,8 @@ html.hide-aside #hide-aside-btn {
     transform: translate(0, 0);
     margin: 0;
     filter: none;
-  }
-
-  #post-cover-img {
-    filter: blur(10px);
-    opacity: .8;
+    position: fixed;
+    z-index: 0;
   }
 
   #post-cover::after {
@@ -3175,6 +3173,7 @@ html.hide-aside #hide-aside-btn {
   position: absolute;
   padding: 0 3%;
   margin: 0 auto;
+  z-index: 0;
 }
 
 #page-header #post-info .post-title {
@@ -3227,11 +3226,12 @@ html.hide-aside #hide-aside-btn {
 
 @media screen and (max-width: 900px) {
   #page-header.post-bg {
-    height: 400px;
+    height: 500px;
   }
 
   #page-header #post-info {
     text-align: center;
+    bottom: 20%;
   }
 
   #page-header #post-info .post-title {
