@@ -15,7 +15,7 @@ hexo.extend.helper.register('related_posts', function (currentPost, allPosts) {
           title: post.title,
           path: post.path,
           cover: post.cover,
-          randomcover: post.randomcover,
+          cover_type: post.cover_type,
           weight: 1,
           updated: post.updated,
           created: post.date,
