@@ -2303,7 +2303,47 @@ div.menus_items>div:nth-child(4)>ul {
   background: var(--main);
 }
 
-#nav #hotkey #top-button i::before {
+#nav #hotkey #top-button .scroll-percent {
+  display: none;
+  font-family: UnidreamLED;
+  line-height: 1.8em;
+  width: 100%;
+  -webkit-transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  -ms-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+}
+
+#nav #hotkey #top-button .scroll-percent+i {
+  display: block;
+  line-height: 1.8em;
+  width: 100%;
+  -webkit-transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  -ms-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+}
+
+#nav #hotkey #top-button.show-percent .scroll-percent {
+  display: block;
+}
+
+#nav #hotkey #top-button.show-percent .scroll-percent+i {
+  display: none
+}
+
+#nav #hotkey #top-button:hover .scroll-percent {
+  display: none;
+}
+
+#nav #hotkey #top-button:hover .scroll-percent+i {
+  display: block;
+  line-height: 2.2em;
+}
+
+/* #nav #hotkey #top-button i::before {
   content: attr(data-percent);
   position: absolute;
   line-height: 1.8em;
@@ -2321,7 +2361,7 @@ div.menus_items>div:nth-child(4)>ul {
   font-size: unset;
   font-weight: unset;
   font-family: unset;
-}
+} */
 
 /* 右下角设置按钮 */
 #rightside {

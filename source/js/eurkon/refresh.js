@@ -24,9 +24,9 @@ document.addEventListener('keydown', function (event) {
 });
 
 // 页面滚动百分比
-window.addEventListener('scroll', function () {
-  let totalH = document.body.scrollHeight || document.documentElement.scrollHeight // 页面总高
-  let clientH = window.innerHeight || document.documentElement.clientHeight // 可视高
-  document.querySelector('#nav #hotkey #top-button a.site-page i').dataset.percent = ((document.body.scrollTop || document.documentElement.scrollTop) / (totalH - clientH) * 100).toFixed(0)
-})
+// window.addEventListener('scroll', function () {
+//   let totalH = document.body.scrollHeight || document.documentElement.scrollHeight // 页面总高
+//   let clientH = window.innerHeight || document.documentElement.clientHeight // 可视高
+//   document.querySelector('#nav #hotkey #top-button a.site-page i').dataset.percent = ((document.body.scrollTop || document.documentElement.scrollTop) / (totalH - clientH) * 100).toFixed(0)
+// })
 

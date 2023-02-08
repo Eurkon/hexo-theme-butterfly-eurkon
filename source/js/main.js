@@ -285,11 +285,15 @@ document.addEventListener('DOMContentLoaded', function () {
   const rightsideScrollPercent = currentTop => {
     const perNum = btf.getScrollPercent(currentTop, document.body)
     const $goUp = document.getElementById('go-up')
+    const $topButton = document.getElementById('top-button')
     if (perNum < 95) {
       $goUp.classList.add('show-percent')
       $goUp.querySelector('.scroll-percent').textContent = perNum
+      $topButton.classList.add('show-percent')
+      $topButton.querySelector('.scroll-percent').textContent = perNum
     } else {
       $goUp.classList.remove('show-percent')
+      $topButton.classList.remove('show-percent')
     }
   }
 
