@@ -1474,9 +1474,12 @@ a.catalog-more:hover {
   transition: all .6s ease-in-out;
 }
 
-#pagination .prev-post,
+#pagination .prev-post {
+  border-right: var(--card-border);
+}
+
 #pagination .next-post {
-  border: var(--card-border);
+  border-left: var(--card-border);
 }
 
 #pagination .prev-post:hover img,
