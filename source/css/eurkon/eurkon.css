@@ -1485,7 +1485,7 @@ a.catalog-more:hover {
 
 #pagination .prev-post:hover img,
 #pagination .next-post:hover img {
-  opacity: .1;
+  opacity: .1 !important;
 }
 
 #pagination .prev-post:hover a,
