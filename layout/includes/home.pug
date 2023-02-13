@@ -34,7 +34,7 @@ if is_home()
           .skill-info-container(onclick="toRandomPost()")
             span= _p('随便逛逛')
             i.fas.fa-arrow-right
-      
+        .category-lists!= list_categories()
       //- if config.swiperPost && config.swiperPost.enable
       //-   .swiper-post
       //-     !=partial('includes/swiper-post', {}, {cache: true})
