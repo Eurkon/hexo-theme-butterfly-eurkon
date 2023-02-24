@@ -4086,33 +4086,67 @@ body.read-mode #comment-barrage {
   height: 4rem;
 }
 
-/* Animation */
-
 .parallax>use {
+  -webkit-animation: move-forever 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+  -moz-animation: move-forever 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+  -ms-animation: move-forever 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+  -o-animation: move-forever 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
   animation: move-forever 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
   fill: var(--global-bg);
 }
 
 .parallax>use:nth-child(1) {
+  -webkit-animation-delay: -2s;
+  -moz-animation-delay: -2s;
+  -ms-animation-delay: -2s;
+  -o-animation-delay: -2s;
   animation-delay: -2s;
+  -webkit-animation-duration: 7s;
+  -moz-animation-duration: 7s;
+  -ms-animation-duration: 7s;
+  -o-animation-duration: 7s;
   animation-duration: 7s;
   opacity: .5;
 }
 
 .parallax>use:nth-child(2) {
+  -webkit-animation-delay: -3s;
+  -moz-animation-delay: -3s;
+  -ms-animation-delay: -3s;
+  -o-animation-delay: -3s;
   animation-delay: -3s;
+  -webkit-animation-duration: 10s;
+  -moz-animation-duration: 10s;
+  -ms-animation-duration: 10s;
+  -o-animation-duration: 10s;
   animation-duration: 10s;
   opacity: .6;
 }
 
 .parallax>use:nth-child(3) {
+  -webkit-animation-delay: -4s;
+  -moz-animation-delay: -4s;
+  -ms-animation-delay: -4s;
+  -o-animation-delay: -4s;
   animation-delay: -4s;
+  -webkit-animation-duration: 13s;
+  -moz-animation-duration: 13s;
+  -ms-animation-duration: 13s;
+  -o-animation-duration: 13s;
   animation-duration: 13s;
   opacity: .7;
 }
 
 .parallax>use:nth-child(4) {
+  -webkit-animation-delay: -5s;
+  -moz-animation-delay: -5s;
+  -ms-animation-delay: -5s;
+  -o-animation-delay: -5s;
   animation-delay: -5s;
+  -webkit-animation-duration: 20s;
+  -moz-animation-duration: 20s;
+  -ms-animation-duration: 20s;
+  -o-animation-duration: 20s;
   animation-duration: 20s;
 }
 
@@ -4303,6 +4337,10 @@ body.read-mode #comment-barrage {
 }
 
 .author-card-skills .skill-card-wrapper {
+  -webkit-animation: scrollToRight 20s linear infinite !important;
+  -moz-animation: scrollToRight 20s linear infinite !important;
+  -ms-animation: scrollToRight 20s linear infinite !important;
+  -o-animation: scrollToRight 20s linear infinite !important;
   animation: scrollToRight 20s linear infinite !important;
 }
 
@@ -4390,6 +4428,10 @@ body.read-mode #comment-barrage {
   pointer-events: none;
   display: flex;
   flex-wrap: nowrap;
+  -webkit-animation: scrollToRightRotate 20s linear infinite;
+  -moz-animation: scrollToRightRotate 20s linear infinite;
+  -ms-animation: scrollToRightRotate 20s linear infinite;
+  -o-animation: scrollToRightRotate 20s linear infinite;
   animation: scrollToRightRotate 20s linear infinite;
   -webkit-transition: all .3s ease-in-out;
   -moz-transition: all .3s ease-in-out;
