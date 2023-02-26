@@ -4503,6 +4503,7 @@ body.read-mode #comment-barrage {
   font-size: 2rem;
   font-weight: bold;
   color: var(--text-highlight-color);
+  word-break: keep-all;
 }
 
 .home-card .home-card-subtitle .author-card-desc {
