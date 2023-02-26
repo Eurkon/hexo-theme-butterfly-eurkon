@@ -393,6 +393,32 @@ body.hidden-y {
   -webkit-box-ordinal-group: -1;
 }
 
+a.article-title-update::after {
+  content: 'UPD';
+  font-size: 45%;
+  font-style: italic;
+  font-weight: bold;
+  color: var(--white);
+  background: var(--theme-color);
+  border-radius: 1.3em 1em 1em .2em;
+  padding: 0 .4em 0 .3em;
+  margin-left: .5em;
+  vertical-align: top;
+}
+
+a.article-title-new::after {
+  content: 'NEW';
+  font-size: 45%;
+  font-style: italic;
+  font-weight: bold;
+  color: var(--white);
+  background: var(--light-text);
+  border-radius: 1.3em 1em 1em .2em;
+  padding: 0 .4em 0 .3em;
+  margin-left: .5em;
+  vertical-align: top;
+}
+
 #recent-posts>.recent-post-item>.recent-post-info>.content {
   opacity: 0;
   position: absolute;
@@ -3082,6 +3108,7 @@ html.hide-aside #hide-aside-btn {
 }
 
 #article-container .flink-list .flink-item-circle {
+  display: none;
   color: var(--theme-color);
   opacity: .8;
   position: absolute;
