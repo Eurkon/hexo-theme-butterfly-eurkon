@@ -4399,19 +4399,19 @@ body.read-mode #comment-barrage {
 
 @keyframes scrollToRightRotate {
   from {
-    -webkit-transform: rotate(-30deg) translate3d(-50%, -11rem, 0);
-    -moz-transform: rotate(-30deg) translate3d(-50%, -11rem, 0);
-    -ms-transform: rotate(-30deg) translate3d(-50%, -11rem, 0);
-    -o-transform: rotate(-30deg) translate3d(-50%, -11rem, 0);
-    transform: rotate(-30deg) translate3d(-50%, -11rem, 0);
+    -webkit-transform: rotate(-30deg) translate3d(-50%, 0, 0);
+    -moz-transform: rotate(-30deg) translate3d(-50%, 0, 0);
+    -ms-transform: rotate(-30deg) translate3d(-50%, 0, 0);
+    -o-transform: rotate(-30deg) translate3d(-50%, 0, 0);
+    transform: rotate(-30deg) translate3d(-50%, 0, 0);
   }
 
   to {
-    -webkit-transform: rotate(-30deg) translate3d(0%, -11rem, 0);
-    -moz-transform: rotate(-30deg) translate3d(0%, -11rem, 0);
-    -ms-transform: rotate(-30deg) translate3d(0%, -11rem, 0);
-    -o-transform: rotate(-30deg) translate3d(0%, -11rem, 0);
-    transform: rotate(-30deg) translate3d(0%, -11rem, 0);
+    -webkit-transform: rotate(-30deg) translate3d(0%, 0, 0);
+    -moz-transform: rotate(-30deg) translate3d(0%, 0, 0);
+    -ms-transform: rotate(-30deg) translate3d(0%, 0, 0);
+    -o-transform: rotate(-30deg) translate3d(0%, 0, 0);
+    transform: rotate(-30deg) translate3d(0%, 0, 0);
   }
 }
 
@@ -4438,6 +4438,8 @@ body.read-mode #comment-barrage {
   -ms-transition: all .3s ease-in-out;
   -o-transition: all .3s ease-in-out;
   transition: all .3s ease-in-out;
+  width: 100%;
+  margin-top: 5rem;
 }
 
 .skill-card-wrapper .skill-icon-pair {
