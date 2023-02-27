@@ -4452,6 +4452,7 @@ body.read-mode #comment-barrage {
 }
 
 .skill-card-wrapper {
+  width: 100%;
   pointer-events: none;
   display: flex;
   flex-wrap: nowrap;
@@ -4465,8 +4466,6 @@ body.read-mode #comment-barrage {
   -ms-transition: all .3s ease-in-out;
   -o-transition: all .3s ease-in-out;
   transition: all .3s ease-in-out;
-  width: 100%;
-  margin-top: 5rem;
 }
 
 .skill-card-wrapper .skill-icon-pair {
@@ -4582,6 +4581,10 @@ body.read-mode #comment-barrage {
   -ms-box-shadow: var(--main-shadow);
   -o-box-shadow: var(--main-shadow);
   box-shadow: var(--main-shadow);
+}
+
+.home-card .skill-card-wrapper {
+  margin-top: 5rem;
 }
 
 .home-card .skill-card-container:hover .skill-card-wrapper {
