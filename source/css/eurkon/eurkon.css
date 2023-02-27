@@ -377,7 +377,7 @@ body.hidden-y {
 #recent-posts>.recent-post-item>.recent-post-info {
   height: 40%;
   width: 100%;
-  padding: .5rem .8rem;
+  padding: .6rem .8rem;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -472,6 +472,7 @@ a.article-title-new::after {
 
 #recent-posts>.recent-post-item>.recent-post-info>.article-meta-wrap {
   color: var(--font-color);
+  margin: 0;
   white-space: nowrap;
   display: flex;
   justify-content: space-between;
