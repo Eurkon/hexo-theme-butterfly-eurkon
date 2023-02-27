@@ -63,19 +63,20 @@
                       span= item.name
                     .skill-info-process!= numToStars(item.star)
               div(style="font-size: 2rem;line-height: 1;")= _p('...')
-            .skill-card-wrapper
-              each item, index in evenList
-                .skill-icon-pair
-                  .skill-icon(style=`background: ${evenList[index].color || background}; --main-shadow: 0 8px 12px -3px rgba(${parseInt('0x' + (evenList[index].color || shadow).slice(1, 3))}, ${parseInt('0x' + (evenList[index].color || shadow).slice(3, 5))}, ${parseInt('0x' + (evenList[index].color || shadow).slice(5, 7))}, .5)`)
-                    img.no-lightbox(src=url_for(evenList[index].image))
-                  .skill-icon(style=`background: ${oddList[index].color || background}; --main-shadow: 0 8px 12px -3px rgba(${parseInt('0x' + (oddList[index].color || shadow).slice(1, 3))}, ${parseInt('0x' + (oddList[index].color || shadow).slice(3, 5))}, ${parseInt('0x' + (oddList[index].color || shadow).slice(5, 7))}, .5)`)
-                    img.no-lightbox(src=url_for(oddList[index].image))
-              each item, index in evenList
-                .skill-icon-pair
-                  .skill-icon(style=`background: ${evenList[index].color || background}; --main-shadow: 0 8px 12px -3px rgba(${parseInt('0x' + (evenList[index].color || shadow).slice(1, 3))}, ${parseInt('0x' + (evenList[index].color || shadow).slice(3, 5))}, ${parseInt('0x' + (evenList[index].color || shadow).slice(5, 7))}, .5)`)
-                    img.no-lightbox(src=url_for(evenList[index].image))
-                  .skill-icon(style=`background: ${oddList[index].color || background}; --main-shadow: 0 8px 12px -3px rgba(${parseInt('0x' + (oddList[index].color || shadow).slice(1, 3))}, ${parseInt('0x' + (oddList[index].color || shadow).slice(3, 5))}, ${parseInt('0x' + (oddList[index].color || shadow).slice(5, 7))}, .5)`)
-                    img.no-lightbox(src=url_for(oddList[index].image))
+            .skill-wrapper-container
+              .skill-card-wrapper
+                each item, index in evenList
+                  .skill-icon-pair
+                    .skill-icon(style=`background: ${evenList[index].color || background}; --main-shadow: 0 8px 12px -3px rgba(${parseInt('0x' + (evenList[index].color || shadow).slice(1, 3))}, ${parseInt('0x' + (evenList[index].color || shadow).slice(3, 5))}, ${parseInt('0x' + (evenList[index].color || shadow).slice(5, 7))}, .5)`)
+                      img.no-lightbox(src=url_for(evenList[index].image))
+                    .skill-icon(style=`background: ${oddList[index].color || background}; --main-shadow: 0 8px 12px -3px rgba(${parseInt('0x' + (oddList[index].color || shadow).slice(1, 3))}, ${parseInt('0x' + (oddList[index].color || shadow).slice(3, 5))}, ${parseInt('0x' + (oddList[index].color || shadow).slice(5, 7))}, .5)`)
+                      img.no-lightbox(src=url_for(oddList[index].image))
+                each item, index in evenList
+                  .skill-icon-pair
+                    .skill-icon(style=`background: ${evenList[index].color || background}; --main-shadow: 0 8px 12px -3px rgba(${parseInt('0x' + (evenList[index].color || shadow).slice(1, 3))}, ${parseInt('0x' + (evenList[index].color || shadow).slice(3, 5))}, ${parseInt('0x' + (evenList[index].color || shadow).slice(5, 7))}, .5)`)
+                      img.no-lightbox(src=url_for(evenList[index].image))
+                    .skill-icon(style=`background: ${oddList[index].color || background}; --main-shadow: 0 8px 12px -3px rgba(${parseInt('0x' + (oddList[index].color || shadow).slice(1, 3))}, ${parseInt('0x' + (oddList[index].color || shadow).slice(3, 5))}, ${parseInt('0x' + (oddList[index].color || shadow).slice(5, 7))}, .5)`)
+                      img.no-lightbox(src=url_for(oddList[index].image))
       
     .author-card-group
       .author-card.author-card-github

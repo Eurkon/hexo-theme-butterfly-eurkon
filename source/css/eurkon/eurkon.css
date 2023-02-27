@@ -4363,6 +4363,15 @@ body.read-mode #comment-barrage {
   }
 }
 
+.home-card .skill-wrapper-container {
+  -webkit-transform: rotate(-30deg);
+  -moz-transform: rotate(-30deg);
+  -ms-transform: rotate(-30deg);
+  -o-transform: rotate(-30deg);
+  transform: rotate(-30deg);
+  margin-top: 5rem;
+}
+
 .author-card-skills .skill-card-wrapper {
   -webkit-animation: scrollToRight 20s linear infinite !important;
   -moz-animation: scrollToRight 20s linear infinite !important;
@@ -4423,44 +4432,29 @@ body.read-mode #comment-barrage {
   border-radius: calc(var(--border-radius) / 2) !important;
 }
 
-
-@keyframes scrollToRightRotate {
-  from {
-    -webkit-transform: rotate(-30deg) translate3d(-50%, 0, 0);
-    -moz-transform: rotate(-30deg) translate3d(-50%, 0, 0);
-    -ms-transform: rotate(-30deg) translate3d(-50%, 0, 0);
-    -o-transform: rotate(-30deg) translate3d(-50%, 0, 0);
-    transform: rotate(-30deg) translate3d(-50%, 0, 0);
-  }
-
-  to {
-    -webkit-transform: rotate(-30deg) translate3d(0%, 0, 0);
-    -moz-transform: rotate(-30deg) translate3d(0%, 0, 0);
-    -ms-transform: rotate(-30deg) translate3d(0%, 0, 0);
-    -o-transform: rotate(-30deg) translate3d(0%, 0, 0);
-    transform: rotate(-30deg) translate3d(0%, 0, 0);
-  }
-}
-
 .skill-card-container {
   position: relative;
   overflow: hidden;
   display: flex;
+  flex-direction: column;
   height: 18rem;
   padding: .5rem 0;
   border-radius: var(--border-radius);
 }
 
+.skill-wrapper-container {
+  display: flex;
+}
+
 .skill-card-wrapper {
-  width: 100%;
   pointer-events: none;
   display: flex;
   flex-wrap: nowrap;
-  -webkit-animation: scrollToRightRotate 20s linear infinite;
-  -moz-animation: scrollToRightRotate 20s linear infinite;
-  -ms-animation: scrollToRightRotate 20s linear infinite;
-  -o-animation: scrollToRightRotate 20s linear infinite;
-  animation: scrollToRightRotate 20s linear infinite;
+  -webkit-animation: scrollToRight 20s linear infinite;
+  -moz-animation: scrollToRight 20s linear infinite;
+  -ms-animation: scrollToRight 20s linear infinite;
+  -o-animation: scrollToRight 20s linear infinite;
+  animation: scrollToRight 20s linear infinite;
   -webkit-transition: all .3s ease-in-out;
   -moz-transition: all .3s ease-in-out;
   -ms-transition: all .3s ease-in-out;
@@ -4581,10 +4575,6 @@ body.read-mode #comment-barrage {
   -ms-box-shadow: var(--main-shadow);
   -o-box-shadow: var(--main-shadow);
   box-shadow: var(--main-shadow);
-}
-
-.home-card .skill-card-wrapper {
-  margin-top: 5rem;
 }
 
 .home-card .skill-card-container:hover .skill-card-wrapper {
