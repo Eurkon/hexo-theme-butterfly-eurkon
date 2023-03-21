@@ -161,7 +161,7 @@ const eurkon = {
     let allPage = document.querySelectorAll(".page-number")
     let page = Math.min(Math.max(1, Number(document.getElementById("toPageText").value)), Number(allPage[allPage.length - 1].innerHTML))
     let href = window.location.href.replace(/page\/[0-9]+\//g, '') + (page === 1 ? '' : ('page/' + page + '/'))
-    console.log(href)
+    // console.log(href)
     window.pjax ? pjax.loadUrl(href) : window.open(href, "_self")
   },
 
