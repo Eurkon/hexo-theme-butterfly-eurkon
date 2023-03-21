@@ -191,6 +191,7 @@ i.scroll-down-effects {
   .layout>div:first-child {
     width: 100% !important;
     z-index: 1;
+    height: fit-content;
   }
 }
 
@@ -198,6 +199,7 @@ i.scroll-down-effects {
 
   .layout>div:first-child {
     width: calc(100% - 310px);
+    height: fit-content;
   }
 
   #aside-content {
@@ -1642,6 +1644,84 @@ a.catalog-more:hover {
 #pagination a.extend.next:hover .pagination-next {
   opacity: 1;
   margin-left: 0;
+}
+
+.toPageGroup {
+  display: inline-block;
+  position: relative;
+  width: unset !important;
+  height: 2rem !important;
+  line-height: unset !important;
+}
+
+.pagination .toPageGroup:hover input,
+.pagination .toPageGroup input:focus {
+  width: 5rem;
+  border-color: var(--main);
+  -webkit-box-shadow: var(--main-shadow);
+  -moz-box-shadow: var(--main-shadow);
+  -ms-box-shadow: var(--main-shadow);
+  -o-box-shadow: var(--main-shadow);
+  box-shadow: var(--main-shadow);
+}
+
+.pagination input {
+  width: 2rem;
+  height: 2rem;
+  border-radius: var(--border-radius);
+  border: var(--card-border);
+  outline-style: none;
+  padding-left: 1rem;
+  color: var(--text-highlight-color);
+  background: var(--tab-botton-bg);
+  -webkit-transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  -ms-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+}
+
+.toPageGroup:hover a#toPageButton,
+.toPageGroup:focus a#toPageButton,
+.toPageGroup:focus-within a#toPageButton {
+  width: 1.6rem;
+  height: 1.6rem;
+  right: .4rem;
+  top: .2rem;
+  background: var(--card-bg);
+  border-radius: calc(var(--border-radius) / 2);
+  opacity: .2;
+}
+
+a#toPageButton {
+  display: flex;
+  position: absolute;
+  width: 2rem;
+  height: 2rem;
+  right: 0;
+  top: 0;
+  border-radius: var(--border-radius);
+  justify-content: center;
+  align-items: center;
+  color: var(--font-color);
+  background: var(--card-bg);
+  pointer-events: none;
+  cursor: var(--pointer-cursor), pointer !important;
+  -webkit-transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  -ms-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+}
+
+a#toPageButton.haveValue {
+  opacity: 1 !important;
+  pointer-events: all;
+}
+
+a#toPageButton.haveValue:hover {
+  color:var(--second);
+  background: var(--main);
 }
 
 /* 上下一篇文章 */

@@ -75,5 +75,9 @@ else
   nav#pagination
     .pagination
       if is_home()
-        - options.format = 'page/%d/#content-inner'
+        - options.format = 'page/%d/'
       !=paginator(options)
+      .toPageGroup
+        input#toPageText(oninput="value=value.replace(/[^0-9]/g, '')" maxlength="3" title="跳转到指定页面" onkeyup="this.value=this.value.replace(/[^u4e00-u9fa5w]/g, '')")
+        a#toPageButton(onclick="eurkon.toPage()")
+          i.fa.fas.fa-fw.fa-angle-double-right

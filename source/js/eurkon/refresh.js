@@ -3,6 +3,7 @@ eurkon.switchPageTitle()
 eurkon.catalogActive()
 eurkon.postAddToc()
 eurkon.footerRandomFlink(flinks, 3)
+eurkon.listenToPageInputPress()
 
 // 顶部菜单栏 评论按钮
 if (document.getElementById('comment-button')) document.getElementById('comment-button').style.display = document.getElementById('post-comment') ? 'block' : 'none'
