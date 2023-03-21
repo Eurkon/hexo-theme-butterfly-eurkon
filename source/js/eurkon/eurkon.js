@@ -62,17 +62,19 @@ const eurkon = {
   // 页脚随机友链
   footerRandomFlink: function (flinks, num = 3) {
     let flinkList = document.querySelectorAll('#footer-group-flink .footer-group-item')
-    let flinkArray = flinks
-    if (flinks.length > num) {
-      let flinkSet = new Set()
-      while (flinkSet.size < num) {
-        flinkSet.add(flinks[Math.floor(Math.random() * flinks.length)])
+    if (flinks && flinkList.length > 0) {
+      let flinkArray = flinks
+      if (flinks.length > num) {
+        let flinkSet = new Set()
+        while (flinkSet.size < num) {
+          flinkSet.add(flinks[Math.floor(Math.random() * flinks.length)])
+        }
+        flinkArray = Array.from(flinkSet)
       }
-      flinkArray = Array.from(flinkSet)
-    }
-    for (let i = 0; i < flinkArray.length; i++) {
-      flinkList[i].href = flinkArray[i].link
-      flinkList[i].innerText = flinkArray[i].name
+      for (let i = 0; i < flinkArray.length; i++) {
+        flinkList[i].href = flinkArray[i].link
+        flinkList[i].innerText = flinkArray[i].name
+      }
     }
   },
 
@@ -102,14 +104,14 @@ const eurkon = {
       }, false)
 
       // 高亮当前页面对应的分类或标签
-      let $catalog = document.getElementById(decodeURIComponent(window.location.pathname))
+      let path = decodeURIComponent(window.location.pathname).replace(/page\/[0-9]+\//g, '')
+      let $catalog = document.getElementById(path)
       $catalog?.classList.add('selected')
+      document.getElementById(path.slice(1))?.classList.add('selected')
 
       // 滚动当前页面对应的分类或标签到中部
       $list.scrollLeft = ($catalog.offsetLeft - $list.offsetLeft) - ($list.offsetWidth - $catalog.offsetWidth) / 2
     }
-
-    document.getElementById(decodeURIComponent(window.location.pathname.slice(1)))?.classList.add('selected')
   },
 
   // 热评
