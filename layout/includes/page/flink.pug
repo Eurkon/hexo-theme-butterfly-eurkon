@@ -48,7 +48,7 @@
           .flink-list
             each item in i.link_list
               a.flink-list-card(href=url_for(item.link) target='_blank' data-title=item.descr)
-                i.fa.fas.fa-podcast.flink-item-circle(onclick="openMeShow(event)" data-link=item.link title=item.name+' 的订阅')
+                i.fa.fas.fa-blog.flink-item-circle(onclick="openMeShow(event)" data-link=item.link title=item.name+' 的订阅')
                 .wrapper.cover
                   - var siteshot = item.siteshot ? url_for(item.siteshot) : 'https://image.thum.io/get/width/400/crop/800/allowJPG/wait/20/noanimate/' + item.link
                   img.no-lightbox.cover.fadeIn(src=siteshot onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.post_page) + `'` alt='')
@@ -59,7 +59,7 @@
           .flink-list
             each item in i.link_list
               .flink-list-item
-                i.fa.fas.fa-podcast.flink-item-circle(onclick="openMeShow(event)" data-link=item.link title=item.name+' 的订阅')
+                i.fa.fas.fa-blog.flink-item-circle(onclick="openMeShow(event)" data-link=item.link title=item.name+' 的订阅')
                 a(href=url_for(item.link) title=item.name target='_blank')
                   .flink-item-icon.info
                     img.no-lightbox(src=url_for(item.avatar) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt=item.name)
