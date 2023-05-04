@@ -1,5 +1,14 @@
 if theme.aside.card_author.enable
   .card-widget.card-info
+    //- 源代码START
+    //- .is-center
+    //-   .avatar-img
+    //-     img(src=url_for(theme.avatar.img) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt="avatar")
+    //-   .author-info__name= config.author
+    //-   .author-info__description!= theme.aside.card_author.description || config.description
+    //- 源代码END
+    
+    //- 魔改代码START
     if config.card_info && config.card_info.enable
       .card-info-top
         #card-info-hello
@@ -14,6 +23,7 @@ if theme.aside.card_author.enable
           img(src=url_for(theme.avatar.img) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt="avatar")
         .author-info__name= config.author
         .author-info__description!= theme.aside.card_author.description || config.description
+    //- 魔改代码END
 
     .card-info-data.site-data.is-center
       a(href=url_for(config.archive_dir) + '/')

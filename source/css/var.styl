@@ -82,7 +82,7 @@ $search-bg = #f6f8fa
 $search-input-color = $font-black
 $search-color = $theme-color
 $search-keyword-highlight = #F47466
-$search-result-title = $font-black
+$search-a-color = $font-black
 // comments
 $comments-switch-first-text = $bright-blue
 $comments-switch-second-text = $light-orange
@@ -98,7 +98,12 @@ $gallery-color = #fff
 $tag-hide-bg = $theme-color
 $tag-hide-toggle-bg = #f0f0f0
 // preloader
+// 源代码START
+// $preloader-bg = #37474f
+// 源代码END
+// 魔改代码START
 $preloader-bg = hexo-config('preloader.enable') && hexo-config('preloader.load_color') ? convert(hexo-config('preloader.load_color')) : #37474f
+// 魔改代码END
 $preloader-word-color = #fff
 // rightside
 $rightside-bottom = hexo-config('rightside-bottom') ? convert(hexo-config('rightside-bottom')) : 40px

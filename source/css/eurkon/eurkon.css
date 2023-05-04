@@ -576,19 +576,20 @@ a.article-title-new::after {
   }
 }
 
-#local-search .search-dialog .local-search__hit-item:hover::before {
+#local-search .search-dialog .local-search-hit-item:hover::before {
   border-color: var(--light-text);
 }
 
-#local-search .search-dialog .local-search__hit-item .search-keyword {
+#local-search .search-dialog .local-search-hit-item .search-keyword {
   color: var(--light-text);
 }
 
-#local-search .search-dialog .local-search__hit-item a.search-result-title {
-  display: inline;
+#local-search .search-dialog .local-search-hit-item a {
+  display: inline-block;
+  color: var(--text-highlight-color);
 }
 
-#local-search .search-dialog .local-search__hit-item a.search-result-tag {
+#local-search .search-dialog .local-search-hit-item a.search-result-tag {
   display: inline-block;
   opacity: .9;
   font-size: 90%;
@@ -603,7 +604,7 @@ a.article-title-new::after {
   transition: all .3s ease-in-out;
 }
 
-#local-search .search-dialog .local-search__hit-item a.search-result-tag:hover {
+#local-search .search-dialog .local-search-hit-item a.search-result-tag:hover {
   color: var(--card-bg);
   background: var(--font-color);
 }
@@ -1720,7 +1721,7 @@ a#toPageButton.haveValue {
 }
 
 a#toPageButton.haveValue:hover {
-  color:var(--second);
+  color: var(--second);
   background: var(--main);
 }
 

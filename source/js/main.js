@@ -243,8 +243,8 @@ document.addEventListener('DOMContentLoaded', function () {
       return str
     }
 
-    const lazyloadFn = (i, arr) => {
-      const loadItem = i.getAttribute('data-limit')
+    const lazyloadFn = (i, arr, limit) => {
+      const loadItem = limit
       const arrLength = arr.length
       if (arrLength > loadItem) i.insertAdjacentHTML('beforeend', htmlStr(arr.splice(0, loadItem)))
       else {
@@ -254,29 +254,43 @@ document.addEventListener('DOMContentLoaded', function () {
       return arrLength > loadItem ? loadItem : arrLength
     }
 
-    ele.forEach(item => {
-      const arr = JSON.parse(item.querySelector('.gallery-data').textContent)
+    const fetchUrl = async (url) => {
+      const response = await fetch(url)
+      return await response.json()
+    }
+
+    const runJustifiedGallery = (item, arr) => {
       if (!item.classList.contains('lazyload')) item.innerHTML = htmlStr(arr)
       else {
-        lazyloadFn(item, arr)
         const limit = item.getAttribute('data-limit')
+        lazyloadFn(item, arr, limit)
         const clickBtnFn = () => {
-          const lastItemLength = lazyloadFn(item, arr)
+          const lastItemLength = lazyloadFn(item, arr, limit)
           fjGallery(item, 'appendImages', item.querySelectorAll(`.fj-gallery-item:nth-last-child(-n+${lastItemLength})`))
           btf.loadLightbox(item.querySelectorAll('img'))
           lastItemLength < limit && item.nextElementSibling.removeEventListener('click', clickBtnFn)
         }
         item.nextElementSibling.addEventListener('click', clickBtnFn)
       }
-    })
+      btf.initJustifiedGallery(item)
+      btf.loadLightbox(item.querySelectorAll('img'))
+    }
+
+    const addJustifiedGallery = () => {
+      ele.forEach(item => {
+        item.classList.contains('url')
+          ? fetchUrl(item.textContent).then(res => { runJustifiedGallery(item, res) })
+          : runJustifiedGallery(item, JSON.parse(item.textContent))
+      })
+    }
 
     if (window.fjGallery) {
-      setTimeout(() => { btf.initJustifiedGallery(ele) }, 100)
+      addJustifiedGallery()
       return
     }
 
     getCSS(`${GLOBAL_CONFIG.source.justifiedGallery.css}`)
-    getScript(`${GLOBAL_CONFIG.source.justifiedGallery.js}`).then(() => { btf.initJustifiedGallery(ele) })
+    getScript(`${GLOBAL_CONFIG.source.justifiedGallery.js}`).then(addJustifiedGallery)
   }
 
   /**
@@ -285,15 +299,21 @@ document.addEventListener('DOMContentLoaded', function () {
   const rightsideScrollPercent = currentTop => {
     const perNum = btf.getScrollPercent(currentTop, document.body)
     const $goUp = document.getElementById('go-up')
+    // 魔改代码START
     const $topButton = document.getElementById('top-button')
+    // 魔改代码END
     if (perNum < 95) {
       $goUp.classList.add('show-percent')
       $goUp.querySelector('.scroll-percent').textContent = perNum
+      // 魔改代码START
       $topButton.classList.add('show-percent')
       $topButton.querySelector('.scroll-percent').textContent = perNum
+      // 魔改代码END
     } else {
       $goUp.classList.remove('show-percent')
+      // 魔改代码START
       $topButton.classList.remove('show-percent')
+      // 魔改代码END
     }
   }
 

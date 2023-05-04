@@ -19,8 +19,10 @@ hexo.extend.helper.register('related_posts', function (currentPost, allPosts) {
           weight: 1,
           updated: post.updated,
           created: post.date,
+          // 魔改代码START
           description: post.description,
-          content: post.content
+          content: post.content,
+          // 魔改代码END
         }
         const index = findItem(relatedPosts, 'path', post.path)
         if (index !== -1) {
@@ -52,21 +54,25 @@ hexo.extend.helper.register('related_posts', function (currentPost, allPosts) {
     result += '<div class="relatedPosts-list">'
 
     for (let i = 0; i < Math.min(relatedPosts.length, limitNum); i++) {
-      const cover =
-        relatedPosts[i].cover === false
-          ? relatedPosts[i].randomcover
-          : relatedPosts[i].cover
+      const cover = relatedPosts[i].cover || 'var(--default-bg-color)'
       const title = this.escape_html(relatedPosts[i].title)
+      // 魔改代码START
       const description = this.strip_html(relatedPosts[i].description)
       const content = this.strip_html(relatedPosts[i].content)
+      // 魔改代码END
       result += `<div><a href="${this.url_for(relatedPosts[i].path)}" title="${title}">`
-      result += `<img class="cover" src="${this.url_for(cover)}" alt="cover">`
+      if (relatedPosts[i].cover_type === 'img') {
+        result += `<img class="cover" src="${this.url_for(cover)}" alt="cover">`
+      } else {
+        result += `<div class="cover" style="background: ${cover}"></div>`
+      }
       if (dateType === 'created') {
         result += `<div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> ${this.date(relatedPosts[i].created, hexoConfig.date_format)}</div>`
       } else {
         result += `<div class="content is-center"><div class="date"><i class="fas fa-history fa-fw"></i> ${this.date(relatedPosts[i].updated, hexoConfig.date_format)}</div>`
       }
       result += `<div class="title">${title}</div>`
+      // 魔改代码START
       //- Display the article introduction on homepage
       switch (config.index_post_content.method) {
         case false:
@@ -90,6 +96,7 @@ hexo.extend.helper.register('related_posts', function (currentPost, allPosts) {
           result += `<div class="info">${expert}</div>`
           break
       }
+      // 魔改代码END
       result += '</div></a></div>'
     }
 

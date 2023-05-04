@@ -9,8 +9,11 @@ if hexo-config('css_prefix')
 @import '_page/*'
 @import '_layout/*'
 @import '_tags/*'
-@import '_tags/plugins/*'
 @import '_mode/*'
+
+// 魔改代码START
+@import '_tags/plugins/*'
+// 魔改代码END
 
 // search
 if hexo-config('algolia_search.enable')
@@ -21,4 +24,6 @@ if hexo-config('local_search') && hexo-config('local_search.enable')
   @import '_search/index'
   @import '_search/local-search'
 
+// 魔改代码START
 @import 'eurkon/eurkon.css'
+// 魔改代码END
