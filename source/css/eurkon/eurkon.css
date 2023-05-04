@@ -570,10 +570,10 @@ a.article-title-new::after {
     width: 80%;
     height: auto;
   }
+}
 
-  #local-search .search-dialog .search-result-list {
-    max-height: calc(80vh - 130px) !important;
-  }
+#local-search .search-dialog .search-result-list {
+  max-height: calc(80vh - 200px) !important;
 }
 
 #local-search .search-dialog .local-search-hit-item:hover::before {
