@@ -4681,7 +4681,7 @@ body.read-mode #comment-barrage {
   font-size: 5rem;
   flex-direction: column;
   flex-wrap: nowrap;
-  line-height: 1.5;
+  line-height: 1.2;
   width: 100%;
   height: 100%;
   justify-content: center;
