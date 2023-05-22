@@ -13,9 +13,9 @@
   --cover-bg: rgb(var(--r), var(--g), var(--b));
   --main-lighter: rgba(var(--r), var(--g), var(--b), .4);
   --main-bolder: rgba(var(--r), var(--g), var(--b), .8);
-  --box-shadow: 0 8px 12px -3px rgba(45, 45, 45, .05);
+  --box-shadow: 3px 6px 6px -3px rgba(45, 45, 45, .05);
   /* --box-shadow: 0 2px 3px 1px rgba(45, 45, 45, .05); */
-  --main-shadow: 0 8px 12px -3px rgba(var(--r), var(--g), var(--b), .2);
+  --main-shadow: 3px 6px 6px -3px rgba(var(--r), var(--g), var(--b), .2);
   /* --main-shadow: 0 2px 3px 1px rgba(var(--r), var(--g), var(--b), .2); */
   --card-border: 1px solid var(--tab-botton-bg);
   --card-border-dashed: 2px dashed var(--tab-button-hover-bg);
@@ -288,7 +288,7 @@ body.read-mode .layout>div:first-child {
 #nav #nav-group,
 #footer #footer-group-container,
 #footer #footer-banner-container {
-  max-width: 1300px;
+  max-width: 1400px;
   justify-content: center;
 }
 
@@ -1989,7 +1989,7 @@ strong {
 
 #footer #footer-group-container .footer-group#footer-group-flink .footer-group-title i {
   font-size: 80%;
-  margin-left: 0.3em;
+  margin-left: .3em;
   opacity: .8;
   cursor: var(--pointer-cursor), pointer !important;
 }
@@ -2190,7 +2190,7 @@ strong {
 #nav #blog-info a.site-page {
   position: relative;
   font-size: 1em;
-  padding: 0.45rem 0.6rem !important;
+  padding: .45rem .6rem !important;
 }
 
 #nav #blog-info a.site-page:hover span {
@@ -2715,7 +2715,7 @@ div.menus_items>div:nth-child(4)>ul {
   bottom: 0;
   left: 0;
   z-index: 99;
-  /* background: rgba(0,0,0,0.6); */
+  /* background: rgba(0,0,0,.6); */
 }
 
 #rightside-config-show {
