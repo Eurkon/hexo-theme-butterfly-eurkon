@@ -3907,9 +3907,9 @@ body.read-mode #comment-barrage {
 }
 
 .post-item-img {
-  width: 200px;
+  width: 14rem;
   flex-shrink: 0;
-  height: 200px;
+  height: 10rem;
   padding: 10px;
   border-radius: var(--border-radius);
   overflow: hidden;
@@ -3946,14 +3946,17 @@ body.read-mode #comment-barrage {
 }
 
 .post-item-content {
-  padding-right: 50px;
-  padding-left: 50px;
+  padding-right: 40px;
+  padding-left: 10px;
+  overflow: hidden;
 }
 
 @media screen and (max-width: 768px) {
   .post-item-content {
     margin-top: -90px;
     text-align: center;
+    padding-left: 30px;
+    padding-right: 30px;
   }
 }
 
@@ -4080,7 +4083,7 @@ body.read-mode #comment-barrage {
   width: 100% !important;
   flex-direction: column;
   height: auto;
-  padding: 0.6rem 1rem;
+  padding: .6rem 1rem;
   margin-top: 1rem;
   display: flex;
   flex-direction: row;
@@ -4196,11 +4199,11 @@ body.read-mode #comment-barrage {
 }
 
 .parallax>use {
-  -webkit-animation: move-forever 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
-  -moz-animation: move-forever 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
-  -ms-animation: move-forever 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
-  -o-animation: move-forever 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
-  animation: move-forever 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+  -webkit-animation: move-forever 25s cubic-bezier(.55, .5, .45, .5) infinite;
+  -moz-animation: move-forever 25s cubic-bezier(.55, .5, .45, .5) infinite;
+  -ms-animation: move-forever 25s cubic-bezier(.55, .5, .45, .5) infinite;
+  -o-animation: move-forever 25s cubic-bezier(.55, .5, .45, .5) infinite;
+  animation: move-forever 25s cubic-bezier(.55, .5, .45, .5) infinite;
   fill: var(--global-bg);
 }
 
@@ -4288,10 +4291,35 @@ body.read-mode #comment-barrage {
     display: none !important;
   }
 
-  .home-card .recommend-card {
+  .home-card .home-post-card {
     width: 100% !important;
   }
+
+  .home-card .home-post-card .swiper-card {
+    height: 12rem;
+  }
+
+  .home-card .home-post-card .swiper-card .post-item-img {
+    height: 12rem;
+    width: 18rem;
+  }
 }
+
+@media (max-width: 768px) {
+  .home-card .home-post-card .recommend-card {
+    display: none !important;
+  }
+
+  .home-card .home-post-card .swiper-card {
+    height: 24rem;
+  }
+
+  .home-card .home-post-card .swiper-card .post-item-content {
+    padding-right: 40px;
+    padding-left: 10px;
+  }
+}
+
 
 .home-card {
   align-items: center;
@@ -4317,8 +4345,14 @@ body.read-mode #comment-barrage {
   padding: 1rem;
 }
 
-.home-card .swiper-post {
-  width: calc(100% / 2 - 0.25rem);
+.home-card .home-post-card {
+  width: calc(100% / 2 - .25rem);
+}
+
+.home-post-card .swiper-card {
+  width: 100%;
+  height: 10rem;
+  overflow: hidden;
   border-radius: var(--border-radius);
   background: var(--card-bg);
   border: var(--card-border);
@@ -4327,11 +4361,26 @@ body.read-mode #comment-barrage {
   -ms-box-shadow: var(--box-shadow);
   -o-box-shadow: var(--box-shadow);
   box-shadow: var(--box-shadow);
+  -webkit-transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  -ms-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+
+}
+
+.home-post-card .swiper-card:hover {
+  border-color: var(--main);
+  -webkit-box-shadow: var(--main-shadow);
+  -moz-box-shadow: var(--main-shadow);
+  -ms-box-shadow: var(--main-shadow);
+  -o-box-shadow: var(--main-shadow);
+  box-shadow: var(--main-shadow);
 }
 
 .recommend-card {
-  height: 20rem;
-  width: calc(100% / 2 - 0.25rem);
+  width: 100%;
+  margin-top: .5rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -4340,8 +4389,7 @@ body.read-mode #comment-barrage {
 
 .recommend-card .recommend-post-item {
   position: relative;
-  width: calc(100% / 3 - 0.5rem);
-  height: 9.75rem;
+  width: calc(100% / 4 - .25rem);
   overflow: hidden;
   border-radius: var(--border-radius);
   background: var(--card-bg);
@@ -4364,7 +4412,7 @@ body.read-mode #comment-barrage {
   font-size: 90%;
   color: var(--second);
   border-radius: calc(var(--border-radius) / 2) 0 calc(var(--border-radius) * 2) 0;
-  padding: 0 0.6em;
+  padding: 0 .6em;
   -webkit-transform: translateX(-2.5em);
   -moz-transform: translateX(-2.5em);
   -ms-transform: translateX(-2.5em);
@@ -4397,31 +4445,31 @@ body.read-mode #comment-barrage {
 .recommend-card .recommend-post-item img {
   width: 100%;
   height: 100%;
-  -webkit-transition: filter 375ms ease-in 0.2s, -webkit-transform 0.6s;
-  -moz-transition: filter 375ms ease-in 0.2s, -moz-transform 0.6s;
-  -o-transition: filter 375ms ease-in 0.2s, -o-transform 0.6s;
-  -ms-transition: filter 375ms ease-in 0.2s, -ms-transform 0.6s;
-  transition: filter 375ms ease-in 0.2s, transform 0.6s;
+  -webkit-transition: filter 375ms ease-in .2s, -webkit-transform .6s;
+  -moz-transition: filter 375ms ease-in .2s, -moz-transform .6s;
+  -o-transition: filter 375ms ease-in .2s, -o-transform .6s;
+  -ms-transition: filter 375ms ease-in .2s, -ms-transform .6s;
+  transition: filter 375ms ease-in .2s, transform .6s;
   object-fit: cover;
   border-radius: var(--border-radius) var(--border-radius) 0 0;
 }
 
 .recommend-card .recommend-post-item .recommend-post-cover {
-  height: 5.75rem;
+  height: 4.5rem;
 }
 
 .recommend-card .recommend-post-item .recommend-post-title {
   color: var(--text-highlight-color);
-  font-size: 1.1rem;
   font-weight: bold;
-  line-height: 1.4;
-  -webkit-transition: all 0.2s ease-in-out;
-  -moz-transition: all 0.2s ease-in-out;
-  -o-transition: all 0.2s ease-in-out;
-  -ms-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
+  line-height: 1.3;
+  height: 2.5rem;
+  -webkit-transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
+  -ms-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
   -webkit-line-clamp: 2;
-  margin: 0.25rem 0.75rem;
+  margin: .5rem .75rem;
   display: -webkit-box;
   overflow: hidden;
   -webkit-box-orient: vertical;
@@ -4519,7 +4567,6 @@ body.read-mode #comment-barrage {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  height: 18rem;
   padding: .5rem 0;
   border-radius: var(--border-radius);
 }
@@ -4588,8 +4635,7 @@ body.read-mode #comment-barrage {
 }
 
 .home-card .skill-card {
-  height: 20rem;
-  width: calc(100% / 2 - 0.25rem);
+  width: calc(100% / 2 - .25rem);
 }
 
 .home-card .home-card-subtitle {
@@ -4615,7 +4661,7 @@ body.read-mode #comment-barrage {
 }
 
 .home-card .skill-card-container {
-  height: 14.5rem;
+  height: 13rem;
   border-radius: var(--border-radius);
   background: var(--card-bg);
   border: var(--card-border);
@@ -4689,7 +4735,7 @@ body.read-mode #comment-barrage {
   padding: 0;
   display: flex;
   flex-wrap: nowrap;
-  margin-top: 0.5rem;
+  margin-top: .5rem;
 }
 
 .home-card .category-lists .category-list li.category-list-item {
@@ -4705,6 +4751,7 @@ body.read-mode #comment-barrage {
 
 .home-card .category-lists .category-list .category-list-item {
   height: 5rem;
+  margin: 0 .25rem;
   -webkit-transition: all .3s ease-in-out;
   -moz-transition: all .3s ease-in-out;
   -ms-transition: all .3s ease-in-out;
