@@ -77,19 +77,20 @@
                       img.no-lightbox(src=url_for(evenList[index].image))
                     .skill-icon(style=`background: ${oddList[index].color || background}; --main-shadow: 3px 6px 6px -3px rgba(${parseInt('0x' + (oddList[index].color || shadow).slice(1, 3))}, ${parseInt('0x' + (oddList[index].color || shadow).slice(3, 5))}, ${parseInt('0x' + (oddList[index].color || shadow).slice(5, 7))}, .5)`)
                       img.no-lightbox(src=url_for(oddList[index].image))
-      
+    
     .author-card-group
       .author-card.author-card-github
-        .author-card-desc!= site.data.github.class_desc
-          .author-card-title!= site.data.github.class_name
-          .github-card-container
-            //- #github_container
-            //-   i.fa.fas.fa-spinner.fa-spin#github_loading(style="font-size: 150px; padding: calc(50% - 75px);")
-            //- script(data-pjax defer src=url_for('/js/gitcalendar.js'))
-            .github-project-container
-              each item in site.data.github.link_list
-                a.github-project(href=url_for(item.link) target='_blank')
-                  img(src=url_for(item.image) title=item.name)
+        if site.data.github
+          .author-card-desc!= site.data.github.class_desc
+            .author-card-title!= site.data.github.class_name
+            .github-card-container
+              //- #github_container
+              //-   i.fa.fas.fa-spinner.fa-spin#github_loading(style="font-size: 150px; padding: calc(50% - 75px);")
+              //- script(data-pjax defer src=url_for('/js/gitcalendar.js'))
+              .github-project-container
+                each item in site.data.github.link_list
+                  a.github-project(href=url_for(item.link) target='_blank')
+                    img(src=url_for(item.image) title=item.name)
 
       .author-card.author-card-statistics
         .author-card-desc= _p('统计')
