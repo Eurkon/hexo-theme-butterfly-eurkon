@@ -308,6 +308,7 @@ body.read-mode .layout>div:first-child {
 }
 
 /* 滚动条 */
+/* 定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸 */
 *::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -318,16 +319,24 @@ body.read-mode .layout>div:first-child {
   height: 8px;
 } */
 
+/* 定义滚动条滑块 */
 *::-webkit-scrollbar-thumb {
   border-radius: var(--border-radius);
   background: var(--main-bolder);
   /* background-image: linear-gradient(45deg, rgba(255, 255, 255, .4) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .4) 50%, rgba(255, 255, 255, .4) 75%, transparent 75%, transparent); */
 }
 
-*::-webkit-scrollbar-thumb:hover {
-  background-image: none;
-  background: var(--main);
+/* 定义滚动条轨道 */
+@media screen and (max-width: 900px) {
+  *::-webkit-scrollbar-track {
+    background-color: var(--card-bg);
+  }
 }
+
+/* 
+*::-webkit-scrollbar-track-piece {
+  background-color: transparent;
+} */
 
 body {
   overflow-y: overlay !important;
