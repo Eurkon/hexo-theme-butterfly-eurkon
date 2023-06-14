@@ -313,10 +313,10 @@ body.read-mode .layout>div:first-child {
   height: 6px;
 }
 
-*::-webkit-scrollbar:hover {
+/* *::-webkit-scrollbar:hover {
   width: 8px;
   height: 8px;
-}
+} */
 
 *::-webkit-scrollbar-thumb {
   border-radius: var(--border-radius);
