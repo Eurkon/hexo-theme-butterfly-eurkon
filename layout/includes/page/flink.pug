@@ -67,14 +67,16 @@
                     span.flink-item-name.flink-sitename= item.name
                     span.flink-item-desc(title=item.descr)= item.descr
                     img.no-lightbox(src=url_for(item.avatar) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt=item.name)
-    
-      h2!= _p('友链文章')
-      <details class="folding-tag tabs">
-        <summary> 友链博主最近发布文章 </summary>
-        <div class="content">
-          <div id='fc-container'></div>
-          <button type="button" class="tab-to-top" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button>
-        </div>
-      </details>
+
+    h2!= _p('友链文章')
+    a.flink-desc(href="/fcircle/" title='查看更多')!= _p('查看更多')
+    #fc-banner
+    //- <details class="folding-tag tabs">
+    //-   <summary> 友链博主最近发布文章 </summary>
+    //-   <div class="content">
+    //-     <div id='fc-container'></div>
+    //-     <button type="button" class="tab-to-top" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button>
+    //-   </div>
+    //- </details>
 
     != page.content
