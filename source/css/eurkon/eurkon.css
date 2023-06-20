@@ -4784,3 +4784,301 @@ body.read-mode #comment-barrage {
   font-size: 3rem;
   line-height: 3rem;
 }
+
+
+
+#author-about {
+  display: flex !important;
+  padding-top: 1rem;
+  flex-direction: column;
+  align-items: center;
+}
+
+#author-about .author-img {
+  margin: auto;
+  width: 180px;
+  height: 180px;
+}
+
+#author-about .author-img img {
+  border-radius: 50%;
+}
+
+#author-about .author-title {
+  color: var(--text-highlight-color);
+  font-size: 2rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  line-height: 1;
+}
+
+#author-about .author-card-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+
+}
+
+#author-about .author-card-group:nth-child(odd) .author-card:nth-child(odd) {
+  width: calc(60% - 1rem);
+}
+
+#author-about .author-card-group:nth-child(odd) .author-card:nth-child(even) {
+  width: calc(40% - 1rem);
+}
+
+#author-about .author-card-group:nth-child(even) .author-card:nth-child(odd) {
+  width: calc(40% - 1rem);
+}
+
+#author-about .author-card-group:nth-child(even) .author-card:nth-child(even) {
+  width: calc(60% - 1rem);
+}
+
+.author-card {
+  color: var(--text-highlight-color);
+  position: relative;
+  background: var(--card-bg);
+  border-radius: 1rem;
+  padding: 1rem 2rem;
+  border: var(--card-border);
+  margin-top: 1.5rem;
+  border: var(--card-border);
+  -webkit-box-shadow: var(--box-shadow);
+  -moz-box-shadow: var(--box-shadow);
+  -ms-box-shadow: var(--box-shadow);
+  -o-box-shadow: var(--box-shadow);
+  box-shadow: var(--box-shadow);
+}
+
+.author-card-desc {
+  font-size: 80%;
+  opacity: .8;
+}
+
+.author-card-subtitle {
+  opacity: .8;
+}
+
+.author-card-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--text-highlight-color);
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.author-card-btn {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  border-radius: 5em;
+  backdrop-filter: var(--backdrop-filter);
+  height: 2.5em;
+  background: rgba(255, 255, 255, .1);
+  padding: .5em .8em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  -ms-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+}
+
+.author-card-btn * {
+  color: #fff;
+  margin: .2em;
+}
+
+.author-card-btn:hover {
+  background: var(--main) !important;
+  -webkit-box-shadow: var(--box-shadow) !important;
+  -moz-box-shadow: var(--box-shadow) !important;
+  -ms-box-shadow: var(--box-shadow) !important;
+  -o-box-shadow: var(--box-shadow) !important;
+  box-shadow: var(--box-shadow) !important;
+}
+
+.author-card-btn:hover * {
+  color: var(--second) !important;
+}
+
+.author-card-info {
+  background: linear-gradient(120deg, rgba(91, 39, 255, 1) 0%, rgba(0, 212, 255, 1) 100%);
+  background-size: 200%;
+  -webkit-animation: gradient 15s ease infinite;
+  -moz-animation: gradient 15s ease infinite;
+  -ms-animation: gradient 15s ease infinite;
+  -o-animation: gradient 15s ease infinite;
+  animation: gradient 15s ease infinite;
+}
+
+.author-card-info div {
+  color: #fff !important;
+}
+
+.author-card-info .author-card-btn {
+  background: rgba(57, 104, 255);
+}
+
+.author-card-personalities .author-card-img {
+  position: absolute;
+  right: -20px;
+  bottom: 10px;
+  width: 200px;
+}
+
+.author-card-personalities .author-card-subtitle {
+  color: #4298b4;
+  font-size: 2rem;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.author-card-personalities .author-card-btn {
+  background: rgba(66, 152, 180, .5);
+}
+
+#author-career-container {
+  height: 300px;
+  background: url('/images/user/career.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.author-card.author-card-github {
+  width: calc(70% - 1rem) !important;
+}
+
+.author-card.author-card-github .github-card-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.author-card.author-card-github .git_title,
+.author-card.author-card-github #git_tooltip_container,
+.author-card.author-card-github #github_container>div:not(.position-relative) {
+  display: none !important;
+}
+
+.author-card.author-card-github .github-card-container #github_container {
+  position: absolute;
+  padding: 0;
+  width: 100%;
+  -webkit-transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  -ms-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+}
+
+.author-card.author-card-github .github-card-container:hover #github_container {
+  opacity: 0;
+}
+
+.author-card.author-card-github .github-project-container {
+  /* opacity: 0; */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  -webkit-transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  -ms-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+}
+
+.author-card.author-card-github .github-card-container:hover .github-project-container {
+  opacity: 1;
+}
+
+.author-card.author-card-github .github-project-container .github-project {
+  width: calc(50% - .25rem);
+  margin-bottom: .5rem;
+}
+
+.author-card.author-card-github .github-project-container .github-project img {
+  height: 125px;
+  object-fit: cover;
+  object-position: left;
+  margin: 0 auto !important;
+  border-radius: .8rem !important;
+}
+
+.author-card.author-card-statistics {
+  width: calc(30% - 1rem) !important;
+  color: #fff;
+  background: url('/images/user/statistics.png');
+  background-size: cover;
+}
+
+.author-card.author-card-statistics .author-card-title {
+  color: #fff;
+}
+
+.author-card.author-card-statistics #statistics-counter {
+  font-size: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.author-card.author-card-statistics #statistics-counter div {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin-bottom: .5rem;
+}
+
+.author-card.author-card-statistics #statistics-counter div span:first-child {
+  opacity: .8;
+  font-size: 80%;
+}
+
+.author-card.author-card-statistics #statistics-counter div span:last-child {
+  font-weight: bold;
+  font-size: 2rem;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+
+@media (max-width: 768px) {
+  #author-about .author-card-group .author-card {
+    width: 100% !important;
+  }
+
+  .author-card-personalities .author-card-img {
+    width: 150px !important;
+  }
+
+  .author-card.author-card-github .github-project-container .github-project {
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 1080px) {
+  .author-card.author-card-github #github_container {
+    display: none;
+  }
+
+  .author-card.author-card-github .github-project-container {
+    opacity: 1;
+  }
+}
