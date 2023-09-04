@@ -172,7 +172,7 @@ const eurkon = {
     let allPage = document.querySelectorAll(".page-number")
     if (input) {
       input.addEventListener("keydown", (event) => {
-        if (event.keyCode === 13) {
+        if (event.keyCode === 13 && input.value && Number(input.value) !== 0) {
           // 如果按下的是回车键，则执行特定的函数
           eurkon.toPage()
         }
