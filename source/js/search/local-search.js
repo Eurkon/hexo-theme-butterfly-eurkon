@@ -191,14 +191,15 @@ class LocalSearch {
         this.isfetched = true
         this.datas = isXml
           ? [...new DOMParser().parseFromString(res, 'text/xml').querySelectorAll('entry')].map(element => ({
-              title: element.querySelector('title').textContent,
-              content: element.querySelector('content').textContent,
-              url: element.querySelector('url').textContent,
               // 魔改代码START
               categories: [...element.querySelectorAll('category')].map(category => { return category.textContent.trim() }),
               tags: [...element.querySelectorAll('tag')].map(tag => { return tag.textContent.trim() }),
               // 魔改代码END
-          }))
+              
+              title: element.querySelector('title').textContent,
+              content: element.querySelector('content').textContent,
+              url: element.querySelector('url').textContent
+            }))
           : JSON.parse(res)
         // Only match articles with non-empty titles
         this.datas = this.datas.filter(data => data.title).map(data => {
@@ -298,7 +299,7 @@ window.addEventListener('load', () => {
       window.pjax && window.pjax.refresh(container)
     }
 
-    $loadingStatus.innerHTML = ''
+    $loadingStatus.textContent = ''
   }
 
   let loadFlag = false
