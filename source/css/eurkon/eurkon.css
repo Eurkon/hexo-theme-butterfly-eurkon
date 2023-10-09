@@ -3955,6 +3955,7 @@ body.read-mode #comment-barrage {
 }
 
 .post-item-content {
+  width: 100%;
   padding-right: 40px;
   padding-left: 10px;
   overflow: hidden;
@@ -4310,7 +4311,6 @@ body.read-mode #comment-barrage {
 
   .home-card .home-post-card .swiper-card .post-item-img {
     height: 12rem;
-    width: 18rem;
   }
 }
 
@@ -4324,7 +4324,7 @@ body.read-mode #comment-barrage {
   }
 
   .home-card .home-post-card .swiper-card .post-item-content {
-    padding-right: 40px;
+    padding-right: 10px;
     padding-left: 10px;
   }
 }
