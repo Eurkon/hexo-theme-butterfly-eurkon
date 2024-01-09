@@ -1,3 +1,5 @@
+- const serverURL = theme.waline.serverURL.replace(/\/$/, '')
+
 script.
   window.addEventListener('load', () => {
     const changeContent = content => {
@@ -36,14 +38,14 @@ script.
       }
 
       let $dom = document.querySelector('#card-newest-comments .aside-list')
-      $dom.innerHTML= result
+      $dom && ($dom.innerHTML= result)
       window.lazyLoadInstance && window.lazyLoadInstance.update()
       window.pjax && window.pjax.refresh($dom)
     }
 
     const getComment = async () => {
       try {
-        const res = await fetch('!{theme.waline.serverURL}/api/comment?type=recent&count=!{theme.newest_comments.limit}', { method: 'GET' })
+        const res = await fetch('!{serverURL}/api/comment?type=recent&count=!{theme.newest_comments.limit}', { method: 'GET' })
         const result = await res.json()
         const walineArray = result.data.map(e => {
           return {

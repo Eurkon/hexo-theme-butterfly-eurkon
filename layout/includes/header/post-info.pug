@@ -112,46 +112,43 @@
         case whichCount
           when 'Disqus'
             +countBlock
-              span.disqus-comment-count
-                a(href=full_url_for(page.path) + '#disqus_thread' title=_p("rightside.scroll_to_comment"))
-                  i.fa-solid.fa-spinner.fa-spin
+              a.disqus-comment-count(href=full_url_for(page.path) + '#post-comment')
+                i.fa-solid.fa-spinner.fa-spin
           when 'Disqusjs'
             +countBlock
-              a(href=full_url_for(page.path) + '#disqusjs' title=_p("rightside.scroll_to_comment"))
-                span.disqus-comment-count(data-disqus-url=full_url_for(page.path))
-                  i.fa-solid.fa-spinner.fa-spin
+              a.disqusjs-comment-count(href=full_url_for(page.path) + '#post-comment')
+                i.fa-solid.fa-spinner.fa-spin
           when 'Valine'
             +countBlock
-              a(href=url_for(page.path) + '#post-comment' itemprop="discussionUrl" title=_p("rightside.scroll_to_comment"))
+              a(href=url_for(page.path) + '#post-comment' itemprop="discussionUrl")
                 span.valine-comment-count(data-xid=url_for(page.path) itemprop="commentCount")
                   i.fa-solid.fa-spinner.fa-spin
           when 'Waline'
             +countBlock
-              a(href=url_for(page.path) + '#post-comment' title=_p("rightside.scroll_to_comment"))
+              a(href=url_for(page.path) + '#post-comment')
                 span.waline-comment-count(data-path=url_for(page.path))
                   i.fa-solid.fa-spinner.fa-spin
           when 'Gitalk'
             +countBlock
-              a(href=url_for(page.path) + '#post-comment' title=_p("rightside.scroll_to_comment"))
+              a(href=url_for(page.path) + '#post-comment')
                 span.gitalk-comment-count
                   i.fa-solid.fa-spinner.fa-spin
           when 'Twikoo'
             +countBlock
-              a(href=url_for(page.path) + '#post-comment' title=_p("rightside.scroll_to_comment"))
+              a(href=url_for(page.path) + '#post-comment')
                 span#twikoo-count
                   i.fa-solid.fa-spinner.fa-spin
           when 'Facebook Comments'
             +countBlock
-              a(href=url_for(page.path) + '#post-comment' title=_p("rightside.scroll_to_comment"))
+              a(href=url_for(page.path) + '#post-comment')
                 span.fb-comments-count(data-href=urlNoIndex())
-                  i.fa-solid.fa-spinner.fa-spin
           when 'Remark42'
             +countBlock
-              a(href=url_for(page.path) + '#post-comment' title=_p("rightside.scroll_to_comment"))
+              a(href=url_for(page.path) + '#post-comment')
                 span.remark42__counter(data-url=urlNoIndex())
                   i.fa-solid.fa-spinner.fa-spin
           when 'Artalk'
             +countBlock
-              a(href=url_for(page.path) + '#post-comment' title=_p("rightside.scroll_to_comment"))
+              a(href=url_for(page.path) + '#post-comment')
                 span.artalk-count
                   i.fa-solid.fa-spinner.fa-spin

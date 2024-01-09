@@ -106,7 +106,7 @@ $preloader-bg = hexo-config('preloader.enable') && hexo-config('preloader.load_c
 // 魔改代码END
 $preloader-word-color = #fff
 // rightside
-$rightside-bottom = hexo-config('rightside-bottom') ? convert(hexo-config('rightside-bottom')) : 40px
+$rightside-bottom = hexo-config('rightside_bottom') ? convert(hexo-config('rightside_bottom')) : 40px
 // fireworks
 $fireworks-zIndex = hexo-config('fireworks.zIndex') ? hexo-config('fireworks.zIndex') : 99999
 // Tag Plugins - Note
@@ -184,7 +184,6 @@ $tab-button-hover-bg = darken($tab-border-color, 8)
 $tab-active-border-color = $theme-color
 $tab-button-active-bg = $card-bg
 $tab-to-top-color = #99a9bf
+$tab-to-top-hover-color = $theme-color
 // Tag Plugins - timeline
 $timeline-default-color = $theme-color
-// archor
-$archor-button-icon = hexo-config('anchor.button.icon') ? hexo-config('anchor.button.icon') : '\f0c1'

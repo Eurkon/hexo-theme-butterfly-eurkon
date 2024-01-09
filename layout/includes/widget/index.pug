@@ -13,6 +13,8 @@
       .sticky_layout
         if showToc
           include ./card_post_toc.pug
+        if page.series
+          include ./card_post_series.pug
         if config.card_clock && config.card_clock.enable
           !=partial('includes/widget/card_clock', {}, {cache: true})
         if config.card_weibo && config.card_weibo.enable
@@ -25,7 +27,7 @@
     //- page
     !=partial('includes/widget/card_author', {}, {cache: true})
     !=partial('includes/widget/card_announcement', {}, {cache: true})
-    !=partial('includes/widget/card_top_self', {}, {cache: true})      
+    !=partial('includes/widget/card_top_self', {}, {cache: true})
 
     .sticky_layout
       if showToc

@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
       return Traditionalized(txt)
     } else return txt
   }
+
   function translateBody (fobj) {
     let objs
     if (typeof fobj === 'object') objs = fobj.childNodes
@@ -107,19 +108,25 @@ document.addEventListener('DOMContentLoaded', function () {
         setLang()
         setTimeout(translateBody, translateDelay)
       }
-      translateButtonObject.addEventListener('click', translatePage, false)
     }
     
-    // 魔改代码START
-    rightMenuTranslateButtonObject = document.getElementById('menu-translate')
-    if (rightMenuTranslateButtonObject) {
-      if (currentEncoding !== targetEncoding) {
-        setTimeout(translateBody, translateDelay)
-      }
-      rightMenuTranslateButtonObject.addEventListener('click', translatePage, false)
-    }
-    // 魔改代码END
+        // 魔改代码START
+        rightMenuTranslateButtonObject = document.getElementById('menu-translate')
+        if (rightMenuTranslateButtonObject) {
+          if (currentEncoding !== targetEncoding) {
+            setTimeout(translateBody, translateDelay)
+          }
+          rightMenuTranslateButtonObject.addEventListener('click', translatePage, false)
+        }
+        // 魔改代码END
   }
+
+  window.translateFn = {
+    translatePage,
+    Traditionalized,
+    Simplized
+  }
+
   translateInitialization()
   document.addEventListener('pjax:complete', translateInitialization)
 })

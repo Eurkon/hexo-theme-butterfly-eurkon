@@ -9,9 +9,9 @@
     //-   a(href='/protocol/comment/' title='用户发言前，请认真阅读本条例。一经发言，即视为同意接受本条例；如不同意，请勿发言。')= '评论协议'
     
     if theme.comments.use.length > 1
-      #comment-switch
+      .comment-switch
         span.first-comment=defaultComment
-        span.switch-btn
+        span#switch-btn
         span.second-comment=theme.comments.use[1]
 
 
@@ -24,7 +24,7 @@
           when 'Valine'
             #vcomment.vcomment
           when 'Disqusjs'
-            #disqusjs
+            #disqusjs-wrap
           when 'Livere'
             #lv-container(data-id="city" data-uid=theme.livere.uid)
           when 'Gitalk'

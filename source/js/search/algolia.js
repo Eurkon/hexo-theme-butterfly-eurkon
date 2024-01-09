@@ -39,7 +39,7 @@ window.addEventListener('load', () => {
   }
 
   const searchClickFn = () => {
-    document.querySelector('#search-button > .search').addEventListener('click', openSearch)
+    btf.addEventListenerPjax(document.querySelector('#search-button > .search'), 'click', openSearch)
   }
 
   const searchFnOnce = () => {
@@ -170,7 +170,7 @@ window.addEventListener('load', () => {
     !btf.isHidden($searchMask) && closeSearch()
     searchClickFn()
   })
-  
+
   // 魔改代码START
   // 右键搜索
   document.getElementById('menu-search').addEventListener('click', function () {
@@ -184,7 +184,7 @@ window.addEventListener('load', () => {
     }, 100)
   })
   // 魔改代码END
-  
+
   window.pjax && search.on('render', () => {
     window.pjax.refresh(document.getElementById('algolia-hits'))
   })

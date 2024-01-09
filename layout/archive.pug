@@ -7,7 +7,6 @@ block content
       //- 二选一
       //- <div id="posts-chart" data-start="2021-01" style="height: 300px; padding: 10px;"></div>
       //- #posts-chart(data-start="2021-01" style="height: 300px; padding: 10px;")
-      - const archiveLength = findArchiveLength(fragment_cache)
-      .article-sort-title= _p('page.articles') + ' - ' + archiveLength
-      +articleSort(page.posts, page.current)
-      include includes/pagination.pug
+      .article-sort-title= `${_p('page.articles')} - ${getArchiveLength()}`
+        +articleSort(page.posts, page.current)
+        include includes/pagination.pug
