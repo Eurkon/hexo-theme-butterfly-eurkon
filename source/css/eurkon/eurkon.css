@@ -5082,3 +5082,17 @@ body.read-mode #comment-barrage {
     opacity: 1;
   }
 }
+
+#article-container details .tab-to-top {
+  padding: 0 16px 10px 0;
+  width: 100%;
+  text-align: right;
+}
+
+#article-container details button.tab-to-top {
+  color: #99a9bf
+}
+
+#article-container details button.tab-to-top:hover {
+  color: var(--theme-color)
+}
