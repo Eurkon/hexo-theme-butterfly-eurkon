@@ -8,5 +8,5 @@ block content
       //- <div id="posts-chart" data-start="2021-01" style="height: 300px; padding: 10px;"></div>
       //- #posts-chart(data-start="2021-01" style="height: 300px; padding: 10px;")
       .article-sort-title= `${_p('page.articles')} - ${getArchiveLength()}`
-        +articleSort(page.posts, page.current)
-        include includes/pagination.pug
+      +articleSort(page.posts, page.current)
+      include includes/pagination.pug

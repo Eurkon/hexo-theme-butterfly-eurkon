@@ -48,6 +48,7 @@ mixin postUI(posts)
                 i(class=date_icon)
                 span.article-meta-label=date_title
                 time(datetime=date_xml(article[date_type]) title=date_title + ' ' + full_date(article[date_type]))=date(article[date_type], config.date_format)
+              //- a.unvisited-post(href=url_for(link) title=title)= _p('未读')
           if (theme.post_meta.page.categories && article.categories.data.length > 0)
             span.article-meta.categories
               span.article-meta-separator |
