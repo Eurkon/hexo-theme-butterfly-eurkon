@@ -7,9 +7,9 @@
   margin-left: -300px
   padding: 20px
   width: 600px
-  border-radius: 8px
   background: var(--search-bg)
   --search-height: 100vh
+  addBorderRadius(8)
 
   +maxWidth768()
     top: 0
@@ -18,9 +18,6 @@
     width: 100%
     height: 100%
     border-radius: 0
-
-  hr
-    margin: 20px auto
 
   .search-nav
     margin: 0 0 14px
@@ -40,7 +37,7 @@
         color: $search-color
   
   hr
-    margin: 20px auto
+    margin: 15px auto
     @extend .custom-hr
 
 #search-mask
@@ -53,8 +50,7 @@
   display: none
   background: rgba($dark-black, .6)
 
-if hexo-config('algolia_search.enable')
+if hexo-config('search.use') == 'algolia_search'
   @require 'algolia'
-
-if hexo-config('local_search.enable')
+else if hexo-config('search.use') == 'local_search'
   @require 'local-search'

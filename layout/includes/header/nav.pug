@@ -1,6 +1,6 @@
 nav#nav
   #nav-group
-    span#blog-info 
+    span#blog-info
       if theme.nav.logo
         a(href=url_for('/') title=config.title)
           img.site-icon(src=url_for(theme.nav.logo))
@@ -10,24 +10,29 @@ nav#nav
           span.site-name=config.title
           i.fas.fa-home
 
-    span#page_name
-      a.site-page#page-title(title=_p("rightside.back_to_top") onclick="btf.scrollToDest(0, 500)")
-        span #[=config.title]
-      
-    #menus
-      !=partial('includes/header/menu_item', {}, {cache: true})
+      //- if is_post()
+      //-   a.nav-page-title(href=url_for('/') )
+      //-     span.site-name=(page.title || config.title)
+
+    a.nav-page-title(title=_p("rightside.back_to_top") onclick="btf.scrollToDest(0, 500)")
+      span#page-title.site-name=(pageTitle || page.title || config.title)
+    
+    if theme.menu
+      #menus
+        != partial('includes/header/menu_item', {}, {cache: true})
 
     #hotkey
-      if (theme.algolia_search.enable || theme.local_search.enable)
+      if theme.search.use
         #search-button
-          a.site-page.social-icon.search(href="javascript:void(0);" title=_p('search.title'))
+          span.site-page.social-icon.search(href="javascript:void(0);" title=_p('search.title'))
             i.fas.fa-search.fa-fw
+            span= ' ' + _p('search.title')
       //- if (theme.darkmode.enable && theme.darkmode.button)
       //-   #mode-button
       //-     a.site-page(title=_p('rightside.night_mode_title') onclick="btf.switchDarkMode()")
       //-       i.fas.fa-sun.fa-fw
       //-       i.fas.fa-moon.fa-fw
-      if (page.comments !== false && theme.comments && theme.comments.use)
+      if page.comments !== false && theme.comments.use
         #comment-button
           a.site-page(href="#post-comment" title=_p("rightside.scroll_to_comment"))
             i.fas.fa-comments.fa-fw

@@ -7,16 +7,11 @@
     font-size: 1.43em
 
   & > .relatedPosts-list
-    & > div
-      position: relative
-      display: inline-block
-      overflow: hidden
+    & > a
       margin: 3px
       width: calc(33.333% - 6px)
       height: 200px
-      background: $dark-black
-      vertical-align: bottom
-      @extend .postImgHover
+      addBorderRadius()
 
       +maxWidth768()
         margin: 2px
@@ -26,18 +21,11 @@
       +maxWidth600()
         width: calc(100% - 4px)
 
-    .content
-      position: absolute
-      top: 50%
-      padding: 0 20px
-      width: 100%
-      transform: translate(0, -50%)
+    .info
+      .info-1
+        .info-item-2
+          -webkit-line-clamp: 2
 
-      .date
-        color: var(--light-grey)
-        font-size: 90%
-
-      .title
-        @extend .limit-more-line
-        color: var(--white)
-        -webkit-line-clamp: 2
+      .info-2
+        .info-item-1
+          -webkit-line-clamp: 3

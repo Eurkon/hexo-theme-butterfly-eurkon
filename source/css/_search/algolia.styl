@@ -10,6 +10,11 @@
         background: var(--search-bg)
         color: var(--search-input-color)
 
+      .ais-SearchBox-loadingIndicator
+        position: absolute
+        top: 18px
+        left: 67px
+
     .ais-Hits-list
       margin: 0
       padding: 0
@@ -54,6 +59,7 @@
           height: 24px
           text-align: center
           line-height: 24px
+          addBorderRadius()
 
       .ais-Pagination-item--selected
         a
@@ -66,14 +72,14 @@
 
     #algolia-hits
       > div
-        overflow-y: scroll
+        overflow-y: overlay
         margin: 0 -20px
         padding: 0 22px
-        max-height: calc(80vh - 240px)
+        max-height: calc(80vh - 220px)
 
         +maxWidth768()
           max-height: none
-          height: calc(var(--search-height) - 265px)
+          height: calc(var(--search-height) - 235px)
 
     #algolia-info
       div

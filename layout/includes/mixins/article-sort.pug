@@ -1,15 +1,15 @@
 //- 源代码
 //- mixin articleSort(posts)
 //-   .article-sort
-//-     - var year
-//-     - posts.each(function (article) {
-//-       - let tempYear = date(article.date, 'YYYY')
-//-       - let no_cover = article.cover === false || !theme.cover.archives_enable ? 'no-article-cover' : ''
-//-       - let title = article.title || _p('no_title')
+//-     - let year
+//-     - posts.forEach(article => {
+//-       - const tempYear = date(article.date, 'YYYY')
+//-       - const noCoverClass = article.cover === false || !theme.cover.archives_enable ? 'no-article-cover' : ''
+//-       - const title = article.title || _p('no_title')
 //-       if tempYear !== year
 //-         - year = tempYear
 //-         .article-sort-item.year= year
-//-       .article-sort-item(class=no_cover)
+//-       .article-sort-item(class=noCoverClass)
 //-         if article.cover && theme.cover.archives_enable
 //-           a.article-sort-item-img(href=url_for(article.path) title=title)
 //-             if article.cover_type === 'img'
@@ -21,24 +21,24 @@
 //-             i.far.fa-calendar-alt
 //-             time.post-meta-date-created(datetime=date_xml(article.date) title=_p('post.created') + ' ' + full_date(article.date))= date(article.date, config.date_format)
 //-           a.article-sort-item-title(href=url_for(article.path) title=title)= title
-    - })
+//-     - })
 
 mixin articleSort(posts, current)
   .article-sort
     - var year
-    - posts.each(function (article, post_index) {
-      - let tempYear = date(article.date, 'YYYY')
-      - let no_cover = article.cover === false || !theme.cover.archives_enable ? 'no-article-cover' : ''
-      - let title = article.title || _p('no_title')
-      - let iconAnimal = '#'+ getAnimalIcon(tempYear)
-      - let updated_post = article.updated > article.date ? 'article-title-update' : ''
+    - posts.forEach((article, post_index) => {
+      - const tempYear = date(article.date, 'YYYY')
+      - const noCoverClass = article.cover === false || !theme.cover.archives_enable ? 'no-article-cover' : ''
+      - const title = article.title || _p('no_title')
+      - const iconAnimal = '#'+ getAnimalIcon(tempYear)
+      - const updated_post = article.updated > article.date ? 'article-title-update' : ''
       if tempYear !== year
         - year = tempYear
         .article-sort-item.year
           span= year
           svg.icon(aria-hidden='true' style='width: 2em; height: 1.5em;')
             use(xlink:href=iconAnimal)
-      .article-sort-item(class=no_cover)
+      .article-sort-item(class=noCoverClass)
         if article.cover && theme.cover.archives_enable
           a.article-sort-item-img(href=url_for(article.path) title=title)
             if article.cover_type === 'img'

@@ -1,5 +1,4 @@
 eurkon.switchThemeColor(eurkon.getMainColor())
-eurkon.switchPageTitle()
 eurkon.catalogActive()
 eurkon.postAddToc()
 eurkon.footerRandomFlink(flinks, 3)

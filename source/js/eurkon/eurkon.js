@@ -53,12 +53,6 @@ const eurkon = {
     }
   },
 
-  // 页面标题
-  switchPageTitle: function () {
-    document.getElementById('page-title').style.display = window.location.pathname === '/' || /^\/page\/[0-9]+\//.test(window.location.pathname) ? 'none' : 'flex'
-    document.querySelector('#page-title>span').innerHTML = GLOBAL_CONFIG_SITE.title
-  },
-
   // 页脚随机友链
   footerRandomFlink: function (flinks, num = 3) {
     let flinkList = document.querySelectorAll('#footer-group-flink .footer-group-item')
@@ -130,6 +124,11 @@ const eurkon = {
   switchRightSide: function () {
     document.getElementById('rightside')?.classList.toggle('hidden')
     document.getElementById('rightside-mask')?.classList.toggle('hidden')
+  },
+
+  // 直达评论
+  toComment: function () {
+    document.href = '#post-comment'
   },
 
   fullScreen: function () {

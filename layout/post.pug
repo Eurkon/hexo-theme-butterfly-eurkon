@@ -3,13 +3,13 @@ extends includes/layout.pug
 block content
   div
     #post
-      //- if top_img === false
-      //-   include includes/header/post-info.pug
+      if top_img === false
+        include includes/header/post-info.pug
 
       article#article-container.post-content!=page.content
       include includes/post/post-copyright.pug
       .tag_share
-        if (theme.post_meta.post.tags)
+        if (page.tags.length > 0 && theme.post_meta.post.tags)
           .post-meta__tag-list
             each item, index in page.tags.data
               a(href=url_for(item.path)).post-meta__tags #[=(config.emoji && config.emoji.tags && config.emoji.tags[item.name] || '') + item.name]
@@ -27,6 +27,6 @@ block content
       if theme.related_post && theme.related_post.enable
         != related_posts(page,site.posts)
 
-    if page.comments !== false && theme.comments && theme.comments.use
+    if page.comments !== false && theme.comments.use
       - var commentsJsLoad = true
       !=partial('includes/third-party/comments/index', {}, {cache: true})

@@ -1,11 +1,10 @@
 if theme.aside.card_author.enable
-  .card-widget.card-info
+  .card-widget.card-info.text-center
     //- 源代码START
-    //- .is-center
-    //-   .avatar-img
-    //-     img(src=url_for(theme.avatar.img) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt="avatar")
-    //-   .author-info__name= config.author
-    //-   .author-info__description!= theme.aside.card_author.description || config.description
+    //- .avatar-img
+    //-   img(src=url_for(theme.avatar.img) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt="avatar")
+    //- .author-info-name= config.author
+    //- .author-info-description!= theme.aside.card_author.description || config.description
     //- 源代码END
     
     //- 魔改代码START
@@ -14,18 +13,17 @@ if theme.aside.card_author.enable
         #card-info-hello
         .card-info-img
           img(src=url_for(theme.avatar.img) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt="avatar")
-      .author-info__name.is-center= config.author
-      .author-info__description.is-center!= theme.aside.card_author.description || config.description
+      .author-info-name.is-center= config.author
+      .author-info-description!= theme.aside.card_author.description || config.description
       script(defer data-pjax src=url_for(config.card_info.CDN))
     else 
-      .is-center
-        .avatar-img
-          img(src=url_for(theme.avatar.img) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt="avatar")
-        .author-info__name= config.author
-        .author-info__description!= theme.aside.card_author.description || config.description
+      .avatar-img
+        img(src=url_for(theme.avatar.img) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt="avatar")
+      .author-info-name= config.author
+      .author-info-description!= theme.aside.card_author.description || config.description
     //- 魔改代码END
 
-    .card-info-data.site-data.is-center
+    .site-data
       a(href=url_for(config.archive_dir) + '/')
         .headline= _p('aside.articles')
         .length-num= site.posts.length
@@ -42,5 +40,5 @@ if theme.aside.card_author.enable
         span=theme.aside.card_author.button.text
   
     if(theme.social)
-        .card-info-social-icons.is-center
-          !=partial('includes/header/social', {}, {cache: true})
+      .card-info-social-icons
+        !=partial('includes/header/social', {}, {cache: true})

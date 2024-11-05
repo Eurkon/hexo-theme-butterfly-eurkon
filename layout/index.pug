@@ -1,10 +1,5 @@
 extends includes/layout.pug
 
 block content
-  include ./includes/mixins/post-ui.pug
-  #recent-posts.recent-posts
-    if config.catalogMagnet && config.catalogMagnet.enable
-      .recent-post-item(style='width:100%; height:auto;')
-        !=catalog_magnet()
-    +postUI
-    include includes/pagination.pug
+  include ./includes/mixins/indexPostUI.pug
+  +indexPostUI
