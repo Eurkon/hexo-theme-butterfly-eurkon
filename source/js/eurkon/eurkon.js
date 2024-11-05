@@ -118,6 +118,7 @@ const eurkon = {
       if (flag === 'false') { document.getElementById('barrage-btn').classList.add('on') }
       else { document.getElementById('barrage-btn').classList.remove('on') }
     }
+    GLOBAL_CONFIG.Snackbar !== undefined && btf.snackbarShow(flag === 'false' ? '已显示热评' : '已隐藏热评')
   },
 
   // RightSide设置
