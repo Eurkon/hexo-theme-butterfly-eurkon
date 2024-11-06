@@ -29,7 +29,7 @@
 
   if theme.aside.card_post_series.enable
     - const array = fragment_cache('seriesArr', groupPosts)
-    .card-widget.card-post-series
+    .card-post-series
       .item-headline
         i.fa-solid.fa-layer-group
         span= theme.aside.card_post_series.series_title ? page.series : _p('aside.card_post_series')
@@ -49,8 +49,8 @@
               a.title(href=link title=title)= title
               time(datetime=date_xml(dateA) title=_p('post.created') + ' ' + full_date(dateA)) #[=date(dateA, config.date_format)]
 
-    if theme.aside.card_webinfo.enable
-    .card-widget.card-webinfo
+  if theme.aside.card_webinfo.enable
+    .card-webinfo
       .item-headline
         i.fas.fa-chart-line
         span= _p('aside.card_webinfo.headline')
