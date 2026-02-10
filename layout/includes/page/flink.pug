@@ -1,5 +1,5 @@
-//- 源代码
-//- #article-container
+//- 源代码START
+//- #article-container.container
 //-   .flink
 //-     - let { content, random, flink_url } = page
 //-     - let pageContent = content
@@ -31,7 +31,7 @@
 //-                       <div class="flink-item-icon">
 //-                         <img class="no-lightbox" src="${lists[j].avatar}" onerror='this.onerror=null;this.src="!{url_for(theme.error_img.flink)}"' alt="${lists[j].name}" />
 //-                       </div>
-//-                       <div class="flink-item-name">${lists[j].name}</div> 
+//-                       <div class="flink-item-name">${lists[j].name}</div>
 //-                       <div class="flink-item-desc" title="${lists[j].descr}">${lists[j].descr}</div>
 //-                     </a>
 //-                   </div>`
@@ -64,14 +64,14 @@
 //-           - let listResult = ""
 
 //-           each j in i.link_list
-//-             - 
+//-             -
 //-               listResult += `
 //-                 <div class="flink-list-item">
 //-                   <a href="${j.link}" title="${j.name}" target="_blank">
 //-                     <div class="flink-item-icon">
 //-                       <img class="no-lightbox" src="${j.avatar}" onerror='this.onerror=null;this.src="${url_for(theme.error_img.flink)}"' alt="${j.name}" />
 //-                     </div>
-//-                     <div class="flink-item-name">${j.name}</div> 
+//-                     <div class="flink-item-name">${j.name}</div>
 //-                     <div class="flink-item-desc" title="${j.descr}">${j.descr}</div>
 //-                   </a>
 //-                 </div>`
@@ -81,9 +81,10 @@
 
 //-         - pageContent = result + pageContent
 //-     != pageContent
+//- 源代码END
 
 //- 魔改代码
-#article-container
+#article-container.container
   .flink
     if site.data.link
       .flink-card
@@ -115,11 +116,11 @@
                       img.no-lightbox(src=url_for(oddList[index].avatar) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt=oddList[index].name)
         .flink-card-btn-group
           .flink-card-btn
-            a(href="javascript:toRandomFlink();" title='随机访问')
+            a(title='随机访问' onclick="toRandomFlink();")
               i.fas.fa-random
               span= _p('随机访问')
           .flink-card-btn
-            a(href="javascript:utils.applyFlink();" title='申请友链')
+            a(title='申请友链' onclick="utils.applyFlink();")
               i.fas.fa-plus-circle
               span= _p('申请友链')
 

@@ -83,37 +83,35 @@
       }
     },
 
-    throttle: function (func, wait, options = {}) {
-      let timeout, context, args
+    throttle: (func, wait, options = {}) => {
+      let timeout, args
       let previous = 0
 
       const later = () => {
         previous = options.leading === false ? 0 : new Date().getTime()
         timeout = null
-        func.apply(context, args)
-        if (!timeout) context = args = null
+        func(...args)
+        if (!timeout) args = null
       }
 
-      const throttled = (...params) => {
+      return (...params) => {
         const now = new Date().getTime()
         if (!previous && options.leading === false) previous = now
         const remaining = wait - (now - previous)
-        context = this
         args = params
+
         if (remaining <= 0 || remaining > wait) {
           if (timeout) {
             clearTimeout(timeout)
             timeout = null
           }
           previous = now
-          func.apply(context, args)
-          if (!timeout) context = args = null
+          func(...args)
+          if (!timeout) args = null
         } else if (!timeout && options.trailing !== false) {
           timeout = setTimeout(later, remaining)
         }
       }
-
-      return throttled
     },
 
     overflowPaddingR: {
@@ -175,7 +173,7 @@
 
     loadComment: (dom, callback) => {
       if ('IntersectionObserver' in window) {
-        const observerItem = new IntersectionObserver((entries) => {
+        const observerItem = new IntersectionObserver(entries => {
           if (entries[0].isIntersecting) {
             callback()
             observerItem.disconnect()
@@ -238,27 +236,18 @@
 
     isHidden: ele => ele.offsetHeight === 0 && ele.offsetWidth === 0,
 
-    getEleTop: ele => {
-      let actualTop = ele.offsetTop
-      let current = ele.offsetParent
-
-      while (current !== null) {
-        actualTop += current.offsetTop
-        current = current.offsetParent
-      }
-
-      return actualTop
-    },
+    getEleTop: ele => ele.getBoundingClientRect().top + window.scrollY,
 
     loadLightbox: ele => {
       const service = GLOBAL_CONFIG.lightbox
 
       if (service === 'medium_zoom') {
         mediumZoom(ele, { background: 'var(--zoom-bg)' })
+        return
       }
 
       if (service === 'fancybox') {
-        Array.from(ele).forEach(i => {
+        ele.forEach(i => {
           if (i.parentNode.tagName !== 'A') {
             const dataSrc = i.dataset.lazySrc || i.src
             const dataCaption = i.title || i.alt || ''
@@ -267,35 +256,71 @@
         })
 
         if (!window.fancyboxRun) {
-          Fancybox.bind('[data-fancybox]', {
-            Hash: false,
-            Thumbs: {
-              showOnStart: false
-            },
-            Images: {
-              Panzoom: {
-                maxScale: 4
-              }
-            },
-            Carousel: {
-              transition: 'slide'
-            },
-            Toolbar: {
-              display: {
-                left: ['infobar'],
-                middle: [
-                  'zoomIn',
-                  'zoomOut',
-                  'toggle1to1',
-                  'rotateCCW',
-                  'rotateCW',
-                  'flipX',
-                  'flipY'
-                ],
-                right: ['slideshow', 'thumbs', 'close']
+          let options = ''
+          if (Fancybox.version < '6') {
+            options = {
+              Hash: false,
+              Thumbs: {
+                showOnStart: false
+              },
+              Images: {
+                Panzoom: {
+                  maxScale: 4
+                }
+              },
+              Carousel: {
+                transition: 'slide'
+              },
+              Toolbar: {
+                display: {
+                  left: ['infobar'],
+                  middle: [
+                    'zoomIn',
+                    'zoomOut',
+                    'toggle1to1',
+                    'rotateCCW',
+                    'rotateCW',
+                    'flipX',
+                    'flipY'
+                  ],
+                  right: ['slideshow', 'thumbs', 'close']
+                }
               }
             }
-          })
+          } else {
+            options = {
+              Hash: false,
+              Carousel: {
+                transition: 'slide',
+                Thumbs: {
+                  showOnStart: false
+                },
+                Toolbar: {
+                  display: {
+                    left: ['counter'],
+                    middle: [
+                      'zoomIn',
+                      'zoomOut',
+                      'toggle1to1',
+                      'rotateCCW',
+                      'rotateCW',
+                      'flipX',
+                      'flipY',
+                      'reset'
+                    ],
+                    right: ['autoplay', 'thumbs', 'close']
+                  }
+                },
+                Zoomable: {
+                  Panzoom: {
+                    maxScale: 4
+                  }
+                }
+              }
+            }
+          }
+
+          Fancybox.bind('[data-fancybox]', options)
           window.fancyboxRun = true
         }
       }
@@ -359,6 +384,22 @@
       Object.keys(keyObj).forEach(i => keyObj[i]())
 
       delete globalFn[key]
+    },
+
+    switchComments: (el = document, path) => {
+      const switchBtn = el.querySelector('#switch-btn')
+      if (!switchBtn) return
+
+      let switchDone = false
+      const postComment = el.querySelector('#post-comment')
+      const handleSwitchBtn = () => {
+        postComment.classList.toggle('move')
+        if (!switchDone && typeof loadOtherComment === 'function') {
+          switchDone = true
+          loadOtherComment(el, path)
+        }
+      }
+      btf.addEventListenerPjax(switchBtn, 'click', handleSwitchBtn)
     }
   }
 

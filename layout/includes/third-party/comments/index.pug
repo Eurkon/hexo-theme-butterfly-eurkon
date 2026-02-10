@@ -1,16 +1,17 @@
 - let defaultComment = theme.comments.use[0]
-//- hr.custom-hr
+hr.custom-hr
 #post-comment
   .comment-head
     .comment-headline
       i.fas.fa-comments.fa-fw
       span= ' ' + _p('comment')
+    //- 魔改代码START
     #comment-close(onclick="custom.switchCommentMode();")
       i.fas.fa-xmark
 
     //- .comment-protocol
     //-   a(href='/protocol/comment/' title='用户发言前，请认真阅读本条例。一经发言，即视为同意接受本条例；如不同意，请勿发言。')= '评论协议'
-    
+    //- 魔改代码END
     if theme.comments.use.length > 1
       .comment-switch
         span.first-comment=defaultComment
@@ -49,5 +50,6 @@
             #remark42
           when 'Artalk'
             #artalk-wrap
-
+//- 魔改代码START
 #comment-mask
+//- 魔改代码END

@@ -13,6 +13,7 @@ nav:
   # Navigation bar logo image
   logo:
   display_title: true
+  display_post_title: true
   # Whether to fix navigation bar
   fixed: false
 
@@ -90,7 +91,8 @@ category_per_img:
 footer_img: false
 
 # Website Background
-# Can set it to color or image url
+# Can set it to color, image URL or an array containing colors and/or image URLs
+# If an array is provided, a random background will be selected from the array on each load
 background:
 
 cover:
@@ -158,7 +160,7 @@ subtitle:
   # Choose: false/1/2/3
   # false - disable the function
   # 1 - hitokoto.cn
-  # 2 - yijuzhan.com
+  # 2 - https://api.aa1.cn/doc/yiyan.html
   # 3 - jinrishici.com
   source: false
   # If you close the typewriter effect, the subtitle will only show the first line of sub
@@ -254,12 +256,15 @@ noticeOutdate:
 # Footer Settings
 # --------------------------------------
 footer:
+  nav:
   owner:
     enable: true
-    since: 2019
-  custom_text:
+    since: 2025
   # Copyright of theme and framework
-  copyright: true
+  copyright:
+    enable: true
+    version: true
+  custom_text:
 
 # --------------------------------------
 # Aside Settings
@@ -314,6 +319,7 @@ aside:
     # If set 0 will show all
     limit: 40
     color: false
+    custom_colors:
     # Order of tags, random/name/length
     orderby: random
     # Sort of order. 1, asc for ascending; -1, desc for descending
@@ -399,6 +405,9 @@ rightside_item_order:
   # Default: toc,chat,comment
   show:
 
+# Animation for the bottom right config button
+rightside_config_animation: true
+
 # --------------------------------------
 # Global Settings
 # --------------------------------------
@@ -481,6 +490,11 @@ search:
     top_n_per_article: 1
     # Unescape html strings to the readable one.
     unescape: false
+    # Enable pagination for search results
+    pagination:
+      enable: false
+      # Number of search results per page
+      hitsPerPage: 8
     CDN:
 
   # Docsearch
@@ -503,12 +517,12 @@ share:
   # Share.js
   # https://github.com/overtrue/share.js
   sharejs:
-    sites: facebook,twitter,wechat,weibo,qq
+    sites: facebook,x,wechat,weibo,qq
 
   # AddToAny
   # https://www.addtoany.com/
   addtoany:
-    item: facebook,twitter,wechat,sina_weibo,facebook_messenger,email,copy_link
+    item: facebook,x,wechat,sina_weibo,facebook_messenger,email,copy_link
 
 # --------------------------------------
 # Comments System
@@ -687,6 +701,7 @@ umami_analytics:
   enable: false
   # For self-hosted setups, configure the hostname of the Umami instance
   serverURL:
+  script_name: script.js
   website_id:
   option:
   UV_PV:
@@ -695,6 +710,12 @@ umami_analytics:
     page_pv: false
     # Umami Cloud (API key) / self-hosted Umami (token)
     token:
+
+# https://www.googletagmanager.com/
+google_tag_manager:
+  tag_id:
+  # optional
+  domain:
 
 # --------------------------------------
 # Advertisement
@@ -919,6 +940,10 @@ mermaid:
   theme:
     light: default
     dark: dark
+  # Enable "Open in New Tab" button to view diagram in a separate window
+  open_in_new_tab: true
+  # Enable zoom and pan interactions on diagrams
+  zoom_pan: true
 
 # chartjs
 # see https://www.chartjs.org/docs/latest/
@@ -928,16 +953,16 @@ chartjs:
   # The default settings are only used when the MD syntax is not specified.
   # General font color for the chart
   fontColor:
-    light: "rgba(0, 0, 0, 0.8)"
-    dark: "rgba(255, 255, 255, 0.8)"
+    light: 'rgba(0, 0, 0, 0.8)'
+    dark: 'rgba(255, 255, 255, 0.8)'
   # General border color for the chart
   borderColor:
-    light: "rgba(0, 0, 0, 0.1)"
-    dark: "rgba(255, 255, 255, 0.2)"
+    light: 'rgba(0, 0, 0, 0.1)'
+    dark: 'rgba(255, 255, 255, 0.2)'
   # Background color for scale labels on radar and polar area charts
   scale_ticks_backdropColor:
-    light: "transparent"
-    dark: "transparent"
+    light: 'transparent'
+    dark: 'transparent'
 
 # Note - Bootstrap Callout
 note:
@@ -983,17 +1008,12 @@ snackbar:
 # https://instant.page/
 instantpage: false
 
-# Pangu - Insert a space between Chinese character and English character
-# https://github.com/vinta/pangu.js
-pangu:
-  enable: false
-  # Specify the field to use pangu (site or post)
-  field: site
-
 # Lazyload
 # https://github.com/verlok/vanilla-lazyload
 lazyload:
   enable: false
+  # Use browser's native lazyload instead of vanilla-lazyload
+  native: false
   # Specify the field to use lazyload (site or post)
   field: site
   placeholder:
@@ -1023,6 +1043,14 @@ Open_Graph_meta:
     # fb_admins:
     # fb_app_id:
 
+# Structured Data
+# https://developers.google.com/search/docs/guides/intro-structured-data
+structured_data:
+  enable: false
+  # Alternate name for the site, used in structured data
+  # Format: ['name1', 'name2']
+  alternate_name:
+
 # Add the vendor prefixes to ensure compatibility
 css_prefix: true
 
@@ -1045,7 +1073,7 @@ CDN:
   third_party_provider: jsdelivr
 
   # Add version number to url, true or false
-  version: false
+  version: true
 
   # Custom format
   # For example: https://cdn.staticfile.org/${cdnjs_name}/${version}/${min_cdnjs_file}
@@ -1081,7 +1109,6 @@ CDN:
     # gitalk_css:
     # giscus:
     # instantpage:
-    # instantsearch:
     # katex:
     # katex_copytex:
     # lazyload:
@@ -1092,7 +1119,6 @@ CDN:
     # medium_zoom:
     # mermaid:
     # meting_js:
-    # pangu:
     # prismjs_autoloader:
     # prismjs_js:
     # prismjs_lineNumber_js:

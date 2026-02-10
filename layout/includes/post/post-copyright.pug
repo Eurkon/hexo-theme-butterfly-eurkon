@@ -1,4 +1,4 @@
-//- 源代码
+//- 源代码START
 //- if theme.post_copyright.enable && page.copyright !== false
 //-   - const author = page.copyright_author || config.author
 //-   - const authorHref = page.copyright_author_href || theme.post_copyright.author_href || config.url
@@ -22,6 +22,7 @@
 //-         i.fas.fa-circle-exclamation.fa-fw
 //-         = _p('post.copyright.copyright_notice') + ": "
 //-       span.post-copyright-info!= info
+//- 源代码END
 
 if theme.post_copyright.enable && page.copyright !== false
   - let author = page.copyright_author || config.author

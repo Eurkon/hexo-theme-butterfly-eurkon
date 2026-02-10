@@ -4,14 +4,9 @@ if $prismjs_line_number
 if $highlight_theme != false
   @require 'diff'
 
-#article-container
+.container
   pre[class*='language-']
-    // scrollbar - firefox
-    @-moz-document url-prefix()
-      scrollbar-color: var(--hlscrollbar-bg) transparent
-
-    &::-webkit-scrollbar-thumb
-      background: var(--hlscrollbar-bg)
+    @extend $scrollbar-style
 
     &:not(.line-numbers)
       padding: 10px 20px

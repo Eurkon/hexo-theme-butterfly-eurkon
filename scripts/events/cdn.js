@@ -46,45 +46,43 @@ hexo.extend.filter.register('before_generate', () => {
   }
 
   const createCDNLink = (data, type, cond = '') => {
-    Object.keys(data).forEach(key => {
-      let { name, version, file, other_name } = data[key]
-      const cdnjs_name = other_name || name
-      const cdnjs_file = file.replace(/^[lib|dist]*\/|browser\//g, '')
-      const min_cdnjs_file = minFile(cdnjs_file)
+    return Object.keys(data).reduce((result, key) => {
+      let { name, version, file, other_name: otherName } = data[key]
+      const cdnjsName = otherName || name
+      const cdnjsFile = file.replace(/^[lib|dist]*\/|browser\//g, '')
+      const minCdnjsFile = minFile(cdnjsFile)
       if (cond === 'internal') file = `source/${file}`
-      const min_file = minFile(file)
+      const minFilePath = minFile(file)
       const verType = CDN.version ? (type === 'local' ? `?v=${version}` : `@${version}`) : ''
 
       const value = {
         version,
         name,
         file,
-        cdnjs_file,
-        min_file,
-        min_cdnjs_file,
-        cdnjs_name
+        cdnjs_file: cdnjsFile,
+        min_file: minFilePath,
+        min_cdnjs_file: minCdnjsFile,
+        cdnjs_name: cdnjsName
       }
 
       const cdnSource = {
-        local: cond === 'internal' ? `${cdnjs_file + verType}` : `/pluginsSrc/${name}/${file + verType}`,
-        jsdelivr: `https://cdn.jsdelivr.net/npm/${name}${verType}/${min_file}`,
+        local: cond === 'internal' ? `${cdnjsFile + verType}` : `/pluginsSrc/${name}/${file + verType}`,
+        jsdelivr: `https://cdn.jsdelivr.net/npm/${name}${verType}/${minFilePath}`,
         unpkg: `https://unpkg.com/${name}${verType}/${file}`,
-        cdnjs: `https://cdnjs.cloudflare.com/ajax/libs/${cdnjs_name}/${version}/${min_cdnjs_file}`,
+        cdnjs: `https://cdnjs.cloudflare.com/ajax/libs/${cdnjsName}/${version}/${minCdnjsFile}`,
         custom: (CDN.custom_format || '').replace(/\$\{(.+?)\}/g, (match, $1) => value[$1])
       }
 
-      data[key] = cdnSource[type]
-    })
-
-    if (cond === 'internal') data.main_css = 'css/index.css' + (CDN.version ? `?v=${version}` : '')
-    return data
+      result[key] = cdnSource[type]
+      return result
+    }, cond === 'internal' ? { main_css: 'css/index.css' + (CDN.version ? `?v=${version}` : '') } : {})
   }
 
   // delete null value
   const deleteNullValue = obj => {
-    if (!obj) return
+    if (!obj) return {}
     for (const i in obj) {
-      obj[i] === null && delete obj[i]
+      if (obj[i] === null) delete obj[i]
     }
     return obj
   }

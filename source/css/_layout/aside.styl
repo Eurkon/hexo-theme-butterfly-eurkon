@@ -23,8 +23,8 @@
         &:not(#card-toc)
           display: none
 
-    &:last-child
-      margin-bottom: 0
+    // &:last-child
+    //   margin-bottom: 0
 
   .card-info
     .author-info
@@ -60,6 +60,7 @@
       text-align: center
       line-height: 2.4
       addBorderRadius(7)
+      @extend .btn-effects
 
       &:hover
         background-color: var(--btn-hover-color)
@@ -180,6 +181,11 @@
     .card-category-list
       &.child
         padding: 0 0 0 16px
+        overflow: hidden
+        max-height: 0
+        opacity: 0
+        visibility: hidden
+        transition: max-height .3s ease, opacity .3s ease
 
       > .parent
         > a
@@ -188,7 +194,9 @@
               transform: rotate(-90deg)
 
             & + .child
-              display: block
+              max-height: 1000px
+              opacity: 1
+              visibility: visible
 
           .card-category-list
             &-name
@@ -207,7 +215,9 @@
 
         if hexo-config('aside.card_categories.expand') == false
           > .child
-            display: none
+            max-height: 0
+            opacity: 0
+            visibility: hidden
 
   .card-webinfo
     .webinfo

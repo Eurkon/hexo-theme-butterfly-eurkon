@@ -1,93 +1,13 @@
 #algolia-search
   .search-dialog
-    .ais-SearchBox
-      input
-        padding: 5px 14px
-        width: 100%
-        outline: none
-        border: 2px solid $search-color
-        border-radius: 40px
-        background: var(--search-bg)
-        color: var(--search-input-color)
-
-      .ais-SearchBox-loadingIndicator
-        position: absolute
-        top: 18px
-        left: 67px
-
     .ais-Hits-list
-      margin: 0
-      padding: 0
-      @extend .list-beauty
-
-      a
-        color: var(--search-a-color)
-
-        &:hover
-          color: $search-color
-
-      mark
-        background: transparent
-        color: $search-keyword-highlight
-        font-weight: bold
-
-    .algolia-hits-item-title
-      font-weight: 600
-
-    .algolia-hit-item-content
-      margin: 0 0 8px
-      word-break: break-word
-
-    .ais-Pagination
-      margin: 15px 0 0
-      padding: 0
-      text-align: center
-
-      .ais-Pagination-list
-        margin: 0
-        padding: 0
-        list-style: none
-
-      .ais-Pagination-item
-        display: inline
-        margin: 0 4px
-        padding: 0
-
-        .ais-Pagination-link
-          display: inline-block
-          min-width: 24px
-          height: 24px
-          text-align: center
-          line-height: 24px
-          addBorderRadius()
-
-      .ais-Pagination-item--selected
-        a
-          background: $theme-paginator-color
-          color: #eee
-          cursor: default
-
-      .ais-Pagination-item--disabled
-        visibility: hidden
-
-    #algolia-hits
-      > div
-        overflow-y: overlay
-        margin: 0 -20px
-        padding: 0 22px
-        max-height: calc(80vh - 220px)
-
-        +maxWidth768()
-          max-height: none
-          height: calc(var(--search-height) - 235px)
+      +maxWidth768()
+        min-height: calc(var(--search-height) - 245px)
 
     #algolia-info
-      div
-        display: inline
-
       .algolia-poweredBy
         float: right
-        vertical-align: text-top
+        padding-top: 2px
 
         svg
           height: 1.1em

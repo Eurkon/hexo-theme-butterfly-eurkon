@@ -38,9 +38,13 @@
       font-size: 16px
       line-height: w
       addBorderRadius(5)
+      @extend .btn-effects
 
       &:hover
         background-color: var(--btn-hover-color)
+      
+      i
+        vertical-align: baseline
 
   #mobile-toc-button
     display: none
@@ -54,19 +58,52 @@
 
   if hexo-config('rightside_scroll_percent')
     #go-up
+      position: relative
+
       .scroll-percent
+        position: absolute
+        top: 0
+        left: 0
         display: none
+        width: 100%
+        height: 100%
+        opacity: 0
+        transition: all .4s cubic-bezier(.4, 0, .2, 1)
+        transform: scale(.8)
+
+      i
+        position: relative
+        z-index: 1
+        width: 100%
+        opacity: 1
+        transition: all .4s cubic-bezier(.4, 0, .2, 1)
+        transform: scale(1)
 
       &.show-percent
         .scroll-percent
           display: block
+          opacity: 1
+          transform: scale(1)
+          animation: fadeInScale .4s ease-out
 
-          & + i
-            display: none
+        i
+          opacity: 0
+          transform: scale(.8)
 
-      &:hover
+      &:hover.show-percent
         .scroll-percent
-          display: none
+          opacity: 0
+          transform: scale(.8)
 
-          & + i
-            display: block
+        i
+          opacity: 1 !important
+          transform: scale(1) !important
+
+@keyframes fadeInScale
+  from
+    opacity: 0
+    transform: scale(.8)
+
+  to
+    opacity: 1
+    transform: scale(1)

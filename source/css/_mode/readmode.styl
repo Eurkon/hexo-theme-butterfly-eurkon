@@ -42,6 +42,7 @@ if hexo-config('readmode')
       font-size: 16px
       transition: background .3s
       addBorderRadius(8)
+      @extend .btn-effects
 
       +maxWidth768()
         top: initial
@@ -77,13 +78,13 @@ if hexo-config('readmode')
     #footer,
     #post > *:not(#post-info):not(.post-content),
     #nav,
-    .post-outdate-notice,
+    #post-outdate-notice,
     #web_bg,
     #rightside,
     .not-top-img
       display: none !important
 
-    #article-container
+    .container
       a
         color: #99a9bf
 

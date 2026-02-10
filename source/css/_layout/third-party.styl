@@ -65,11 +65,54 @@ if hexo-config('waline.bg')
 
 if hexo-config('mermaid.enable')
   .mermaid-wrap
+    position: relative
     margin: 0 0 20px
+    background: var(--card-bg)
     text-align: center
 
+    if hexo-config('mermaid.open_in_new_tab')
+      .mermaid-open-btn
+        position: absolute
+        top: 8px
+        right: 8px
+        z-index: 2
+        display: flex
+        justify-content: center
+        align-items: center
+        padding: 0
+        width: 34px
+        height: 25px
+        border: none
+        border-radius: 20%
+        background: #D3D3D3
+        box-shadow: 0 4px 10px rgba(0, 0, 0, .15)
+        color: #fff
+        font-size: 0
+        line-height: 1
+        cursor: pointer
+        transition: background .2s ease, transform .2s ease
+
+        i
+          font-size: 16px
+          line-height: 1
+
+        &:hover,
+        &:focus-visible
+          outline: none
+          background: #C0C0C0
+          transform: translateY(-1px)
+
     & > svg
+      max-width: 100%
       height: 100%
+
+      if hexo-config('mermaid.zoom_pan')
+        cursor: grab
+        user-select: none
+        touch-action: none
+
+        &:active
+          cursor: grabbing
 
   if hexo-config('mermaid.code_write')
     pre > code.mermaid
@@ -153,7 +196,7 @@ if hexo-config('math.use')
 .aplayer
   color: $font-black
 
-#article-container
+.container
   .aplayer
     margin: 0 0 20px
 

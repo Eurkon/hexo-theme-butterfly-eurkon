@@ -52,7 +52,10 @@
 
         &:hover
           background: var(--text-bg-hover)
+          box-shadow: 0 2px 8px rgba(0, 0, 0, .1)
           color: var(--white)
+          transition: all .2s ease
+          transform: translateX(3px)
 
         i:first-child
           width: 15%
@@ -70,9 +73,25 @@
               transform: rotate(90deg)
 
             & + .menus_item_child
-              display: none
+              overflow: hidden
+              max-height: 0
+              opacity: 0
+              transform: scaleY(0)
+              transform-origin: top
 
       .menus_item_child
         margin: 0
         padding-left: 25px
+        max-height: 0
         list-style: none
+        opacity: 0
+        transition: transform .3s ease, opacity .3s ease, max-height .3s ease
+        transform: scaleY(0)
+        transform-origin: top
+        will-change: transform, opacity, max-height
+
+    // 當父元素沒有 .hide 類時，顯示子目錄
+    .site-page.group:not(.hide) + .menus_item_child
+      max-height: 1000px
+      opacity: 1
+      transform: scaleY(1)

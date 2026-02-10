@@ -10,8 +10,8 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
     --preloader-bg: darken(#121212, 2)
     --preloader-color: alpha(#FFFFFF, .7)
     --tab-border-color: #2c2c2c
-    --tab-botton-bg: #2c2c2c
-    --tab-botton-color: alpha(#FFFFFF, .7)
+    --tab-button-bg: #2c2c2c
+    --tab-button-color: alpha(#FFFFFF, .7)
     --tab-button-hover-bg: lighten(#121212, 15)
     --tab-button-active-bg: #121212
     --card-bg: #121212
@@ -33,6 +33,56 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
     --timeline-bg: lighten(#121212, 5)
     --zoom-bg: #121212
     --mark-bg: alpha($dark-black, .6)
+    --btn-color: darken($btn-color, 20%)
+    --btn-default-color: lighten($btn-default-color, 20%)
+    --tags-blue-color: desaturate(darken($tagsP-blue-color, 20%), 25%)
+    --tags-blue-color-lighten: rgba(66, 139, 202, .15)
+    --tags-pink-color: desaturate(darken($tagsP-pink-color, 22%), 30%)
+    --tags-pink-color-lighten: rgba(255, 105, 180, .15)
+    --tags-red-color: desaturate(darken($tagsP-red-color, 25%), 28%)
+    --tags-red-color-lighten: rgba(255, 0, 0, .15)
+    --tags-orange-color: desaturate(darken($tagsP-orange-color, 22%), 32%)
+    --tags-orange-color-lighten: rgba(255, 140, 0, .15)
+    --tags-purple-color: desaturate(darken($tagsP-purple-color, 18%), 30%)
+    --tags-purple-color-lighten: rgba(111, 66, 193, .15)
+    --tags-green-color: desaturate(darken($tagsP-green-color, 20%), 28%)
+    --tags-green-color-lighten: rgba(92, 184, 92, .15)
+    --note-default-border: $note-dark-default-border
+    --note-default-bg: $note-dark-default-bg
+    --note-default-text: $note-dark-default-text
+    --note-modern-default-border: $note-dark-modern-default-border
+    --note-modern-default-bg: $note-dark-modern-default-bg
+    --note-modern-default-text: $note-dark-modern-default-text
+    --note-primary-border: $note-dark-primary-border
+    --note-primary-bg: $note-dark-primary-bg
+    --note-primary-text: $note-dark-primary-text
+    --note-modern-primary-border: $note-dark-modern-primary-border
+    --note-modern-primary-bg: $note-dark-modern-primary-bg
+    --note-modern-primary-text: $note-dark-modern-primary-text
+    --note-info-border: $note-dark-info-border
+    --note-info-bg: $note-dark-info-bg
+    --note-info-text: $note-dark-info-text
+    --note-modern-info-border: $note-dark-modern-info-border
+    --note-modern-info-bg: $note-dark-modern-info-bg
+    --note-modern-info-text: $note-dark-modern-info-text
+    --note-success-border: $note-dark-success-border
+    --note-success-bg: $note-dark-success-bg
+    --note-success-text: $note-dark-success-text
+    --note-modern-success-border: $note-dark-modern-success-border
+    --note-modern-success-bg: $note-dark-modern-success-bg
+    --note-modern-success-text: $note-dark-modern-success-text
+    --note-warning-border: $note-dark-warning-border
+    --note-warning-bg: $note-dark-warning-bg
+    --note-warning-text: $note-dark-warning-text
+    --note-modern-warning-border: $note-dark-modern-warning-border
+    --note-modern-warning-bg: $note-dark-modern-warning-bg
+    --note-modern-warning-text: $note-dark-modern-warning-text
+    --note-danger-border: $note-dark-danger-border
+    --note-danger-bg: $note-dark-danger-bg
+    --note-danger-text: $note-dark-danger-text
+    --note-modern-danger-border: $note-dark-modern-danger-border
+    --note-modern-danger-bg: $note-dark-modern-danger-bg
+    --note-modern-danger-text: $note-dark-modern-danger-text
 
     #web_bg:before
       position: absolute
@@ -41,7 +91,7 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
       background-color: alpha($dark-black, .7)
       content: ''
 
-    #article-container
+    .container
       code
         background: #2c2c2c
 
@@ -78,27 +128,22 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
         #switch-btn
           filter: brightness(.8)
 
-    // note
-    if hexo-config('note.style') == 'modern' || hexo-config('note.style') == 'flat'
-      .note
-        filter: brightness(.8)
-
     // hide-tags
     .hide-button,
-    .btn-beautify,
-    .hl-label,
-    .post-outdate-notice,
+    .toggle-button,
+    #post-outdate-notice,
     .error-img,
-    #article-container iframe,
+    .container iframe,
     .gist,
-    .ads-wrap
+    .ads-wrap,
+    .tag-cloud-list > a
       filter: brightness(.8)
 
-    img
+    img:not(.cover)
       if hexo-config('lazyload.enable') && hexo-config('lazyload.blur') && !hexo-config('lazyload.placeholder')
-        filter: blur(0) brightness(.8)
+        filter: blur(0) brightness(.88) contrast(.95)
       else
-        filter: brightness(.8)
+        filter: brightness(.88) contrast(.95)
 
     #aside-content .aside-list > .aside-list-item:not(:last-child)
       border-bottom: 1px dashed alpha(#FFFFFF, .1)
@@ -148,7 +193,7 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
       --at-color-font: alpha(#FFFFFF, .7)
       --at-color-meta: alpha(#FFFFFF, .7)
       --at-color-grey: alpha(#FFFFFF, .7)
-    
+
     .atk-send-btn,
     .atk-badge
       color: alpha(#FFFFFF, .7) !important

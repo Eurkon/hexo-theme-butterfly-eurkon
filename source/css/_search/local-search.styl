@@ -1,57 +1,18 @@
 #local-search
   .search-dialog
-    .local-search-box
-      margin: 0 auto
-      max-width: 100%
-      width: 100%
-
-      input
-        padding: 5px 14px
-        width: 100%
-        outline: none
-        border: 2px solid $search-color
-        border-radius: 40px
-        background: var(--search-bg)
-        color: var(--search-input-color)
-        -webkit-appearance: none
-
-    .search-wrap
-      display: none
-
-    .local-search-hit-item
-      margin-left: 24px
-      padding-left: 3px
-      line-height: 1.8
-
-      &::marker
-        color: $search-color
-        font-weight: bold
-        font-style: italic
-
-      a
-        color: var(--search-a-color)
-
-        &:hover
-          color: $search-color
-
-      .search-result-title
-        font-weight: 600
-
-      .search-result
-        margin: 0 0 8px
-        word-break: break-all
-        font-size: .9em
-
     .search-result-list
-      overflow-y: overlay
-      margin: 0 -20px
-      padding: 0 22px
-      max-height: calc(80vh - 180px)
-
       +maxWidth768()
-        max-height: calc(var(--search-height) - 190px) !important
+        if hexo-config('search.local_search.pagination.enable')
+          min-height: calc(var(--search-height) - 255px) !important
+        else
+          max-height: calc(var(--search-height) - 200px) !important
 
-.search-keyword
-  background: transparent
-  color: $search-keyword-highlight
-  font-weight: 600
+  #local-search-stats
+    .search-result-stats
+      text-align: left
+
+  .search-keyword
+    font-weight: 600
+
+  #loading-database ~ *
+    visibility: hidden

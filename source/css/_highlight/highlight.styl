@@ -24,6 +24,14 @@ wordWrap = $highlight_enable && !$highlight_line_number && hexo-config('code_blo
   --hlscrollbar-bg: lighten(#121212, 5)
   --hlexpand-bg: linear-gradient(180deg, rgba(lighten(#121212, 2), .6), rgba(lighten(#121212, 2), .9))
 
+$scrollbar-style
+  // scrollbar - firefox
+  @-moz-document url-prefix()
+    scrollbar-color: var(--hlscrollbar-bg) transparent
+
+  &::-webkit-scrollbar-thumb
+    background: var(--hlscrollbar-bg)
+
 if $highlight_enable
   @require 'highlight/index'
 
@@ -42,7 +50,7 @@ $code-block
     counter-reset: line
     white-space: pre-wrap
 
-#article-container
+.container
   pre,
   code
     font-size: $code-font-size
@@ -88,6 +96,11 @@ $code-block
         &:hover
           border-bottom-color: var(--hl-color)
 
+    &.default
+      pre
+        padding: 10px 20px
+        @extend $scrollbar-style
+
     &.copy-true
       user-select: all
       -webkit-user-select: all
@@ -100,18 +113,23 @@ $code-block
   .highlight-tools
     display: flex
     align-items: center
+    overflow: hidden
     padding: 0 8px
     min-height: 24px
     height: 2.15em
     background: var(--hltools-bg)
     color: var(--hltools-color)
     font-size: $code-font-size
-    overflow: hidden
 
     & > *
-      padding: 5px
+      flex: 0 0 auto
+      margin: 2px
 
     i
+      display: inline-flex
+      justify-content: center
+      align-items: center
+      padding: 5px
       cursor: pointer
       transition: all .3s
 
@@ -127,31 +145,28 @@ $code-block
 
     if !$highlight_macstyle
       & > .macStyle
-        padding: 0
+        margin: 0
 
     .code-lang
-      flex: 1
+      flex: 1 1 auto
+      overflow: hidden
+      padding-right: 10px
       text-transform: uppercase
+      text-overflow: ellipsis
+      white-space: nowrap
       font-weight: bold
       font-size: 1.15em
       user-select: none
       -webkit-user-select: none
-      padding 2px
-
-    .copy-notice
-      padding-right: 2px
-      opacity: 0
-      transition: opacity .4s
 
     if hexo-config('code_blocks.language')
-      .code-lang
-        flex: 1
-    else if (!$highlight_macstyle && hexo-config('code_blocks.shrink') != 'none')
-      & > div:nth-child(2)
-        flex: 1
+      margin-right: auto
+    else if !$highlight_macstyle && hexo-config('code_blocks.shrink') != 'none'
+      & > :nth-child(2)
+        margin-right: auto
     else
-      .macStyle
-        flex: 1
+      & > :nth-child(1)
+        margin-right: auto
 
   .gutter
     user-select: none
@@ -163,17 +178,28 @@ $code-block
     td
       border: none
 
+.copy-notice
+  position: absolute
+  z-index: 99999
+  padding: 2px 6px
+  border-radius: 3px
+  background: var(--hltools-bg)
+  white-space: nowrap
+  font-size: 12px
+  pointer-events: none
+
 if $highlight_macstyle
-  #article-container
+  .container
     figure.highlight
       margin: 0 0 24px
-      border-radius: 7px
+      border-radius: 8px
       box-shadow: 0 5px 10px 0 $highlight-mac-border
       -webkit-transform: translateZ(0)
 
       .highlight-tools
         .macStyle
           display: flex
+          padding: 3px
 
           & > *
             margin-right: 8px
@@ -202,7 +228,7 @@ if $highlight_macstyle
               transform: rotate(90deg)
 
 if hexo-config('code_blocks.height_limit')
-  #article-container
+  .container
     .code-expand-btn
       position: absolute
       bottom: 0
@@ -231,7 +257,7 @@ if hexo-config('code_blocks.height_limit')
         & ~ pre
           overflow: hidden
           height: unit(hexo-config('code_blocks.height_limit'), px)
-  
+
   @keyframes code-expand-key
     0%
       opacity: .6
@@ -243,7 +269,7 @@ if hexo-config('code_blocks.height_limit')
       opacity: .6
 
 if hexo-config('code_blocks.fullpage')
-  #article-container
+  .container
     figure.highlight.code-fullpage
       position: fixed
       top: 0
@@ -264,8 +290,8 @@ if hexo-config('code_blocks.fullpage')
         & ~ table
           display: block
           overflow: auto
-          height: calc(100vh - 2.15em)
           margin-bottom: 0
+          height: calc(100vh - 2.15em)
 
   @keyframes code-fullpage
     0%,

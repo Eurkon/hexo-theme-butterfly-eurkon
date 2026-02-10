@@ -4,7 +4,7 @@ if theme.baidu_analytics
     (function() {
       var hm = document.createElement("script");
       hm.src = "https://hm.baidu.com/hm.js?!{theme.baidu_analytics}";
-      var s = document.getElementsByTagName("script")[0]; 
+      var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(hm, s);
     })();
     btf.addGlobalFn('pjaxComplete', () => {
@@ -33,16 +33,13 @@ if theme.microsoft_clarity
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "!{theme.microsoft_clarity}");
 
-if config.woyaola_analytics
+if (theme.google_tag_manager && theme.google_tag_manager.tag_id)
   script.
-    !function(p){"use strict";!function(t){var s=window,e=document,i=p,c="".concat("https:"===e.location.protocol?"https://":"http://","sdk.51.la/js-sdk-pro.min.js"),n=e.createElement("script"),r=e.getElementsByTagName("script")[0];n.type="text/javascript",n.setAttribute("charset","UTF-8"),n.async=!0,n.src=c,n.id="LA_COLLECT",i.d=n;var o=function(){s.LA.ids.push(i)};s.LA?s.LA.ids&&o():(s.LA=p,s.LA.ids=[],o()),r.parentNode.insertBefore(n,r)}()}({id:"!{config.woyaola_analytics}",ck:"!{config.woyaola_analytics}"});
-
-if config.woyaola_perf
-  script.
-    !(function(c,i,e,b){
-    var h=i.createElement("script");
-    var f=i.getElementsByTagName("script")[0];
-    h.type="text/javascript";
-    h.crossorigin=true;
-    h.onload=function(){new c[b]["Monitor"]().init({id:"!{config.woyaola_perf}"});};
-    f.parentNode.insertBefore(h,f);h.src=e;})(window,document,"https://sdk.51.la/perf/js-sdk-perf.min.js","LingQue");
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    "!{theme.google_tag_manager.domain ? theme.google_tag_manager.domain : 'https://www.googletagmanager.com'}/gtm.js?id="+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','!{theme.google_tag_manager.tag_id}');
+    btf.addGlobalFn('pjaxComplete', () => {
+      dataLayer.push({'event': 'pjaxComplete', 'page_title': document.title, 'page_location': location.href, 'page_path': window.location.pathname})
+    }, 'google_tag_manager')

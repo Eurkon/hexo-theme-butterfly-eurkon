@@ -1,11 +1,6 @@
 figure.highlight
   table
-    // scrollbar - firefox
-    @-moz-document url-prefix()
-      scrollbar-color: var(--hlscrollbar-bg) transparent
-
-    &::-webkit-scrollbar-thumb
-      background: var(--hlscrollbar-bg)
+    @extend $scrollbar-style
 
   pre .deletion
     color: $highlight-deletion

@@ -1,3 +1,28 @@
+//- 源代码START
+//- nav#nav
+//-   span#blog-info
+//-     a.nav-site-title(href=url_for('/'))
+//-       if theme.nav.logo
+//-         img.site-icon(src=url_for(theme.nav.logo) alt='Logo')
+//-       if theme.nav.display_title
+//-         span.site-name=config.title
+//-     if globalPageType === 'post' && theme.nav.display_post_title
+//-       a.nav-page-title(href=url_for('/'))
+//-         span.site-name=(page.title || config.title)
+//-         span.site-name
+//-           i.fa-solid.fa-circle-arrow-left
+//-           span= '  ' + _p('post.back_to_home')
+
+//-   #menus
+//-     if theme.search.use
+//-       #search-button
+//-         span.site-page.social-icon.search
+//-           i.fas.fa-search.fa-fw
+//-           span= ' ' + _p('search.title')
+//-     if theme.menu
+//-       != partial('includes/header/menu_item', {}, {cache: true})
+//- 源代码END
+
 nav#nav
   #nav-group
     span#blog-info
@@ -10,7 +35,7 @@ nav#nav
           span.site-name=config.title
           i.fas.fa-home
 
-      //- if is_post()
+      //- if globalPageType === 'post' && theme.nav.display_post_title
       //-   a.nav-page-title(href=url_for('/') )
       //-     span.site-name=(page.title || config.title)
 
@@ -38,10 +63,9 @@ nav#nav
             i.fas.fa-comments.fa-fw
       #setting-button(onclick="eurkon.switchRightSide();")
         a.site-page(href="javascript:void(0);" title=_p("rightside.setting"))
-          i.fas.fa-screwdriver-wrench.fa-fw
+          i.fas.fa-sliders.fa-fw
       #top-button
         a.site-page(href="javascript:void(0);" title=_p("rightside.back_to_top") onclick="btf.scrollToDest(0, 500)")
-          span.scroll-percent
           i.fas.fa-arrow-up.fa-fw
       #toggle-menu
         a.site-page(href="javascript:void(0);")

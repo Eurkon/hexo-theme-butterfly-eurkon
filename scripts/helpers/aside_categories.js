@@ -19,15 +19,33 @@ hexo.extend.helper.register('aside_categories', function (categories, options = 
   const expandClass = isExpand && options.expand === true ? 'expand' : ''
   const buttonLabel = this._p('aside.more_button')
 
-  const prepareQuery = parent => {
-    const query = parent ? { parent } : { parent: { $exists: false } }
-    return categories.find(query).sort(orderby, order).filter(cat => cat.length)
+  const categoryMap = new Map()
+  categories.forEach(cat => {
+    if (cat.length) {
+      const parentId = cat.parent || 'root'
+      if (!categoryMap.has(parentId)) {
+        categoryMap.set(parentId, [])
+      }
+      categoryMap.get(parentId).push(cat)
+    }
+  })
+
+  const sortFn = (a, b) => {
+    const valA = a[orderby]
+    const valB = b[orderby]
+    if (valA < valB) return -order
+    if (valA > valB) return order
+    return 0
   }
 
-  const hierarchicalList = (remaining, level = 0, parent) => {
+  for (const list of categoryMap.values()) {
+    list.sort(sortFn)
+  }
+
+  const hierarchicalList = (remaining, level = 0, parentId = 'root') => {
     let result = ''
-    if (remaining > 0) {
-      prepareQuery(parent).forEach(cat => {
+    if (remaining > 0 && categoryMap.has(parentId)) {
+      categoryMap.get(parentId).forEach(cat => {
         if (remaining > 0) {
           remaining -= 1
           let child = ''
@@ -37,16 +55,17 @@ hexo.extend.helper.register('aside_categories', function (categories, options = 
             remaining = childList.remaining
           }
 
-          const parentClass = isExpand && !parent && child ? 'parent' : ''
+          const isTopLevel = parentId === 'root'
+          const parentClass = isExpand && isTopLevel && child ? 'parent' : ''
           result += `<li class="card-category-list-item ${parentClass}">`
           result += `<a class="card-category-list-link" href="${this.url_for(cat.path)}">`
-          result += `<span class="card-category-list-name">${(config.emoji && config.emoji.categories && config.emoji.categories[cat.name] || '') + [cat.name]}</span>`
+          result += `<span class="card-category-list-name">${cat.name}</span>`
 
           if (showCount) {
             result += `<span class="card-category-list-count">${cat.length}</span>`
           }
 
-          if (isExpand && !parent && child) {
+          if (isExpand && isTopLevel && child) {
             result += `<i class="fas fa-caret-left ${expandClass}"></i>`
           }
 

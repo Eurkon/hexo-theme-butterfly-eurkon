@@ -17,7 +17,7 @@ if (syntax_highlighter === 'prismjs' || enable) && !preprocess
       btf.addGlobalFn('encrypt', highlightAll, 'prismjs')
     })()
 
-  script(src=url_for(prismjs_js))
-  script(src=url_for(prismjs_autoloader))
+  script(src=url_for(prismjs_js) defer)
+  script(src=url_for(prismjs_autoloader) defer)
   if (line_number)
-    script(src=url_for(prismjs_lineNumber_js))
+    script(src=url_for(prismjs_lineNumber_js) defer)

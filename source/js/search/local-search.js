@@ -166,13 +166,21 @@ class LocalSearch {
       tags.forEach(tag => {
         resultItem += `<a class="search-result-tag" href="${GLOBAL_CONFIG.root + 'tags/' + tag + '/'}">${(GLOBAL_CONFIG.emoji && GLOBAL_CONFIG.emoji.tags && GLOBAL_CONFIG.emoji.tags[tag] || '') + tag}</a>`
       })
-      // 魔改代码END
 
       slicesOfContent.forEach(slice => {
         resultItem += `<p class="search-result">${this.highlightKeyword(content, slice)}...</p></a>`
       })
 
       resultItem += '</li>'
+      // 魔改代码END
+
+      // 源代码START
+      // slicesOfContent.forEach(slice => {
+      //   resultItem += `<p class="search-result">${this.highlightKeyword(content, slice)}...</p>`
+      // })
+
+      // resultItem += '</a></li>'
+      // 源代码END
       resultItems.push({
         item: resultItem,
         id: resultItems.length,
@@ -192,7 +200,8 @@ class LocalSearch {
         this.isfetched = true
         this.datas = isXml
           ? [...new DOMParser().parseFromString(res, 'text/xml').querySelectorAll('entry')].map(element => ({
-              // 魔改代码START
+
+            // 魔改代码START
               categories: [...element.querySelectorAll('category')].map(category => { return category.textContent.trim() }),
               tags: [...element.querySelectorAll('tag')].map(tag => { return tag.textContent.trim() }),
               // 魔改代码END
@@ -254,40 +263,229 @@ class LocalSearch {
 
 window.addEventListener('load', () => {
 // Search
-  const { path, top_n_per_article, unescape, languages } = GLOBAL_CONFIG.localSearch
+  const { path, top_n_per_article, unescape, languages, pagination } = GLOBAL_CONFIG.localSearch
+  const enablePagination = pagination && pagination.enable
   const localSearch = new LocalSearch({
     path,
     top_n_per_article,
     unescape
   })
 
-  const input = document.querySelector('#local-search-input input')
-  const statsItem = document.getElementById('local-search-stats-wrap')
+  const input = document.querySelector('.local-search-input input')
+  const statsItem = document.getElementById('local-search-stats')
   const $loadingStatus = document.getElementById('loading-status')
   const isXml = !path.endsWith('json')
+
+  // Pagination variables (only initialize if pagination is enabled)
+  let currentPage = 0
+  const hitsPerPage = pagination.hitsPerPage || 10
+
+  let currentResultItems = []
+
+  if (!enablePagination) {
+    // If pagination is disabled, we don't need these variables
+    currentPage = undefined
+    currentResultItems = undefined
+  }
+
+  // Cache frequently used elements
+  const elements = {
+    get pagination () { return document.getElementById('local-search-pagination') },
+    get paginationList () { return document.querySelector('#local-search-pagination .ais-Pagination-list') }
+  }
+
+  // Show/hide search results area
+  const toggleResultsVisibility = hasResults => {
+    if (enablePagination) {
+      elements.pagination.style.display = hasResults ? '' : 'none'
+    } else {
+      elements.pagination.style.display = 'none'
+    }
+  }
+
+  // Render search results for current page
+  const renderResults = (searchText, resultItems) => {
+    const container = document.getElementById('local-search-results')
+
+    // Determine items to display based on pagination mode
+    const itemsToDisplay = enablePagination
+      ? currentResultItems.slice(currentPage * hitsPerPage, (currentPage + 1) * hitsPerPage)
+      : resultItems
+
+    // Handle empty page in pagination mode
+    if (enablePagination && itemsToDisplay.length === 0 && currentResultItems.length > 0) {
+      currentPage = 0
+      renderResults(searchText, resultItems)
+      return
+    }
+
+    // Add numbering to items
+    const numberedItems = itemsToDisplay.map((result, index) => {
+      const itemNumber = enablePagination
+        ? currentPage * hitsPerPage + index + 1
+        : index + 1
+      return result.item.replace(
+        '<li class="local-search-hit-item">',
+        `<li class="local-search-hit-item" value="${itemNumber}">`
+      )
+    })
+
+    container.innerHTML = `<ol class="search-result-list">${numberedItems.join('')}</ol>`
+
+    // Update stats
+    const displayCount = enablePagination ? currentResultItems.length : resultItems.length
+    const stats = languages.hits_stats.replace(/\$\{hits}/, displayCount)
+    statsItem.innerHTML = `<hr><div class="search-result-stats">${stats}</div>`
+
+    // Handle pagination
+    if (enablePagination) {
+      const nbPages = Math.ceil(currentResultItems.length / hitsPerPage)
+      renderPagination(currentPage, nbPages, searchText)
+    }
+
+    const hasResults = resultItems.length > 0
+    toggleResultsVisibility(hasResults)
+
+    window.pjax && window.pjax.refresh(container)
+  }
+
+  // Render pagination
+  const renderPagination = (page, nbPages, query) => {
+    if (nbPages <= 1) {
+      elements.pagination.style.display = 'none'
+      elements.paginationList.innerHTML = ''
+      return
+    }
+
+    elements.pagination.style.display = 'block'
+
+    const isFirstPage = page === 0
+    const isLastPage = page === nbPages - 1
+
+    // Responsive page display
+    const isMobile = window.innerWidth < 768
+    const maxVisiblePages = isMobile ? 3 : 5
+    let startPage = Math.max(0, page - Math.floor(maxVisiblePages / 2))
+    const endPage = Math.min(nbPages - 1, startPage + maxVisiblePages - 1)
+
+    // Adjust starting page to maintain max visible pages
+    if (endPage - startPage + 1 < maxVisiblePages) {
+      startPage = Math.max(0, endPage - maxVisiblePages + 1)
+    }
+
+    let pagesHTML = ''
+
+    // Only add ellipsis and first page when there are many pages
+    if (nbPages > maxVisiblePages && startPage > 0) {
+      pagesHTML += `
+        <li class="ais-Pagination-item ais-Pagination-item--page">
+          <a class="ais-Pagination-link" aria-label="Page 1" href="#" data-page="0">1</a>
+        </li>`
+      if (startPage > 1) {
+        pagesHTML += `
+          <li class="ais-Pagination-item ais-Pagination-item--ellipsis">
+            <span class="ais-Pagination-link">...</span>
+          </li>`
+      }
+    }
+
+    // Add middle page numbers
+    for (let i = startPage; i <= endPage; i++) {
+      const isSelected = i === page
+      if (isSelected) {
+        pagesHTML += `
+          <li class="ais-Pagination-item ais-Pagination-item--page ais-Pagination-item--selected">
+            <span class="ais-Pagination-link" aria-label="Page ${i + 1}">${i + 1}</span>
+          </li>`
+      } else {
+        pagesHTML += `
+          <li class="ais-Pagination-item ais-Pagination-item--page">
+            <a class="ais-Pagination-link" aria-label="Page ${i + 1}" href="#" data-page="${i}">${i + 1}</a>
+          </li>`
+      }
+    }
+
+    // Only add ellipsis and last page when there are many pages
+    if (nbPages > maxVisiblePages && endPage < nbPages - 1) {
+      if (endPage < nbPages - 2) {
+        pagesHTML += `
+          <li class="ais-Pagination-item ais-Pagination-item--ellipsis">
+            <span class="ais-Pagination-link">...</span>
+          </li>`
+      }
+      pagesHTML += `
+        <li class="ais-Pagination-item ais-Pagination-item--page">
+          <a class="ais-Pagination-link" aria-label="Page ${nbPages}" href="#" data-page="${nbPages - 1}">${nbPages}</a>
+        </li>`
+    }
+
+    if (nbPages > 1) {
+      elements.paginationList.innerHTML = `
+            <li class="ais-Pagination-item ais-Pagination-item--previousPage ${isFirstPage ? 'ais-Pagination-item--disabled' : ''}">
+              ${isFirstPage
+                ? '<span class="ais-Pagination-link ais-Pagination-link--disabled" aria-label="Previous Page"><i class="fas fa-angle-left"></i></span>'
+                : `<a class="ais-Pagination-link" aria-label="Previous Page" href="#" data-page="${page - 1}"><i class="fas fa-angle-left"></i></a>`
+              }
+            </li>
+            ${pagesHTML}
+            <li class="ais-Pagination-item ais-Pagination-item--nextPage ${isLastPage ? 'ais-Pagination-item--disabled' : ''}">
+              ${isLastPage
+                ? '<span class="ais-Pagination-link ais-Pagination-link--disabled" aria-label="Next Page"><i class="fas fa-angle-right"></i></span>'
+                : `<a class="ais-Pagination-link" aria-label="Next Page" href="#" data-page="${page + 1}"><i class="fas fa-angle-right"></i></a>`
+              }
+            </li>`
+    } else {
+      elements.pagination.style.display = 'none'
+    }
+  }
+
+  // Clear search results and stats
+  const clearSearchResults = () => {
+    const container = document.getElementById('local-search-results')
+    container.textContent = ''
+    statsItem.textContent = ''
+    toggleResultsVisibility(false)
+    if (enablePagination) {
+      currentResultItems = []
+      currentPage = 0
+    }
+  }
+
+  // Show no results message
+  const showNoResults = searchText => {
+    const container = document.getElementById('local-search-results')
+    container.textContent = ''
+    const statsDiv = document.createElement('div')
+    statsDiv.className = 'search-result-stats'
+    statsDiv.textContent = languages.hits_empty.replace(/\$\{query}/, searchText)
+    statsItem.innerHTML = statsDiv.outerHTML
+    toggleResultsVisibility(false)
+    if (enablePagination) {
+      currentResultItems = []
+      currentPage = 0
+    }
+  }
 
   const inputEventFunction = () => {
     if (!localSearch.isfetched) return
     let searchText = input.value.trim().toLowerCase()
     isXml && (searchText = searchText.replace(/</g, '&lt;').replace(/>/g, '&gt;'))
-    if (searchText !== '') $loadingStatus.innerHTML = '<i class="fas fa-spinner fa-pulse"></i>'
+
+    if (searchText !== '') $loadingStatus.hidden = false
+
     const keywords = searchText.split(/[-\s]+/)
-    const container = document.getElementById('local-search-results')
     let resultItems = []
+
     if (searchText.length > 0) {
-    // Perform local searching
       resultItems = localSearch.getResultItems(keywords)
     }
+
     if (keywords.length === 1 && keywords[0] === '') {
-      container.textContent = ''
-      statsItem.textContent = ''
+      clearSearchResults()
     } else if (resultItems.length === 0) {
-      container.textContent = ''
-      const statsDiv = document.createElement('div')
-      statsDiv.className = 'search-result-stats'
-      statsDiv.textContent = languages.hits_empty.replace(/\$\{query}/, searchText)
-      statsItem.innerHTML = statsDiv.outerHTML
+      showNoResults(searchText)
     } else {
+      // Sort results by relevance
       resultItems.sort((left, right) => {
         if (left.includedCount !== right.includedCount) {
           return right.includedCount - left.includedCount
@@ -297,14 +495,14 @@ window.addEventListener('load', () => {
         return right.id - left.id
       })
 
-      const stats = languages.hits_stats.replace(/\$\{hits}/, resultItems.length)
-
-      container.innerHTML = `<ol class="search-result-list">${resultItems.map(result => result.item).join('')}</ol>`
-      statsItem.innerHTML = `<hr><div class="search-result-stats">${stats}</div>`
-      window.pjax && window.pjax.refresh(container)
+      if (enablePagination) {
+        currentResultItems = resultItems
+        currentPage = 0
+      }
+      renderResults(searchText, resultItems)
     }
 
-    $loadingStatus.textContent = ''
+    $loadingStatus.hidden = true
   }
 
   let loadFlag = false
@@ -358,11 +556,29 @@ window.addEventListener('load', () => {
       localSearch.fetchData()
     }
     localSearch.highlightSearchWords(document.getElementById('article-container'))
+
+    // Pagination event delegation - only add if pagination is enabled
+    if (enablePagination) {
+      elements.pagination.addEventListener('click', e => {
+        e.preventDefault()
+        const link = e.target.closest('a[data-page]')
+        if (link) {
+          const page = parseInt(link.dataset.page, 10)
+          if (!isNaN(page) && currentResultItems.length > 0) {
+            currentPage = page
+            renderResults(input.value.trim().toLowerCase(), currentResultItems)
+          }
+        }
+      })
+    }
+
+    // Initial state
+    toggleResultsVisibility(false)
   }
 
   window.addEventListener('search:loaded', () => {
     const $loadDataItem = document.getElementById('loading-database')
-    $loadDataItem.nextElementSibling.style.display = 'block'
+    $loadDataItem.nextElementSibling.style.visibility = 'visible'
     $loadDataItem.remove()
   })
 

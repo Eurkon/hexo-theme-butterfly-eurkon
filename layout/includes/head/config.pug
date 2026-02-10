@@ -10,7 +10,6 @@
       hitsPerPage: theme.search.algolia_search.hitsPerPage,
       // search languages
       languages: {
-        input_placeholder: theme.search.placeholder || _p("search.input_placeholder"),
         hits_empty: _p("search.algolia_search.hits_empty"),
         hits_stats: _p("search.algolia_search.hits_stats"),
       }
@@ -19,12 +18,16 @@
 
   let localSearch = 'undefined'
   if (theme.search.use === 'local_search') {
-    const { CDN, preload, top_n_per_article, unescape } = theme.search.local_search
+    const { CDN, preload, top_n_per_article, pagination, unescape } = theme.search.local_search
     localSearch = JSON.stringify({
       path: CDN || config.root + config.search.path,
       preload,
       top_n_per_article,
       unescape,
+      pagination: {
+        enable: pagination.enable,
+        hitsPerPage: pagination.hitsPerPage
+      },
       languages: {
         // search languages
         hits_empty: _p("search.local_search.hits_empty"),
@@ -69,42 +72,23 @@
     })
   }
 
-  let noticeOutdate = 'undefined'
-  if (theme.noticeOutdate && theme.noticeOutdate.enable) {
-    noticeOutdate = JSON.stringify({
-      limitDay: theme.noticeOutdate.limit_day,
-      position: theme.noticeOutdate.position,
-      messagePrev: theme.noticeOutdate.message_prev,
-      messageNext: theme.noticeOutdate.message_next,
-    })
-  }
-
-  let highlight = 'undefined'
-  let syntaxHighlighter = config.syntax_highlighter
-  let highlightEnable = syntaxHighlighter ? ['highlight.js', 'prismjs'].includes(syntaxHighlighter) : (config.highlight.enable || config.prismjs.enable)
-  if (highlightEnable) {
-    const { copy, language, height_limit, fullpage, macStyle } = theme.code_blocks
-    highlight = JSON.stringify({
-      plugin: syntaxHighlighter ? syntaxHighlighter : config.highlight.enable ? 'highlight.js' : 'prismjs',
-      highlightCopy: copy,
-      highlightLang: language,
-      highlightHeightLimit: height_limit,
-      highlightFullpage: fullpage,
-      highlightMacStyle: macStyle
-    })
-  }
-
-  let emoji = 'undefined';
-  if (config.emoji) emoji = JSON.stringify(config.emoji)
+  let highlightProvider = config.syntax_highlighter || (config.highlight.enable ? 'highlight.js' : config.prismjs.enable ? 'prismjs' : null)
+  const { copy, language, height_limit, fullpage, macStyle, shrink } = theme.code_blocks
+  let highlight = JSON.stringify({
+    plugin: highlightProvider,
+    highlightCopy: copy,
+    highlightLang: language,
+    highlightHeightLimit: height_limit,
+    highlightFullpage: fullpage,
+    highlightMacStyle: macStyle
+  })
 
 script.
   const GLOBAL_CONFIG = {
     root: '!{config.root}',
-    emoji: !{emoji},
     algolia: !{algolia},
     localSearch: !{localSearch},
     translate: !{translate},
-    noticeOutdate: !{noticeOutdate},
     highlight: !{highlight},
     copy: {
       success: '!{_p("copy.success")}',
@@ -131,7 +115,7 @@ script.
       buttonText: '!{_p("load_more")}'
     },
     isPhotoFigcaption: !{theme.photofigcaption},
-    islazyload: !{theme.lazyload.enable},
+    islazyloadPlugin: !{theme.lazyload.enable && !theme.lazyload.native},
     isAnchor: !{theme.anchor.auto_update || false},
     percent: {
       toc: !{theme.toc.scroll_percent},

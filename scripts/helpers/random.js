@@ -29,6 +29,6 @@ hexo.extend.filter.register('after_render:html', function (data) {
         flinks.push(flink)
       })
     })
-    data += `<script>var flinks=${JSON.stringify(flinks)};function toRandomFlink(){window.open(flinks[Math.floor(Math.random()*flinks.length)].link);};</script>`
+    data += `<script>var flinks=${JSON.stringify(flinks)};function toRandomFlink(){ let to_flink = flinks[Math.floor(Math.random()*flinks.length)]; btf.snackbarShow('正在前往「 '+ to_flink.name +' 」友链，请稍后...', false, 3000); setTimeout(function() { window.open(to_flink.link); }, 3000); }</script>`
   } catch (e) { } finally { return data }
 })

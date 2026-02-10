@@ -4,9 +4,9 @@ hexo.extend.helper.register('inject_head_js', function () {
   const { darkmode, aside, pjax } = this.theme
   const start = darkmode.start || 6
   const end = darkmode.end || 18
-  const { theme_color } = hexo.theme.config
-  const themeColorLight = theme_color && theme_color.enable ? theme_color.meta_theme_color_light : '#ffffff'
-  const themeColorDark = theme_color && theme_color.enable ? theme_color.meta_theme_color_dark : '#0d0d0d'
+  const { theme_color: themeColor } = hexo.theme.config
+  const themeColorLight = themeColor && themeColor.enable ? themeColor.meta_theme_color_light : '#ffffff'
+  const themeColorDark = themeColor && themeColor.enable ? themeColor.meta_theme_color_dark : '#0d0d0d'
 
   const createCustomJs = () => `
     const saveToLocal = {
@@ -55,7 +55,6 @@ hexo.extend.helper.register('inject_head_js', function () {
         if (!${pjax.enable} && key.startsWith('pjax')) return
         const globalFn = parent.globalFn || {}
         globalFn[key] = globalFn[key] || {}
-        if (name && globalFn[key][name]) return
         globalFn[key][name || Object.keys(globalFn[key]).length] = fn
         parent.globalFn = globalFn
       }
@@ -90,7 +89,7 @@ hexo.extend.helper.register('inject_head_js', function () {
         darkmodeJs += `
           const mediaQueryDark = window.matchMedia('(prefers-color-scheme: dark)')
           const mediaQueryLight = window.matchMedia('(prefers-color-scheme: light)')
-          
+
           if (theme === undefined) {
             if (mediaQueryLight.matches) activateLightMode()
             else if (mediaQueryDark.matches) activateDarkMode()

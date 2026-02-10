@@ -1,5 +1,5 @@
 .tag-cloud-list.text-center
-  !=cloudTags({source: site.tags, orderby: page.orderby || 'random', order: page.order || 1, minfontsize: 1.2, maxfontsize: 1.5, limit: 0, unit: 'em'})
+  !=cloudTags({source: site.tags, orderby: page.orderby || 'random', order: page.order || 1, minfontsize: 1.2, maxfontsize: 1.5, limit: 0, unit: 'em', custom_colors: page.custom_colors})
 
 //- <div id="tags-chart" data-length="10" style="height: 300px; padding: 10px;"></div>
 //- #tags-chart(data-length="10" style="height: 300px; padding: 10px;")

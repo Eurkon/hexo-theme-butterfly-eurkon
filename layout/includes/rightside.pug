@@ -1,9 +1,10 @@
 - const { readmode, translate, darkmode, aside, chat } = theme
+
 mixin rightsideItem(array)
   each item in array
     case item
       when 'readmode'
-        if is_post() && readmode
+        if globalPageType === 'post' && readmode
           button#readmode(type="button" title=_p('rightside.readmode_title'))
             i.fas.fa-book-open
       when 'translate'
@@ -28,7 +29,7 @@ mixin rightsideItem(array)
             i.fas.fa-list-ul
       when 'chat'
         if chat.rightside_button && chat.use
-          button#chat-btn(type="button" title=_p("rightside.chat"))
+          button#chat-btn(type="button" title=_p("rightside.chat") style="display:none")
             i.fas.fa-message
       when 'comment'
         if commentsJsLoad
@@ -95,28 +96,20 @@ mixin rightsideItem(array)
             .card-tag-cloud!= tagcloud({orderby: orderby, order: order, min_font: 1.1, max_font: 1.5, amount: limit , color: true, start_color: '#999', end_color: '#99a9bf', unit: 'em'})
 
   - const { enable, hide, show } = theme.rightside_item_order
-  - const hideArray = enable ? hide && hide.split(',') : ['readmode','translate','darkmode','hideAside']
-  - const showArray = enable ? show && show.split(',') : ['toc','chat','comment']
+  - const hideArray = enable && hide ? hide.split(',') : ['readmode','translate','darkmode','hideAside']
+  - const showArray = enable && show ? show.split(',') : ['toc','chat','comment']
+  - const needCogBtn = (enable && hide) || (!enable && ((globalPageType === 'post' && (readmode || translate.enable || (darkmode.enable && darkmode.button))) || (translate.enable || (darkmode.enable && darkmode.button))))
 
-  
-  #rightside-config-hide
-    if hideArray
-      +rightsideItem(hideArray)
-  #rightside-config-show
-    if enable
-      if hide
-        button#rightside-config(type="button" title=_p("rightside.setting"))
-          i.fas.fa-cog.fa-spin
-    else
-      if is_post()
-        if (readmode || translate.enable || (darkmode.enable && darkmode.button))
-          button#rightside-config(type="button" title=_p("rightside.setting"))
-            i.fas.fa-cog.fa-spin
-      else if translate.enable || (darkmode.enable && darkmode.button)
-        button#rightside-config(type="button" title=_p("rightside.setting"))
-          i.fas.fa-cog.fa-spin
+    #rightside-config-hide
+      if hideArray.length
+        +rightsideItem(hideArray)
 
-    if showArray
+    #rightside-config-show
+      if needCogBtn
+        button#rightside-config(type="button" title=_p("rightside.setting"))
+          i.fas.fa-cog(class=theme.rightside_config_animation ? 'fa-spin' : '')
+
+    if showArray.length
       +rightsideItem(showArray)
 
     button#go-up(type="button" title=_p("rightside.back_to_top"))

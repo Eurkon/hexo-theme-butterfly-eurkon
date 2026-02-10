@@ -1,7 +1,7 @@
 mixin indexPostUI()
   - const indexLayout = theme.index_layout
-  - const masonryLayoutClass = (indexLayout === 6 || indexLayout === 7) ? 'masonry' : ''
-  - let sticky_post_num = 0
+  - const masonryLayoutClass = [6, 7].includes(indexLayout) ? 'masonry' : ''
+  - let sticky_post_num = 0 //- 魔改代码
   #recent-posts.recent-posts.nc(class=masonryLayoutClass)
     .recent-post-items
       each article, index in page.posts.data
@@ -9,23 +9,24 @@ mixin indexPostUI()
           - const link = article.link || article.path
           - const title = article.title || _p('no_title')
           - const leftOrRight = indexLayout === 3 ? (index % 2 === 0 ? 'left' : 'right') : (indexLayout === 2 ? 'right' : '')
-          - const post_cover = article.cover
-          - const no_cover = article.cover === false || !theme.cover.index_enable ? 'no-cover' : ''
-
+          - const postCover = article.cover
+          - const noCover = article.cover === false || !theme.cover.index_enable ? 'no-cover' : ''
+          //- 魔改代码START
           - if(article.top || article.sticky > 0) sticky_post_num += 1
           - const updated_post = article.updated > article.date ? 'article-title-update' : ''
           - const new_post = is_current('/') ? (index === sticky_post_num ? ' article-title-new' : '') : ''
-
-          if post_cover && theme.cover.index_enable
+          //- 魔改代码END
+          if postCover && theme.cover.index_enable
             .post_cover(class=leftOrRight)
               a(href=url_for(link) title=title)
                 if article.cover_type === 'img'
-                  img.post-bg(src=url_for(post_cover) onerror=`this.onerror=null;this.src='${url_for(theme.error_img.post_page)}'` alt=title)
+                  img.post-bg(src=url_for(postCover) onerror=`this.onerror=null;this.src='${url_for(theme.error_img.post_page)}'` alt=title)
                 else
-                  div.post-bg(style=`background: ${post_cover}`)
-          .recent-post-info(class=no_cover)
+                  div.post-bg(style=`background: ${postCover}`)
+          .recent-post-info(class=noCover)
+            //- a.article-title(href=url_for(link) title=title) //- 源代码
             a.article-title(href=url_for(link) title=title class=updated_post + new_post)
-              if is_home() && (article.top || article.sticky > 0)
+              if globalPageType === 'home' && (article.top || article.sticky > 0)
                 i.fas.fa-thumbtack.sticky
               = title
             .article-meta-wrap
@@ -40,18 +41,20 @@ mixin indexPostUI()
                     span.article-meta-label=_p('post.updated')
                     time.post-meta-date-updated(datetime=date_xml(article.updated) title=_p('post.updated') + ' ' + full_date(article.updated))= date(article.updated, config.date_format)
                   else
-                    - const data_type_updated = theme.post_meta.page.date_type === 'updated'
-                    - const date_type = data_type_updated ? 'updated' : 'date'
-                    - const date_icon = data_type_updated ? 'fas fa-history' : 'far fa-calendar-alt'
-                    - const date_title = data_type_updated ? _p('post.updated') : _p('post.created')
-                    i(class=date_icon)
-                    span.article-meta-label= date_title
-                    time(datetime=date_xml(article[date_type]) title=date_title + ' ' + full_date(article[date_type]))= date(article[date_type], config.date_format)
+                    - const isUpdatedType = theme.post_meta.page.date_type === 'updated'
+                    - const dateType = isUpdatedType ? 'updated' : 'date'
+                    - const dateIcon = isUpdatedType ? 'fas fa-history' : 'far fa-calendar-alt'
+                    - const dateTitle = isUpdatedType ? _p('post.updated') : _p('post.created')
+                    i(class=dateIcon)
+                    span.article-meta-label= dateTitle
+                    time(datetime=date_xml(article[dateType]) title=dateTitle + ' ' + full_date(article[dateType]))= date(article[dateType], config.date_format)
               if theme.post_meta.page.categories && article.categories.data.length > 0
+                //- span.article-meta //- 源代码
                 span.article-meta.category
                   span.article-meta-separator |
                   each item, index in article.categories.data
                     i.fas.fa-inbox
+                    //- a(href=url_for(item.path)).article-meta__categories #[=item.name] //- 源代码
                     a(href=url_for(item.path)).article-meta__categories #[=(config.emoji && config.emoji.categories && config.emoji.categories[item.name] || '') + item.name]
                     if index < article.categories.data.length - 1
                       i.fas.fa-angle-right.article-meta-link
@@ -60,10 +63,11 @@ mixin indexPostUI()
                   span.article-meta-separator |
                   each item, index in article.tags.data
                     i.fas.fa-tag
+                    //- a(href=url_for(item.path)).article-meta__tags #[=item.name] //- 源代码
                     a(href=url_for(item.path)).article-meta__tags #[=(config.emoji && config.emoji.tags && config.emoji.tags[item.name] || '') + item.name]
                     if index < article.tags.data.length - 1
                       span.article-meta-link #[='•']
-              
+
               mixin countBlockInIndex
                 - needLoadCountJs = true
                 span.article-meta
@@ -72,9 +76,12 @@ mixin indexPostUI()
                   if block
                     block
                   span.article-meta-label= ' ' + _p('card_post_count')
-              
+
               if theme.comments.card_post_count && theme.comments.use
-                case theme.comments.use[0]
+                - const commentSystem = theme.comments.use[0]
+                - const commentLink = url_for(link) + '#post-comment'
+
+                case commentSystem
                   when 'Disqus'
                   when 'Disqusjs'
                     +countBlockInIndex
@@ -82,30 +89,30 @@ mixin indexPostUI()
                         i.fa-solid.fa-spinner.fa-spin
                   when 'Valine'
                     +countBlockInIndex
-                      a(href=url_for(link) + '#post-comment')
+                      a(href=commentLink)
                         span.valine-comment-count(data-xid=url_for(link))
                           i.fa-solid.fa-spinner.fa-spin
                   when 'Waline'
                     +countBlockInIndex
-                      a(href=url_for(link) + '#post-comment')
+                      a(href=commentLink)
                         span.waline-comment-count(data-path=url_for(link))
                           i.fa-solid.fa-spinner.fa-spin
                   when 'Twikoo'
                     +countBlockInIndex
-                      a.twikoo-count(href=url_for(link) + '#post-comment')
+                      a.twikoo-count(href=commentLink)
                         i.fa-solid.fa-spinner.fa-spin
                   when 'Facebook Comments'
                     +countBlockInIndex
-                      a(href=url_for(link) + '#post-comment')
+                      a(href=commentLink)
                         span.fb-comments-count(data-href=urlNoIndex(article.permalink))
                   when 'Remark42'
                     +countBlockInIndex
-                      a(href=url_for(link) + '#post-comment')
+                      a(href=commentLink)
                         span.remark42__counter(data-url=urlNoIndex(article.permalink))
                           i.fa-solid.fa-spinner.fa-spin
                   when 'Artalk'
                     +countBlockInIndex
-                      a(href=url_for(link) + '#post-comment')
+                      a(href=commentLink)
                         span.artalk-count(data-page-key=url_for(link))
                           i.fa-solid.fa-spinner.fa-spin
 
